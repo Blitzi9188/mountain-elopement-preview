@@ -539,7 +539,9 @@ IT_EX={
 }
 # (Italian is merged at the bottom, after TITLES/DESC are defined)
 
-NAVKEYS=[('','welcome','home'),('how-to-elope-in-the-europe-mountains/','howto','howto'),
+# Home is reachable via the logo, so no "Welcome" link. Contact stays here for the mobile menu
+# (the header CTA button is hidden on mobile) but is hidden on desktop via .nav-contact.
+NAVKEYS=[('how-to-elope-in-the-europe-mountains/','howto','howto'),
          ('stories-elopement-mountain/','stories','stories'),('our-packages/','packages','packages'),
          ('our-team/','team','team'),('get-in-touch/','contact','contact')]
 
@@ -609,22 +611,27 @@ def nav(lang, rel, active, booking=False):
     P=prefix(lang,rel)
     links=''
     for slug,key,akey in NAVKEYS:
-        cls=' class="active"' if akey==active else ''
-        links+=f'<a href="{u(P,lang,slug)}"{cls}>{t(lang,"nav")[key] if False else T["nav"][key][lang]}</a>'
-    langsw='<div class="langs">'
-    for i,L in enumerate(LANGS):
-        cls=' class="active"' if L==lang else ''
-        langsw+=f'<a href="{P}{lbase(L)}{rel}index.html"{cls}>{LNAME[L]}</a>'
-        if i<len(LANGS)-1: langsw+='<span class="sep">/</span>'
-    langsw+='</div>'
+        classes=(['active'] if akey==active else [])+(['nav-contact'] if akey=='contact' else [])
+        cls=f' class="{" ".join(classes)}"' if classes else ''
+        links+=f'<a href="{u(P,lang,slug)}"{cls}>{T["nav"][key][lang]}</a>'
+    def langs_block(cls):
+        s=f'<div class="{cls}">'
+        for i,L in enumerate(LANGS):
+            a=' class="active"' if L==lang else ''
+            s+=f'<a href="{P}{lbase(L)}{rel}index.html"{a}>{LNAME[L]}</a>'
+            if i<len(LANGS)-1: s+='<span class="sep">/</span>'
+        return s+'</div>'
+    langsw=langs_block('langs')                 # bar (desktop)
+    langs_menu=langs_block('langs langs-in-menu')  # inside dropdown (mobile)
     strip=''
     if booking:
         strip=(f'<div class="booking-strip">{t(lang,"booking")} '
                f'<a href="{u(P,lang,"get-in-touch/")}">{t(lang,"booking_link")}</a></div>')
     return (strip+'<header class="masthead"><div class="bar">'
         f'<a class="brand" href="{u(P,lang,"")}"><img class="brand-mark" src="{P}img/logo/mark-dark.png" alt="Mountain Elopement logo"><span class="brand-word">Mountain<span>&middot;</span>Elopement</span></a>'
-        f'<nav id="nav">{links}</nav>{langsw}'
+        f'<nav id="nav">{links}{langs_menu}</nav>'
         f'<a class="nav-cta" href="{u(P,lang,"get-in-touch/")}">{CTA_CONTACT[lang]}</a>'
+        f'{langsw}'
         '<button class="menu-btn" id="mb" aria-label="Menu">&#9776;</button></div></header>')
 
 def team_section(lang,P):
@@ -715,7 +722,7 @@ def build_home(lang):
     body=(nav(lang,rel,'home',booking=True)+
       f'<section class="hero" style="padding:0"><div class="bg" style="background-image:url(\'{P}img/hero/hero1.webp\')"></div>'
       '<div class="content"><div class="wide"><div><div class="kicker" data-n="Issue N&deg;1"><span class="line"></span></div>'
-      f'<h1 class="hero-brand">Mountain Elopement</h1><div class="hero-display">{t(lang,"h_h1")}</div></div><div class="side"><p>{t(lang,"h_sub")}</p>'
+      f'<h1 class="hero-brand">Mountain Elopement</h1><h2 class="hero-sub">{t(lang,"h_h1").replace("<br>"," ")}</h2></div><div class="side"><p>{t(lang,"h_sub")}</p>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"h_btn")}</a></div></div></div></section>'
       f'<div class="meta-strip"><div class="wide"><span>{t(lang,"ms1")}</span><span>{t(lang,"ms2")}</span>'
       f'<span>{t(lang,"ms3")}</span><span>{t(lang,"ms4")}</span></div></div>'
