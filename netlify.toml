@@ -1,0 +1,12 @@
+# WordPress → static relaunch redirects for mountain-elopement.com
+# Format: Netlify only. Cloudflare Pages ignores redirects in netlify.toml.
+# Use EITHER this file OR _redirects, not both, to avoid conflicting rules.
+
+[[redirects]]
+  from = "/blitzkneisser/"
+  to = "/our-team/"
+  status = 301
+
+# NOTE: /proofing-gallery/proofing-gallery-locked/ is intentionally NOT redirected yet.
+# It is a password-protected client gallery; the decision is still open.
+# See _migration/REDIRECT-REPORT.md (TODO).
