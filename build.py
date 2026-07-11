@@ -107,6 +107,27 @@ T = {
  'kw_who':{'en':'Aubrey &amp; Matt &mdash; Dolomites, 2024','de':'Aubrey &amp; Matt &mdash; Dolomiten, 2024','es':'Aubrey y Matt &mdash; Dolomitas, 2024'},
  'cta_k':{'en':'Get in touch','de':'Kontakt','es':'Contacto'},
  'cta_h':{'en':'Your adventure is<br>a conversation away','de':'Euer Abenteuer ist nur<br>ein Gespräch entfernt','es':'Vuestra aventura está<br>a una conversación'},
+ # what makes us different
+ 'diff_k':{'en':'Why us','de':'Warum wir','es':'Por qué nosotros'},
+ 'diff_h':{'en':'What makes us different','de':'Was uns unterscheidet','es':'Lo que nos hace diferentes'},
+ 'diff1_h':{'en':'Full-service, truly full','de':'Full-Service, wirklich komplett','es':'Full-service, de verdad completo'},
+ 'diff1_p':{'en':'Planning, permits, flowers, cake, ceremony, photography and film &mdash; one local team, one point of contact. You arrive, we have taken care of everything else.',
+            'de':'Planung, Genehmigungen, Blumen, Torte, Zeremonie, Foto und Film &mdash; ein lokales Team, ein Ansprechpartner. Ihr kommt an, um alles andere haben wir uns gekümmert.',
+            'es':'Planificación, permisos, flores, tarta, ceremonia, fotografía y vídeo &mdash; un equipo local, un único contacto. Vosotros llegáis, de todo lo demás nos hemos ocupado nosotros.'},
+ 'diff2_h':{'en':'Epic without the climb','de':'Episch ohne den Aufstieg','es':'Épico sin la subida'},
+ 'diff2_p':{'en':'From helicopter elopements above the Dolomites to hand-picked locations reachable by cable car: we create breathtaking days for couples who want the summit feeling &mdash; with or without the six-hour hike.',
+            'de':'Vom Helikopter-Elopement über den Dolomiten bis zu handverlesenen Orten, die mit der Seilbahn erreichbar sind: Wir schaffen atemberaubende Tage für Paare, die das Gipfelgefühl wollen &mdash; mit oder ohne sechsstündige Wanderung.',
+            'es':'Desde elopements en helicóptero sobre las Dolomitas hasta lugares escogidos accesibles en teleférico: creamos días de ensueño para parejas que quieren la sensación de cumbre &mdash; con o sin la caminata de seis horas.'},
+ 'diff3_h':{'en':'Legally married, right on the mountain','de':'Rechtsgültig heiraten, direkt am Berg','es':'Casados legalmente, en plena montaña'},
+ 'diff3_p':{'en':'As Austrians, we know how to make your mountain wedding legally binding &mdash; with a registrar at the summit. Real ceremony, real certificate, real mountains. (Symbolic ceremonies in the Italian Dolomites, of course, are just as beautiful.)',
+            'de':'Als Österreicher wissen wir, wie eure Berghochzeit rechtsgültig wird &mdash; mit einem Standesbeamten am Gipfel. Echte Zeremonie, echte Urkunde, echte Berge. (Symbolische Zeremonien in den italienischen Dolomiten sind natürlich genauso schön.)',
+            'es':'Como austriacos, sabemos cómo hacer que vuestra boda de montaña sea legalmente válida &mdash; con un oficial del registro en la cumbre. Ceremonia real, certificado real, montañas reales. (Las ceremonias simbólicas en las Dolomitas italianas son, por supuesto, igual de bonitas.)'},
+ 'diff4_h':{'en':'Born here, at home here','de':'Hier geboren, hier zu Hause','es':'Nacidos aquí, en casa aquí'},
+ 'diff4_p':{'en':'A Tyrolean family team &mdash; Andreas &amp; Tanja &mdash; at home between Innsbruck and the Dolomites. Award-winning: Way Up North Awards 2024.',
+            'de':'Ein Tiroler Familienteam &mdash; Andreas &amp; Tanja &mdash; daheim zwischen Innsbruck und den Dolomiten. Ausgezeichnet: Way Up North Awards 2024.',
+            'es':'Un equipo familiar tirolés &mdash; Andreas y Tanja &mdash; en casa entre Innsbruck y las Dolomitas. Premiados: Way Up North Awards 2024.'},
+ 'award_lbl':{'en':'Awarded','de':'Ausgezeichnet','es':'Premiados'},
+ 'pub_lbl':{'en':'Published in','de':'Veröffentlicht in','es':'Publicado en'},
  # how to
  'ht_k':{'en':'Field Guide','de':'Ratgeber','es':'Guía'},
  'ht_h1':{'en':'How to Elope in Europe','de':'Elopement in den<br>europäischen Bergen','es':'Cómo fugarse en<br>las montañas de Europa'},
@@ -482,6 +503,16 @@ IT={
  'sel_k':'Lavori scelti','sel_h':'Storie recenti','fig1':'Elopement','fig2':'Cerimonie','fig3':'m sul livello del mare','fig4':'Tazze di caffè',
  'kw_k':'Testimonianze','kw_q':'"La loro conoscenza del territorio è stata preziosissima. Ci hanno consigliato la vetta perfetta e hanno reso il nostro giorno magico davvero indimenticabile."',
  'kw_who':'Aubrey e Matt &mdash; Dolomiti, 2024','cta_k':'Contatti','cta_h':'La vostra avventura è<br>a una conversazione di distanza',
+ 'diff_k':'Perché noi','diff_h':'Ciò che ci rende diversi',
+ 'diff1_h':'Full-service, davvero completo',
+ 'diff1_p':'Pianificazione, permessi, fiori, torta, cerimonia, fotografia e film &mdash; un team locale, un unico referente. Voi arrivate, di tutto il resto ci siamo occupati noi.',
+ 'diff2_h':'Epico senza la salita',
+ 'diff2_p':'Dagli elopement in elicottero sopra le Dolomiti a location selezionate raggiungibili in funivia: creiamo giornate mozzafiato per coppie che desiderano l’emozione della vetta &mdash; con o senza la camminata di sei ore.',
+ 'diff3_h':'Sposati legalmente, in vetta alla montagna',
+ 'diff3_p':'Da austriaci, sappiamo come rendere il vostro matrimonio in montagna legalmente valido &mdash; con un ufficiale di stato civile in vetta. Cerimonia vera, certificato vero, montagne vere. (Le cerimonie simboliche nelle Dolomiti italiane sono, naturalmente, altrettanto belle.)',
+ 'diff4_h':'Nati qui, a casa qui',
+ 'diff4_p':'Un team di famiglia tirolese &mdash; Andreas e Tanja &mdash; a casa tra Innsbruck e le Dolomiti. Premiati: Way Up North Awards 2024.',
+ 'award_lbl':'Premiati','pub_lbl':'Pubblicato in',
  'ht_k':'Guida','ht_h1':'Elopement nelle<br>montagne d’Europa','ht_s1k':'Da dove iniziare','ht_s1h':'Unire avventura<br>e romanticismo',
  'ht_s1p1':'Curiosi di progettare un elopement che unisca avventura e romanticismo nelle splendide Dolomiti? La nostra specialità è creare elopement di montagna indimenticabili, su misura per la vostra visione.',
  'ht_s1p2':'Iniziamo aiutandovi a scegliere la location perfetta &mdash; considerando accessibilità, paesaggio e atmosfera desiderata. Che sogniate di scambiarvi le promesse su una vetta appartata o in riva a un lago alpino, ogni dettaglio ruota attorno a voi due.',
@@ -731,6 +762,20 @@ def build_home(lang):
       f'<p class="lead">{t(lang,"mission_lead")}</p><p class="dropcap">{t(lang,"mission_p1")}</p><p>{t(lang,"mission_p2")}</p>'
       f'<a href="{u(P,lang,"how-to-elope-in-the-europe-mountains/")}" class="arrow-link">{t(lang,"mission_link")}</a></div>'
       f'<div class="media reveal"><img src="{P}img/story/mission.webp" alt="Elopement"><div class="caption">{t(lang,"cap_seceda")}</div></div></div></section>'
+      '<hr class="hr"><section><div class="wrap"><div class="section-head reveal">'
+      f'<div class="kicker" data-n="{t(lang,"diff_k")}"><span class="line"></span></div><h2>{t(lang,"diff_h")}</h2></div>'
+      '<div class="pillars reveal">'
+      f'<div class="pillar"><h3>{t(lang,"diff1_h")}</h3><p>{t(lang,"diff1_p")}</p></div>'
+      f'<div class="pillar"><h3>{t(lang,"diff2_h")}</h3><p>{t(lang,"diff2_p")}</p></div>'
+      f'<div class="pillar"><h3>{t(lang,"diff3_h")}</h3><p>{t(lang,"diff3_p")}</p></div>'
+      f'<div class="pillar"><h3>{t(lang,"diff4_h")}</h3><p>{t(lang,"diff4_p")}</p></div></div>'
+      '<div class="badges reveal" style="margin-top:44px">'
+      f'<a class="badge" href="https://wayupnorth.co/2024-wun-awards-photo-contest-winners/" target="_blank" rel="noopener">'
+      f'<img src="{P}img/badges/wun-2024-400.png" srcset="{P}img/badges/wun-2024-400.png 400w, {P}img/badges/wun-2024.png 800w" sizes="72px" alt="Way Up North Awards 2024 &ndash; Winner Best Epic Portrait" width="400" height="400" loading="lazy">'
+      f'<span class="badge-txt"><span class="badge-eyebrow">{t(lang,"award_lbl")}</span><strong>Way Up North Awards 2024</strong><span class="badge-sub">Winner &ndash; Best Epic Portrait</span></span></a>'
+      f'<a class="badge" href="https://rangefinderonline.com/news-features/photo-of-the-day/ankle-deep-in-beauty/" target="_blank" rel="noopener">'
+      f'<span class="badge-txt"><span class="badge-eyebrow">{t(lang,"pub_lbl")}</span><strong>Rangefinder Magazine</strong><span class="badge-sub">Rf Photo of the Day &ndash; Lago di Braies</span></span></a>'
+      '</div></div></section>'
       '<hr class="hr"><section><div class="wrap"><div class="section-head reveal">'
       f'<div class="kicker" data-n="02">{t(lang,"sel_k")}<span class="line"></span></div><h2>{t(lang,"sel_h")}</h2></div><div class="story-grid">'
       +story_card(lang,P,STORIES[0],big=True)+story_card(lang,P,STORIES[1],big=True)
