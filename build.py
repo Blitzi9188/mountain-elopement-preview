@@ -20,6 +20,8 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
 P_PLAN = ('Dolomites Wedding Planner', 'https://www.dolomitesweddingplanner.com/de')
 P_FILM = ('No Matter The Weather', 'https://nomattertheweather.it')
 P_MUA  = ('Viki Aichner', 'https://www.vikiaichner.com/de/')
+NAME_PLAN, NAME_PHOTO, NAME_FILM = 'Jlenia', 'Andreas', 'Stefanie'
+TEAM_HERO = ['img/team/team-bw.webp', 'img/team/team-ski.webp', 'img/team/team-lake.webp']
 
 def lbase(lang): return '' if lang=='en' else lang+'/'
 def u(P,lang,rel): return P + lbase(lang) + rel + 'index.html'   # internal link
@@ -40,10 +42,11 @@ T = {
  'booking_link':{'en':'on request','de':'auf Anfrage','es':'a consulta'},
  # footer
  'f_tag':{'en':'Editorial elopement photography &amp; planning in the Dolomites and the Alps.',
-          'de':'Editorial-Elopement-Fotografie &amp; Planung in den Dolomiten und Alpen.',
+          'de':'Editorial-Elopement-Fotografie &amp; Planung in den Dolomiten/Alpen.',
           'es':'Fotografía y planificación editorial de elopements en los Dolomitas y los Alpes.'},
  'f_explore':{'en':'Explore','de':'Entdecken','es':'Explorar'},
  'f_team':{'en':'Our Team','de':'Unser Team','es':'Nuestro equipo'},
+ 'f_role_photo':{'en':'Photo','de':'Foto','es':'Foto'},
  'f_role_plan':{'en':'Planning','de':'Planung','es':'Planificación'},
  'f_role_film':{'en':'Film','de':'Film','es':'Film'},
  'f_role_mua':{'en':'Make-up','de':'Make-up','es':'Maquillaje'},
@@ -71,9 +74,16 @@ T = {
  'tm_d3':{'en':'Natural, long-lasting bridal hair &amp; make-up built for wind, altitude and first light on the mountain &mdash; you, at your most radiant.',
           'de':'Natürliches, langanhaltendes Braut-Make-up &amp; Haarstyling für Wind, Höhe und erstes Licht am Berg &mdash; ihr, im schönsten Licht.',
           'es':'Peluquería y maquillaje nupcial natural y duradero, pensado para el viento, la altura y la primera luz en la montaña &mdash; vosotras, radiantes.'},
+ 'tm_rp':{'en':'Photography &amp; Direction','de':'Fotografie &amp; Regie','es':'Fotografía y dirección'},
+ 'tm_dp':{'en':'Founder and lead photographer &mdash; Tyrolean, at home between Innsbruck and the Dolomites. Award-winning (Way Up North Awards 2024), published in Rangefinder. Andreas guides every couple to the light and frames the day as it truly feels.',
+          'de':'Gründer und leitender Fotograf &mdash; Tiroler, daheim zwischen Innsbruck und den Dolomiten. Ausgezeichnet (Way Up North Awards 2024), veröffentlicht im Rangefinder. Andreas führt jedes Paar ins richtige Licht und hält den Tag so fest, wie er sich wirklich anfühlt.',
+          'es':'Fundador y fotógrafo principal &mdash; tirolés, en casa entre Innsbruck y las Dolomitas. Premiado (Way Up North Awards 2024), publicado en Rangefinder. Andreas guía a cada pareja hacia la luz y captura el día tal como se siente.'},
+ 'bts_k':{'en':'On location','de':'Vor Ort','es':'Sobre el terreno'},
+ 'bts_over':{'en':'Behind the scenes','de':'Hinter den Kulissen','es':'Entre bastidores'},
+ 'bts_h':{'en':'With our couples,<br>in the mountains','de':'Mit unseren Paaren,<br>in den Bergen','es':'Con nuestras parejas,<br>en las montañas'},
  # hero / home
  'h_sub':{'en':'Intimate mountain weddings in the Dolomites &amp; the Alps &mdash; just the two of you, a summit, and a story worth telling.',
-          'de':'Intime Berghochzeiten in den Dolomiten &amp; Alpen &mdash; nur ihr beide, ein Gipfel und eine Geschichte, die es zu erzählen lohnt.',
+          'de':'Intime Berghochzeiten in den Dolomiten/Alpen &mdash; nur ihr beide, ein Gipfel und eine Geschichte, die es zu erzählen lohnt.',
           'es':'Bodas íntimas de montaña en los Dolomitas y los Alpes &mdash; solo vosotros dos, una cumbre y una historia que merece contarse.'},
  'h_btn':{'en':'Begin your story','de':'Eure Geschichte beginnen','es':'Empezad vuestra historia'},
  'h_h1':{'en':'Adventure<br>Above the Clouds','de':'Abenteuer<br>über den Wolken','es':'Aventura<br>sobre las nubes'},
@@ -123,9 +133,9 @@ T = {
             'de':'Als Österreicher wissen wir, wie eure Berghochzeit rechtsgültig wird &mdash; mit einem Standesbeamten am Gipfel. Echte Zeremonie, echte Urkunde, echte Berge. (Symbolische Zeremonien in den italienischen Dolomiten sind natürlich genauso schön.)',
             'es':'Como austriacos, sabemos cómo hacer que vuestra boda de montaña sea legalmente válida &mdash; con un oficial del registro en la cumbre. Ceremonia real, certificado real, montañas reales. (Las ceremonias simbólicas en las Dolomitas italianas son, por supuesto, igual de bonitas.)'},
  'diff4_h':{'en':'Born here, at home here','de':'Hier geboren, hier zu Hause','es':'Nacidos aquí, en casa aquí'},
- 'diff4_p':{'en':'A Tyrolean family team &mdash; Andreas &amp; Tanja &mdash; at home between Innsbruck and the Dolomites. Award-winning: Way Up North Awards 2024.',
-            'de':'Ein Tiroler Familienteam &mdash; Andreas &amp; Tanja &mdash; daheim zwischen Innsbruck und den Dolomiten. Ausgezeichnet: Way Up North Awards 2024.',
-            'es':'Un equipo familiar tirolés &mdash; Andreas y Tanja &mdash; en casa entre Innsbruck y las Dolomitas. Premiados: Way Up North Awards 2024.'},
+ 'diff4_p':{'en':'A small, local team at home between Innsbruck and the Dolomites &mdash; planner Jlenia, photographer Andreas and filmmaker Stefanie. Award-winning: Way Up North Awards 2024.',
+            'de':'Ein kleines, lokales Team, daheim zwischen Innsbruck und den Dolomiten &mdash; Plannerin Jlenia, Fotograf Andreas und Filmerin Stefanie. Ausgezeichnet: Way Up North Awards 2024.',
+            'es':'Un equipo pequeño y local, en casa entre Innsbruck y las Dolomitas &mdash; la planner Jlenia, el fotógrafo Andreas y la filmmaker Stefanie. Premiados: Way Up North Awards 2024.'},
  'award_lbl':{'en':'Awarded','de':'Ausgezeichnet','es':'Premiados'},
  'pub_lbl':{'en':'Published in','de':'Veröffentlicht in','es':'Publicado en'},
  # how to
@@ -224,14 +234,14 @@ T = {
  'tp_lead':{'en':'A mountain elopement takes a small, trusted circle. Here are the people who make your day happen &mdash; from the first frame to the final detail.',
             'de':'Ein Berg-Elopement braucht einen kleinen, vertrauten Kreis. Das sind die Menschen, die euren Tag möglich machen &mdash; vom ersten Bild bis zum letzten Detail.',
             'es':'Un elopement de montaña necesita un círculo pequeño y de confianza. Estas son las personas que hacen posible vuestro día &mdash; desde la primera toma hasta el último detalle.'},
- 'tp_fk':{'en':'Photography &amp; Direction','de':'Fotografie &amp; Regie','es':'Fotografía y dirección'},
- 'tp_flead':{'en':'Mountain Elopement &mdash; the two of us behind the camera.','de':'Mountain Elopement &mdash; wir beide hinter der Kamera.','es':'Mountain Elopement &mdash; nosotros dos detrás de la cámara.'},
- 'tp_fp1':{'en':'We are a photographer couple based in Tyrol, at home in the Dolomites and the Alps. For years we have guided couples to quiet summits and hidden lakes, capturing the day exactly as it feels &mdash; unposed, unhurried, real.',
-           'de':'Wir sind ein Fotografen-Paar aus Tirol, zu Hause in den Dolomiten und Alpen. Seit Jahren führen wir Paare zu stillen Gipfeln und versteckten Seen und halten den Tag genau so fest, wie er sich anfühlt &mdash; ungestellt, unhektisch, echt.',
-           'es':'Somos una pareja de fotógrafos afincada en el Tirol, en casa en los Dolomitas y los Alpes. Durante años hemos guiado a parejas hasta cumbres silenciosas y lagos escondidos, capturando el día tal como se siente &mdash; sin poses, sin prisas, real.'},
- 'tp_fp2':{'en':'We photograph, we film, and we plan &mdash; and where it makes your day better, we bring in the very best partners below.',
-           'de':'Wir fotografieren, filmen und planen &mdash; und wo es euren Tag schöner macht, holen wir die besten Partner dazu.',
-           'es':'Fotografiamos, filmamos y planificamos &mdash; y donde mejora vuestro día, sumamos a los mejores socios que veis abajo.'},
+ 'tp_fk':{'en':'The core team','de':'Das Kernteam','es':'El equipo principal'},
+ 'tp_flead':{'en':'Mountain Elopement &mdash; a small local team behind your day.','de':'Mountain Elopement &mdash; ein kleines lokales Team hinter eurem Tag.','es':'Mountain Elopement &mdash; un pequeño equipo local detrás de vuestro día.'},
+ 'tp_fp1':{'en':'We are a small, local team at home in the Dolomites and the Alps &mdash; planner Jlenia, photographer Andreas and filmmaker Stefanie. For years we have guided couples to quiet summits and hidden lakes, capturing the day exactly as it feels &mdash; unposed, unhurried, real.',
+           'de':'Wir sind ein kleines, lokales Team, zu Hause in den Dolomiten/Alpen &mdash; Plannerin Jlenia, Fotograf Andreas und Filmerin Stefanie. Seit Jahren führen wir Paare zu stillen Gipfeln und versteckten Seen und halten den Tag genau so fest, wie er sich anfühlt &mdash; ungestellt, unhektisch, echt.',
+           'es':'Somos un equipo pequeño y local, en casa en los Dolomitas y los Alpes &mdash; la planner Jlenia, el fotógrafo Andreas y la filmmaker Stefanie. Durante años hemos guiado a parejas hasta cumbres silenciosas y lagos escondidos, capturando el día tal como se siente &mdash; sin poses, sin prisas, real.'},
+ 'tp_fp2':{'en':'Between us we photograph, film and plan your entire day &mdash; and where it makes your day even better, we bring in trusted partners like hair &amp; make-up, below.',
+           'de':'Gemeinsam fotografieren, filmen und planen wir euren ganzen Tag &mdash; und wo es euren Tag noch schöner macht, holen wir vertraute Partner wie Hair &amp; Make-up dazu, siehe unten.',
+           'es':'Entre nosotros fotografiamos, filmamos y planificamos todo vuestro día &mdash; y donde lo mejora aún más, sumamos socios de confianza como peluquería y maquillaje, abajo.'},
  'tp_hello':{'en':'Say hello &rarr;','de':'Hallo sagen &rarr;','es':'Saludad &rarr;'},
  'tp_cta_k':{'en':'One team','de':'Ein Team','es':'Un equipo'},
  'tp_cta_h':{'en':'Everything you need,<br>from one hand','de':'Alles aus einer Hand','es':'Todo lo que necesitáis,<br>de una sola mano'},
@@ -485,13 +495,16 @@ IT={
  'ty_home':'Torna alla home',
  'booking':'Prenotazioni 2026 &middot; date 2027','booking_link':'su richiesta',
  'f_tag':'Fotografia e pianificazione editoriale di elopement nelle Dolomiti e nelle Alpi.',
- 'f_explore':'Esplora','f_team':'Il nostro team','f_role_plan':'Pianificazione','f_role_film':'Film','f_role_mua':'Trucco',
+ 'f_explore':'Esplora','f_team':'Il nostro team','f_role_photo':'Foto','f_role_plan':'Pianificazione','f_role_film':'Film','f_role_mua':'Trucco',
  'f_imprint':'Note legali','f_privacy':'Privacy','view_all':'Tutte le storie','start_planning':'Iniziamo a pianificare',
  'get_in_touch':'Contattaci','visit':'Visita','request':'Richiedi','tm_kick':'Il Dream Team','tm_over':'Dietro il vostro giorno',
  'tm_h':'Il team dietro<br>il vostro elopement','tm_r1':'Pianificazione e coordinamento','tm_r2':'Film di elopement','tm_r3':'Trucco e acconciatura',
  'tm_d1':'Il nostro partner di pianificazione nelle Dolomiti &mdash; logistica, permessi, alloggio e ogni dettaglio sul posto, così potete semplicemente esserci.',
  'tm_d2':'Film di elopement cinematografici che custodiscono il movimento, il suono e l’emozione del vostro giorno &mdash; il complemento in movimento alle fotografie.',
  'tm_d3':'Trucco e acconciatura da sposa naturali e duraturi, pensati per vento, quota e prima luce in montagna &mdash; voi, al vostro massimo splendore.',
+ 'tm_rp':'Fotografia e regia',
+ 'tm_dp':'Fondatore e fotografo principale &mdash; tirolese, a casa tra Innsbruck e le Dolomiti. Premiato (Way Up North Awards 2024), pubblicato su Rangefinder. Andreas accompagna ogni coppia verso la luce e racconta la giornata come si sente davvero.',
+ 'bts_k':'Sul posto','bts_over':'Dietro le quinte','bts_h':'Con le nostre coppie,<br>tra le montagne',
  'h_sub':'Matrimoni intimi in montagna nelle Dolomiti e nelle Alpi &mdash; solo voi due, una vetta e una storia da raccontare.',
  'h_btn':'Iniziate la vostra storia','h_h1':'Avventura<br>sopra le nuvole',
  'ms1':'<b>Sede</b> Tirolo &middot; Dolomiti','ms2':'<b>Elopement</b> Fotografia e Film','ms3':'<b>Pianificazione</b> Su misura','ms4':'<b>Dal</b> 2019',
@@ -511,7 +524,7 @@ IT={
  'diff3_h':'Sposati legalmente, in vetta alla montagna',
  'diff3_p':'Da austriaci, sappiamo come rendere il vostro matrimonio in montagna legalmente valido &mdash; con un ufficiale di stato civile in vetta. Cerimonia vera, certificato vero, montagne vere. (Le cerimonie simboliche nelle Dolomiti italiane sono, naturalmente, altrettanto belle.)',
  'diff4_h':'Nati qui, a casa qui',
- 'diff4_p':'Un team di famiglia tirolese &mdash; Andreas e Tanja &mdash; a casa tra Innsbruck e le Dolomiti. Premiati: Way Up North Awards 2024.',
+ 'diff4_p':'Un piccolo team locale, a casa tra Innsbruck e le Dolomiti &mdash; la planner Jlenia, il fotografo Andreas e la filmmaker Stefanie. Premiati: Way Up North Awards 2024.',
  'award_lbl':'Premiati','pub_lbl':'Pubblicato in',
  'ht_k':'Guida','ht_h1':'Elopement nelle<br>montagne d’Europa','ht_s1k':'Da dove iniziare','ht_s1h':'Unire avventura<br>e romanticismo',
  'ht_s1p1':'Curiosi di progettare un elopement che unisca avventura e romanticismo nelle splendide Dolomiti? La nostra specialità è creare elopement di montagna indimenticabili, su misura per la vostra visione.',
@@ -536,9 +549,9 @@ IT={
  'pk_next':'Pianifichiamo','ad_heli':'Elicottero','ad_film':'Film &middot; 1&ndash;2 min','ad_civil':'Cerimonia civile','ad_celeb':'Celebrante',
  'ad_cake':'Torta','ad_music':'Musicisti','ad_mua':'Trucco e acconciatura','ad_backdrop':'Backdrop e fiori','ad_from':'da','ad_onreq':'su richiesta',
  'tp_k':'Le persone','tp_h':'Il nostro team','tp_lead':'Un elopement di montagna richiede una piccola cerchia fidata. Ecco le persone che rendono possibile il vostro giorno &mdash; dal primo scatto all’ultimo dettaglio.',
- 'tp_fk':'Fotografia e regia','tp_flead':'Mountain Elopement &mdash; noi due dietro l’obiettivo.',
- 'tp_fp1':'Siamo una coppia di fotografi con base in Tirolo, a casa nelle Dolomiti e nelle Alpi. Da anni accompagniamo le coppie verso vette silenziose e laghi nascosti, catturando il giorno esattamente come si sente &mdash; senza pose, senza fretta, autentico.',
- 'tp_fp2':'Fotografiamo, filmiamo e pianifichiamo &mdash; e dove rende più bello il vostro giorno, coinvolgiamo i migliori partner qui sotto.',
+ 'tp_fk':'Il team principale','tp_flead':'Mountain Elopement &mdash; un piccolo team locale dietro la vostra giornata.',
+ 'tp_fp1':'Siamo un piccolo team locale, a casa nelle Dolomiti e nelle Alpi &mdash; la planner Jlenia, il fotografo Andreas e la filmmaker Stefanie. Da anni accompagniamo le coppie verso vette silenziose e laghi nascosti, catturando il giorno esattamente come si sente &mdash; senza pose, senza fretta, autentico.',
+ 'tp_fp2':'Insieme fotografiamo, filmiamo e pianifichiamo tutta la vostra giornata &mdash; e dove la rende ancora più bella, coinvolgiamo partner fidati come trucco e acconciatura, qui sotto.',
  'tp_hello':'Salutateci &rarr;','tp_cta_k':'Un team','tp_cta_h':'Tutto ciò che serve,<br>da un’unica mano','tp_plan':'Pianificate il vostro giorno',
  'ct_k':'Salutateci','ct_h':'Contatti','ct_lead':'Non vediamo l’ora di ascoltare la vostra storia! Raccontateci le vostre idee &mdash; e vi aiuteremo a rendere realtà il vostro elopement da sogno.',
  'ct_details':'I vostri dati','ct_name':'Nome','ct_name_ph':'Il vostro nome','ct_email':'Email','ct_date':'Data elopement (circa)','ct_date_ph':'es. giugno 2027',
@@ -666,15 +679,16 @@ def nav(lang, rel, active, booking=False):
         '<button class="menu-btn" id="mb" aria-label="Menu">&#9776;</button></div></header>')
 
 def team_section(lang,P):
-    def card(role,name,url,desc):
-        return ('<div class="team-card reveal"><div class="role">'+role+'</div><h3>'+name+'</h3><p>'+desc+
-            f'</p><a class="arrow-link" href="{url}" target="_blank" rel="noopener">'+t(lang,'visit')+' &rarr;</a></div>')
+    def card(role,name,linklabel,url,desc):
+        link=(f'<a class="arrow-link" href="{url}" target="_blank" rel="noopener">{linklabel} &rarr;</a>') if url else ''
+        return ('<div class="team-card reveal"><div class="role">'+role+'</div><h3>'+name+'</h3><p>'+desc+'</p>'+link+'</div>')
     return ('<section class="partners"><div class="wrap"><div class="section-head reveal">'
         f'<div class="kicker" data-n="{t(lang,"tm_kick")}">{t(lang,"tm_over")}<span class="line"></span></div>'
         f'<h2>{t(lang,"tm_h")}</h2></div><div class="team-grid">'
-        +card(t(lang,'tm_r1'),P_PLAN[0],P_PLAN[1],t(lang,'tm_d1'))
-        +card(t(lang,'tm_r2'),P_FILM[0],P_FILM[1],t(lang,'tm_d2'))
-        +card(t(lang,'tm_r3'),P_MUA[0],P_MUA[1],t(lang,'tm_d3'))
+        +card(t(lang,'tm_r1'),NAME_PLAN,P_PLAN[0],P_PLAN[1],t(lang,'tm_d1'))
+        +card(t(lang,'tm_rp'),NAME_PHOTO,'Blitzkneisser','https://blitzkneisser.com',t(lang,'tm_dp'))
+        +card(t(lang,'tm_r2'),NAME_FILM,P_FILM[0],P_FILM[1],t(lang,'tm_d2'))
+        +card(t(lang,'tm_r3'),P_MUA[0],t(lang,'visit'),P_MUA[1],t(lang,'tm_d3'))
         +'</div></div></section>')
 
 def footer(lang,rel):
@@ -688,9 +702,9 @@ def footer(lang,rel):
       f'<li><a href="{u(P,lang,"our-packages/")}">{T["nav"]["packages"][lang]}</a></li>'
       f'<li><a href="{u(P,lang,"get-in-touch/")}">{T["nav"]["contact"][lang]}</a></li></ul></div>'
       f'<div><h5>{t(lang,"f_team")}</h5><ul>'
+      f'<li><a href="https://blitzkneisser.com" target="_blank" rel="noopener">{t(lang,"f_role_photo")} &middot; Blitzkneisser</a></li>'
       f'<li><a href="{P_PLAN[1]}" target="_blank" rel="noopener">{t(lang,"f_role_plan")} &middot; Dolomites Wedding Planner</a></li>'
       f'<li><a href="{P_FILM[1]}" target="_blank" rel="noopener">{t(lang,"f_role_film")} &middot; No Matter The Weather</a></li>'
-      f'<li><a href="{P_MUA[1]}" target="_blank" rel="noopener">{t(lang,"f_role_mua")} &middot; Viki Aichner</a></li>'
       '<li><a href="https://www.instagram.com/mountainelopement/" target="_blank" rel="noopener">Instagram</a></li></ul></div></div>'
       f'<div class="fine"><span>&copy; 2026 mountain-elopement by blitzkneisser.com</span>'
       f'<span><a href="{u(P,lang,"imprint/")}">{t(lang,"f_imprint")}</a> &middot; <a href="{u(P,lang,"privacy-policy/")}">{t(lang,"f_privacy")}</a> &middot; Prototype</span></div></div></footer>')
@@ -739,12 +753,12 @@ TITLES={  # <title> per page
  'thankyou':{'en':'Thank You for Your Inquiry — Mountain Elopement','de':'Danke für eure Anfrage — Mountain Elopement','es':'Gracias por vuestra consulta — Mountain Elopement'},
 }
 DESC={
- 'home':{'en':'Plan your unforgettable Mountain Elopement. We create intimate weddings with breathtaking locations, photography, film & full planning across Europe.','de':'Editorial-Elopement-Fotografie & Planung in den Dolomiten und Alpen.','es':'Fotografía y planificación editorial de elopements en los Dolomitas y los Alpes.'},
- 'howto':{'en':'A practical guide to eloping in the European mountains: where to go, what it costs, legal paperwork, and how to plan a day that feels like yours.','de':'Ein Leitfaden für euer Elopement in den Dolomiten und Alpen.','es':'Una guía para fugarse en los Dolomitas y los Alpes.'},
- 'stories':{'en':'Mountain elopement stories from the Dolomites and the Alps.','de':'Berg-Elopement-Stories aus den Dolomiten und Alpen.','es':'Historias de elopement de montaña en los Dolomitas y los Alpes.'},
+ 'home':{'en':'Plan your unforgettable Mountain Elopement. We create intimate weddings with breathtaking locations, photography, film & full planning across Europe.','de':'Editorial-Elopement-Fotografie & Planung in den Dolomiten/Alpen.','es':'Fotografía y planificación editorial de elopements en los Dolomitas y los Alpes.'},
+ 'howto':{'en':'A practical guide to eloping in the European mountains: where to go, what it costs, legal paperwork, and how to plan a day that feels like yours.','de':'Ein Leitfaden für euer Elopement in den Dolomiten/Alpen.','es':'Una guía para fugarse en los Dolomitas y los Alpes.'},
+ 'stories':{'en':'Mountain elopement stories from the Dolomites and the Alps.','de':'Berg-Elopement-Stories aus den Dolomiten/Alpen.','es':'Historias de elopement de montaña en los Dolomitas y los Alpes.'},
  'packages':{'en':'Elopement packages: photography, planning, film, flowers and make-up.','de':'Elopement-Pakete: Fotografie, Planung, Film, Blumen und Make-up.','es':'Paquetes de elopement: fotografía, planificación, film, flores y maquillaje.'},
  'team':{'en':'The team behind your elopement — photography, planning, film and make-up.','de':'Das Team hinter eurem Elopement — Fotografie, Planung, Film und Make-up.','es':'El equipo detrás de vuestro elopement — fotografía, planificación, film y maquillaje.'},
- 'contact':{'en':'Tell us your story. Elopement photography & planning in the Dolomites and the Alps.','de':'Erzählt uns eure Geschichte. Elopement-Fotografie & Planung in den Dolomiten und Alpen.','es':'Contadnos vuestra historia. Fotografía y planificación de elopements en los Dolomitas y los Alpes.'},
+ 'contact':{'en':'Tell us your story. Elopement photography & planning in the Dolomites and the Alps.','de':'Erzählt uns eure Geschichte. Elopement-Fotografie & Planung in den Dolomiten/Alpen.','es':'Contadnos vuestra historia. Fotografía y planificación de elopements en los Dolomitas y los Alpes.'},
  'thankyou':{'en':'Thank you — we\u2019ve received your enquiry.','de':'Danke — wir haben eure Anfrage erhalten.','es':'Gracias — hemos recibido vuestra consulta.'},
 }
 
@@ -917,7 +931,7 @@ def build_packages(lang):
       f'<div class="addons reveal">{addons}</div></div></section>'
       '<section class="band"><div class="wrap quote reveal">'
       f'<div class="kicker" data-n="{t(lang,"pk_band_k")}"><span class="line"></span></div>'
-      f'<p style="margin-top:26px">{t(lang,"pk_band_q")}</p><div class="who">Tanja &amp; Andreas &mdash; Mountain Elopement</div></div></section>'
+      f'<p style="margin-top:26px">{t(lang,"pk_band_q")}</p><div class="who">Jlenia, Andreas &amp; Stefanie &mdash; Mountain Elopement</div></div></section>'
       '<section class="cta"><div class="wrap row reveal"><div>'
       f'<div class="kicker" data-n="{t(lang,"pk_next")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"pk_cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"pk_req_price")}</a></div></section>'
@@ -929,17 +943,26 @@ def build_team(lang):
     body=(nav(lang,rel,'team')+
       f'<div class="page-plain"><div class="wrap"><div class="kicker" data-n="{t(lang,"tp_k")}"><span class="line"></span></div>'
       f'<h1>{t(lang,"tp_h")}</h1><p class="lead">{t(lang,"tp_lead")}</p></div></div>'
-      f'<section><div class="wrap feature"><div class="media reveal"><img src="{P}img/page/contact.webp" alt="Tanja and Andreas">'
-      '<div class="caption">Tanja &amp; Andreas.</div></div><div class="body reveal">'
-      f'<div class="kicker" data-n="01">{t(lang,"tp_fk")}<span class="line"></span></div><h2>Tanja &amp; Andreas</h2>'
+      f'<section><div class="wrap feature"><div class="media reveal"><img id="teamhero" src="{P}{TEAM_HERO[0]}" alt="Jlenia, Andreas and Stefanie in the mountains">'
+      '<div class="caption">Jlenia, Andreas &amp; Stefanie.</div></div><div class="body reveal">'
+      f'<div class="kicker" data-n="01">{t(lang,"tp_fk")}<span class="line"></span></div><h2>Jlenia, Andreas &amp; Stefanie</h2>'
       f'<p class="lead">{t(lang,"tp_flead")}</p><p class="dropcap">{t(lang,"tp_fp1")}</p><p>{t(lang,"tp_fp2")}</p>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="arrow-link">{t(lang,"tp_hello")}</a></div></div></section>'
       +team_section(lang,P)+
+      '<section><div class="wrap"><div class="section-head reveal">'
+      f'<div class="kicker" data-n="{t(lang,"bts_k")}">{t(lang,"bts_over")}<span class="line"></span></div><h2>{t(lang,"bts_h")}</h2></div>'
+      '<div class="bts-grid reveal">'
+      f'<img src="{P}img/team/bts-roses.webp" alt="The Mountain Elopement team with a couple, alpine meadow" loading="lazy">'
+      f'<img src="{P}img/team/bts-meadow.webp" alt="The Mountain Elopement team celebrating with a couple" loading="lazy">'
+      f'<img src="{P}img/team/bts-group.webp" alt="The Mountain Elopement team and a couple in the Dolomites" loading="lazy">'
+      '</div></div></section>'
       '<section class="cta"><div class="wrap row reveal"><div>'
       f'<div class="kicker" data-n="{t(lang,"tp_cta_k")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"tp_cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"tp_plan")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,TITLES['team'][lang],DESC['team'][lang])+body+scripts(P))
+    hero_js=('<script>(function(){var s=['+','.join("'"+P+h+"'" for h in TEAM_HERO)+
+             "];var i=document.getElementById('teamhero');if(i)i.src=s[Math.floor(Math.random()*s.length)];})();</script>")
+    write(lang,rel,head(lang,rel,TITLES['team'][lang],DESC['team'][lang])+body+scripts(P,hero_js))
 
 def build_contact(lang):
     rel='get-in-touch/'; P=prefix(lang,rel)

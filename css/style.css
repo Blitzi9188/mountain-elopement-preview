@@ -259,7 +259,9 @@ footer .fine{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
 
 /* ---- Partners / Dream Team ---- */
 .partners{background:var(--paper-2)}
-.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,30px)}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(18px,2.4vw,30px)}
+.bts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.8vw,22px)}
+.bts-grid img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block}
 .team-card{background:var(--paper);border:1px solid var(--line);padding:clamp(26px,2.6vw,36px);display:flex;flex-direction:column}
 .team-card .role{font-family:var(--sans);text-transform:uppercase;letter-spacing:.18em;font-size:11.5px;color:var(--accent);font-weight:600}
 .team-card h3{font-family:var(--serif);font-weight:400;font-size:clamp(22px,2.3vw,28px);margin:10px 0 12px;line-height:1.1}
@@ -306,7 +308,8 @@ footer .fine{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
   .feature{grid-template-columns:1fr}
   .feature.rev .media{order:-1}
   .contact-grid{grid-template-columns:1fr}
-  .team-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .bts-grid{grid-template-columns:1fr}
   .mosaic{grid-template-columns:1fr;grid-auto-rows:clamp(200px,52vw,260px)}
   .m-tile.m-w,.m-tile.m-n{grid-column:span 1}
   .facts{grid-template-columns:1fr}
