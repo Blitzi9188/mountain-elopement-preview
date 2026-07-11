@@ -3,3 +3,6 @@ __MACOSX/
 *.pyc
 __pycache__/
 *.zip
+
+# migration input CSVs (not for deploy)
+our-packages/*.csv
