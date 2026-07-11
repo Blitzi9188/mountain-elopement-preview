@@ -361,7 +361,7 @@ GUIDES = [
          'de':'In Italien könnt ihr mit etwas Papierkram vorab rechtsgültig heiraten — oder eine symbolische Zeremonie feiern und das Rechtliche zu Hause erledigen. Wir zeigen euch den richtigen Weg.',
          'es':'Podéis casaros legalmente en Italia con algo de papeleo previo, o celebrar una ceremonia simbólica y completar la parte legal en casa. Os indicamos el camino correcto.'}},
   ]},
- {'slug':'elope-in-austria','img':'s09',
+ {'slug':'elope-in-austria','img':'s01',
   'title':{'en':'How to Elope in Austria & Tyrol','de':'Elopement in Österreich & Tirol','es':'Cómo fugarse en Austria y el Tirol'},
   'excerpt':{'en':'Alpine lakes, high ridges and an easy legal marriage.','de':'Bergseen, hohe Grate und eine unkomplizierte Trauung.','es':'Lagos alpinos, crestas altas y una boda legal sencilla.'},
   'intro':{'en':'Tyrol is our home. From the peaks above Innsbruck to hidden mountain lakes, Austria makes eloping simple — and legally straightforward.',
@@ -381,7 +381,7 @@ GUIDES = [
          'de':'Innsbruck hat einen eigenen Flughafen und schnelle Verbindungen nach München und Venedig — Tirol ist eine der am leichtesten erreichbaren Alpenregionen.',
          'es':'Innsbruck tiene su propio aeropuerto y conexiones rápidas con Múnich y Venecia, lo que hace del Tirol una de las regiones alpinas más accesibles.'}},
   ]},
- {'slug':'best-alps-elopement-locations','img':'s12',
+ {'slug':'best-alps-elopement-locations','img':'s13',
   'title':{'en':'The Best Elopement Locations in the Alps','de':'Die schönsten Elopement-Orte in den Alpen','es':'Los mejores lugares para elopements en los Alpes'},
   'excerpt':{'en':'Our favourite peaks, lakes and meadows for an unforgettable day.','de':'Unsere liebsten Gipfel, Seen und Wiesen für einen unvergesslichen Tag.','es':'Nuestras cumbres, lagos y prados favoritos para un día inolvidable.'},
   'intro':{'en':'After years in the mountains, these are the places we return to again and again — each with its own character and light.',
@@ -401,7 +401,7 @@ GUIDES = [
          'de':'Sanfte Wiesen und mit der Bergbahn erreichbare Aussichtspunkte, wenn ihr nicht weit wandern möchtet.',
          'es':'Prados suaves y miradores accesibles en teleférico cuando preferís no caminar mucho.'}},
   ]},
- {'slug':'how-to-plan-your-elopement','img':'s02',
+ {'slug':'how-to-plan-your-elopement','img':'s01',
   'title':{'en':'How to Plan Your Mountain Elopement','de':'So plant ihr euer Berg-Elopement','es':'Cómo planear vuestro elopement de montaña'},
   'excerpt':{'en':'A simple, stress-free roadmap from first idea to \'I do\'.','de':'Ein einfacher, stressfreier Fahrplan von der Idee bis zum Ja-Wort.','es':'Una hoja de ruta simple y sin estrés, de la idea al \'sí, quiero\'.'},
   'intro':{'en':'Planning an elopement is far simpler than a big wedding — but a few decisions early on make everything flow. Here is the short version.',
@@ -778,7 +778,7 @@ def build_home(lang):
       '</div></div></section>'
       '<hr class="hr"><section><div class="wrap"><div class="section-head reveal">'
       f'<div class="kicker" data-n="02">{t(lang,"sel_k")}<span class="line"></span></div><h2>{t(lang,"sel_h")}</h2></div><div class="story-grid">'
-      +story_card(lang,P,STORIES[0],big=True)+story_card(lang,P,STORIES[1],big=True)
+      +story_card(lang,P,STORIES[0],big=True)+story_card(lang,P,STORIES[7],big=True)
       +story_card(lang,P,STORIES[3])+story_card(lang,P,STORIES[4])+story_card(lang,P,STORIES[5])
       +f'</div><div style="margin-top:44px" class="reveal"><a href="{u(P,lang,"stories-elopement-mountain/")}" class="btn">{t(lang,"view_all")}</a></div></div></section>'
       '<section style="padding-top:0"><div class="wrap"><div class="figures reveal">'
@@ -828,8 +828,10 @@ def build_howto(lang):
 
 def build_stories(lang):
     rel='stories-elopement-mountain/'; P=prefix(lang,rel)
-    cards=story_card(lang,P,STORIES[0],big=True)+story_card(lang,P,STORIES[1],big=True)
-    for s in STORIES[2:]: cards+=story_card(lang,P,s)
+    cards=story_card(lang,P,STORIES[0],big=True)+story_card(lang,P,STORIES[7],big=True)
+    for i,s in enumerate(STORIES):
+        if i in (0,7): continue
+        cards+=story_card(lang,P,s)
     body=(nav(lang,rel,'stories')+
       f'<div class="page-plain"><div class="wrap"><div class="kicker" data-n="{t(lang,"st_k")}"><span class="line"></span></div>'
       f'<h1>{t(lang,"st_h")}</h1><p class="lead">{t(lang,"st_lead")}</p></div></div>'
