@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Multilingual generator (EN root, /de/, /es/) mirroring the live URL structure.
-import os
+import os, json, re, html as _html
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DOMAIN = 'https://mountain-elopement.com'
 
@@ -109,7 +109,7 @@ T = {
  'cta_h':{'en':'Your adventure is<br>a conversation away','de':'Euer Abenteuer ist nur<br>ein Gespräch entfernt','es':'Vuestra aventura está<br>a una conversación'},
  # how to
  'ht_k':{'en':'Field Guide','de':'Ratgeber','es':'Guía'},
- 'ht_h1':{'en':'How to Elope in<br>the European Mountains','de':'Elopement in den<br>europäischen Bergen','es':'Cómo fugarse en<br>las montañas de Europa'},
+ 'ht_h1':{'en':'How to Elope in Europe','de':'Elopement in den<br>europäischen Bergen','es':'Cómo fugarse en<br>las montañas de Europa'},
  'ht_s1k':{'en':'Where to begin','de':'Wo ihr beginnt','es':'Por dónde empezar'},
  'ht_s1h':{'en':'Blend adventure<br>and romance','de':'Abenteuer und<br>Romantik verbinden','es':'Aventura y<br>romance unidos'},
  'ht_s1p1':{'en':'Curious about designing an elopement that seamlessly blends adventure and romance in the breathtaking Dolomites? Our expertise lies in curating unforgettable mountain elopements tailored to your unique vision and preferences.',
@@ -533,18 +533,63 @@ NAVKEYS=[('','welcome','home'),('how-to-elope-in-the-europe-mountains/','howto',
          ('stories-elopement-mountain/','stories','stories'),('our-packages/','packages','packages'),
          ('our-team/','team','team'),('get-in-touch/','contact','contact')]
 
-def head(lang, rel, title, desc):
+# ---- Header CTA label (Fix 3) ----
+CTA_CONTACT={'en':'Contact','de':'Kontakt','es':'Contacto','it':'Contatto'}
+
+# ---- Structured data / canonical helpers (Fix 4/5) ----
+ORG_ID=DOMAIN+'/#organization'
+BREADCRUMB_SEG={'how-to-elope-in-the-europe-mountains':'howto','stories-elopement-mountain':'stories',
+ 'our-packages':'packages','our-team':'team','get-in-touch':'contact'}
+
+def _plain(s):  # strip tags + decode entities for JSON-LD text
+    return _html.unescape(re.sub(r'<[^>]+>','',str(s))).strip()
+
+def _crumb_leaf(title):  # page title without the " — Mountain Elopement" / " | …" suffix
+    return re.split(r'\s+(?:—|\|)\s+',_plain(title))[0]
+
+def org_ld():
+    return {"@context":"https://schema.org","@type":"Organization","@id":ORG_ID,
+        "name":"Mountain Elopement","url":DOMAIN+'/',
+        "parentOrganization":{"@type":"Organization","name":"Blitzkneisser"},
+        "email":"foto@blitzkneisser.com","telephone":"+43 664 39 18 228",
+        "address":{"@type":"PostalAddress","streetAddress":"Rohracker 6","postalCode":"6092",
+            "addressLocality":"Birgitz","addressCountry":"AT"},
+        "sameAs":["https://www.instagram.com/mountainelopement/"]}
+
+def _seg_name(seg,lang):
+    if seg in BREADCRUMB_SEG: return _plain(T['nav'][BREADCRUMB_SEG[seg]][lang])
+    return seg.replace('-',' ').title()
+
+def breadcrumb_ld(lang,rel,title):
+    items=[{"@type":"ListItem","position":1,"name":_plain(T['nav']['welcome'][lang]),"item":f'{DOMAIN}/{lbase(lang)}'}]
+    segs=[s for s in rel.split('/') if s]; cum=''
+    for i,seg in enumerate(segs):
+        cum+=seg+'/'
+        name=_crumb_leaf(title) if i==len(segs)-1 else _seg_name(seg,lang)
+        items.append({"@type":"ListItem","position":i+2,"name":name,"item":f'{DOMAIN}/{lbase(lang)}{cum}'})
+    return {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":items}
+
+def _ld_script(obj):
+    return f'<script type="application/ld+json">{json.dumps(obj,ensure_ascii=False,separators=(",",":"))}</script>'
+
+def head(lang, rel, title, desc, ld_extra=None):
     P=prefix(lang,rel)
     alts=''
     for L in LANGS:
         href=f'{DOMAIN}/{lbase(L)}{rel}'
         alts+=f'<link rel="alternate" hreflang="{HREFLANG[L]}" href="{href}">'
     alts+=f'<link rel="alternate" hreflang="x-default" href="{DOMAIN}/{rel}">'
+    canonical=f'{DOMAIN}/{lbase(lang)}{rel}'   # self-referential, absolute https, trailing slash, no index.html
+    can=f'<link rel="canonical" href="{canonical}">'
     fav=f'<link rel="icon" type="image/png" href="{P}favicon.png"><link rel="apple-touch-icon" href="{P}apple-touch-icon.png">'
+    blocks=[org_ld()]
+    if [s for s in rel.split('/') if s]: blocks.append(breadcrumb_ld(lang,rel,title))
+    if ld_extra: blocks.append(ld_extra)
+    ld=''.join(_ld_script(b) for b in blocks)
     return ('<!DOCTYPE html><html lang="'+lang+'"><head><meta charset="UTF-8">'
         '<meta name="viewport" content="width=device-width, initial-scale=1">'
         f'<title>{title}</title><meta name="description" content="{desc}">'
-        f'{alts}{fav}{GTM_HEAD}{FONTS}<link rel="stylesheet" href="{P}css/style.css"></head><body>{GTM_BODY}')
+        f'{can}{alts}{fav}{GTM_HEAD}{FONTS}<link rel="stylesheet" href="{P}css/style.css">{ld}</head><body>{GTM_BODY}')
 
 def nav(lang, rel, active, booking=False):
     P=prefix(lang,rel)
@@ -564,7 +609,9 @@ def nav(lang, rel, active, booking=False):
                f'<a href="{u(P,lang,"get-in-touch/")}">{t(lang,"booking_link")}</a></div>')
     return (strip+'<header class="masthead"><div class="bar">'
         f'<a class="brand" href="{u(P,lang,"")}"><img class="brand-mark" src="{P}img/logo/mark-dark.png" alt="Mountain Elopement logo"><span class="brand-word">Mountain<span>&middot;</span>Elopement</span></a>'
-        f'<nav id="nav">{links}</nav>{langsw}<button class="menu-btn" id="mb" aria-label="Menu">&#9776;</button></div></header>')
+        f'<nav id="nav">{links}</nav>{langsw}'
+        f'<a class="nav-cta" href="{u(P,lang,"get-in-touch/")}">{CTA_CONTACT[lang]}</a>'
+        '<button class="menu-btn" id="mb" aria-label="Menu">&#9776;</button></div></header>')
 
 def team_section(lang,P):
     def card(role,name,url,desc):
@@ -631,16 +678,16 @@ def gallery_html(lang,P,slug,alt):
     return '<div class="gallery" id="gal">'+''.join(f'<img src="{P}img/gallery/{slug}/{fn}" loading="lazy" alt="{alt}">' for fn in imgs)+'</div>'
 
 TITLES={  # <title> per page
- 'home':{'en':'Mountain Elopement — Where Adventure Meets Romance','de':'Mountain Elopement — Wo Abenteuer auf Romantik trifft','es':'Mountain Elopement — Donde la aventura se une al romance'},
- 'howto':{'en':'How to Elope in the European Mountains — Mountain Elopement','de':'Elopement in den europäischen Bergen — Mountain Elopement','es':'Cómo fugarse en las montañas de Europa — Mountain Elopement'},
+ 'home':{'en':'Mountain Elopement | Intimate Weddings & Adventure Elopements','de':'Mountain Elopement — Wo Abenteuer auf Romantik trifft','es':'Mountain Elopement — Donde la aventura se une al romance'},
+ 'howto':{'en':'How to Elope in Europe | Mountain & Lake Elopement','de':'Elopement in den europäischen Bergen — Mountain Elopement','es':'Cómo fugarse en las montañas de Europa — Mountain Elopement'},
  'stories':{'en':'Stories — Mountain Elopement','de':'Stories — Mountain Elopement','es':'Historias — Mountain Elopement'},
  'packages':{'en':'Price List — Mountain Elopement','de':'Preise — Mountain Elopement','es':'Precios — Mountain Elopement'},
  'team':{'en':'Our Team & Partners — Mountain Elopement','de':'Unser Team & Partner — Mountain Elopement','es':'Nuestro equipo y socios — Mountain Elopement'},
  'contact':{'en':'Contact — Mountain Elopement','de':'Kontakt — Mountain Elopement','es':'Contacto — Mountain Elopement'},
 }
 DESC={
- 'home':{'en':'Editorial elopement photography & planning in the Dolomites and the Alps.','de':'Editorial-Elopement-Fotografie & Planung in den Dolomiten und Alpen.','es':'Fotografía y planificación editorial de elopements en los Dolomitas y los Alpes.'},
- 'howto':{'en':'A guide to eloping in the Dolomites and the Alps.','de':'Ein Leitfaden für euer Elopement in den Dolomiten und Alpen.','es':'Una guía para fugarse en los Dolomitas y los Alpes.'},
+ 'home':{'en':'Plan your unforgettable Mountain Elopement. We create intimate weddings with breathtaking locations, photography, film & full planning across Europe.','de':'Editorial-Elopement-Fotografie & Planung in den Dolomiten und Alpen.','es':'Fotografía y planificación editorial de elopements en los Dolomitas y los Alpes.'},
+ 'howto':{'en':'A practical guide to eloping in the European mountains: where to go, what it costs, legal paperwork, and how to plan a day that feels like yours.','de':'Ein Leitfaden für euer Elopement in den Dolomiten und Alpen.','es':'Una guía para fugarse en los Dolomitas y los Alpes.'},
  'stories':{'en':'Mountain elopement stories from the Dolomites and the Alps.','de':'Berg-Elopement-Stories aus den Dolomiten und Alpen.','es':'Historias de elopement de montaña en los Dolomitas y los Alpes.'},
  'packages':{'en':'Elopement packages: photography, planning, film, flowers and make-up.','de':'Elopement-Pakete: Fotografie, Planung, Film, Blumen und Make-up.','es':'Paquetes de elopement: fotografía, planificación, film, flores y maquillaje.'},
  'team':{'en':'The team behind your elopement — photography, planning, film and make-up.','de':'Das Team hinter eurem Elopement — Fotografie, Planung, Film und Make-up.','es':'El equipo detrás de vuestro elopement — fotografía, planificación, film y maquillaje.'},
@@ -652,7 +699,7 @@ def build_home(lang):
     body=(nav(lang,rel,'home',booking=True)+
       f'<section class="hero" style="padding:0"><div class="bg" style="background-image:url(\'{P}img/hero/hero1.webp\')"></div>'
       '<div class="content"><div class="wide"><div><div class="kicker" data-n="Issue N&deg;1"><span class="line"></span></div>'
-      f'<h1>{t(lang,"h_h1")}</h1></div><div class="side"><p>{t(lang,"h_sub")}</p>'
+      f'<h1 class="hero-brand">Mountain Elopement</h1><div class="hero-display">{t(lang,"h_h1")}</div></div><div class="side"><p>{t(lang,"h_sub")}</p>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"h_btn")}</a></div></div></div></section>'
       f'<div class="meta-strip"><div class="wide"><span>{t(lang,"ms1")}</span><span>{t(lang,"ms2")}</span>'
       f'<span>{t(lang,"ms3")}</span><span>{t(lang,"ms4")}</span></div></div>'
@@ -758,7 +805,10 @@ def build_portfolio(lang):
           f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
           +footer(lang,rel)+
           '<div class="lb" id="lb"><span class="x" id="lbx">&times;</span><span class="arw prev" id="lbp">&lsaquo;</span><img id="lbimg" src="" alt=""><span class="arw next" id="lbn">&rsaquo;</span></div>')
-        write(lang,rel,head(lang,rel,f'{titles[lang]} — Mountain Elopement',DESC['stories'][lang])+body+scripts(P,LB_JS))
+        img_ld={"@context":"https://schema.org","@type":"ImageObject",
+            "contentUrl":f'{DOMAIN}/img/stories/{img}.webp',"name":_plain(titles[lang]),
+            "representativeOfPage":True,"creator":{"@id":ORG_ID}}
+        write(lang,rel,head(lang,rel,f'{titles[lang]} — Mountain Elopement',DESC['stories'][lang],img_ld)+body+scripts(P,LB_JS))
 
 def build_packages(lang):
     rel='our-packages/'; P=prefix(lang,rel)
