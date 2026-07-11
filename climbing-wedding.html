@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Climbing Wedding in the Dolomites — Mountain Elopement</title>
+<meta name="description" content="A climbing elopement high in the Dolomites — vows above the clouds on the summit ridge.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="bar">
+    <a class="brand" href="index.html">Mountain<span>·</span>Elopement</a>
+    <button class="menu-btn" id="mb" aria-label="Menu">☰</button>
+    <nav id="nav">
+      <a href="index.html">Welcome</a>
+      <a href="how-to-elope.html">How to Elope</a>
+      <a href="stories.html" class="active">Stories</a>
+      <a href="packages.html">Price List</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero" style="padding:0">
+  <div class="bg" style="background-image:url('img/stories/s01.webp')"></div>
+  <div class="content">
+    <div class="wrap">
+      <div class="kicker" data-n="Story N°01"><span class="line"></span></div>
+      <h1>Climbing Wedding<br>in the Dolomites</h1>
+    </div>
+  </div>
+</section>
+
+<div class="page-plain" style="border-top:0">
+  <div class="wrap feature" style="align-items:start;padding-bottom:clamp(30px,4vw,50px)">
+    <div class="reveal">
+      <div class="cap" style="margin-bottom:14px">Dolomites — Elopement — Mountain</div>
+      <p class="lead" style="margin:0">They traded an aisle for a ridge line. Roped up at first light, the two of them climbed into the Dolomites and said their vows where the only guests were the peaks.</p>
+    </div>
+    <div class="reveal">
+      <p style="color:var(--ink-2);font-size:17px;margin:0">A single day, start to finish: the pre-dawn approach, the exposed traverse, the quiet exchange on the summit, and the long, golden walk back down. Here is their morning above the clouds.</p>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wide">
+    <div class="gallery" id="gal"></div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap row reveal">
+    <div>
+      <div class="kicker" data-n="Your turn">Dreaming of this?<span class="line"></span></div>
+      <h2 style="margin-top:20px">Let's find<br>your summit</h2>
+    </div>
+    <a href="contact.html" class="btn light">Start planning</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="fbrand">Mountain<span>·</span>Elopement</div>
+        <p>Editorial elopement photography &amp; planning in the Dolomites and the Alps.</p>
+      </div>
+      <div><h5>Explore</h5><ul>
+        <li><a href="how-to-elope.html">How to Elope</a></li>
+        <li><a href="stories.html">Stories</a></li>
+        <li><a href="packages.html">Price List</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div><h5>Connect</h5><ul>
+        <li><a href="https://www.instagram.com/mountainelopement/">Instagram</a></li>
+        <li><a href="mailto:hello@mountain-elopement.com">hello@mountain-elopement.com</a></li>
+      </ul></div>
+    </div>
+    <div class="fine"><span>© 2026 mountain-elopement by blitzkneisser.com</span><span>Imprint · Privacy Policy · Prototype</span></div>
+  </div>
+</footer>
+
+<div class="lb" id="lb">
+  <span class="x" id="lbx">×</span>
+  <span class="arw prev" id="lbp">‹</span>
+  <img id="lbimg" src="" alt="">
+  <span class="arw next" id="lbn">›</span>
+</div>
+
+<script src="js/site.js"></script>
+<script>
+var gal=document.getElementById('gal'),N=24,srcs=[];
+for(var i=1;i<=N;i++){var s='img/gallery/g'+String(i).padStart(2,'0')+'.webp';srcs.push(s);
+  var im=document.createElement('img');im.src=s;im.loading='lazy';im.dataset.i=i-1;
+  im.alt='Climbing elopement in the Dolomites';gal.appendChild(im);}
+var lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),cur=0;
+function open(i){cur=i;lbimg.src=srcs[i];lb.classList.add('open');}
+function close(){lb.classList.remove('open');}
+gal.addEventListener('click',function(e){if(e.target.tagName==='IMG')open(+e.target.dataset.i);});
+document.getElementById('lbx').onclick=close;
+lb.addEventListener('click',function(e){if(e.target===lb)close();});
+document.getElementById('lbn').onclick=function(e){e.stopPropagation();open((cur+1)%N);};
+document.getElementById('lbp').onclick=function(e){e.stopPropagation();open((cur-1+N)%N);};
+addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;
+  if(e.key==='Escape')close();if(e.key==='ArrowRight')open((cur+1)%N);if(e.key==='ArrowLeft')open((cur-1+N)%N);});
+</script>
+</body>
+</html>

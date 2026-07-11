@@ -1,0 +1,5 @@
+__MACOSX/
+.DS_Store
+*.pyc
+__pycache__/
+*.zip

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Mountain Elopement</title>
+<meta name="description" content="Tell us your story. Elopement photography & planning in the Dolomites and the Alps.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="bar">
+    <a class="brand" href="index.html">Mountain<span>·</span>Elopement</a>
+    <button class="menu-btn" id="mb" aria-label="Menu">☰</button>
+    <nav id="nav">
+      <a href="index.html">Welcome</a>
+      <a href="how-to-elope.html">How to Elope</a>
+      <a href="stories.html">Stories</a>
+      <a href="packages.html">Price List</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-plain">
+  <div class="wrap">
+    <div class="kicker" data-n="Say hello"><span class="line"></span></div>
+    <h1>Get in Touch</h1>
+    <p class="lead">We are looking forward to hearing your story! Tell us your ideas — and we'll help turn your dream elopement into reality.</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap contact-grid">
+    <form class="form reveal" onsubmit="return false">
+      <div class="kicker" data-n="01" style="margin-bottom:22px">Your details<span class="line"></span></div>
+      <label>Name</label>
+      <input type="text" placeholder="Your name">
+      <label>Email</label>
+      <input type="email" placeholder="you@email.com">
+      <label>Elopement date (approx.)</label>
+      <input type="text" placeholder="e.g. June 2027">
+
+      <label>What are you dreaming of?</label>
+      <div class="chips" id="chips">
+        <span class="chip">Photo</span><span class="chip">Film</span><span class="chip">Backdrop</span>
+        <span class="chip">Flowers</span><span class="chip">Make-up</span><span class="chip">Helicopter</span>
+        <span class="chip">Hike</span><span class="chip">Musician</span>
+      </div>
+
+      <label>Tell us your story</label>
+      <textarea rows="5" placeholder="Where, when, and what you're imagining..."></textarea>
+      <button class="btn" type="submit">Send enquiry</button>
+      <p class="small" style="margin-top:14px;color:var(--ink-2)">Prototype form — in the live version this connects to email (e.g. Formspree).</p>
+    </form>
+
+    <aside class="contact-side reveal">
+      <img src="img/page/contact.webp" alt="Tanja and Andreas with a happy couple in the Dolomites">
+      <div class="info">
+        <div><strong>Email</strong> — hello@mountain-elopement.com</div>
+        <div><strong>WhatsApp</strong> — +39 348 425 8317</div>
+        <div><strong>Based in</strong> — Tyrol &amp; the Dolomites</div>
+        <div><strong>Instagram</strong> — @mountainelopement</div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="fbrand">Mountain<span>·</span>Elopement</div>
+        <p>Editorial elopement photography &amp; planning in the Dolomites and the Alps.</p>
+      </div>
+      <div><h5>Explore</h5><ul>
+        <li><a href="how-to-elope.html">How to Elope</a></li>
+        <li><a href="stories.html">Stories</a></li>
+        <li><a href="packages.html">Price List</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div><h5>Connect</h5><ul>
+        <li><a href="https://www.instagram.com/mountainelopement/">Instagram</a></li>
+        <li><a href="mailto:hello@mountain-elopement.com">hello@mountain-elopement.com</a></li>
+      </ul></div>
+    </div>
+    <div class="fine"><span>© 2026 mountain-elopement by blitzkneisser.com</span><span>Imprint · Privacy Policy · Prototype</span></div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+<script>
+document.getElementById('chips').addEventListener('click',function(e){
+  if(e.target.classList.contains('chip'))e.target.classList.toggle('on');
+});
+</script>
+</body>
+</html>
