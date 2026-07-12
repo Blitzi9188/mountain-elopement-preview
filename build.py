@@ -730,7 +730,7 @@ def story_card(lang,P,s,big=False):
         f'<div class="imgwrap"><img src="{P}img/stories/{img}.webp" alt="{titles[lang]}"></div>'
         f'<div class="no">N&deg;{num:02d}</div><h3>{titles[lang]}</h3><div class="tags">{tags}</div></a>')
 
-LB_JS=("<script>var gal=document.getElementById('gal');var imgs=[].slice.call(gal.querySelectorAll('img'));"
+LB_JS=("<script>var imgs=[].slice.call(document.querySelectorAll('.gallery img'));"
  "var srcs=imgs.map(function(x){return x.getAttribute('src');});var N=srcs.length;"
  "var lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),cur=0;"
  "function open(i){cur=i;lbimg.src=srcs[i];lb.classList.add('open');}function close(){lb.classList.remove('open');}"
@@ -743,17 +743,15 @@ LB_JS=("<script>var gal=document.getElementById('gal');var imgs=[].slice.call(ga
 
 MAX_GALLERY=30   # never show more than this many photos per story
 
-def gallery_html(lang,P,slug,alt,quote=''):
+def _gallery_files(slug):
     d=os.path.join(ROOT,'img','gallery',slug)
-    files=[f for f in sorted(os.listdir(d)) if f.lower().endswith('.webp')] if os.path.isdir(d) else []
-    if files:
-        srcs=[f'{P}img/gallery/{slug}/{fn}' for fn in files[:MAX_GALLERY]]
-    else:  # fallback to shared placeholder set
-        srcs=[f'{P}img/gallery/g{i:02d}.webp' for i in range(1,13)]
+    return [f for f in sorted(os.listdir(d)) if f.lower().endswith('.webp')] if os.path.isdir(d) else []
+
+def _render_gallery(srcs,alt,quote=''):
     n=len(srcs)
     wide={0} | {i for i in range(5,n,5)}          # 1st image + every 5th break full width
     qpos=max(2,round(n*0.4)) if (quote and n>=6) else -1  # pull-quote ~40% in
-    out=['<div class="gallery" id="gal">']
+    out=['<div class="gallery">']
     for i,src in enumerate(srcs):
         if i==qpos:
             out.append(f'<figure class="eq"><blockquote>{quote}</blockquote></figure>')
@@ -761,6 +759,14 @@ def gallery_html(lang,P,slug,alt,quote=''):
         out.append(f'<img{cls} src="{src}" loading="lazy" alt="{alt}">')
     out.append('</div>')
     return ''.join(out)
+
+def gallery_html(lang,P,slug,alt,quote=''):
+    files=_gallery_files(slug)
+    if files:
+        srcs=[f'{P}img/gallery/{slug}/{fn}' for fn in files[:MAX_GALLERY]]
+    else:  # fallback to shared placeholder set
+        srcs=[f'{P}img/gallery/g{i:02d}.webp' for i in range(1,13)]
+    return _render_gallery(srcs,alt,quote)
 
 TITLES={  # <title> per page
  'home':{'en':'Mountain Elopement | Intimate Weddings & Adventure Elopements','de':'Mountain Elopement — Wo Abenteuer auf Romantik trifft','es':'Mountain Elopement — Donde la aventura se une al romance'},
@@ -976,6 +982,60 @@ PI_TEXT={
   'quote':{'en':'Not a shoot &mdash; the best day of a lifetime, at altitude.','de':'Kein Shooting &mdash; der schönste Tag des Lebens, auf Höhe.','es':'No una sesión &mdash; el mejor día de la vida, en altura.','it':'Non un servizio &mdash; il giorno più bello di sempre, in quota.'}},
 }
 
+# --- Bespoke long-form "Journal Feature" for the flagship helicopter story ---
+FEAT_HELI_SLUG='adventure-helicopter-elopement-dolomites'
+FEATURE_HELI={
+ 'de':{'kick':'Journal Feature','title':'Helikopter-Elopement in den Dolomiten','by':'von Blitzkneisser',
+   'intro':['Ein Elopement in den Dolomiten entscheidet man nicht, weil dabei schöne Bilder entstehen. Man entscheidet es, weil man verstanden hat, was ein Hochzeitstag wirklich sein kann.',
+     'Die meisten Hochzeiten folgen einem Drehbuch, das vor Jahren für andere Menschen geschrieben wurde. Gästeliste, Bankett, Sitzordnung, Programm. Ein Tag voller Pflichten, an dessen Ende Braut und Bräutigam erschöpft sind und sich kaum erinnern, wann sie zuletzt wirklich miteinander gesprochen haben.',
+     'Jasmi und Dominik wollten das nicht. Deshalb der Helikopter. Deshalb der 6. Juni. Deshalb diese Bilder, die nicht wie eine Hochzeit aussehen &ndash; sondern wie das Leben.'],
+   's2h':'Warum die Dolomiten nicht für jeden sind',
+   's2':['Ein Elopement in den Dolomiten ist das Gegenteil von Pflichterfüllung. Es ist die Entscheidung, den Tag nicht zu organisieren, sondern zu erleben. Kein Zeitplan, der euch durch die Stunden hetzt, keine Erwartungen, die erfüllt werden wollen &mdash; nur ihr, das Licht und die Stille.',
+     'Diese Berge verlangen etwas. Ein frühes Aufstehen, ein Ja zum Wetter, den Mut, den großen Bahnhof gegen einen einzigen ehrlichen Moment zu tauschen. Wer das nicht will, ist hier falsch. Wer es will, bekommt einen Tag, der ihm ganz allein gehört.',
+     'Der Helikopter ist dabei nicht der Luxus, sondern die Abkürzung: Minuten statt Stunden, ein Gipfel, den sonst kaum jemand betritt, und die Gewissheit, ihn für euch allein zu haben. Was bleibt, sind keine Programmpunkte &mdash; sondern Bilder, die sich anfühlen wie eine Erinnerung, nicht wie eine Inszenierung.']},
+ 'en':{'kick':'Journal Feature','title':'Helicopter Elopement in the Dolomites','by':'by Blitzkneisser',
+   'intro':['You don&rsquo;t choose to elope in the Dolomites because it makes for beautiful pictures. You choose it because you have understood what a wedding day can really be.',
+     'Most weddings follow a script written years ago, for other people. Guest list, banquet, seating plan, running order. A day full of obligations, at the end of which the couple are exhausted and can barely remember the last time they truly spoke to each other.',
+     'Jasmi and Dominik didn&rsquo;t want that. That is why the helicopter. That is why the 6th of June. That is why these pictures don&rsquo;t look like a wedding &ndash; they look like life.'],
+   's2h':'Why the Dolomites aren&rsquo;t for everyone',
+   's2':['Eloping in the Dolomites is the opposite of ticking boxes. It is the decision to live the day rather than organise it. No timetable rushing you through the hours, no expectations to meet &mdash; only the two of you, the light and the silence.',
+     'These mountains ask something of you. An early start, a yes to whatever the weather brings, the courage to trade the big production for a single honest moment. If that isn&rsquo;t what you want, this isn&rsquo;t for you. If it is, you get a day that belongs entirely to you.',
+     'The helicopter isn&rsquo;t the luxury here &mdash; it is the shortcut: minutes instead of hours, a summit almost no one sets foot on, and the certainty that it is yours alone. What remains are not agenda points, but pictures that feel like a memory, not a staging.']},
+ 'es':{'kick':'Journal Feature','title':'Elopement en helicóptero en los Dolomitas','by':'por Blitzkneisser',
+   'intro':['No se decide un elopement en los Dolomitas porque salgan fotos bonitas. Se decide porque se ha entendido lo que un día de boda puede llegar a ser de verdad.',
+     'La mayoría de las bodas siguen un guion escrito hace años, para otras personas. Lista de invitados, banquete, plano de mesas, programa. Un día lleno de obligaciones al final del cual los novios están agotados y apenas recuerdan cuándo hablaron de verdad por última vez.',
+     'Jasmi y Dominik no querían eso. Por eso el helicóptero. Por eso el 6 de junio. Por eso estas fotos no parecen una boda &ndash; parecen la vida.'],
+   's2h':'Por qué los Dolomitas no son para todos',
+   's2':['Un elopement en los Dolomitas es lo contrario de cumplir un trámite. Es la decisión de vivir el día en lugar de organizarlo. Sin un horario que os apremie, sin expectativas que satisfacer &mdash; solo vosotros dos, la luz y el silencio.',
+     'Estas montañas piden algo. Madrugar, decir sí al tiempo que haga, el valor de cambiar el gran montaje por un único momento sincero. Si no es lo que queréis, no es para vosotros. Si lo es, tendréis un día que os pertenece por completo.',
+     'El helicóptero no es aquí el lujo &mdash; es el atajo: minutos en vez de horas, una cumbre que casi nadie pisa y la certeza de tenerla solo para vosotros. Lo que queda no son puntos de un programa, sino imágenes que se sienten como un recuerdo, no como una puesta en escena.']},
+ 'it':{'kick':'Journal Feature','title':'Elopement in elicottero nelle Dolomiti','by':'di Blitzkneisser',
+   'intro':['Non si sceglie un elopement nelle Dolomiti perché ne escono belle foto. Lo si sceglie perché si è capito che cosa può essere davvero un giorno di nozze.',
+     'La maggior parte dei matrimoni segue un copione scritto anni fa, per altre persone. Lista degli invitati, banchetto, disposizione dei tavoli, programma. Una giornata piena di doveri, al termine della quale gli sposi sono esausti e faticano a ricordare l&rsquo;ultima volta in cui si sono davvero parlati.',
+     'Jasmi e Dominik non volevano questo. Per questo l&rsquo;elicottero. Per questo il 6 giugno. Per questo queste immagini non sembrano un matrimonio &ndash; sembrano la vita.'],
+   's2h':'Perché le Dolomiti non sono per tutti',
+   's2':['Un elopement nelle Dolomiti è l&rsquo;opposto di un dovere da assolvere. È la scelta di vivere la giornata invece di organizzarla. Nessun programma che vi incalza tra le ore, nessuna aspettativa da soddisfare &mdash; solo voi due, la luce e il silenzio.',
+     'Queste montagne chiedono qualcosa. Una sveglia presto, un sì al tempo che verrà, il coraggio di scambiare la grande messinscena con un unico momento sincero. Se non è ciò che volete, non fa per voi. Se lo è, avrete una giornata che vi appartiene per intero.',
+     'Qui l&rsquo;elicottero non è il lusso &mdash; è la scorciatoia: minuti anziché ore, una vetta su cui quasi nessuno mette piede e la certezza di averla solo per voi. Ciò che resta non sono punti di un programma, ma immagini che sembrano un ricordo, non una messa in scena.']},
+}
+
+def feature_heli(lang,P,slug,img,alt):
+    F=FEATURE_HELI[lang]
+    srcs=[f'{P}img/gallery/{slug}/{fn}' for fn in _gallery_files(slug)[:MAX_GALLERY]]
+    g1=[srcs[i] for i in (0,2,3,4) if i<len(srcs)]   # Galerie 1: Bilder 1, 3, 4, 5
+    g2=srcs[5:]                                       # Galerie 2: Bilder 6 ff.
+    intro=''.join((f'<p class="dropcap">{p}</p>' if k==0 else f'<p>{p}</p>') for k,p in enumerate(F['intro']))
+    s2=''.join(f'<p>{p}</p>' for p in F['s2'])
+    return (
+      f'<section class="page-hero" style="padding:0"><div class="bg" style="background-image:url(\'{P}img/stories/{img}.webp\')"></div>'
+      f'<div class="content"><div class="wrap"><div class="kicker" data-n="{F["kick"]}"><span class="line"></span></div><h1>{F["title"]}</h1></div></div></section>'
+      f'<div class="page-plain" style="border-top:0"><div class="wrap"><div class="pi-intro reveal">'
+      f'<div class="byline">{F["by"]}</div>{intro}</div></div></div>'
+      '<section><div class="wide">'+_render_gallery(g1,alt)+'</div></section>'
+      f'<section style="padding-top:clamp(30px,5vw,64px)"><div class="wrap"><div class="pi-intro reveal">'
+      f'<h2 class="feat-h2">{F["s2h"]}</h2>{s2}</div></div></section>'
+      +('<section><div class="wide">'+_render_gallery(g2,alt)+'</div></section>' if g2 else ''))
+
 def build_portfolio(lang):
     for s in STORIES:
         num,slug,img,cats,titles=s
@@ -991,16 +1051,20 @@ def build_portfolio(lang):
           f'{t(lang,"pi_vfilm")} <a class="partner-inline" href="{P_FILM[1]}" target="_blank" rel="noopener">No Matter The Weather</a> &middot; '
           f'{t(lang,"f_role_photo")} <a class="partner-inline" href="https://hochzeitsfotograf.tirol" target="_blank" rel="noopener">Blitzkneisser</a> &middot; '
           f'{t(lang,"pi_vmua")} <a class="partner-inline" href="{P_MUA[1]}" target="_blank" rel="noopener">Viki Aichner</a>')
-        body=(nav(lang,rel,'stories')+
-          f'<section class="page-hero" style="padding:0"><div class="bg" style="background-image:url(\'{P}img/stories/{img}.webp\')"></div>'
-          f'<div class="content"><div class="wrap"><div class="kicker" data-n="Story N&deg;{num:02d}"><span class="line"></span></div><h1>{titles[lang]}</h1></div></div></section>'
-          f'<div class="page-plain" style="border-top:0"><div class="wrap"><div class="pi-intro reveal">'
-          f'<div class="cap" style="margin-bottom:16px">{catlinks}</div>'
-          f'<p class="lead pi-lead">{lead}</p>{bodyhtml}'
-          f'<p class="small pi-credits">{credits}</p>'
-          f'<div class="gal-head reveal"><span>{t(lang,"pi_gallery")}</span></div></div></div></div>'
-          '<section><div class="wide">'+gallery_html(lang,P,slug,titles[lang],quote)+'</div></section>'
-          f'<section class="pi-outro"><div class="wrap reveal"><p>{t(lang,"pi_outro")}</p></div></section>'
+        if slug==FEAT_HELI_SLUG:
+            main=feature_heli(lang,P,slug,img,titles[lang])
+        else:
+            main=(
+              f'<section class="page-hero" style="padding:0"><div class="bg" style="background-image:url(\'{P}img/stories/{img}.webp\')"></div>'
+              f'<div class="content"><div class="wrap"><div class="kicker" data-n="Story N&deg;{num:02d}"><span class="line"></span></div><h1>{titles[lang]}</h1></div></div></section>'
+              f'<div class="page-plain" style="border-top:0"><div class="wrap"><div class="pi-intro reveal">'
+              f'<div class="cap" style="margin-bottom:16px">{catlinks}</div>'
+              f'<p class="lead pi-lead">{lead}</p>{bodyhtml}'
+              f'<p class="small pi-credits">{credits}</p>'
+              f'<div class="gal-head reveal"><span>{t(lang,"pi_gallery")}</span></div></div></div></div>'
+              '<section><div class="wide">'+gallery_html(lang,P,slug,titles[lang],quote)+'</div></section>'
+              f'<section class="pi-outro"><div class="wrap reveal"><p>{t(lang,"pi_outro")}</p></div></section>')
+        body=(nav(lang,rel,'stories')+main+
           '<section class="cta"><div class="wrap row reveal"><div>'
           f'<div class="kicker" data-n="{t(lang,"pi_your")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"pi_cta_h")}</h2></div>'
           f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'

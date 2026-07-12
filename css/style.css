@@ -233,6 +233,8 @@ section{padding:clamp(56px,8vw,120px) 0}
 .gallery .eq blockquote::before{content:"\201C";position:absolute;top:-.28em;left:50%;transform:translateX(-50%);
   font-family:var(--serif);font-style:normal;font-size:2.6em;line-height:1;color:var(--accent);opacity:.55}
 .pi-intro{max-width:760px;margin:0 auto}
+.byline{text-align:center;font-family:var(--sans);text-transform:uppercase;letter-spacing:.18em;font-size:12px;color:var(--ink-2);margin-bottom:1.8em}
+.feat-h2{text-align:center;font-family:var(--serif);font-size:clamp(26px,3.8vw,46px);line-height:1.1;margin:0 auto .8em}
 .pi-intro .pi-lead{text-align:center;margin:0 auto .95em}
 .pi-intro p{margin:0 0 1.15em}
 .pi-credits{color:var(--ink-2);margin-top:1.7em!important;text-align:center}
