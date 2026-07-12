@@ -187,6 +187,10 @@ T = {
  'pi_p':{'en':'Here is their morning above the clouds, exactly as it unfolded.',
          'de':'Hier ist ihr Morgen über den Wolken, genau so, wie er sich entfaltet hat.',
          'es':'Aquí está su mañana sobre las nubes, tal y como sucedió.'},
+ 'pi_gallery':{'en':'The day in frames','de':'Der Tag in Bildern','es':'El día en imágenes'},
+ 'pi_outro':{'en':'However you picture your day &mdash; a quiet sunrise, a summit, a lake to yourselves &mdash; we plan it around the two of you and photograph it the way it truly felt.',
+             'de':'Wie auch immer ihr euch euren Tag vorstellt &mdash; ein stiller Sonnenaufgang, ein Gipfel, ein See für euch allein &mdash; wir planen ihn um euch beide und fotografieren ihn so, wie er sich wirklich angefühlt hat.',
+             'es':'Sea como sea que imaginéis vuestro día &mdash; un amanecer tranquilo, una cumbre, un lago para vosotros &mdash; lo planificamos en torno a los dos y lo fotografiamos tal como se sintió.'},
  'pi_your':{'en':'Dreaming of this?','de':'Träumt ihr davon?','es':'¿Lo soñáis?'},
  'pi_cta_h':{'en':'Let\'s find<br>your summit','de':'Finden wir<br>euren Gipfel','es':'Encontremos<br>vuestra cumbre'},
  'pi_vplan':{'en':'Planning','de':'Planung','es':'Planificación'},
@@ -539,6 +543,8 @@ IT={
  'st_cta_k':'La vostra storia','st_cta_h':'La prossima<br>sarà la vostra?','cat_k':'Categoria','cat_lead':'Storie di elopement nella categoria <em>{x}</em>.',
  'pi_lead':'Un solo giorno, dall’inizio alla fine &mdash; la salita, la luce, il sereno scambio delle promesse e il lungo cammino di ritorno.',
  'pi_p':'Ecco il loro mattino sopra le nuvole, esattamente come si è svolto.','pi_your':'Lo sognate anche voi?','pi_cta_h':'Troviamo<br>la vostra vetta',
+ 'pi_gallery':'Il giorno in immagini',
+ 'pi_outro':'Comunque immaginiate la vostra giornata &mdash; un&rsquo;alba silenziosa, una vetta, un lago tutto per voi &mdash; la pianifichiamo intorno a voi due e la fotografiamo com&rsquo;è stata davvero.',
  'pi_vplan':'Pianificazione','pi_vfilm':'Film','pi_vmua':'Trucco',
  'pk_k':'Investimento','pk_h':'Prezzi','pk_lead':'I nostri pacchetti sono un punto di partenza, non un limite. Che sogniate un matrimonio di tre giorni in elicottero o una semplice cerimonia in vetta &mdash; solo il cielo è il limite.',
  'pk_t1':'express elopement','pk_t2':'the elopement','pk_t3':'micro wedding','pk_l1':'Base','pk_l2':'Popolare','pk_l3':'Tutto',
@@ -991,8 +997,10 @@ def build_portfolio(lang):
           f'<div class="page-plain" style="border-top:0"><div class="wrap"><div class="pi-intro reveal">'
           f'<div class="cap" style="margin-bottom:16px">{catlinks}</div>'
           f'<p class="lead pi-lead">{lead}</p>{bodyhtml}'
-          f'<p class="small pi-credits">{credits}</p></div></div></div>'
+          f'<p class="small pi-credits">{credits}</p>'
+          f'<div class="gal-head reveal"><span>{t(lang,"pi_gallery")}</span></div></div></div></div>'
           '<section><div class="wide">'+gallery_html(lang,P,slug,titles[lang],quote)+'</div></section>'
+          f'<section class="pi-outro"><div class="wrap reveal"><p>{t(lang,"pi_outro")}</p></div></section>'
           '<section class="cta"><div class="wrap row reveal"><div>'
           f'<div class="kicker" data-n="{t(lang,"pi_your")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"pi_cta_h")}</h2></div>'
           f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
