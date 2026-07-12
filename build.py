@@ -769,8 +769,6 @@ def build_home(lang):
       '<div class="content"><div class="wide"><div><div class="kicker" data-n="Issue N&deg;1"><span class="line"></span></div>'
       f'<h1 class="hero-brand">Mountain Elopement</h1><h2 class="hero-sub">{t(lang,"h_h1").replace("<br>"," ")}</h2></div><div class="side"><p>{t(lang,"h_sub")}</p>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"h_btn")}</a></div></div></div></section>'
-      f'<div class="meta-strip"><div class="wide"><span>{t(lang,"ms1")}</span><span>{t(lang,"ms2")}</span>'
-      f'<span>{t(lang,"ms3")}</span><span>{t(lang,"ms4")}</span></div></div>'
       '<section><div class="wrap feature"><div class="body reveal">'
       f'<div class="kicker" data-n="01">{t(lang,"mission_k")}<span class="line"></span></div><h2>{t(lang,"mission_h")}</h2>'
       f'<p class="lead">{t(lang,"mission_lead")}</p><p class="dropcap">{t(lang,"mission_p1")}</p><p>{t(lang,"mission_p2")}</p>'
