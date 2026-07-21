@@ -741,15 +741,15 @@ LB_JS=("<script>var imgs=[].slice.call(document.querySelectorAll('.gallery img')
  "addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;"
  "if(e.key==='Escape')close();if(e.key==='ArrowRight')open((cur+1)%N);if(e.key==='ArrowLeft')open((cur-1+N)%N);});</script>")
 
-MAX_GALLERY=30   # never show more than this many photos per story
+MAX_GALLERY=20   # never show more than this many photos per story
 
 def _gallery_files(slug):
     d=os.path.join(ROOT,'img','gallery',slug)
     return [f for f in sorted(os.listdir(d)) if f.lower().endswith('.webp')] if os.path.isdir(d) else []
 
-def _render_gallery(srcs,alt,quote=''):
+def _render_gallery(srcs,alt,quote='',full=False):
     n=len(srcs)
-    wide={0} | {i for i in range(5,n,5)}          # 1st image + every 5th break full width
+    wide=({0} | {i for i in range(5,n,5)}) if full else set()   # full-width breakouts only in feature mode
     qpos=max(2,round(n*0.4)) if (quote and n>=6) else -1  # pull-quote ~40% in
     out=['<div class="gallery">']
     for i,src in enumerate(srcs):
@@ -1032,10 +1032,10 @@ def feature_heli(lang,P,slug,img,alt):
       f'<div class="content"><div class="wrap"><div class="kicker" data-n="{F["kick"]}"><span class="line"></span></div><h1>{F["title"]}</h1></div></div></section>'
       f'<div class="page-plain" style="border-top:0"><div class="wrap"><div class="pi-intro reveal">'
       f'<div class="byline">{F["by"]}</div>{intro}</div></div></div>'
-      '<section><div class="wide">'+_render_gallery(g1,alt)+'</div></section>'
+      '<section><div class="wide">'+_render_gallery(g1,alt,full=True)+'</div></section>'
       f'<section style="padding-top:clamp(30px,5vw,64px)"><div class="wrap"><div class="pi-intro reveal">'
       f'<h2 class="feat-h2">{F["s2h"]}</h2>{s2}</div></div></section>'
-      +('<section><div class="wide">'+_render_gallery(g2,alt)+'</div></section>' if g2 else ''))
+      +('<section><div class="wide">'+_render_gallery(g2,alt,full=True)+'</div></section>' if g2 else ''))
 
 def build_portfolio(lang):
     for s in STORIES:
@@ -1063,7 +1063,7 @@ def build_portfolio(lang):
               f'<p class="lead pi-lead">{lead}</p>{bodyhtml}'
               f'<p class="small pi-credits">{credits}</p>'
               f'<div class="gal-head reveal"><span>{t(lang,"pi_gallery")}</span></div></div></div></div>'
-              '<section><div class="wide">'+gallery_html(lang,P,slug,titles[lang],quote)+'</div></section>'
+              '<section><div class="gallery-wrap">'+gallery_html(lang,P,slug,titles[lang],quote)+'</div></section>'
               f'<section class="pi-outro"><div class="wrap reveal"><p>{t(lang,"pi_outro")}</p></div></section>')
         body=(nav(lang,rel,'stories')+main+
           '<section class="cta"><div class="wrap row reveal"><div>'

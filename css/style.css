@@ -223,6 +223,7 @@ section{padding:clamp(56px,8vw,120px) 0}
 .page-plain .lead{max-width:720px;margin-bottom:clamp(30px,5vw,54px)}
 
 /* ---- Gallery ---- */
+.gallery-wrap{max-width:900px;margin:0 auto;padding:0 var(--gutter)}  /* story galleries: intimate, not full-width */
 .gallery{columns:2;column-gap:clamp(10px,1.6vw,20px)}
 .gallery img{width:100%;margin:0 0 clamp(10px,1.6vw,20px);cursor:zoom-in;transition:.3s;break-inside:avoid}
 .gallery img:hover{opacity:.92}
