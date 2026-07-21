@@ -841,7 +841,7 @@ def build_home(lang):
       f'<img src="{P}img/awards/way-up-north-awards-2024-winner-best-epic-portrait-400.png" alt="Way Up North Awards 2024 &ndash; Winner, Best Epic Portrait" width="400" height="400" loading="lazy">'
       f'<span class="badge-txt"><span class="badge-eyebrow">{t(lang,"award_lbl")}</span><strong>Way Up North Awards 2024</strong><span class="badge-sub">{t(lang,"aw_wun")}</span></span></a>'
       f'<a class="badge" href="https://junebugweddings.com/best-wedding-photographers/Austria-photography/" target="_blank" rel="noopener">'
-      f'<span class="badge-txt"><span class="badge-eyebrow">{t(lang,"aw_feat")}</span><strong>Junebug Weddings</strong><span class="badge-sub">{t(lang,"aw_jb")}</span></span></a>'
+      f'<span class="badge-txt"><span class="badge-eyebrow">{t(lang,"aw_feat")}</span><img class="badge-logo" src="{P}img/awards/junebug.svg" alt="Junebug Weddings" width="351" height="49" loading="lazy"><span class="badge-sub">{t(lang,"aw_jb")}</span></span></a>'
       f'<a class="badge" href="https://www.fearlessphotographers.com/photographer/7033/andreas-kiss" target="_blank" rel="noopener">'
       f'<span class="badge-txt"><span class="badge-eyebrow">{t(lang,"aw_member")}</span><strong>Fearless Photographers</strong><span class="badge-sub">{t(lang,"aw_fl")}</span></span></a>'
       f'<span class="badge"><span class="badge-txt"><span class="badge-eyebrow">{t(lang,"pub_lbl")}</span><strong>Rangefinder Magazine</strong><span class="badge-sub">{t(lang,"aw_rf")}</span></span></span>'
