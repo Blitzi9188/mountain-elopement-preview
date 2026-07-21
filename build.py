@@ -302,6 +302,9 @@ T = {
             'de':'Platzhalter &mdash; der bestehende Text wird unverändert von der aktuellen Seite übernommen.',
             'es':'Marcador de posición &mdash; el texto existente se trasladará sin cambios desde el sitio actual.'},
  # guides
+ 'hero_inq':{'en':'Direct inquiry','de':'Direkt anfragen','es':'Consulta directa'},
+ 'hero_guides':{'en':'Guides','de':'Guides','es':'Guías'},
+ 'film_k':{'en':'The film','de':'Der Film','es':'El vídeo'},
  'ht_start':{'en':'Start Here','de':'Hier starten','es':'Empieza aquí'},
  'ht_start_copy':{'en':'A calm starting point for couples planning a Dolomites elopement or an intentional wedding in the mountains &mdash; and wanting a clearer sense of where to begin.',
                   'de':'Ein ruhiger Startpunkt für Paare, die ein Dolomiten-Elopement oder eine bewusste Hochzeit in den Bergen planen &mdash; und einen klaren Überblick suchen, wo sie beginnen.',
@@ -582,6 +585,7 @@ IT={
  'ct_note':'Modulo prototipo &mdash; nella versione finale si collega all’email (es. Formspree).','ct_based':'Sede','ct_based_v':'Tirolo e Dolomiti',
  'chips':['Foto','Film','Backdrop','Fiori','Trucco','Elicottero','Escursione','Musica'],
  'lg_k':'Note legali','lg_imprint':'Note legali','lg_privacy':'Informativa privacy','lg_lead':'Segnaposto &mdash; il testo esistente verrà trasferito invariato dal sito attuale.',
+ 'hero_inq':'Richiesta diretta','hero_guides':'Guide','film_k':'Il film',
  'ht_start':'Inizia qui','ht_start_copy':'Un punto di partenza sereno per chi pianifica un elopement nelle Dolomiti o un matrimonio intenzionale in montagna &mdash; e vuole capire meglio da dove cominciare.',
  'guides_k':'Guide di pianificazione','guides_h':'Guide per pianificare il tuo elopement','guides_intro':'Guide pratiche e sincere per pianificare un elopement nelle Alpi e nelle Dolomiti.',
  'read_guide':'Leggi la guida','guide_kick':'Guida','more_guides':'Altre guide','map_k':'La regione','map_h':'Dove vi sposerete?','map_hint':'Tocca una regione',
@@ -868,7 +872,12 @@ def build_howto(lang):
           f'<p style="font-size:17px;color:var(--ink-2)">{t(lang,pk)}</p></div>')
     body=(nav(lang,rel,'howto')+
       f'<section class="page-hero" style="padding:0"><div class="bg" style="background-image:url(\'{P}img/page/howto.webp\')"></div>'
-      f'<div class="content"><div class="wrap"><div class="kicker" data-n="{t(lang,"ht_k")}"><span class="line"></span></div><h1>{t(lang,"ht_h1")}</h1></div></div></section>'
+      f'<div class="content"><div class="wrap"><div class="kicker" data-n="{t(lang,"ht_k")}"><span class="line"></span></div><h1>{t(lang,"ht_h1")}</h1>'
+      f'<div class="hero-btns"><a class="btn light" href="{u(P,lang,"get-in-touch/")}">{t(lang,"hero_inq")}</a>'
+      f'<a class="btn ghost" href="#guideGrid">{t(lang,"hero_guides")}</a></div></div></div></section>'
+      '<section class="film"><div class="wide"><div class="video-wrap">'
+      '<iframe src="https://player.vimeo.com/video/511128121?h=957cbe5c37&amp;dnt=1&amp;title=0&amp;byline=0&amp;portrait=0" title="Mountain Elopement film" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>'
+      '</div></div></section>'
       '<section><div class="wrap feature"><div class="body reveal">'
       f'<div class="kicker" data-n="01">{t(lang,"ht_s1k")}<span class="line"></span></div><h2>{t(lang,"ht_s1h")}</h2>'
       f'<p class="dropcap">{t(lang,"ht_s1p1")}</p><p>{t(lang,"ht_s1p2")}</p><p>{t(lang,"ht_s1p3")}</p></div>'
