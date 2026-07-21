@@ -871,13 +871,11 @@ def build_howto(lang):
           f'<h3 style="font-family:var(--serif);font-weight:400;font-size:26px;margin:8px 0 10px">{t(lang,tk)}</h3>'
           f'<p style="font-size:17px;color:var(--ink-2)">{t(lang,pk)}</p></div>')
     body=(nav(lang,rel,'howto')+
-      f'<section class="page-hero" style="padding:0"><div class="bg" style="background-image:url(\'{P}img/page/howto.webp\')"></div>'
+      '<section class="page-hero page-hero--video" style="padding:0"><div class="hero-video">'
+      '<iframe src="https://player.vimeo.com/video/511128121?h=957cbe5c37&amp;background=1&amp;autoplay=1&amp;muted=1&amp;loop=1&amp;dnt=1" title="Mountain Elopement film" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" tabindex="-1"></iframe></div>'
       f'<div class="content"><div class="wrap"><div class="kicker" data-n="{t(lang,"ht_k")}"><span class="line"></span></div><h1>{t(lang,"ht_h1")}</h1>'
       f'<div class="hero-btns"><a class="btn light" href="{u(P,lang,"get-in-touch/")}">{t(lang,"hero_inq")}</a>'
       f'<a class="btn ghost" href="#guideGrid">{t(lang,"hero_guides")}</a></div></div></div></section>'
-      '<section class="film"><div class="wide"><div class="video-wrap">'
-      '<iframe src="https://player.vimeo.com/video/511128121?h=957cbe5c37&amp;dnt=1&amp;title=0&amp;byline=0&amp;portrait=0" title="Mountain Elopement film" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>'
-      '</div></div></section>'
       '<section><div class="wrap feature"><div class="body reveal">'
       f'<div class="kicker" data-n="01">{t(lang,"ht_s1k")}<span class="line"></span></div><h2>{t(lang,"ht_s1h")}</h2>'
       f'<p class="dropcap">{t(lang,"ht_s1p1")}</p><p>{t(lang,"ht_s1p2")}</p><p>{t(lang,"ht_s1p3")}</p></div>'
