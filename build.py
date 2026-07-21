@@ -811,6 +811,7 @@ def build_home(lang):
       f'<img src="{P}img/badges/wun-2024-400.png" srcset="{P}img/badges/wun-2024-400.png 400w, {P}img/badges/wun-2024.png 800w" sizes="72px" alt="Way Up North Awards 2024 &ndash; Winner Best Epic Portrait" width="400" height="400" loading="lazy">'
       f'<span class="badge-txt"><span class="badge-eyebrow">{t(lang,"award_lbl")}</span><strong>Way Up North Awards 2024</strong><span class="badge-sub">Winner &ndash; Best Epic Portrait</span></span></a>'
       f'<a class="badge" href="https://rangefinderonline.com/news-features/photo-of-the-day/ankle-deep-in-beauty/" target="_blank" rel="noopener">'
+      f'<img src="{P}img/badges/rangefinder.png" alt="Rangefinder Magazine" width="165" height="165" loading="lazy">'
       f'<span class="badge-txt"><span class="badge-eyebrow">{t(lang,"pub_lbl")}</span><strong>Rangefinder Magazine</strong><span class="badge-sub">Rf Photo of the Day &ndash; Lago di Braies</span></span></a>'
       '</div></div></section>'
       '<hr class="hr"><section><div class="wrap"><div class="section-head reveal">'
