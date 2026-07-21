@@ -678,7 +678,7 @@ def nav(lang, rel, active, booking=False):
         strip=(f'<div class="booking-strip">{t(lang,"booking")} '
                f'<a href="{u(P,lang,"get-in-touch/")}">{t(lang,"booking_link")}</a></div>')
     return (strip+'<header class="masthead"><div class="bar">'
-        f'<a class="brand" href="{u(P,lang,"")}"><img class="brand-mark" src="{P}img/logo/mark-dark.png" alt="Mountain Elopement logo"><span class="brand-word">Mountain<span>&middot;</span>Elopement</span></a>'
+        f'<a class="brand" href="{u(P,lang,"")}"><img class="brand-mark" src="{P}img/logo/mark-dark.png" alt="Mountain Elopement logo"><span class="brand-word">Mountain Elopement</span></a>'
         f'<nav id="nav">{links}{langs_menu}</nav>'
         f'<a class="nav-cta" href="{u(P,lang,"get-in-touch/")}">{CTA_CONTACT[lang]}</a>'
         f'{langsw}'
@@ -700,7 +700,7 @@ def team_section(lang,P):
 def footer(lang,rel):
     P=prefix(lang,rel)
     return ('<footer><div class="wrap"><div class="cols">'
-      f'<div><div class="fbrand"><img src="{P}img/logo/mark-light.png" alt="Mountain Elopement logo"><span class="fword">Mountain<span>&middot;</span>Elopement</span></div>'
+      f'<div><div class="fbrand"><img src="{P}img/logo/mark-light.png" alt="Mountain Elopement logo"><span class="fword">Mountain Elopement</span></div>'
       f'<p>{t(lang,"f_tag")}</p></div>'
       f'<div><h5>{t(lang,"f_explore")}</h5><ul>'
       f'<li><a href="{u(P,lang,"how-to-elope-in-the-europe-mountains/")}">{T["nav"]["howto"][lang]}</a></li>'
