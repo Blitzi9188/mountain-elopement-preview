@@ -810,7 +810,8 @@ DESC={
 def build_home(lang):
     rel=''; P=prefix(lang,rel)
     body=(nav(lang,rel,'home',booking=True)+
-      f'<section class="hero" style="padding:0"><div class="bg" style="background-image:url(\'{P}img/hero/hero1.webp\')"></div>'
+      f'<section class="hero" style="padding:0"><div class="hero-video" style="background-image:url(\'{P}img/hero/hero1.webp\');background-size:cover;background-position:center">'
+      '<iframe src="https://player.vimeo.com/video/511128121?h=957cbe5c37&amp;background=1&amp;autoplay=1&amp;muted=1&amp;loop=1&amp;dnt=1" title="Mountain Elopement film" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" tabindex="-1"></iframe></div>'
       '<div class="content"><div class="wide"><div><div class="kicker" data-n="Issue N&deg;1"><span class="line"></span></div>'
       f'<h1 class="hero-brand">Mountain Elopement</h1><h2 class="hero-sub">{t(lang,"h_h1").replace("<br>"," ")}</h2></div><div class="side"><p>{t(lang,"h_sub")}</p>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"h_btn")}</a></div></div></div></section>'
@@ -871,8 +872,7 @@ def build_howto(lang):
           f'<h3 style="font-family:var(--serif);font-weight:400;font-size:26px;margin:8px 0 10px">{t(lang,tk)}</h3>'
           f'<p style="font-size:17px;color:var(--ink-2)">{t(lang,pk)}</p></div>')
     body=(nav(lang,rel,'howto')+
-      '<section class="page-hero page-hero--video" style="padding:0"><div class="hero-video">'
-      '<iframe src="https://player.vimeo.com/video/511128121?h=957cbe5c37&amp;background=1&amp;autoplay=1&amp;muted=1&amp;loop=1&amp;dnt=1" title="Mountain Elopement film" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" tabindex="-1"></iframe></div>'
+      f'<section class="page-hero" style="padding:0"><div class="bg" style="background-image:url(\'{P}img/page/howto.webp\')"></div>'
       f'<div class="content"><div class="wrap"><div class="kicker" data-n="{t(lang,"ht_k")}"><span class="line"></span></div><h1>{t(lang,"ht_h1")}</h1>'
       f'<div class="hero-btns"><a class="btn light" href="{u(P,lang,"get-in-touch/")}">{t(lang,"hero_inq")}</a>'
       f'<a class="btn ghost" href="#guideGrid">{t(lang,"hero_guides")}</a></div></div></div></section>'
