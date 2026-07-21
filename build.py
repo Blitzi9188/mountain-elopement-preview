@@ -836,7 +836,6 @@ def build_home(lang):
       f'<div class="kicker" data-n="04">{t(lang,"aw_k")}<span class="line"></span></div><h2>{t(lang,"aw_h")}</h2></div>'
       f'<p class="lead reveal" style="max-width:660px">{t(lang,"aw_lead")}</p>'
       '<div class="awards-row reveal">'
-      f'<div class="award-item"><span class="award-name">Master of Photography</span><span class="award-sub">2010</span></div>'
       f'<a class="award-item" href="https://wayupnorth.co/2024-wun-awards-photo-contest-winners/" target="_blank" rel="noopener">'
       f'<img class="award-logo" src="{P}img/awards/way-up-north-awards-2024-winner-best-epic-portrait-400.png" alt="Way Up North Awards 2024 &ndash; Winner, Best Epic Portrait" width="400" height="400" loading="lazy" style="height:62px">'
       f'<span class="award-sub">{t(lang,"aw_wun")}</span></a>'
