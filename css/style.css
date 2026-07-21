@@ -177,6 +177,20 @@ section{padding:clamp(38px,5vw,80px) 0}
 .badge-txt strong{font-family:var(--sans);font-weight:600;font-size:16px;letter-spacing:-.01em;transition:color .2s}
 .badge-logo{height:22px;width:auto;display:block;margin:2px 0;transition:opacity .2s}
 .badge:hover .badge-logo{opacity:.6}
+.guide-filters{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:clamp(26px,4vw,44px) 0}
+.gchip{font-family:var(--sans);text-transform:uppercase;letter-spacing:.14em;font-size:11px;padding:12px 20px;border:1px solid var(--line-2);background:transparent;color:var(--ink-2);cursor:pointer;transition:.2s;white-space:nowrap}
+.gchip:hover{border-color:var(--ink);color:var(--ink)}
+.gchip[aria-pressed="true"]{border-color:var(--ink);color:var(--ink);background:rgba(20,18,16,.05)}
+.guide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,32px)}
+.gcard{text-decoration:none;color:inherit;display:block}
+.gcard .imgwrap{aspect-ratio:4/5;overflow:hidden;margin-bottom:14px}
+.gcard .imgwrap img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.gcard:hover .imgwrap img{transform:scale(1.04)}
+.gcard .no{font-family:var(--sans);text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--accent);margin-bottom:6px}
+.gcard h3{font-family:var(--serif);font-weight:400;font-size:clamp(20px,2vw,25px);margin:0 0 6px}
+.gcard-x{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink-2)}
+@media(max-width:860px){.guide-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.guide-grid{grid-template-columns:1fr}}
 .awards-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:clamp(30px,5vw,60px);margin-top:clamp(30px,4vw,48px)}
 .award-item{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:12px;text-decoration:none;color:inherit;text-align:center}
 .award-logo{width:auto;object-fit:contain;transition:opacity .2s}

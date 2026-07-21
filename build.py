@@ -302,6 +302,10 @@ T = {
             'de':'Platzhalter &mdash; der bestehende Text wird unverändert von der aktuellen Seite übernommen.',
             'es':'Marcador de posición &mdash; el texto existente se trasladará sin cambios desde el sitio actual.'},
  # guides
+ 'ht_start':{'en':'Start Here','de':'Hier starten','es':'Empieza aquí'},
+ 'ht_start_copy':{'en':'A calm starting point for couples planning a Dolomites elopement or an intentional wedding in the mountains &mdash; and wanting a clearer sense of where to begin.',
+                  'de':'Ein ruhiger Startpunkt für Paare, die ein Dolomiten-Elopement oder eine bewusste Hochzeit in den Bergen planen &mdash; und einen klaren Überblick suchen, wo sie beginnen.',
+                  'es':'Un punto de partida sereno para parejas que planean un elopement en los Dolomitas o una boda con intención en la montaña &mdash; y quieren una idea más clara de por dónde empezar.'},
  'guides_k':{'en':'Planning Guides','de':'Planungs-Guides','es':'Guías de planificación'},
  'guides_h':{'en':'Elopement planning guides','de':'Elopement-Planungs-Guides','es':'Guías para planear tu elopement'},
  'guides_intro':{'en':'Practical, honest guides to help you plan an elopement in the Alps and Dolomites.',
@@ -578,6 +582,7 @@ IT={
  'ct_note':'Modulo prototipo &mdash; nella versione finale si collega all’email (es. Formspree).','ct_based':'Sede','ct_based_v':'Tirolo e Dolomiti',
  'chips':['Foto','Film','Backdrop','Fiori','Trucco','Elicottero','Escursione','Musica'],
  'lg_k':'Note legali','lg_imprint':'Note legali','lg_privacy':'Informativa privacy','lg_lead':'Segnaposto &mdash; il testo esistente verrà trasferito invariato dal sito attuale.',
+ 'ht_start':'Inizia qui','ht_start_copy':'Un punto di partenza sereno per chi pianifica un elopement nelle Dolomiti o un matrimonio intenzionale in montagna &mdash; e vuole capire meglio da dove cominciare.',
  'guides_k':'Guide di pianificazione','guides_h':'Guide per pianificare il tuo elopement','guides_intro':'Guide pratiche e sincere per pianificare un elopement nelle Alpi e nelle Dolomiti.',
  'read_guide':'Leggi la guida','guide_kick':'Guida','more_guides':'Altre guide','map_k':'La regione','map_h':'Dove vi sposerete?','map_hint':'Tocca una regione',
  'map_tyrol':'Tirolo','map_lakes':'Laghi alpini','map_dol':'Dolomiti','cats_k':'Per tema','cats_h':'Esplora per categoria',
@@ -873,17 +878,15 @@ def build_howto(lang):
       '<div class="story-grid" style="align-items:start">'
       +step('01','ht_step1t','ht_step1p')+step('02','ht_step2t','ht_step2p')+step('03','ht_step3t','ht_step3p')+
       '</div></div></section>'
-      '<section class="stories"><div class="wrap"><div class="section-head reveal">'
-      f'<div class="kicker" data-n="{t(lang,"guides_k")}"><span class="line"></span></div><h2>{t(lang,"guides_h")}</h2>'
-      f'<p style="max-width:640px;color:var(--ink-2);margin:0">{t(lang,"guides_intro")}</p></div>'
-      +guide_mosaic(lang,P)+
+      '<section><div class="wrap">'
+      +guide_hub(lang,P)+
       '</div></section>'
       +team_section(lang,P)+
       '<section class="cta"><div class="wrap row reveal"><div>'
       f'<div class="kicker" data-n="{t(lang,"ht_ready")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"ht_cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"get_in_touch")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,TITLES['howto'][lang],DESC['howto'][lang])+body+scripts(P))
+    write(lang,rel,head(lang,rel,TITLES['howto'][lang],DESC['howto'][lang])+body+scripts(P,GUIDE_JS))
 
 def build_stories(lang):
     rel='stories-elopement-mountain/'; P=prefix(lang,rel)
@@ -1223,6 +1226,46 @@ def guide_map(lang,P):
               f'<text x="{x}" y="{y-22}" text-anchor="middle">{t(lang,lk)}</text></g></a>')
     svg+='</svg></div>'
     return svg
+
+# --- Guide hub: filterable "Start Here" grid (topic chips) ---
+GCAT_ORDER=['all','dolomites','tyrol','locations','seasons','civil','planning']
+GCAT={
+ 'all':{'en':'All guides','de':'Alle Guides','es':'Todas las guías','it':'Tutte le guide'},
+ 'dolomites':{'en':'Dolomites','de':'Dolomiten','es':'Dolomitas','it':'Dolomiti'},
+ 'tyrol':{'en':'Tyrol','de':'Tirol','es':'Tirol','it':'Tirolo'},
+ 'locations':{'en':'Locations','de':'Orte','es':'Lugares','it':'Luoghi'},
+ 'seasons':{'en':'Seasons','de':'Jahreszeiten','es':'Estaciones','it':'Stagioni'},
+ 'civil':{'en':'Civil wedding','de':'Standesamt','es':'Boda civil','it':'Matrimonio civile'},
+ 'planning':{'en':'Planning','de':'Planung','es':'Planificación','it':'Pianificazione'},
+}
+GUIDE_CATS={
+ 'dolomites-elopement-guide':['dolomites','locations','seasons'],
+ 'elope-in-austria':['tyrol','civil'],
+ 'best-alps-elopement-locations':['locations','dolomites','tyrol'],
+ 'how-to-plan-your-elopement':['planning'],
+}
+GUIDE_JS=("<script>(function(){var f=document.getElementById('guideFilters');if(!f)return;"
+ "var cards=[].slice.call(document.querySelectorAll('#guideGrid [data-cat]'));"
+ "f.addEventListener('click',function(e){var b=e.target.closest('button[data-filter]');if(!b)return;"
+ "f.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});"
+ "var c=b.getAttribute('data-filter');cards.forEach(function(k){var m=c==='all'||((' '+k.getAttribute('data-cat')+' ').indexOf(' '+c+' ')>-1);k.style.display=m?'':'none';});});})();</script>")
+
+def guide_hub(lang,P):
+    present=[c for c in GCAT_ORDER if c=='all' or any(c in GUIDE_CATS.get(g['slug'],[]) for g in GUIDES)]
+    chips=''.join(f'<button type="button" class="gchip" data-filter="{c}" aria-pressed="{"true" if c=="all" else "false"}">{GCAT[c][lang]}</button>' for c in present)
+    cards=''
+    for g in GUIDES:
+        cats=' '.join(GUIDE_CATS.get(g['slug'],[]))
+        href=u(P,lang,'how-to-elope-in-the-europe-mountains/'+g['slug']+'/')
+        cards+=(f'<a class="gcard reveal" data-cat="{cats}" href="{href}">'
+                f'<div class="imgwrap"><img src="{P}img/stories/{g["img"]}.webp" alt="{g["title"][lang]}" loading="lazy"></div>'
+                f'<div class="no">{t(lang,"guide_kick")}</div><h3>{g["title"][lang]}</h3>'
+                f'<div class="gcard-x">{g["excerpt"][lang]}</div></a>')
+    return ('<div class="section-head reveal" style="text-align:center">'
+            f'<h2>{t(lang,"ht_start")}</h2>'
+            f'<p class="lead" style="max-width:620px;margin:16px auto 0">{t(lang,"ht_start_copy")}</p></div>'
+            f'<div class="guide-filters" id="guideFilters" aria-label="Guide filters">{chips}</div>'
+            f'<div class="guide-grid" id="guideGrid">{cards}</div>')
 
 def guide_mosaic(lang,P):
     cls=['m-tile m-w','m-tile m-n','m-tile m-n','m-tile m-w']
