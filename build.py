@@ -152,7 +152,7 @@ T = {
  'aw_rf':{'en':'Rf Photo of the Day','de':'Rf Photo of the Day','es':'Rf Photo of the Day'},
  # how to
  'ht_k':{'en':'Field Guide','de':'Ratgeber','es':'Guía'},
- 'ht_h1':{'en':'How to Elope in Europe','de':'Elopement in den<br>europäischen Bergen','es':'Cómo fugarse en<br>las montañas de Europa'},
+ 'ht_h1':{'en':'How to Elope in<br>the Dolomites','de':'Elopement in<br>den Dolomiten','es':'Cómo fugarse en<br>los Dolomitas'},
  'ht_s1k':{'en':'Where to begin','de':'Wo ihr beginnt','es':'Por dónde empezar'},
  'ht_s1h':{'en':'Blend adventure<br>and romance','de':'Abenteuer und<br>Romantik verbinden','es':'Aventura y<br>romance unidos'},
  'ht_s1p1':{'en':'Curious about designing an elopement that seamlessly blends adventure and romance in the breathtaking Dolomites? Our expertise lies in curating unforgettable mountain elopements tailored to your unique vision and preferences.',
@@ -550,7 +550,7 @@ IT={
  'diff4_p':'Un piccolo team locale, a casa tra Innsbruck e le Dolomiti &mdash; la planner Jlenia, il fotografo Andreas e la filmmaker Stefanie. Premiati: Way Up North Awards 2024.',
  'award_lbl':'Premiati','pub_lbl':'Pubblicato in',
  'aw_k':'Riconoscimenti','aw_h':'Premiati e menzionati','aw_lead':'Prenotare un matrimonio tra montagne che non avete mai calpestato richiede fiducia. Negli anni il nostro lavoro è stato premiato e pubblicato da chi le coppie prendono come riferimento.','aw_qual':'Qualifica','aw_feat':'Menzionato','aw_member':'Membro','aw_wun':'Vincitore &mdash; Best Epic Portrait','aw_jb':'I migliori d&rsquo;Austria','aw_fl':'Fotografo in elenco','aw_rf':'Rf Photo of the Day',
- 'ht_k':'Guida','ht_h1':'Elopement nelle<br>montagne d’Europa','ht_s1k':'Da dove iniziare','ht_s1h':'Unire avventura<br>e romanticismo',
+ 'ht_k':'Guida','ht_h1':'Elopement nelle<br>Dolomiti','ht_s1k':'Da dove iniziare','ht_s1h':'Unire avventura<br>e romanticismo',
  'ht_s1p1':'Curiosi di progettare un elopement che unisca avventura e romanticismo nelle splendide Dolomiti? La nostra specialità è creare elopement di montagna indimenticabili, su misura per la vostra visione.',
  'ht_s1p2':'Iniziamo aiutandovi a scegliere la location perfetta &mdash; considerando accessibilità, paesaggio e atmosfera desiderata. Che sogniate di scambiarvi le promesse su una vetta appartata o in riva a un lago alpino, ogni dettaglio ruota attorno a voi due.',
  'ht_s1p3':f'Quando il giorno richiede più mani, lavoriamo con una cerchia fidata: pianificazione sul posto di <a class="partner-inline" href="{P_PLAN[1]}" target="_blank" rel="noopener">Dolomites Wedding Planner</a>, fotografia di <a class="partner-inline" href="https://hochzeitsfotograf.tirol" target="_blank" rel="noopener">Blitzkneisser</a> e riprese cinematografiche di <a class="partner-inline" href="{P_FILM[1]}" target="_blank" rel="noopener">No Matter The Weather</a>.',
