@@ -138,6 +138,18 @@ T = {
             'es':'Un equipo pequeño y local, en casa entre Innsbruck y las Dolomitas &mdash; la planner Jlenia, el fotógrafo Andreas y la filmmaker Stefanie. Premiados: Way Up North Awards 2024.'},
  'award_lbl':{'en':'Awarded','de':'Ausgezeichnet','es':'Premiados'},
  'pub_lbl':{'en':'Published in','de':'Veröffentlicht in','es':'Publicado en'},
+ 'aw_k':{'en':'Recognition','de':'Anerkennung','es':'Reconocimiento'},
+ 'aw_h':{'en':'Awarded &amp; Featured','de':'Ausgezeichnet &amp; vorgestellt','es':'Premiados y destacados'},
+ 'aw_lead':{'en':'Booking a wedding in mountains you have never set foot in takes trust. Over the years our work has been awarded and published by people whose judgement couples rely on.',
+            'de':'Eine Hochzeit in Bergen zu buchen, die man noch nie betreten hat, verlangt Vertrauen. Unsere Arbeit wurde über die Jahre ausgezeichnet und veröffentlicht &mdash; von Menschen, auf deren Urteil sich Paare verlassen.',
+            'es':'Reservar una boda en montañas que nunca habéis pisado exige confianza. Con los años, nuestro trabajo ha sido premiado y publicado por quienes las parejas toman como referencia.'},
+ 'aw_qual':{'en':'Qualification','de':'Qualifikation','es':'Cualificación'},
+ 'aw_feat':{'en':'Featured','de':'Vorgestellt','es':'Destacado'},
+ 'aw_member':{'en':'Member','de':'Mitglied','es':'Miembro'},
+ 'aw_wun':{'en':'Winner &mdash; Best Epic Portrait','de':'Sieger &mdash; Best Epic Portrait','es':'Ganador &mdash; Best Epic Portrait'},
+ 'aw_jb':{'en':'Austria&rsquo;s Best &middot; Photographer 2017','de':'Österreichs Beste &middot; Fotograf 2017','es':'Los mejores de Austria &middot; Fotógrafo 2017'},
+ 'aw_fl':{'en':'Listed photographer','de':'Gelistetes Mitglied','es':'Fotógrafo listado'},
+ 'aw_rf':{'en':'Rf Photo of the Day','de':'Rf Photo of the Day','es':'Rf Photo of the Day'},
  # how to
  'ht_k':{'en':'Field Guide','de':'Ratgeber','es':'Guía'},
  'ht_h1':{'en':'How to Elope in Europe','de':'Elopement in den<br>europäischen Bergen','es':'Cómo fugarse en<br>las montañas de Europa'},
@@ -530,6 +542,7 @@ IT={
  'diff4_h':'Nati qui, a casa qui',
  'diff4_p':'Un piccolo team locale, a casa tra Innsbruck e le Dolomiti &mdash; la planner Jlenia, il fotografo Andreas e la filmmaker Stefanie. Premiati: Way Up North Awards 2024.',
  'award_lbl':'Premiati','pub_lbl':'Pubblicato in',
+ 'aw_k':'Riconoscimenti','aw_h':'Premiati e menzionati','aw_lead':'Prenotare un matrimonio tra montagne che non avete mai calpestato richiede fiducia. Negli anni il nostro lavoro è stato premiato e pubblicato da chi le coppie prendono come riferimento.','aw_qual':'Qualifica','aw_feat':'Menzionato','aw_member':'Membro','aw_wun':'Vincitore &mdash; Best Epic Portrait','aw_jb':'I migliori d&rsquo;Austria &middot; Fotografo 2017','aw_fl':'Fotografo in elenco','aw_rf':'Rf Photo of the Day',
  'ht_k':'Guida','ht_h1':'Elopement nelle<br>montagne d’Europa','ht_s1k':'Da dove iniziare','ht_s1h':'Unire avventura<br>e romanticismo',
  'ht_s1p1':'Curiosi di progettare un elopement che unisca avventura e romanticismo nelle splendide Dolomiti? La nostra specialità è creare elopement di montagna indimenticabili, su misura per la vostra visione.',
  'ht_s1p2':'Iniziamo aiutandovi a scegliere la location perfetta &mdash; considerando accessibilità, paesaggio e atmosfera desiderata. Che sogniate di scambiarvi le promesse su una vetta appartata o in riva a un lago alpino, ogni dettaglio ruota attorno a voi due.',
@@ -806,14 +819,7 @@ def build_home(lang):
       f'<div class="pillar"><h3>{t(lang,"diff2_h")}</h3><p>{t(lang,"diff2_p")}</p></div>'
       f'<div class="pillar"><h3>{t(lang,"diff3_h")}</h3><p>{t(lang,"diff3_p")}</p></div>'
       f'<div class="pillar"><h3>{t(lang,"diff4_h")}</h3><p>{t(lang,"diff4_p")}</p></div></div>'
-      '<div class="badges reveal" style="margin-top:44px">'
-      f'<a class="badge" href="https://wayupnorth.co/2024-wun-awards-photo-contest-winners/" target="_blank" rel="noopener">'
-      f'<img src="{P}img/badges/wun-2024-400.png" srcset="{P}img/badges/wun-2024-400.png 400w, {P}img/badges/wun-2024.png 800w" sizes="72px" alt="Way Up North Awards 2024 &ndash; Winner Best Epic Portrait" width="400" height="400" loading="lazy">'
-      f'<span class="badge-txt"><span class="badge-eyebrow">{t(lang,"award_lbl")}</span><strong>Way Up North Awards 2024</strong><span class="badge-sub">Winner &ndash; Best Epic Portrait</span></span></a>'
-      f'<a class="badge" href="https://rangefinderonline.com/news-features/photo-of-the-day/ankle-deep-in-beauty/" target="_blank" rel="noopener">'
-      f'<img src="{P}img/badges/rangefinder.png" alt="Rangefinder Magazine" width="165" height="165" loading="lazy">'
-      f'<span class="badge-txt"><span class="badge-eyebrow">{t(lang,"pub_lbl")}</span><strong>Rangefinder Magazine</strong><span class="badge-sub">Rf Photo of the Day &ndash; Lago di Braies</span></span></a>'
-      '</div></div></section>'
+      '</div></section>'
       '<hr class="hr"><section><div class="wrap"><div class="section-head reveal">'
       f'<div class="kicker" data-n="02">{t(lang,"sel_k")}<span class="line"></span></div><h2>{t(lang,"sel_h")}</h2></div><div class="story-grid">'
       +story_card(lang,P,STORIES[0],big=True)+story_card(lang,P,STORIES[7],big=True)
@@ -828,8 +834,22 @@ def build_home(lang):
       '<section class="band"><div class="wrap quote reveal">'
       f'<div class="kicker" data-n="03">{t(lang,"kw_k")}<span class="line"></span></div>'
       f'<p style="margin-top:26px">{t(lang,"kw_q")}</p><div class="who">{t(lang,"kw_who")}</div></div></section>'
+      '<section><div class="wrap"><div class="section-head reveal">'
+      f'<div class="kicker" data-n="04">{t(lang,"aw_k")}<span class="line"></span></div><h2>{t(lang,"aw_h")}</h2></div>'
+      f'<p class="lead reveal" style="max-width:660px">{t(lang,"aw_lead")}</p>'
+      '<div class="badges reveal" style="margin-top:38px">'
+      f'<span class="badge"><span class="badge-txt"><span class="badge-eyebrow">{t(lang,"aw_qual")}</span><strong>Master of Photography</strong><span class="badge-sub">2010</span></span></span>'
+      f'<a class="badge" href="https://wayupnorth.co/2024-wun-awards-photo-contest-winners/" target="_blank" rel="noopener">'
+      f'<img src="{P}img/awards/way-up-north-awards-2024-winner-best-epic-portrait-400.png" alt="Way Up North Awards 2024 &ndash; Winner, Best Epic Portrait" width="400" height="400" loading="lazy">'
+      f'<span class="badge-txt"><span class="badge-eyebrow">{t(lang,"award_lbl")}</span><strong>Way Up North Awards 2024</strong><span class="badge-sub">{t(lang,"aw_wun")}</span></span></a>'
+      f'<a class="badge" href="https://junebugweddings.com/best-wedding-photographers/Austria-photography/" target="_blank" rel="noopener">'
+      f'<span class="badge-txt"><span class="badge-eyebrow">{t(lang,"aw_feat")}</span><strong>Junebug Weddings</strong><span class="badge-sub">{t(lang,"aw_jb")}</span></span></a>'
+      f'<a class="badge" href="https://www.fearlessphotographers.com/photographer/7033/andreas-kiss" target="_blank" rel="noopener">'
+      f'<span class="badge-txt"><span class="badge-eyebrow">{t(lang,"aw_member")}</span><strong>Fearless Photographers</strong><span class="badge-sub">{t(lang,"aw_fl")}</span></span></a>'
+      f'<span class="badge"><span class="badge-txt"><span class="badge-eyebrow">{t(lang,"pub_lbl")}</span><strong>Rangefinder Magazine</strong><span class="badge-sub">{t(lang,"aw_rf")}</span></span></span>'
+      '</div></div></section>'
       '<section class="cta"><div class="wrap row reveal"><div>'
-      f'<div class="kicker" data-n="04">{t(lang,"cta_k")}<span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"cta_h")}</h2></div>'
+      f'<div class="kicker" data-n="05">{t(lang,"cta_k")}<span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
       +footer(lang,rel))
     write(lang,rel,head(lang,rel,TITLES['home'][lang],DESC['home'][lang])+body+scripts(P))
