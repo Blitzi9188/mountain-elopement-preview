@@ -820,7 +820,7 @@ def build_home(lang):
       f'<div class="kicker" data-n="01">{t(lang,"mission_k")}<span class="line"></span></div><h2>{t(lang,"mission_h")}</h2>'
       f'<p class="lead">{t(lang,"mission_lead")}</p><p class="dropcap">{t(lang,"mission_p1")}</p><p>{t(lang,"mission_p2")}</p>'
       f'<a href="{u(P,lang,"how-to-elope-in-the-europe-mountains/")}" class="arrow-link">{t(lang,"mission_link")}</a></div>'
-      f'<div class="media reveal"><img src="{P}img/story/mission.webp" alt="Elopement"><div class="caption">{t(lang,"cap_seceda")}</div></div></div></section>'
+      f'<div class="media reveal"><img src="{P}img/hero/hero2.webp" alt="Wedding ceremony on the Seceda ridge in the Dolomites"><div class="caption">{t(lang,"cap_seceda")}</div></div></div></section>'
       '<hr class="hr"><section><div class="wrap"><div class="section-head reveal">'
       f'<div class="kicker" data-n="{t(lang,"diff_k")}"><span class="line"></span></div><h2>{t(lang,"diff_h")}</h2></div>'
       '<div class="pillars reveal">'
