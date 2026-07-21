@@ -147,7 +147,7 @@ T = {
  'aw_feat':{'en':'Featured','de':'Vorgestellt','es':'Destacado'},
  'aw_member':{'en':'Member','de':'Mitglied','es':'Miembro'},
  'aw_wun':{'en':'Winner &mdash; Best Epic Portrait','de':'Sieger &mdash; Best Epic Portrait','es':'Ganador &mdash; Best Epic Portrait'},
- 'aw_jb':{'en':'Austria&rsquo;s Best &middot; Photographer 2017','de':'Österreichs Beste &middot; Fotograf 2017','es':'Los mejores de Austria &middot; Fotógrafo 2017'},
+ 'aw_jb':{'en':'Austria&rsquo;s Best','de':'Österreichs Beste','es':'Los mejores de Austria'},
  'aw_fl':{'en':'Listed photographer','de':'Gelistetes Mitglied','es':'Fotógrafo listado'},
  'aw_rf':{'en':'Rf Photo of the Day','de':'Rf Photo of the Day','es':'Rf Photo of the Day'},
  # how to
@@ -542,7 +542,7 @@ IT={
  'diff4_h':'Nati qui, a casa qui',
  'diff4_p':'Un piccolo team locale, a casa tra Innsbruck e le Dolomiti &mdash; la planner Jlenia, il fotografo Andreas e la filmmaker Stefanie. Premiati: Way Up North Awards 2024.',
  'award_lbl':'Premiati','pub_lbl':'Pubblicato in',
- 'aw_k':'Riconoscimenti','aw_h':'Premiati e menzionati','aw_lead':'Prenotare un matrimonio tra montagne che non avete mai calpestato richiede fiducia. Negli anni il nostro lavoro è stato premiato e pubblicato da chi le coppie prendono come riferimento.','aw_qual':'Qualifica','aw_feat':'Menzionato','aw_member':'Membro','aw_wun':'Vincitore &mdash; Best Epic Portrait','aw_jb':'I migliori d&rsquo;Austria &middot; Fotografo 2017','aw_fl':'Fotografo in elenco','aw_rf':'Rf Photo of the Day',
+ 'aw_k':'Riconoscimenti','aw_h':'Premiati e menzionati','aw_lead':'Prenotare un matrimonio tra montagne che non avete mai calpestato richiede fiducia. Negli anni il nostro lavoro è stato premiato e pubblicato da chi le coppie prendono come riferimento.','aw_qual':'Qualifica','aw_feat':'Menzionato','aw_member':'Membro','aw_wun':'Vincitore &mdash; Best Epic Portrait','aw_jb':'I migliori d&rsquo;Austria','aw_fl':'Fotografo in elenco','aw_rf':'Rf Photo of the Day',
  'ht_k':'Guida','ht_h1':'Elopement nelle<br>montagne d’Europa','ht_s1k':'Da dove iniziare','ht_s1h':'Unire avventura<br>e romanticismo',
  'ht_s1p1':'Curiosi di progettare un elopement che unisca avventura e romanticismo nelle splendide Dolomiti? La nostra specialità è creare elopement di montagna indimenticabili, su misura per la vostra visione.',
  'ht_s1p2':'Iniziamo aiutandovi a scegliere la location perfetta &mdash; considerando accessibilità, paesaggio e atmosfera desiderata. Che sogniate di scambiarvi le promesse su una vetta appartata o in riva a un lago alpino, ogni dettaglio ruota attorno a voi due.',
