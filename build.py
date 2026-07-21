@@ -1094,9 +1094,9 @@ def build_packages(lang):
     flowers={'en':'Flowers · Hair & Make-up','de':'Blumen · Hair & Make-up','es':'Flores · Peluquería y maquillaje','it':'Fiori · Trucco e acconciatura'}[lang]
     locplan={'en':'Location · Organisation & planning','de':'Location · Organisation & Planung','es':'Localización · Organización y planificación','it':'Location · Organizzazione e pianificazione'}[lang]
     fullplan={'en':'Full planning: accommodation, reception, transfers','de':'Komplette Planung: Unterkunft, Empfang, Transfers','es':'Planificación completa: alojamiento, recepción, traslados','it':'Pianificazione completa: alloggio, ricevimento, trasferimenti'}[lang]
-    t1=tier('01',t(lang,'pk_l1'),t(lang,'pk_t1'),'5.200',[f'{photoword} (80&ndash;100 {ph})',f'2&ndash;3 {hrs}',loc,concept])
-    t2=tier('02',t(lang,'pk_l2'),t(lang,'pk_t2'),'7.400',[f'{photoword} (120&ndash;150 {ph})',f'4&ndash;5 {hrs}',gropt,flowers,locplan],feat=True)
-    t3=tier('03',t(lang,'pk_l3'),t(lang,'pk_t3'),'9.800',[f'{photoword} (150&ndash;200 {ph})',f'6&ndash;8 {hrs}',gr,flowers,fullplan])
+    t1=tier('01',t(lang,'pk_l1'),t(lang,'pk_t1'),'6.000',[f'{photoword} (80&ndash;100 {ph})',f'2&ndash;3 {hrs}',loc,concept])
+    t2=tier('02',t(lang,'pk_l2'),t(lang,'pk_t2'),'9.000',[f'{photoword} (120&ndash;150 {ph})',f'4&ndash;5 {hrs}',gropt,flowers,locplan],feat=True)
+    t3=tier('03',t(lang,'pk_l3'),t(lang,'pk_t3'),'13.500',[f'{photoword} (150&ndash;200 {ph})',f'6&ndash;8 {hrs}',gr,flowers,fullplan])
     def ad(name,price): return f'<div class="addon"><div class="a">{name}</div><div class="p">{price}</div></div>'
     addons=(ad(t(lang,'ad_heli'),'&asymp; &euro; 2.500')
       +ad(f'<a href="{P_FILM[1]}" target="_blank" rel="noopener" style="color:inherit">{t(lang,"ad_film")}</a>','&asymp; &euro; 3.500')
