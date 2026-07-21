@@ -427,7 +427,7 @@ GUIDES = [
          'de':'Sanfte Wiesen und mit der Bergbahn erreichbare Aussichtspunkte, wenn ihr nicht weit wandern möchtet.',
          'es':'Prados suaves y miradores accesibles en teleférico cuando preferís no caminar mucho.'}},
   ]},
- {'slug':'how-to-plan-your-elopement','img':'s01',
+ {'slug':'how-to-plan-your-elopement','img':'s18',
   'title':{'en':'How to Plan Your Mountain Elopement','de':'So plant ihr euer Berg-Elopement','es':'Cómo planear vuestro elopement de montaña'},
   'excerpt':{'en':'A simple, stress-free roadmap from first idea to \'I do\'.','de':'Ein einfacher, stressfreier Fahrplan von der Idee bis zum Ja-Wort.','es':'Una hoja de ruta simple y sin estrés, de la idea al \'sí, quiero\'.'},
   'intro':{'en':'Planning an elopement is far simpler than a big wedding — but a few decisions early on make everything flow. Here is the short version.',
