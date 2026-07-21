@@ -252,12 +252,12 @@ T = {
             'es':'Un elopement de montaña necesita un círculo pequeño y de confianza. Estas son las personas que hacen posible vuestro día &mdash; desde la primera toma hasta el último detalle.'},
  'tp_fk':{'en':'The core team','de':'Das Kernteam','es':'El equipo principal'},
  'tp_flead':{'en':'Mountain Elopement &mdash; a small local team behind your day.','de':'Mountain Elopement &mdash; ein kleines lokales Team hinter eurem Tag.','es':'Mountain Elopement &mdash; un pequeño equipo local detrás de vuestro día.'},
- 'tp_fp1':{'en':'We are a small, local team at home in the Dolomites and the Alps &mdash; planner Jlenia, photographer Andreas and filmmaker Stefanie. For years we have guided couples to quiet summits and hidden lakes, capturing the day exactly as it feels &mdash; unposed, unhurried, real.',
-           'de':'Wir sind ein kleines, lokales Team, zu Hause in den Dolomiten/Alpen &mdash; Plannerin Jlenia, Fotograf Andreas und Filmerin Stefanie. Seit Jahren führen wir Paare zu stillen Gipfeln und versteckten Seen und halten den Tag genau so fest, wie er sich anfühlt &mdash; ungestellt, unhektisch, echt.',
-           'es':'Somos un equipo pequeño y local, en casa en los Dolomitas y los Alpes &mdash; la planner Jlenia, el fotógrafo Andreas y la filmmaker Stefanie. Durante años hemos guiado a parejas hasta cumbres silenciosas y lagos escondidos, capturando el día tal como se siente &mdash; sin poses, sin prisas, real.'},
- 'tp_fp2':{'en':'Between us we photograph, film and plan your entire day &mdash; and where it makes your day even better, we bring in trusted partners like hair &amp; make-up, below.',
-           'de':'Gemeinsam fotografieren, filmen und planen wir euren ganzen Tag &mdash; und wo es euren Tag noch schöner macht, holen wir vertraute Partner wie Hair &amp; Make-up dazu, siehe unten.',
-           'es':'Entre nosotros fotografiamos, filmamos y planificamos todo vuestro día &mdash; y donde lo mejora aún más, sumamos socios de confianza como peluquería y maquillaje, abajo.'},
+ 'tp_fp1':{'en':'We are a small, local team at home in the Dolomites and the Alps &mdash; led by planner Jlenia and photographer Andreas. For years we have guided couples to quiet summits and hidden lakes, capturing the day exactly as it feels &mdash; unposed, unhurried, real.',
+           'de':'Wir sind ein kleines, lokales Team, zu Hause in den Dolomiten/Alpen &mdash; angeführt von Plannerin Jlenia und Fotograf Andreas. Seit Jahren führen wir Paare zu stillen Gipfeln und versteckten Seen und halten den Tag genau so fest, wie er sich anfühlt &mdash; ungestellt, unhektisch, echt.',
+           'es':'Somos un equipo pequeño y local, en casa en los Dolomitas y los Alpes &mdash; encabezado por la planner Jlenia y el fotógrafo Andreas. Durante años hemos guiado a parejas hasta cumbres silenciosas y lagos escondidos, capturando el día tal como se siente &mdash; sin poses, sin prisas, real.'},
+ 'tp_fp2':{'en':'Between us we plan and photograph your whole day &mdash; and where it makes your day even better, we bring in a trusted circle around us.',
+           'de':'Gemeinsam planen und fotografieren wir euren ganzen Tag &mdash; und wo es euren Tag noch schöner macht, holen wir einen vertrauten Kreis dazu.',
+           'es':'Juntos planificamos y fotografiamos vuestro día entero &mdash; y donde lo mejora aún más, sumamos un círculo de confianza.'},
  'tp_hello':{'en':'Say hello &rarr;','de':'Hallo sagen &rarr;','es':'Saludad &rarr;'},
  'tp_cta_k':{'en':'One team','de':'Ein Team','es':'Un equipo'},
  'tp_cta_h':{'en':'Everything you need,<br>from one hand','de':'Alles aus einer Hand','es':'Todo lo que necesitáis,<br>de una sola mano'},
@@ -569,8 +569,8 @@ IT={
  'ad_cake':'Torta','ad_music':'Musicisti','ad_mua':'Trucco e acconciatura','ad_backdrop':'Backdrop e fiori','ad_from':'da','ad_onreq':'su richiesta',
  'tp_k':'Le persone','tp_h':'Il nostro team','tp_lead':'Un elopement di montagna richiede una piccola cerchia fidata. Ecco le persone che rendono possibile il vostro giorno &mdash; dal primo scatto all’ultimo dettaglio.',
  'tp_fk':'Il team principale','tp_flead':'Mountain Elopement &mdash; un piccolo team locale dietro la vostra giornata.',
- 'tp_fp1':'Siamo un piccolo team locale, a casa nelle Dolomiti e nelle Alpi &mdash; la planner Jlenia, il fotografo Andreas e la filmmaker Stefanie. Da anni accompagniamo le coppie verso vette silenziose e laghi nascosti, catturando il giorno esattamente come si sente &mdash; senza pose, senza fretta, autentico.',
- 'tp_fp2':'Insieme fotografiamo, filmiamo e pianifichiamo tutta la vostra giornata &mdash; e dove la rende ancora più bella, coinvolgiamo partner fidati come trucco e acconciatura, qui sotto.',
+ 'tp_fp1':'Siamo un piccolo team locale, a casa nelle Dolomiti e nelle Alpi &mdash; guidato dalla planner Jlenia e dal fotografo Andreas. Da anni accompagniamo le coppie verso vette silenziose e laghi nascosti, catturando il giorno esattamente come si sente &mdash; senza pose, senza fretta, autentico.',
+ 'tp_fp2':'Insieme pianifichiamo e fotografiamo l&rsquo;intera vostra giornata &mdash; e dove la rende ancora più bella, coinvolgiamo una cerchia fidata.',
  'tp_hello':'Salutateci &rarr;','tp_cta_k':'Un team','tp_cta_h':'Tutto ciò che serve,<br>da un’unica mano','tp_plan':'Pianificate il vostro giorno',
  'ct_k':'Salutateci','ct_h':'Contatti','ct_lead':'Non vediamo l’ora di ascoltare la vostra storia! Raccontateci le vostre idee &mdash; e vi aiuteremo a rendere realtà il vostro elopement da sogno.',
  'ct_details':'I vostri dati','ct_name':'Nome','ct_name_ph':'Il vostro nome','ct_email':'Email','ct_date':'Data elopement (circa)','ct_date_ph':'es. giugno 2027',
@@ -706,8 +706,6 @@ def team_section(lang,P):
         f'<h2>{t(lang,"tm_h")}</h2></div><div class="team-grid">'
         +card(t(lang,'tm_r1'),NAME_PLAN,P_PLAN[0],P_PLAN[1],t(lang,'tm_d1'))
         +card(t(lang,'tm_rp'),NAME_PHOTO,'Blitzkneisser','https://blitzkneisser.com',t(lang,'tm_dp'))
-        +card(t(lang,'tm_r2'),NAME_FILM,P_FILM[0],P_FILM[1],t(lang,'tm_d2'))
-        +card(t(lang,'tm_r3'),P_MUA[0],t(lang,'visit'),P_MUA[1],t(lang,'tm_d3'))
         +'</div></div></section>')
 
 def footer(lang,rel):
@@ -1145,26 +1143,17 @@ def build_team(lang):
     body=(nav(lang,rel,'team')+
       f'<div class="page-plain"><div class="wrap"><div class="kicker" data-n="{t(lang,"tp_k")}"><span class="line"></span></div>'
       f'<h1>{t(lang,"tp_h")}</h1><p class="lead">{t(lang,"tp_lead")}</p></div></div>'
-      f'<section><div class="wrap feature"><div class="media reveal"><img id="teamhero" src="{P}{TEAM_HERO[0]}" alt="Jlenia, Andreas and Stefanie in the mountains">'
-      '<div class="caption">Jlenia, Andreas &amp; Stefanie.</div></div><div class="body reveal">'
-      f'<div class="kicker" data-n="01">{t(lang,"tp_fk")}<span class="line"></span></div><h2>Jlenia, Andreas &amp; Stefanie</h2>'
+      f'<section><div class="wrap feature"><div class="media reveal"><img src="{P}img/team/team.webp" alt="Das Team von Mountain Elopement in den Dolomiten">'
+      '<div class="caption">Jlenia &amp; Andreas.</div></div><div class="body reveal">'
+      f'<div class="kicker" data-n="01">{t(lang,"tp_fk")}<span class="line"></span></div><h2>Jlenia &amp; Andreas</h2>'
       f'<p class="lead">{t(lang,"tp_flead")}</p><p class="dropcap">{t(lang,"tp_fp1")}</p><p>{t(lang,"tp_fp2")}</p>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="arrow-link">{t(lang,"tp_hello")}</a></div></div></section>'
       +team_section(lang,P)+
-      '<section><div class="wrap"><div class="section-head reveal">'
-      f'<div class="kicker" data-n="{t(lang,"bts_k")}">{t(lang,"bts_over")}<span class="line"></span></div><h2>{t(lang,"bts_h")}</h2></div>'
-      '<div class="bts-grid reveal">'
-      f'<img src="{P}img/team/bts-roses.webp" alt="The Mountain Elopement team with a couple, alpine meadow" loading="lazy">'
-      f'<img src="{P}img/team/bts-meadow.webp" alt="The Mountain Elopement team celebrating with a couple" loading="lazy">'
-      f'<img src="{P}img/team/bts-group.webp" alt="The Mountain Elopement team and a couple in the Dolomites" loading="lazy">'
-      '</div></div></section>'
       '<section class="cta"><div class="wrap row reveal"><div>'
       f'<div class="kicker" data-n="{t(lang,"tp_cta_k")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"tp_cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"tp_plan")}</a></div></section>'
       +footer(lang,rel))
-    hero_js=('<script>(function(){var s=['+','.join("'"+P+h+"'" for h in TEAM_HERO)+
-             "];var i=document.getElementById('teamhero');if(i)i.src=s[Math.floor(Math.random()*s.length)];})();</script>")
-    write(lang,rel,head(lang,rel,TITLES['team'][lang],DESC['team'][lang])+body+scripts(P,hero_js))
+    write(lang,rel,head(lang,rel,TITLES['team'][lang],DESC['team'][lang])+body+scripts(P))
 
 def build_contact(lang):
     rel='get-in-touch/'; P=prefix(lang,rel)
