@@ -306,6 +306,8 @@ T = {
  'hero_guides':{'en':'Guides','de':'Guides','es':'Guías'},
  'hero_price':{'en':'Price list','de':'Preise','es':'Precios'},
  'film_k':{'en':'The film','de':'Der Film','es':'El vídeo'},
+ 'gd_k':{'en':'The field guide','de':'Der Guide','es':'La guía'},
+ 'gd_h':{'en':'Guides','de':'Guides','es':'Guías'},
  'ht_start':{'en':'Start Here','de':'Hier starten','es':'Empieza aquí'},
  'ht_start_copy':{'en':'A calm starting point for couples planning a Dolomites elopement or an intentional wedding in the mountains &mdash; and wanting a clearer sense of where to begin.',
                   'de':'Ein ruhiger Startpunkt für Paare, die ein Dolomiten-Elopement oder eine bewusste Hochzeit in den Bergen planen &mdash; und einen klaren Überblick suchen, wo sie beginnen.',
@@ -587,6 +589,7 @@ IT={
  'chips':['Foto','Film','Backdrop','Fiori','Trucco','Elicottero','Escursione','Musica'],
  'lg_k':'Note legali','lg_imprint':'Note legali','lg_privacy':'Informativa privacy','lg_lead':'Segnaposto &mdash; il testo esistente verrà trasferito invariato dal sito attuale.',
  'hero_inq':'Richiesta diretta','hero_guides':'Guide','hero_price':'Prezzi','film_k':'Il film',
+ 'gd_k':'La guida','gd_h':'Guide',
  'ht_start':'Inizia qui','ht_start_copy':'Un punto di partenza sereno per chi pianifica un elopement nelle Dolomiti o un matrimonio intenzionale in montagna &mdash; e vuole capire meglio da dove cominciare.',
  'guides_k':'Guide di pianificazione','guides_h':'Guide per pianificare il tuo elopement','guides_intro':'Guide pratiche e sincere per pianificare un elopement nelle Alpi e nelle Dolomiti.',
  'read_guide':'Leggi la guida','guide_kick':'Guida','more_guides':'Altre guide','map_k':'La regione','map_h':'Dove vi sposerete?','map_hint':'Tocca una regione',
@@ -885,10 +888,9 @@ def build_howto(lang):
       '<div class="story-grid" style="align-items:start">'
       +step('01','ht_step1t','ht_step1p')+step('02','ht_step2t','ht_step2p')+step('03','ht_step3t','ht_step3p')+
       '</div></div></section>'
-      '<section><div class="wrap">'
+      '<hr class="hr">'
       +guide_hub(lang,P)+
-      '</div></section>'
-      +team_section(lang,P)+
+      team_section(lang,P)+
       '<section class="cta"><div class="wrap row reveal"><div>'
       f'<div class="kicker" data-n="{t(lang,"ht_ready")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"ht_cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"get_in_touch")}</a></div></section>'
@@ -1268,11 +1270,11 @@ def guide_hub(lang,P):
                 f'<div class="imgwrap"><img src="{P}img/stories/{g["img"]}.webp" alt="{g["title"][lang]}" loading="lazy"></div>'
                 f'<div class="no">{t(lang,"guide_kick")}</div><h3>{g["title"][lang]}</h3>'
                 f'<div class="gcard-x">{g["excerpt"][lang]}</div></a>')
-    return ('<div class="section-head reveal" style="text-align:center">'
-            f'<h2>{t(lang,"ht_start")}</h2>'
-            f'<p class="lead" style="max-width:620px;margin:16px auto 0">{t(lang,"ht_start_copy")}</p></div>'
-            f'<div class="guide-filters" id="guideFilters" aria-label="Guide filters">{chips}</div>'
-            f'<div class="guide-grid" id="guideGrid">{cards}</div>')
+    return ('<div class="page-plain" style="border-bottom:0"><div class="wrap">'
+            f'<div class="kicker" data-n="{t(lang,"gd_k")}"><span class="line"></span></div>'
+            f'<h1>{t(lang,"gd_h")}</h1><p class="lead">{t(lang,"ht_start_copy")}</p>'
+            f'<div class="guide-filters" id="guideFilters" aria-label="Guide filters">{chips}</div></div></div>'
+            f'<section style="padding-top:clamp(24px,3vw,40px)"><div class="wrap"><div class="guide-grid" id="guideGrid">{cards}</div></div></section>')
 
 def guide_mosaic(lang,P):
     cls=['m-tile m-w','m-tile m-n','m-tile m-n','m-tile m-w']
