@@ -828,6 +828,9 @@ def build_home(lang):
       f'<div class="pillar"><h3>{t(lang,"diff3_h")}</h3><p>{t(lang,"diff3_p")}</p></div>'
       f'<div class="pillar"><h3>{t(lang,"diff4_h")}</h3><p>{t(lang,"diff4_p")}</p></div></div>'
       '</div></section>'
+      '<section class="film"><div class="wrap"><div class="video-wrap">'
+      '<iframe src="https://player.vimeo.com/video/511128121?h=957cbe5c37&amp;background=1&amp;autoplay=1&amp;muted=1&amp;loop=1&amp;dnt=1" title="Mountain Elopement film" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe>'
+      '</div></div></section>'
       '<hr class="hr"><section><div class="wrap"><div class="section-head reveal">'
       f'<div class="kicker" data-n="02">{t(lang,"sel_k")}<span class="line"></span></div><h2>{t(lang,"sel_h")}</h2></div><div class="story-grid">'
       +story_card(lang,P,STORIES[0],big=True)+story_card(lang,P,STORIES[7],big=True)
