@@ -1237,7 +1237,7 @@ def guide_map(lang,P):
     return svg
 
 # --- Guide hub: filterable "Start Here" grid (topic chips) ---
-GCAT_ORDER=['all','dolomites','tyrol','locations','seasons','civil','planning']
+GCAT_ORDER=['all','dolomites','locations','seasons','planning']
 GCAT={
  'all':{'en':'All guides','de':'Alle Guides','es':'Todas las guías','it':'Tutte le guide'},
  'dolomites':{'en':'Dolomites','de':'Dolomiten','es':'Dolomitas','it':'Dolomiti'},
@@ -1249,8 +1249,8 @@ GCAT={
 }
 GUIDE_CATS={
  'dolomites-elopement-guide':['dolomites','locations','seasons'],
- 'elope-in-austria':['tyrol','civil'],
- 'best-alps-elopement-locations':['locations','dolomites','tyrol'],
+ 'elope-in-austria':['locations'],
+ 'best-alps-elopement-locations':['locations','dolomites'],
  'how-to-plan-your-elopement':['planning'],
 }
 GUIDE_JS=("<script>(function(){var f=document.getElementById('guideFilters');if(!f)return;"
