@@ -1248,10 +1248,10 @@ GCAT={
  'planning':{'en':'Planning','de':'Planung','es':'Planificación','it':'Pianificazione'},
 }
 GUIDE_CATS={
- 'dolomites-elopement-guide':['dolomites','locations','seasons'],
- 'elope-in-austria':['locations'],
- 'best-alps-elopement-locations':['locations','dolomites'],
- 'how-to-plan-your-elopement':['planning'],
+ 'dolomites-elopement-guide':['dolomites','locations','seasons','planning'],
+ 'elope-in-austria':['locations','seasons','planning'],
+ 'best-alps-elopement-locations':['dolomites','locations','seasons'],
+ 'how-to-plan-your-elopement':['dolomites','locations','planning'],
 }
 GUIDE_JS=("<script>(function(){var f=document.getElementById('guideFilters');if(!f)return;"
  "var cards=[].slice.call(document.querySelectorAll('#guideGrid [data-cat]'));"
