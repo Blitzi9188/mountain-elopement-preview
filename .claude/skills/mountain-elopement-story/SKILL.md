@@ -35,8 +35,8 @@ that matches every other story on the site.
   Pizza — a Lago di Braies Elopement"), using *Elopement* not *Hochzeit/Wedding*.
 - **Headers/hero must be landscape (Querformat).** Portrait heroes crop badly. The helper refuses
   a portrait hero.
-- **Only 20 gallery photos show** (`MAX_GALLERY=20`). Curate the best 20 in narrative order;
-  filenames `01.webp…20.webp` set the order.
+- **Up to 40 gallery photos show** (`MAX_GALLERY=40`). Curate a strong narrative sequence of
+  ~20&ndash;35; filenames `01.webp…NN.webp` set the order. More is fine, but skip weak/BTS frames.
 - Never invent facts. Describe only what the photos and the blurb actually show.
 
 ---

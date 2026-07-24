@@ -177,11 +177,11 @@ def main():
             sz, kb = optimize(hp, os.path.join(args.repo, 'img', 'stories', f'{s}.webp'))
             print(f"HERO {s} <- src {args.hero} {sz} {kb}KB   ->  use img '{s}' in the STORIES tuple")
         gdir = os.path.join(args.repo, 'img', 'gallery', args.slug)
-        for i, num in enumerate(args.order[:20], 1):
+        for i, num in enumerate(args.order[:40], 1):
             sz, kb = optimize(sources[num], os.path.join(gdir, f'{i:02d}.webp'))
             print(f"gallery {i:02d} <- src {num} {sz} {kb}KB")
-        if len(args.order) > 20:
-            print(f"NOTE: {len(args.order)-20} extra frames ignored — MAX_GALLERY=20 in build.py")
+        if len(args.order) > 40:
+            print(f"NOTE: {len(args.order)-40} extra frames ignored — MAX_GALLERY=40 in build.py")
 
 if __name__ == '__main__':
     main()

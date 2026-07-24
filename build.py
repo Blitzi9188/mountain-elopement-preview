@@ -952,7 +952,7 @@ LB_JS=("<script>var imgs=[].slice.call(document.querySelectorAll('.gallery img')
  "addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;"
  "if(e.key==='Escape')close();if(e.key==='ArrowRight')open((cur+1)%N);if(e.key==='ArrowLeft')open((cur-1+N)%N);});</script>")
 
-MAX_GALLERY=20   # never show more than this many photos per story
+MAX_GALLERY=40   # never show more than this many photos per story
 
 def _gallery_files(slug):
     d=os.path.join(ROOT,'img','gallery',slug)
