@@ -281,7 +281,7 @@ section{padding:clamp(38px,5vw,80px) 0}
 .gal-head span{position:relative;padding:0 20px}
 .gal-head span::before,.gal-head span::after{content:"";position:absolute;top:50%;width:clamp(24px,5vw,56px);height:1px;background:var(--line-2)}
 .gal-head span::before{right:100%}.gal-head span::after{left:100%}
-.pi-outro{padding:clamp(14px,2.5vw,30px) 0 0}
+.pi-outro{padding:clamp(14px,2.5vw,30px) 0 clamp(48px,7vw,96px)}
 .pi-outro p{max-width:720px;margin:0 auto;text-align:center;font-family:var(--serif);
   font-size:clamp(19px,2.1vw,24px);line-height:1.55;color:var(--ink-2)}
 .lb{position:fixed;inset:0;background:rgba(14,13,11,.95);z-index:100;display:none;
