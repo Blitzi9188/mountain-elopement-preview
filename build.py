@@ -19,7 +19,7 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
 
 P_PLAN = ('Dolomites Wedding Planner', 'https://www.dolomitesweddingplanner.com/de')
 P_FILM = ('No Matter The Weather', 'https://nomattertheweather.it')
-P_MUA  = ('Viki Aichner', 'https://www.vikiaichner.com/de/')
+P_MUA  = ('Blitzkneisser', 'https://blitzkneisser.com')
 NAME_PLAN, NAME_PHOTO, NAME_FILM = 'Jlenia', 'Andreas', 'Stefanie'
 TEAM_HERO = ['img/team/team-bw.webp', 'img/team/team-ski.webp', 'img/team/team-lake.webp']
 
@@ -1276,7 +1276,7 @@ def build_portfolio(lang):
         credits=(f'{t(lang,"pi_vplan")} <a class="partner-inline" href="{P_PLAN[1]}" target="_blank" rel="noopener">Dolomites Wedding Planner</a> &middot; '
           f'{t(lang,"pi_vfilm")} <a class="partner-inline" href="{P_FILM[1]}" target="_blank" rel="noopener">No Matter The Weather</a> &middot; '
           f'{t(lang,"f_role_photo")} <a class="partner-inline" href="https://hochzeitsfotograf.tirol" target="_blank" rel="noopener">Blitzkneisser</a> &middot; '
-          f'{t(lang,"pi_vmua")} <a class="partner-inline" href="{P_MUA[1]}" target="_blank" rel="noopener">Viki Aichner</a>')
+          f'{t(lang,"pi_vmua")} <a class="partner-inline" href="{P_MUA[1]}" target="_blank" rel="noopener">Blitzkneisser</a>')
         if slug==FEAT_HELI_SLUG:
             main=feature_heli(lang,P,slug,img,titles[lang])
         else:
