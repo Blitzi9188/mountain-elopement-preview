@@ -207,18 +207,43 @@ section{padding:clamp(38px,5vw,80px) 0}
 
 /* ---- Pricing (editorial table) ---- */
 .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-.tier{background:var(--paper);padding:clamp(28px,3vw,44px)}
+.tier{position:relative;background:var(--paper);padding:clamp(30px,3vw,46px);display:flex;flex-direction:column;transition:background .25s}
+.tier:not(.feat):hover{background:var(--paper-2)}
 .tier.feat{background:var(--ink);color:var(--paper)}
+.tier .badge{position:absolute;top:0;right:clamp(22px,3vw,42px);transform:translateY(-50%);
+  background:var(--accent);color:#fff;font-family:var(--sans);font-size:10px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;padding:6px 12px}
 .tier .no{font-family:var(--sans);font-size:12px;letter-spacing:.18em;color:var(--accent);font-weight:600;text-transform:uppercase}
 .tier.feat .no{color:#e0a878}
-.tier .name{font-family:var(--serif);font-style:italic;font-size:24px;margin:10px 0 2px}
-.tier .price{font-family:var(--sans);font-weight:700;font-size:clamp(34px,4vw,48px);letter-spacing:-.02em}
-.tier ul{list-style:none;margin:22px 0 0;padding:22px 0 0;border-top:1px solid var(--line)}
+.tier .name{font-family:var(--serif);font-style:italic;font-size:25px;margin:12px 0 3px}
+.tier .tier-tag{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink-2);margin:0 0 2px}
+.tier.feat .tier-tag{color:#c9c3b8}
+.tier .price{font-family:var(--sans);font-weight:700;font-size:clamp(36px,4vw,50px);letter-spacing:-.02em;font-variant-numeric:tabular-nums;margin-top:8px}
+.tier .price .cur{font-weight:500;font-size:.46em;vertical-align:.42em;margin-right:.14em;color:var(--accent)}
+.tier.feat .price .cur{color:#e0a878}
+.cur-switch-row{display:flex;justify-content:flex-end;margin-bottom:18px}
+.cur-switch{display:inline-flex;border:1px solid var(--line-2)}
+.cur-switch button{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.08em;padding:8px 16px;background:none;border:0;border-right:1px solid var(--line-2);color:var(--ink-2);cursor:pointer;transition:.18s}
+.cur-switch button:last-child{border-right:0}
+.cur-switch button:hover:not(.on):not(:disabled){color:var(--ink)}
+.cur-switch button.on{background:var(--ink);color:var(--paper)}
+.cur-switch button:disabled{opacity:.45;cursor:default}
+.tier ul{list-style:none;margin:24px 0 30px;padding:24px 0 0;border-top:1px solid var(--line);flex:1}
 .tier.feat ul{border-color:rgba(255,255,255,.16)}
-.tier li{font-family:var(--serif);font-size:16px;padding:7px 0;color:var(--ink-2)}
+.tier li{position:relative;font-family:var(--serif);font-size:16px;line-height:1.42;padding:7px 0 7px 26px;color:var(--ink-2)}
+.tier li::before{content:"";position:absolute;left:1px;top:13px;width:11px;height:6px;
+  border-left:1.6px solid var(--accent);border-bottom:1.6px solid var(--accent);transform:rotate(-45deg)}
 .tier.feat li{color:#d8d2c8}
+.tier.feat li::before{border-color:#e0a878}
+.tier-cta{margin-top:auto;display:flex;align-items:center;justify-content:center;gap:10px;
+  font-family:var(--sans);text-transform:uppercase;letter-spacing:.16em;font-size:11.5px;font-weight:600;
+  padding:14px 18px;border:1px solid var(--line-2);color:var(--ink);transition:.2s}
+.tier-cta:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.tier.feat .tier-cta{border-color:rgba(255,255,255,.32);color:#fff}
+.tier.feat .tier-cta:hover{background:#fff;color:var(--ink);border-color:#fff}
 .addons{margin-top:44px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.addon{border:1px solid var(--line);padding:18px 20px}
+.addon{border:1px solid var(--line);padding:18px 20px;transition:border-color .2s,transform .2s}
+.addon:hover{border-color:var(--line-2);transform:translateY(-2px)}
 .addon .a{font-family:var(--serif);font-size:18px}
 .addon .p{font-family:var(--sans);font-size:12.5px;letter-spacing:.1em;color:var(--accent);margin-top:4px;text-transform:uppercase}
 

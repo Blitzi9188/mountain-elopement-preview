@@ -1304,13 +1304,16 @@ def build_portfolio(lang):
 def build_packages(lang):
     rel='our-packages/'; P=prefix(lang,rel)
     hrs=t(lang,'pk_hours'); ph=t(lang,'pk_photos')
-    def tier(no,label,name,price,items,feat=False):
+    badge={'en':'Most chosen','de':'Beliebteste Wahl','es':'La más elegida','it':'La più scelta'}[lang]
+    def tier(no,label,name,price,items,feat=False,tag=''):
         cls='tier feat' if feat else 'tier'
         lis=''.join('<li>'+i+'</li>' for i in items)
-        lk='margin-top:22px;display:inline-block'+(';border-color:#fff;color:#fff' if feat else '')
-        return (f'<div class="{cls}"><div class="no">N&deg;{no} &mdash; {label}</div><div class="name">{name}</div>'
-          f'<div class="price">&euro; {price}</div><ul>{lis}</ul>'
-          f'<a href="{u(P,lang,"get-in-touch/")}" class="arrow-link" style="{lk}">{t(lang,"request")} &rarr;</a></div>')
+        bdg=f'<div class="badge">{badge}</div>' if feat else ''
+        tg=f'<div class="tier-tag">{tag}</div>' if tag else ''
+        eurnum=price.replace('.','')   # raw EUR value for the indicative USD conversion
+        return (f'<div class="{cls}">{bdg}<div class="no">N&deg;{no} &mdash; {label}</div><div class="name">{name}</div>{tg}'
+          f'<div class="price" data-eur="{eurnum}"><span class="cur">&euro;</span><span class="amt">{price}</span></div><ul>{lis}</ul>'
+          f'<a href="{u(P,lang,"get-in-touch/")}" class="tier-cta">{t(lang,"request")} &rarr;</a></div>')
     photoword={'en':'Photography','de':'Fotografie','es':'Fotografía','it':'Fotografia'}[lang]
     gr={'en':'Getting ready','de':'Getting Ready','es':'Preparativos','it':'Preparativi'}[lang]
     gropt={'en':'Getting ready (optional)','de':'Getting Ready (optional)','es':'Preparativos (opcional)','it':'Preparativi (opzionale)'}[lang]
@@ -1319,9 +1322,19 @@ def build_packages(lang):
     flowers={'en':'Flowers · Hair & Make-up','de':'Blumen · Hair & Make-up','es':'Flores · Peluquería y maquillaje','it':'Fiori · Trucco e acconciatura'}[lang]
     locplan={'en':'Location · Organisation & planning','de':'Location · Organisation & Planung','es':'Localización · Organización y planificación','it':'Location · Organizzazione e pianificazione'}[lang]
     fullplan={'en':'Full planning: accommodation, reception, transfers','de':'Komplette Planung: Unterkunft, Empfang, Transfers','es':'Planificación completa: alojamiento, recepción, traslados','it':'Pianificazione completa: alloggio, ricevimento, trasferimenti'}[lang]
-    t1=tier('01',t(lang,'pk_l1'),t(lang,'pk_t1'),'6.000',[f'{photoword} (80&ndash;100 {ph})',f'2&ndash;3 {hrs}',loc,concept])
-    t2=tier('02',t(lang,'pk_l2'),t(lang,'pk_t2'),'9.000',[f'{photoword} (120&ndash;150 {ph})',f'4&ndash;5 {hrs}',gropt,flowers,locplan],feat=True)
-    t3=tier('03',t(lang,'pk_l3'),t(lang,'pk_t3'),'13.500',[f'{photoword} (150&ndash;200 {ph})',f'6&ndash;8 {hrs}',gr,flowers,fullplan])
+    # deliverables articulated the way competitors list them (adds perceived value, no extra cost)
+    imgword={'en':'edited images','de':'bearbeitete Bilder','es':'imágenes editadas','it':'immagini modificate'}[lang]
+    gallery={'en':'Private online gallery &mdash; preview in 1 week','de':'Private Online-Galerie &mdash; Vorschau in 1 Woche','es':'Galería online privada &mdash; vista previa en 1 semana','it':'Galleria online privata &mdash; anteprima in 1 settimana'}[lang]
+    planningcall={'en':'Planning call & personal timeline','de':'Planungscall & persönliche Timeline','es':'Llamada de planificación y cronograma','it':'Call di pianificazione e timeline'}[lang]
+    weather={'en':'Weather backup day','de':'Wetter-Ausweichtag','es':'Día alternativo por el clima','it':'Giorno di riserva meteo'}[lang]
+    permits={'en':'Permits & logistics handled','de':'Genehmigungen & Logistik übernommen','es':'Permisos y logística incluidos','it':'Permessi e logistica inclusi'}[lang]
+    album={'en':'Heirloom album','de':'Erinnerungsalbum','es':'Álbum de recuerdo','it':'Album ricordo'}[lang]
+    tag1={'en':'Just the two of you and the mountains.','de':'Nur ihr beide und die Berge.','es':'Solo vosotros dos y las montañas.','it':'Solo voi due e le montagne.'}[lang]
+    tag2={'en':'A fuller day, beautifully held.','de':'Ein voller Tag, rundum begleitet.','es':'Un día completo, bien acompañado.','it':'Una giornata intera, ben accompagnata.'}[lang]
+    tag3={'en':'The whole day, fully planned.','de':'Der ganze Tag, komplett geplant.','es':'Todo el día, totalmente planificado.','it':'L\'intera giornata, tutto pianificato.'}[lang]
+    t1=tier('01',t(lang,'pk_l1'),t(lang,'pk_t1'),'6.000',[f'{photoword} &mdash; 50&ndash;80 {imgword}',f'2&ndash;3 {hrs}',loc,concept,planningcall,gallery],tag=tag1)
+    t2=tier('02',t(lang,'pk_l2'),t(lang,'pk_t2'),'9.000',[f'{photoword} &mdash; 80&ndash;100 {imgword}',f'4&ndash;5 {hrs}',gropt,flowers,locplan,planningcall,weather,gallery],feat=True,tag=tag2)
+    t3=tier('03',t(lang,'pk_l3'),t(lang,'pk_t3'),'13.500',[f'{photoword} &mdash; 100&ndash;200 {imgword}',f'6&ndash;8 {hrs}',gr,flowers,fullplan,permits,weather,album,gallery],tag=tag3)
     def ad(name,price): return f'<div class="addon"><div class="a">{name}</div><div class="p">{price}</div></div>'
     addons=(ad(t(lang,'ad_heli'),'&asymp; &euro; 2.500')
       +ad(f'<a href="{P_FILM[1]}" target="_blank" rel="noopener" style="color:inherit">{t(lang,"ad_film")}</a>','&asymp; &euro; 3.500')
@@ -1329,21 +1342,48 @@ def build_packages(lang):
       +ad(t(lang,'ad_cake'),f'{t(lang,"ad_from")} &euro; 400')+ad(t(lang,'ad_music'),'&asymp; &euro; 600')
       +ad(f'<a href="{P_MUA[1]}" target="_blank" rel="noopener" style="color:inherit">{t(lang,"ad_mua")}</a>',t(lang,'ad_onreq'))
       +ad(t(lang,'ad_backdrop'),'&euro; 600'))
+    eurnote={'en':'All prices in EUR.','de':'Alle Preise in EUR.','es':'Todos los precios en EUR.','it':'Tutti i prezzi in EUR.'}[lang]
+    fxnote={'en':'Indicative — the binding price is in EUR. Rates update daily.',
+            'de':'Indikativ — verbindlich ist der EUR-Preis. Kurse aktualisieren sich täglich.',
+            'es':'Orientativo — el precio vinculante es en EUR. Los tipos se actualizan a diario.',
+            'it':'Indicativo — il prezzo vincolante è in EUR. I tassi si aggiornano ogni giorno.'}[lang]
+    curswitch=('<div class="cur-switch-row reveal"><div class="cur-switch" role="group" aria-label="Currency">'
+      '<button type="button" data-cur="EUR" class="on">EUR</button>'
+      '<button type="button" data-cur="USD">USD</button>'
+      '<button type="button" data-cur="GBP">GBP</button></div></div>')
+    # Currency switcher: EUR is the base/binding price; USD & GBP are converted client-side
+    # from a live ECB rate. Foreign buttons stay disabled until the rate loads (no wrong numbers).
+    curjs=('<script>(function(){var sw=document.querySelector(".cur-switch");if(!sw)return;'
+      'var prices=document.querySelectorAll(".price[data-eur]"),note=document.querySelector(".cur-note"),btns=sw.querySelectorAll("button");'
+      'var rates={EUR:1},sym={EUR:"\\u20ac",USD:"$",GBP:"\\u00a3"},loc={EUR:"de-DE",USD:"de-DE",GBP:"de-DE"};'
+      'function fmt(cur){prices.forEach(function(p){var eur=parseFloat(p.getAttribute("data-eur")),c=p.querySelector(".cur"),a=p.querySelector(".amt"),amt;'
+      'if(cur==="EUR"){amt=eur;}else{var r=rates[cur];if(!r)return;amt=Math.round(eur*r/100)*100;}'
+      'c.textContent=sym[cur];a.textContent=amt.toLocaleString(loc[cur]);});'
+      'if(note)note.textContent=note.getAttribute(cur==="EUR"?"data-eur-note":"data-fx-note");}'
+      'function setCur(cur){btns.forEach(function(b){b.classList.toggle("on",b.getAttribute("data-cur")===cur);});fmt(cur);try{localStorage.setItem("me_cur",cur);}catch(e){}}'
+      'btns.forEach(function(b){b.addEventListener("click",function(){var c=b.getAttribute("data-cur");if(c!=="EUR"&&!rates[c])return;setCur(c);});'
+      'if(b.getAttribute("data-cur")!=="EUR")b.disabled=true;});'
+      'setCur("EUR");'
+      'fetch("https://api.frankfurter.dev/v1/latest?base=EUR&symbols=USD,GBP").then(function(r){return r.json();}).then(function(d){'
+      'if(d&&d.rates){rates.USD=d.rates.USD;rates.GBP=d.rates.GBP;btns.forEach(function(b){b.disabled=false;});'
+      'var s;try{s=localStorage.getItem("me_cur");}catch(e){}if(s&&rates[s])setCur(s);}}).catch(function(){});'
+      '})();</script>')
     body=(nav(lang,rel,'packages')+
       f'<div class="page-plain"><div class="wrap"><div class="kicker" data-n="{t(lang,"pk_k")}"><span class="line"></span></div>'
       f'<h1>{t(lang,"pk_h")}</h1><p class="lead">{t(lang,"pk_lead")}</p></div></div>'
-      f'<section><div class="wrap"><div class="tiers reveal">{t1}{t2}{t3}</div>'
-      f'<p class="lead reveal" style="max-width:760px;margin-top:clamp(40px,5vw,64px)">{t(lang,"pk_note")}</p>'
+      f'<section><div class="wrap">{curswitch}<div class="tiers reveal">{t1}{t2}{t3}</div>'
+      f'<p class="small reveal cur-note" data-eur-note="{eurnote}" data-fx-note="{fxnote}" style="margin-top:18px;color:var(--ink-2)">{eurnote}</p>'
+      f'<p class="lead reveal" style="max-width:760px;margin-top:clamp(32px,4vw,52px)">{t(lang,"pk_note")}</p>'
       f'<div class="section-head reveal" style="margin-top:clamp(40px,6vw,72px)"><div class="kicker" data-n="Add-ons">{t(lang,"pk_addk")}<span class="line"></span></div></div>'
       f'<div class="addons reveal">{addons}</div></div></section>'
       '<section class="band"><div class="wrap quote reveal">'
       f'<div class="kicker" data-n="{t(lang,"pk_band_k")}"><span class="line"></span></div>'
-      f'<p style="margin-top:26px">{t(lang,"pk_band_q")}</p><div class="who">Jlenia, Andreas &amp; Stefanie &mdash; Mountain Elopement</div></div></section>'
+      f'<p style="margin-top:26px">{t(lang,"pk_band_q")}</p><div class="who">Tanja &amp; Andreas &mdash; Mountain Elopement</div></div></section>'
       '<section class="cta"><div class="wrap row reveal"><div>'
       f'<div class="kicker" data-n="{t(lang,"pk_next")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"pk_cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"pk_req_price")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,TITLES['packages'][lang],DESC['packages'][lang])+body+scripts(P))
+    write(lang,rel,head(lang,rel,TITLES['packages'][lang],DESC['packages'][lang])+body+scripts(P,curjs))
 
 def build_team(lang):
     rel='our-team/'; P=prefix(lang,rel)
