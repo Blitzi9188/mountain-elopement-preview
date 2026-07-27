@@ -1275,8 +1275,7 @@ def build_portfolio(lang):
         bodyhtml=f'<p class="dropcap">{p1}</p>'+(f'<p>{p2}</p>' if p2 else '')
         credits=(f'{t(lang,"pi_vplan")} <a class="partner-inline" href="{P_PLAN[1]}" target="_blank" rel="noopener">Dolomites Wedding Planner</a> &middot; '
           f'{t(lang,"pi_vfilm")} <a class="partner-inline" href="{P_FILM[1]}" target="_blank" rel="noopener">No Matter The Weather</a> &middot; '
-          f'{t(lang,"f_role_photo")} <a class="partner-inline" href="https://hochzeitsfotograf.tirol" target="_blank" rel="noopener">Blitzkneisser</a> &middot; '
-          f'{t(lang,"pi_vmua")} <a class="partner-inline" href="{P_MUA[1]}" target="_blank" rel="noopener">Blitzkneisser</a>')
+          f'{t(lang,"f_role_photo")} <a class="partner-inline" href="https://hochzeitsfotograf.tirol" target="_blank" rel="noopener">Blitzkneisser</a>')
         if slug==FEAT_HELI_SLUG:
             main=feature_heli(lang,P,slug,img,titles[lang])
         else:
