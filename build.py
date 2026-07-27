@@ -924,7 +924,7 @@ def footer(lang,rel):
       f'<li><a href="{P_FILM[1]}" target="_blank" rel="noopener">{t(lang,"f_role_film")} &middot; No Matter The Weather</a></li>'
       '<li><a href="https://www.instagram.com/mountainelopement/" target="_blank" rel="noopener">Instagram</a></li></ul></div></div>'
       f'<div class="fine"><span>&copy; 2026 mountain-elopement by blitzkneisser.com</span>'
-      f'<span><a href="{u(P,lang,"imprint/")}">{t(lang,"f_imprint")}</a> &middot; <a href="{u(P,lang,"privacy-policy/")}">{t(lang,"f_privacy")}</a> &middot; Prototype</span></div></div></footer>')
+      f'<span><a href="{u(P,lang,"imprint/")}">{t(lang,"f_imprint")}</a> &middot; <a href="{u(P,lang,"privacy-policy/")}">{t(lang,"f_privacy")}</a></span></div></div></footer>')
 
 def scripts(P,extra=''): return f'<script src="{P}js/site.js"></script>{extra}</body></html>'
 
@@ -1404,20 +1404,25 @@ def build_team(lang):
 def build_contact(lang):
     rel='get-in-touch/'; P=prefix(lang,rel)
     chips=''.join(f'<span class="chip">{c}</span>' for c in T['chips'][lang])
-    extra=("<script>document.getElementById('chips').addEventListener('click',function(e){"
-           "if(e.target.classList.contains('chip'))e.target.classList.toggle('on');});</script>")
+    extra=("<script>var box=document.getElementById('chips');box.addEventListener('click',function(e){"
+           "if(e.target.classList.contains('chip')){e.target.classList.toggle('on');"
+           "var h=document.getElementById('interests');if(h)h.value=[].slice.call(box.querySelectorAll('.chip.on'))"
+           ".map(function(x){return x.textContent;}).join(', ');}});</script>")
     body=(nav(lang,rel,'contact')+
       f'<div class="page-plain"><div class="wrap"><div class="kicker" data-n="{t(lang,"ct_k")}"><span class="line"></span></div>'
       f'<h1>{t(lang,"ct_h")}</h1><p class="lead">{t(lang,"ct_lead")}</p></div></div>'
-      '<section><div class="wrap contact-grid"><form class="form reveal" onsubmit="return false">'
+      f'<section><div class="wrap contact-grid"><form class="form reveal" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/{lbase(lang)}thank-you-for-your-inquiry/">'
+      '<input type="hidden" name="form-name" value="contact">'
+      f'<input type="hidden" name="language" value="{lang}">'
+      '<p hidden aria-hidden="true"><label>Don&rsquo;t fill this out if you&rsquo;re human: <input name="bot-field"></label></p>'
       f'<div class="kicker" data-n="01" style="margin-bottom:22px">{t(lang,"ct_details")}<span class="line"></span></div>'
-      f'<label>{t(lang,"ct_name")}</label><input type="text" placeholder="{t(lang,"ct_name_ph")}">'
-      f'<label>{t(lang,"ct_email")}</label><input type="email" placeholder="you@email.com">'
-      f'<label>{t(lang,"ct_date")}</label><input type="text" placeholder="{t(lang,"ct_date_ph")}">'
-      f'<label>{t(lang,"ct_dream")}</label><div class="chips" id="chips">{chips}</div>'
-      f'<label>{t(lang,"ct_story")}</label><textarea rows="5" placeholder="{t(lang,"ct_story_ph")}"></textarea>'
+      f'<label>{t(lang,"ct_name")}</label><input type="text" name="name" placeholder="{t(lang,"ct_name_ph")}" required>'
+      f'<label>{t(lang,"ct_email")}</label><input type="email" name="email" placeholder="you@email.com" required>'
+      f'<label>{t(lang,"ct_date")}</label><input type="text" name="date" placeholder="{t(lang,"ct_date_ph")}">'
+      f'<label>{t(lang,"ct_dream")}</label><div class="chips" id="chips">{chips}</div><input type="hidden" name="interests" id="interests">'
+      f'<label>{t(lang,"ct_story")}</label><textarea name="message" rows="5" placeholder="{t(lang,"ct_story_ph")}" required></textarea>'
       f'<button class="btn" type="submit">{t(lang,"ct_send")}</button>'
-      f'<p class="small" style="margin-top:14px;color:var(--ink-2)">{t(lang,"ct_note")}</p></form>'
+      '</form>'
       f'<aside class="contact-side reveal"><img src="{P}img/page/contact.webp" alt="Mountain Elopement">'
       '<div class="info"><div><strong>Email</strong> &mdash; hello@mountain-elopement.com</div>'
       '<div><strong>WhatsApp</strong> &mdash; +39 348 425 8317</div>'

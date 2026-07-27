@@ -6,3 +6,7 @@ __pycache__/
 
 # migration input CSVs (not for deploy)
 our-packages/*.csv
+
+# internal docs/reports — not for public deploy
+_migration/
+/PRE-LAUNCH-CHECK.md
