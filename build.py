@@ -38,7 +38,7 @@ T = {
          'packages':{'en':'Price List','de':'Preise','es':'Precios'},
          'team':{'en':'Team','de':'Team','es':'Equipo'},
          'contact':{'en':'Contact','de':'Kontakt','es':'Contacto'}},
- 'booking':{'en':'Now booking 2026 &middot; 2027 dates','de':'Buchbar 2026 &middot; Termine 2027','es':'Reservas 2026 &middot; fechas 2027'},
+ 'booking':{'en':'Now booking 2026 &middot; 2027 &amp; 2028 dates','de':'Buchbar 2026 &middot; Termine 2027 &amp; 2028','es':'Reservas 2026 &middot; fechas 2027 y 2028'},
  'booking_link':{'en':'on request','de':'auf Anfrage','es':'a consulta'},
  # footer
  'f_tag':{'en':'Editorial elopement photography &amp; planning in the Dolomites and the Alps.',
@@ -696,7 +696,7 @@ IT={
  'ty_k':'Richiesta ricevuta','ty_h':'Grazie',
  'ty_p':'Abbiamo ricevuto il vostro messaggio e vi risponderemo entro 48 ore.',
  'ty_home':'Torna alla home',
- 'booking':'Prenotazioni 2026 &middot; date 2027','booking_link':'su richiesta',
+ 'booking':'Prenotazioni 2026 &middot; date 2027 e 2028','booking_link':'su richiesta',
  'f_tag':'Fotografia e pianificazione editoriale di elopement nelle Dolomiti e nelle Alpi.',
  'f_explore':'Esplora','f_team':'Il nostro team','f_role_photo':'Foto','f_role_plan':'Pianificazione','f_role_film':'Film','f_role_mua':'Trucco',
  'f_imprint':'Note legali','f_privacy':'Privacy','view_all':'Tutte le storie','start_planning':'Iniziamo a pianificare',
