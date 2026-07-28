@@ -5,6 +5,8 @@
 # Old WordPress author/team page → new team page
 /blitzkneisser/    /our-team/    301
 
-# NOTE: /proofing-gallery/proofing-gallery-locked/ is intentionally NOT redirected yet.
-# It is a password-protected client gallery; the decision is still open.
-# See _migration/REDIRECT-REPORT.md (TODO).
+# Retired private client gallery — return 410 Gone (no redirect) so it drops from the index.
+# Netlify serves /410.html with a 410 status. No proofing-gallery file exists in the build,
+# so the rule always applies (static files would otherwise take precedence).
+/proofing-gallery/proofing-gallery-locked/   /410.html   410
+/proofing-gallery/*                          /410.html   410

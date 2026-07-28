@@ -1594,6 +1594,25 @@ def build_sitemap():
 def build_robots():
     open(os.path.join(ROOT,'robots.txt'),'w').write(f'User-agent: *\nAllow: /\n\nSitemap: {DOMAIN}/sitemap.xml\n')
 
+def build_410():
+    # Root-level 410 body served by Netlify for retired URLs (e.g. old proofing gallery).
+    # noindex, no canonical/hreflang — it is a utility Gone page, not a real content page.
+    head=('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">'
+        '<meta name="viewport" content="width=device-width, initial-scale=1">'
+        '<title>Page no longer available &mdash; Mountain Elopement</title>'
+        '<meta name="robots" content="noindex">'
+        '<link rel="icon" type="image/png" href="favicon.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">'
+        f'{GTM_HEAD}{FONTS}<link rel="stylesheet" href="css/style.css"></head><body>{GTM_BODY}')
+    body=(nav('en','','')+
+        '<div class="page-plain"><div class="wrap">'
+        '<div class="kicker" data-n="410"><span class="line"></span></div>'
+        '<h1>This page no longer exists</h1>'
+        '<p class="lead">The page you were looking for has been removed &mdash; it may have been a private client gallery that is no longer available.</p>'
+        '<p style="margin-top:2em"><a href="/" class="arrow-link">&larr; Back to home</a></p>'
+        '</div></div>'
+        +footer('en','')+scripts(''))
+    open(os.path.join(ROOT,'410.html'),'w').write(head+body)
+
 # ---- merge Italian into all structures (after every dict is defined) ----
 for k,v in IT_NAV.items(): T['nav'][k]['it']=v
 for k,v in IT.items(): T[k]['it']=v
@@ -1617,5 +1636,5 @@ for lang in LANGS:
     build_home(lang); build_howto(lang); build_stories(lang); build_categories(lang)
     build_portfolio(lang); build_packages(lang); build_team(lang); build_contact(lang); build_legal(lang)
     build_thankyou(lang); build_guides(lang)
-build_sitemap(); build_robots()
+build_sitemap(); build_robots(); build_410()
 print('ALL DONE', LANGS)
