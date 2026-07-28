@@ -7,7 +7,7 @@ DOMAIN = 'https://mountain-elopement.com'
 # Cloudflare Turnstile — öffentlicher Site-Key (darf im HTML stehen).
 # Default = Cloudflares ALWAYS-PASSES-Testkey. Vor dem echten Livegang gegen den
 # richtigen Site-Key aus dem Cloudflare-Dashboard tauschen (Secret liegt als Env-Var).
-TURNSTILE_SITEKEY = '1x00000000000000000000AA'
+TURNSTILE_SITEKEY = '0x4AAAAAAAEAJ_UFGxkdE5SBY'
 CONTACT_ENDPOINT  = '/api/contact'
 
 GTM_ID='GTM-MT6KGS4F'
