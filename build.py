@@ -1677,8 +1677,76 @@ def build_guides(lang):
           +footer(lang,rel))
         write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang])+body+scripts(P))
 
+REGION_FAQ=[
+ ("Do we need a permit to get married in the Dolomites?",
+  "For a small symbolic ceremony with two people and a photographer, you generally do not need a special permit in open terrain. Restrictions apply to protected nature reserve zones, to commercial set-ups (arches, chairs, drones), and to some municipalities. We check the specific spot before we book it &mdash; and we will tell you if a place we love is not permitted."),
+ ("How many people can come?",
+  "An elopement is usually just the two of you, sometimes with a handful of witnesses. Above roughly ten guests the logistics change: transport, huts and permits all become more complicated. We are happy to plan either, but we will be honest about what changes."),
+ ("What if the weather is bad?",
+  "It will be, at some point &mdash; this is the high Alps. We build flexibility into the schedule, watch the forecast in the days before, and can move the ceremony to a different valley or another morning. Fog and rain also make some of the most atmospheric photographs we have ever taken."),
+ ("Can we get married on the Seceda ridge or at Lago di Braies?",
+  "Yes to both, with planning. Seceda means either an early hike or an overnight stay nearby, since the cable car starts after sunrise. Braies means arriving before the access restriction begins, or coming outside the high season. Both are among our favourite places on earth."),
+ ("How far do we have to walk?",
+  "That is entirely your choice. Some of our locations are a two-minute stroll from the car; others are a two-hour hike. Tell us how you feel about walking in a wedding dress and we will build the day around your answer."),
+ ("How far in advance should we book?",
+  "For July to September, six to twelve months is comfortable &mdash; huts, planners and the good mornings fill up. Off-season we have occasionally made something beautiful happen in a few weeks."),
+]
+
+def build_region(lang):
+    # Region page: guide + offer combined for one region (EN text for all langs for now).
+    # HERO: reuses img/hero/hero2.webp (Seceda) — Andreas may swap for a preferred Dolomites frame.
+    rel='elopement-dolomites/'; P=prefix(lang,rel)
+    H2S='font-family:var(--serif);font-weight:400;font-size:clamp(25px,3vw,36px);letter-spacing:-.01em;margin:1.6em 0 .4em'
+    def h2(x): return f'<h2 style="{H2S}">{x}</h2>'
+    def p(x): return f'<p style="color:var(--ink-2)">{x}</p>'
+    faq_html=''.join(
+      f'<div style="margin:1.3em 0 0;border-top:1px solid var(--line);padding-top:1.1em">'
+      f'<h3 style="font-family:var(--serif);font-weight:400;font-size:20px;margin:0 0 .3em">{q}</h3>'
+      f'<p style="color:var(--ink-2);margin:0">{a}</p></div>' for q,a in REGION_FAQ)
+    faq_ld={"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+        {"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":_plain(a)}} for q,a in REGION_FAQ]}
+    stories=['sunrise-elopement-in-the-dolomites','climbing-wedding','lago-di-braies-elopement']
+    cards=''.join(story_card(lang,P,STORYBY[s]) for s in stories)
+    title='Dolomites Elopement — How to Elope in the Dolomites | Mountain Elopement'
+    desc='Planning a Dolomites elopement? Permits, access rules, the best light, and how to make it legal &mdash; from photographers who elope couples in the Dolomites year-round.'
+    body=(nav(lang,rel,'')+
+      f'<section class="page-hero" style="padding:0"><div class="bg" style="background-image:url(\'{P}img/hero/hero2.webp\')"></div>'
+      f'<div class="content"><div class="wrap"><div class="kicker" data-n="The Region"><span class="line"></span></div><h1>Dolomites Elopement</h1></div></div></section>'
+      '<section><div class="wrap" style="max-width:820px">'
+      '<p class="lead">The Dolomites are not one landscape but a hundred. Pale limestone towers that turn rose at first light, turquoise lakes held in bowls of pine, meadows that smell of hay and altitude. It is the most photographed mountain range in Europe &mdash; and still, at half past five in the morning, you can stand at the edge of a lake and hear nothing but water.</p>'
+      +p('That gap between the postcard and the reality is where a good elopement lives. This page is everything we have learned from eloping couples here: where to stand, when to arrive, what the rules actually are, and how to make it legal. No secrets held back.')
+      +h2('When to come')
+      +p('Late June through September is the reliable window: the huts are open, the cable cars run, and the high trails are clear of snow. July and August bring the most stable weather &mdash; and the most people. If you can be flexible, <strong>the second half of September</strong> is our quiet favourite: larches turning gold, crisp air, and a fraction of the crowds.')
+      +p('Early June and October are gambles worth considering. You may get snow on the peaks and empty trails in the same morning. We have photographed both, and the pictures are often the best of the year.')
+      +p('<strong>The single most useful decision you can make is to start at sunrise.</strong> Not for the light alone, though the light is extraordinary. At sunrise you have the place to yourself, the access restrictions have not started yet, and by the time the first buses arrive you are already having breakfast somewhere warm. Every practical problem in the Dolomites &mdash; parking, permits, crowds &mdash; gets easier the earlier you begin.')
+      +h2('Where to exchange your vows')
+      +p('<strong>Seceda.</strong> The ridge that everyone has seen and few have stood on. The cable car from Ortisei runs roughly late May to early November; the first departure is well after sunrise, so a true dawn ceremony here means either hiking up in the dark or staying the night nearby. Worth every bit of the effort &mdash; the ridgeline falls away like the prow of a ship.')
+      +p('<strong>Lago di Braies.</strong> The turquoise lake with the wooden boathouse. Access is regulated in high season: between <strong>1 July and 15 September</strong>, driving to the lake is closed from <strong>9:00 to 16:00</strong> unless you have pre-booked a parking space. Outside those hours &mdash; and in the low season &mdash; you can simply drive up. Another reason we love starting at first light: at six in the morning the road is open, the car park is empty, and the lake is glass.')
+      +p('<strong>Tre Cime di Lavaredo.</strong> The three towers. The toll road from Lago d&rsquo;Antorno up to Rifugio Auronzo requires an <strong>advance online booking</strong> with your licence plate, and the road ends five kilometres later at 2,320&thinsp;m &mdash; which means you reach the base without a serious climb. The walk around the towers is gentle enough for a wedding dress and good shoes.')
+      +p('<strong>Lagazuoi, Cadini di Misurina, the Prags valley</strong> and a dozen quieter shoulders and saddles that never make the guidebooks. Part of our job is matching a place to your fitness, your dress, and how far you actually want to walk before saying yes.')
+      +h2('Making it legal')
+      +p('There are two honest paths, and most couples take the second.')
+      +p('<strong>A legal civil ceremony in Italy</strong> is possible for foreign nationals, but it is a paperwork exercise: you will need a certificate of no impediment (<em>Nulla Osta</em> / Ehefähigkeitszeugnis), international birth certificates, valid passports, usually an apostille, and sworn translations. Individual municipalities set their own dates, fees and lead times. It is entirely doable &mdash; it simply needs to be started months ahead.')
+      +p('<strong>A symbolic ceremony in the mountains, with the legal marriage at home</strong>, is what most of our couples choose. You sign the papers at your local registry office before or after the trip, and up here you have the ceremony that actually matters to you &mdash; your words, your vows, no clerk, no queue, no translation. It carries no legal weight and, in our experience, all of the emotional weight.')
+      +p('Neither path is more romantic than the other. We will tell you honestly which one fits your timeline.')
+      +h2('What it costs, and what&rsquo;s included')
+      +p('Our elopement packages start at <strong>&euro;6,000</strong> and cover photography, location scouting, a planning call and your private online gallery. The middle package adds hair and make-up, flowers and full coordination; the largest covers the whole day including accommodation, reception and transfers.')
+      +p('What we handle for you in the Dolomites specifically: the parking reservation for Braies, the toll booking for Tre Cime, the timing so you are never queueing, and the backup plan for the morning the mountain disappears into cloud. Weather here changes fast; every one of our packages from the middle tier up includes a <strong>backup day</strong>.')
+      +f'<p style="margin-top:1.7em"><a href="{u(P,lang,"our-packages/")}" class="btn">See the full price list</a></p>'
+      +h2('Questions couples ask us')+faq_html+
+      '</div></section>'
+      '<section style="padding-top:clamp(30px,5vw,64px)"><div class="wrap"><div class="section-head reveal">'
+      '<div class="kicker" data-n="Real elopements"><span class="line"></span></div><h2>Real Dolomites elopements</h2></div>'
+      f'<div class="story-grid">{cards}</div></div></section>'
+      '<section class="cta"><div class="wrap row reveal"><div>'
+      '<div class="kicker" data-n="Your day"><span class="line"></span></div><h2 style="margin-top:20px">Tell us what you&rsquo;re imagining</h2></div>'
+      f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">Start planning</a></div></section>'
+      f'<section style="padding:clamp(28px,4vw,48px) 0"><div class="wrap"><a href="{u(P,lang,"how-to-elope-in-the-europe-mountains/")}" class="arrow-link">&larr; All planning guides</a></div></section>'
+      +footer(lang,rel))
+    write(lang,rel,head(lang,rel,title,desc,ld_extra=faq_ld)+body+scripts(P))
+
 def all_rels():
-    rels=['','how-to-elope-in-the-europe-mountains/','stories-elopement-mountain/','our-packages/','our-team/','get-in-touch/','imprint/','privacy-policy/']
+    rels=['','how-to-elope-in-the-europe-mountains/','stories-elopement-mountain/','our-packages/','our-team/','get-in-touch/','imprint/','privacy-policy/','elopement-dolomites/']
     rels+=['portfolio-item/'+s[1]+'/' for s in STORIES]
     rels+=['portfolio-category/'+c+'/' for c in CATS]
     rels+=['how-to-elope-in-the-europe-mountains/'+g['slug']+'/' for g in GUIDES]
@@ -1744,6 +1812,6 @@ for slug,ex in GUIDE_EXTRA.items():
 for lang in LANGS:
     build_home(lang); build_howto(lang); build_stories(lang); build_categories(lang)
     build_portfolio(lang); build_packages(lang); build_team(lang); build_contact(lang); build_legal(lang)
-    build_thankyou(lang); build_guides(lang)
+    build_thankyou(lang); build_guides(lang); build_region(lang)
 build_sitemap(); build_robots(); build_404()
 print('ALL DONE', LANGS)
