@@ -38,7 +38,7 @@ T = {
          'packages':{'en':'Price List','de':'Preise','es':'Precios'},
          'team':{'en':'Team','de':'Team','es':'Equipo'},
          'contact':{'en':'Contact','de':'Kontakt','es':'Contacto'}},
- 'booking':{'en':'Now booking 2026 &middot; 2027 &amp; 2028 dates','de':'Buchbar 2026 &middot; Termine 2027 &amp; 2028','es':'Reservas 2026 &middot; fechas 2027 y 2028'},
+ 'booking':{'en':'Now booking 2027 &middot; 2028 dates','de':'Buchbar 2027 &middot; Termine 2028','es':'Reservas 2027 &middot; fechas 2028'},
  'booking_link':{'en':'on request','de':'auf Anfrage','es':'a consulta'},
  # footer
  'f_tag':{'en':'Editorial elopement photography &amp; planning in the Dolomites and the Alps.',
@@ -161,9 +161,9 @@ T = {
  'ht_s1p2':{'en':'We begin by helping you select the perfect mountain location &mdash; considering accessibility, scenery, and the mood you desire. Whether you dream of exchanging vows on a secluded peak or beside a tranquil alpine lake, every detail is shaped around the two of you.',
             'de':'Wir beginnen damit, den perfekten Ort für euch zu finden &mdash; nach Erreichbarkeit, Landschaft und Stimmung. Ob Gipfel oder stiller Bergsee, jedes Detail dreht sich um euch beide.',
             'es':'Empezamos ayudándoos a elegir el lugar perfecto &mdash; según accesibilidad, paisaje y ambiente. Ya soñéis con daros el sí en una cumbre apartada o junto a un lago alpino, cada detalle gira en torno a vosotros dos.'},
- 'ht_s1p3':{'en':f'When the day calls for more hands, we work with a trusted circle: on-the-ground planning by <a class="partner-inline" href="{P_PLAN[1]}" target="_blank" rel="noopener">Dolomites Wedding Planner</a>, photography by <a class="partner-inline" href="https://hochzeitsfotograf.tirol" target="_blank" rel="noopener">Blitzkneisser</a> and cinematic coverage by <a class="partner-inline" href="{P_FILM[1]}" target="_blank" rel="noopener">No Matter The Weather</a>.',
-            'de':f'Wenn der Tag mehr Hände braucht, arbeiten wir mit einem festen Kreis: Planung vor Ort durch <a class="partner-inline" href="{P_PLAN[1]}" target="_blank" rel="noopener">Dolomites Wedding Planner</a>, Fotografie durch <a class="partner-inline" href="https://hochzeitsfotograf.tirol" target="_blank" rel="noopener">Blitzkneisser</a> und Film durch <a class="partner-inline" href="{P_FILM[1]}" target="_blank" rel="noopener">No Matter The Weather</a>.',
-            'es':f'Cuando el día pide más manos, trabajamos con un círculo de confianza: planificación sobre el terreno por <a class="partner-inline" href="{P_PLAN[1]}" target="_blank" rel="noopener">Dolomites Wedding Planner</a>, fotografía por <a class="partner-inline" href="https://hochzeitsfotograf.tirol" target="_blank" rel="noopener">Blitzkneisser</a> y film por <a class="partner-inline" href="{P_FILM[1]}" target="_blank" rel="noopener">No Matter The Weather</a>.'},
+ 'ht_s1p3':{'en':f'When the day calls for more hands, we work with a trusted circle: on-the-ground planning by <a class="partner-inline" href="{P_PLAN[1]}" target="_blank" rel="noopener">Dolomites Wedding Planner</a>, photography by <a class="partner-inline" href="https://hochzeitsfotograf.tirol" target="_blank" rel="noopener">Blitzkneisser</a>.',
+            'de':f'Wenn der Tag mehr Hände braucht, arbeiten wir mit einem festen Kreis: Planung vor Ort durch <a class="partner-inline" href="{P_PLAN[1]}" target="_blank" rel="noopener">Dolomites Wedding Planner</a>, Fotografie durch <a class="partner-inline" href="https://hochzeitsfotograf.tirol" target="_blank" rel="noopener">Blitzkneisser</a>.',
+            'es':f'Cuando el día pide más manos, trabajamos con un círculo de confianza: planificación sobre el terreno por <a class="partner-inline" href="{P_PLAN[1]}" target="_blank" rel="noopener">Dolomites Wedding Planner</a>, fotografía por <a class="partner-inline" href="https://hochzeitsfotograf.tirol" target="_blank" rel="noopener">Blitzkneisser</a>.'},
  'ht_cap':{'en':'A quiet morning above the tree line.','de':'Ein stiller Morgen oberhalb der Baumgrenze.','es':'Una mañana tranquila por encima de la línea de árboles.'},
  'ht_e_k':{'en':'The essentials','de':'Das Wesentliche','es':'Lo esencial'},
  'ht_e_h':{'en':'What to consider','de':'Was zu bedenken ist','es':'Qué tener en cuenta'},
@@ -696,7 +696,7 @@ IT={
  'ty_k':'Richiesta ricevuta','ty_h':'Grazie',
  'ty_p':'Abbiamo ricevuto il vostro messaggio e vi risponderemo entro 48 ore.',
  'ty_home':'Torna alla home',
- 'booking':'Prenotazioni 2026 &middot; date 2027 e 2028','booking_link':'su richiesta',
+ 'booking':'Prenotazioni 2027 &middot; date 2028','booking_link':'su richiesta',
  'f_tag':'Fotografia e pianificazione editoriale di elopement nelle Dolomiti e nelle Alpi.',
  'f_explore':'Esplora','f_team':'Il nostro team','f_role_photo':'Foto','f_role_plan':'Pianificazione','f_role_film':'Film','f_role_mua':'Trucco',
  'f_imprint':'Note legali','f_privacy':'Privacy','view_all':'Tutte le storie','start_planning':'Iniziamo a pianificare',
@@ -733,7 +733,7 @@ IT={
  'ht_k':'Guida','ht_h1':'Elopement nelle<br>Dolomiti','ht_s1k':'Da dove iniziare','ht_s1h':'Unire avventura<br>e romanticismo',
  'ht_s1p1':'Curiosi di progettare un elopement che unisca avventura e romanticismo nelle splendide Dolomiti? La nostra specialità è creare elopement di montagna indimenticabili, su misura per la vostra visione.',
  'ht_s1p2':'Iniziamo aiutandovi a scegliere la location perfetta &mdash; considerando accessibilità, paesaggio e atmosfera desiderata. Che sogniate di scambiarvi le promesse su una vetta appartata o in riva a un lago alpino, ogni dettaglio ruota attorno a voi due.',
- 'ht_s1p3':f'Quando il giorno richiede più mani, lavoriamo con una cerchia fidata: pianificazione sul posto di <a class="partner-inline" href="{P_PLAN[1]}" target="_blank" rel="noopener">Dolomites Wedding Planner</a>, fotografia di <a class="partner-inline" href="https://hochzeitsfotograf.tirol" target="_blank" rel="noopener">Blitzkneisser</a> e riprese cinematografiche di <a class="partner-inline" href="{P_FILM[1]}" target="_blank" rel="noopener">No Matter The Weather</a>.',
+ 'ht_s1p3':f'Quando il giorno richiede più mani, lavoriamo con una cerchia fidata: pianificazione sul posto di <a class="partner-inline" href="{P_PLAN[1]}" target="_blank" rel="noopener">Dolomites Wedding Planner</a>, fotografia di <a class="partner-inline" href="https://hochzeitsfotograf.tirol" target="_blank" rel="noopener">Blitzkneisser</a>.',
  'ht_cap':'Un mattino silenzioso sopra il limite del bosco.','ht_e_k':'L’essenziale','ht_e_h':'Cosa considerare',
  'ht_step1t':'Scegliere la location','ht_step1p':'Vetta, lago, prato o cresta &mdash; scegliamo lo scenario in base alla vostra visione, alla stagione e a quanto volete camminare.',
  'ht_step2t':'Pianificare il giorno','ht_step2p':'Un programma rilassato, la luce migliore, un piano flessibile per il meteo e tutta la logistica &mdash; trasferimenti, fiori, trucco e acconciatura.',
@@ -921,7 +921,6 @@ def footer(lang,rel):
       f'<div><h5>{t(lang,"f_team")}</h5><ul>'
       f'<li><a href="https://blitzkneisser.com" target="_blank" rel="noopener">{t(lang,"f_role_photo")} &middot; Blitzkneisser</a></li>'
       f'<li><a href="{P_PLAN[1]}" target="_blank" rel="noopener">{t(lang,"f_role_plan")} &middot; Dolomites Wedding Planner</a></li>'
-      f'<li><a href="{P_FILM[1]}" target="_blank" rel="noopener">{t(lang,"f_role_film")} &middot; No Matter The Weather</a></li>'
       '<li><a href="https://www.instagram.com/mountainelopement/" target="_blank" rel="noopener">Instagram</a></li></ul></div></div>'
       f'<div class="fine"><span>&copy; 2026 mountain-elopement by blitzkneisser.com</span>'
       f'<span><a href="{u(P,lang,"imprint/")}">{t(lang,"f_imprint")}</a> &middot; <a href="{u(P,lang,"privacy-policy/")}">{t(lang,"f_privacy")}</a></span></div></div></footer>')
@@ -1274,7 +1273,6 @@ def build_portfolio(lang):
         quote=st['quote'][lang] if st else ''
         bodyhtml=f'<p class="dropcap">{p1}</p>'+(f'<p>{p2}</p>' if p2 else '')
         credits=(f'{t(lang,"pi_vplan")} <a class="partner-inline" href="{P_PLAN[1]}" target="_blank" rel="noopener">Dolomites Wedding Planner</a> &middot; '
-          f'{t(lang,"pi_vfilm")} <a class="partner-inline" href="{P_FILM[1]}" target="_blank" rel="noopener">No Matter The Weather</a> &middot; '
           f'{t(lang,"f_role_photo")} <a class="partner-inline" href="https://hochzeitsfotograf.tirol" target="_blank" rel="noopener">Blitzkneisser</a>')
         if slug==FEAT_HELI_SLUG:
             main=feature_heli(lang,P,slug,img,titles[lang])
@@ -1336,7 +1334,7 @@ def build_packages(lang):
     t3=tier('03',t(lang,'pk_l3'),t(lang,'pk_t3'),'13.500',[f'{photoword} &mdash; 100&ndash;200 {imgword}',f'6&ndash;8 {hrs}',gr,flowers,fullplan,permits,weather,album,gallery],tag=tag3)
     def ad(name,price): return f'<div class="addon"><div class="a">{name}</div><div class="p">{price}</div></div>'
     addons=(ad(t(lang,'ad_heli'),'&asymp; &euro; 2.500')
-      +ad(f'<a href="{P_FILM[1]}" target="_blank" rel="noopener" style="color:inherit">{t(lang,"ad_film")}</a>','&asymp; &euro; 3.500')
+      +ad(t(lang,'ad_film'),'&asymp; &euro; 3.500')
       +ad(t(lang,'ad_civil'),'&asymp; &euro; 1.000')+ad(t(lang,'ad_celeb'),'&asymp; &euro; 1.500')
       +ad(t(lang,'ad_cake'),f'{t(lang,"ad_from")} &euro; 400')+ad(t(lang,'ad_music'),'&asymp; &euro; 600')
       +ad(f'<a href="{P_MUA[1]}" target="_blank" rel="noopener" style="color:inherit">{t(lang,"ad_mua")}</a>',t(lang,'ad_onreq'))
