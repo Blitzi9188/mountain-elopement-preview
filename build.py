@@ -4,6 +4,12 @@ import os, json, re, html as _html
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DOMAIN = 'https://mountain-elopement.com'
 
+# Cloudflare Turnstile — öffentlicher Site-Key (darf im HTML stehen).
+# Default = Cloudflares ALWAYS-PASSES-Testkey. Vor dem echten Livegang gegen den
+# richtigen Site-Key aus dem Cloudflare-Dashboard tauschen (Secret liegt als Env-Var).
+TURNSTILE_SITEKEY = '1x00000000000000000000AA'
+CONTACT_ENDPOINT  = '/api/contact'
+
 GTM_ID='GTM-MT6KGS4F'
 GTM_HEAD="<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','"+GTM_ID+"');</script>"
 GTM_BODY='<noscript><iframe src="https://www.googletagmanager.com/ns.html?id='+GTM_ID+'" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>'
@@ -278,6 +284,9 @@ T = {
  'ct_story':{'en':'Tell us your story','de':'Erzählt uns eure Geschichte','es':'Contadnos vuestra historia'},
  'ct_story_ph':{'en':'Where, when, and what you\'re imagining...','de':'Wo, wann und was ihr euch vorstellt...','es':'Dónde, cuándo y qué imagináis...'},
  'ct_send':{'en':'Send enquiry','de':'Anfrage senden','es':'Enviar consulta'},
+ 'ct_sending':{'en':'Sending…','de':'Wird gesendet…','es':'Enviando…'},
+ 'ct_ok':{'en':'Sent — thank you!','de':'Gesendet — danke!','es':'¡Enviado, gracias!'},
+ 'ct_err':{'en':'Something went wrong. Please try again or email us directly.','de':'Etwas ist schiefgelaufen. Bitte erneut versuchen oder schreibt uns direkt.','es':'Algo salió mal. Inténtalo de nuevo o escríbenos directamente.'},
  'ct_note':{'en':'Prototype form &mdash; in the live version this connects to email (e.g. Formspree).',
             'de':'Prototyp-Formular &mdash; in der Live-Version verbunden mit E-Mail (z. B. Formspree).',
             'es':'Formulario prototipo &mdash; en la versión final se conecta al correo (p. ej. Formspree).'},
@@ -763,6 +772,7 @@ IT={
  'ct_details':'I vostri dati','ct_name':'Nome','ct_name_ph':'Il vostro nome','ct_email':'Email','ct_date':'Data elopement (circa)','ct_date_ph':'es. giugno 2027',
  'ct_dream':'Cosa sognate?','ct_story':'Raccontateci la vostra storia','ct_story_ph':'Dove, quando e cosa immaginate...','ct_send':'Invia richiesta',
  'ct_note':'Modulo prototipo &mdash; nella versione finale si collega all’email (es. Formspree).','ct_based':'Sede','ct_based_v':'Tirolo e Dolomiti',
+ 'ct_sending':'Invio in corso…','ct_ok':'Inviato — grazie!','ct_err':'Qualcosa è andato storto. Riprova o scrivici direttamente.',
  'chips':['Foto','Film','Backdrop','Fiori','Trucco','Elicottero','Escursione','Musica'],
  'lg_k':'Note legali','lg_imprint':'Note legali','lg_privacy':'Informativa privacy','lg_lead':'Segnaposto &mdash; il testo esistente verrà trasferito invariato dal sito attuale.',
  'hero_inq':'Richiesta diretta','hero_guides':'Guide','hero_price':'Prezzi','film_k':'Il film',
@@ -1402,14 +1412,32 @@ def build_team(lang):
 def build_contact(lang):
     rel='get-in-touch/'; P=prefix(lang,rel)
     chips=''.join(f'<span class="chip">{c}</span>' for c in T['chips'][lang])
-    extra=("<script>var box=document.getElementById('chips');box.addEventListener('click',function(e){"
+    thankyou=f'/{lbase(lang)}thank-you-for-your-inquiry/'
+    chip_js=("<script>var box=document.getElementById('chips');box.addEventListener('click',function(e){"
            "if(e.target.classList.contains('chip')){e.target.classList.toggle('on');"
            "var h=document.getElementById('interests');if(h)h.value=[].slice.call(box.querySelectorAll('.chip.on'))"
            ".map(function(x){return x.textContent;}).join(', ');}});</script>")
+    ts_api='<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>'
+    submit_js=(
+      "<script>(function(){var f=document.getElementById('ce-form');if(!f)return;"
+      "var st=document.getElementById('ce-status'),btn=f.querySelector('button[type=submit]');"
+      "var THANKYOU="+json.dumps(thankyou)+";"
+      "var MSG={sending:"+json.dumps(t(lang,'ct_sending'))+",ok:"+json.dumps(t(lang,'ct_ok'))+",err:"+json.dumps(t(lang,'ct_err'))+"};"
+      "f.addEventListener('submit',function(e){e.preventDefault();"
+      "var box=document.getElementById('chips'),h=document.getElementById('interests');"
+      "if(box&&h)h.value=[].slice.call(box.querySelectorAll('.chip.on')).map(function(x){return x.textContent;}).join(', ');"
+      "btn.disabled=true;st.className='ce-status sending';st.textContent=MSG.sending;"
+      "fetch("+json.dumps(CONTACT_ENDPOINT)+",{method:'POST',body:new FormData(f)})"
+      ".then(function(r){return r.json().catch(function(){return {ok:r.ok};});})"
+      ".then(function(d){if(d&&d.ok){st.className='ce-status ok';st.textContent=MSG.ok;window.location.href=THANKYOU;}"
+      "else{st.className='ce-status err';st.textContent=(d&&d.error)||MSG.err;btn.disabled=false;if(window.turnstile)turnstile.reset();}})"
+      ".catch(function(){st.className='ce-status err';st.textContent=MSG.err;btn.disabled=false;if(window.turnstile)turnstile.reset();});"
+      "});})();</script>")
+    extra=chip_js+ts_api+submit_js
     body=(nav(lang,rel,'contact')+
       f'<div class="page-plain"><div class="wrap"><div class="kicker" data-n="{t(lang,"ct_k")}"><span class="line"></span></div>'
       f'<h1>{t(lang,"ct_h")}</h1><p class="lead">{t(lang,"ct_lead")}</p></div></div>'
-      f'<section><div class="wrap contact-grid"><form class="form reveal" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/{lbase(lang)}thank-you-for-your-inquiry/">'
+      f'<section><div class="wrap contact-grid"><form id="ce-form" class="form reveal" name="contact" method="POST" action="{CONTACT_ENDPOINT}">'
       '<input type="hidden" name="form-name" value="contact">'
       f'<input type="hidden" name="language" value="{lang}">'
       '<p hidden aria-hidden="true"><label>Don&rsquo;t fill this out if you&rsquo;re human: <input name="bot-field"></label></p>'
@@ -1419,7 +1447,9 @@ def build_contact(lang):
       f'<label>{t(lang,"ct_date")}</label><input type="text" name="date" placeholder="{t(lang,"ct_date_ph")}">'
       f'<label>{t(lang,"ct_dream")}</label><div class="chips" id="chips">{chips}</div><input type="hidden" name="interests" id="interests">'
       f'<label>{t(lang,"ct_story")}</label><textarea name="message" rows="5" placeholder="{t(lang,"ct_story_ph")}" required></textarea>'
+      f'<div class="cf-turnstile" data-sitekey="{TURNSTILE_SITEKEY}" data-theme="light" style="margin:8px 0 18px"></div>'
       f'<button class="btn" type="submit">{t(lang,"ct_send")}</button>'
+      '<p id="ce-status" class="ce-status" role="status" aria-live="polite"></p>'
       '</form>'
       f'<aside class="contact-side reveal"><img src="{P}img/page/contact.webp" alt="Mountain Elopement">'
       '<div class="info"><div><strong>Email</strong> &mdash; hello@mountain-elopement.com</div>'
