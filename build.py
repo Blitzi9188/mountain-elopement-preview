@@ -1497,14 +1497,65 @@ def build_thankyou(lang):
       +footer(lang,rel))
     write(lang,rel,head(lang,rel,TITLES['thankyou'][lang],DESC['thankyou'][lang],noindex=True)+body+scripts(P,ty_js))
 
+PRIVACY_DE="""<h2>Verantwortlicher</h2>
+<p>Verantwortlich für die Datenverarbeitung auf dieser Website:<br>Andreas Kiss &mdash; Blitzkneisser, Rohracker&nbsp;6, 6092&nbsp;Birgitz, Österreich.<br>E-Mail: <a href="mailto:foto@blitzkneisser.com">foto@blitzkneisser.com</a> &middot; Telefon: +43&nbsp;664&nbsp;39&nbsp;18&nbsp;228</p>
+
+<h2>Hosting</h2>
+<p>Diese Website wird bei Cloudflare (Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, USA) über den Dienst „Cloudflare Pages“ gehostet. Beim Aufruf der Seiten verarbeitet Cloudflare technisch notwendige Zugriffsdaten (u.&nbsp;a. IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene Seite, übertragene Datenmenge, Browsertyp), um die Website sicher und stabil bereitzustellen und Angriffe abzuwehren. Rechtsgrundlage ist unser berechtigtes Interesse an einem sicheren und effizienten Betrieb der Website (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO). Mit Cloudflare besteht ein Auftragsverarbeitungsvertrag; die Übermittlung in die USA erfolgt auf Grundlage der EU-Standardvertragsklauseln.</p>
+
+<h2>Kontaktformular</h2>
+<p>Wenn ihr uns über das Kontaktformular schreibt, verarbeiten wir die von euch angegebenen Daten &mdash; Name, E-Mail-Adresse, ungefährer Wunschtermin, ausgewählte Leistungen, die von euch gewählte Sprache sowie eure Nachricht &mdash; ausschließlich, um eure Anfrage zu bearbeiten und zu beantworten.</p>
+<p>Rechtsgrundlage ist die Durchführung vorvertraglicher Maßnahmen bzw. die Erfüllung eines Vertrags (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO) sowie unser berechtigtes Interesse an der Beantwortung von Anfragen (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO). Die Daten werden gelöscht, sobald eure Anfrage abschließend bearbeitet ist und keine gesetzlichen Aufbewahrungsfristen entgegenstehen.</p>
+<p>Der Versand der Formular-E-Mail erfolgt über den Dienst Resend (Resend, Inc., USA) als Auftragsverarbeiter. Dabei werden die Formularinhalte an Resend übermittelt und per E-Mail an uns zugestellt. Die Übermittlung in die USA erfolgt auf Grundlage der EU-Standardvertragsklauseln.</p>
+
+<h2>Spam-Schutz (Cloudflare Turnstile)</h2>
+<p>Zum Schutz des Kontaktformulars vor automatisiertem Missbrauch setzen wir Cloudflare Turnstile ein. Turnstile prüft ohne klassisches Captcha, ob die Eingabe von einem Menschen stammt. Dabei werden technische Informationen (u.&nbsp;a. IP-Adresse, Browser- und Geräteinformationen, Zeitpunkt der Interaktion) an Cloudflare übermittelt und dort ausgewertet. Rechtsgrundlage ist unser berechtigtes Interesse an der Abwehr von Spam und missbräuchlicher Nutzung (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO). Weitere Informationen: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Datenschutzerklärung von Cloudflare</a>.</p>
+
+<h2>Google Tag Manager</h2>
+<p>Diese Website nutzt den Google Tag Manager (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) zur Verwaltung von Website-Tags. Der Tag Manager selbst speichert keine personenbezogenen Daten, kann aber weitere Dienste auslösen. Sofern dabei einwilligungspflichtige Dienste geladen werden, geschieht dies erst nach eurer Einwilligung (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO), die ihr jederzeit mit Wirkung für die Zukunft widerrufen könnt.</p>
+
+<h2>Eure Rechte</h2>
+<p>Ihr habt jederzeit das Recht auf Auskunft über die zu eurer Person gespeicherten Daten, auf Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie das Recht, der Verarbeitung zu widersprechen. Eine erteilte Einwilligung könnt ihr jederzeit mit Wirkung für die Zukunft widerrufen. Wendet euch dazu an <a href="mailto:foto@blitzkneisser.com">foto@blitzkneisser.com</a>.</p>
+<p>Zudem habt ihr das Recht, euch bei einer Datenschutz-Aufsichtsbehörde zu beschweren &mdash; in Österreich bei der Österreichischen Datenschutzbehörde (<a href="https://www.dsb.gv.at" target="_blank" rel="noopener">dsb.gv.at</a>).</p>"""
+
+PRIVACY_EN="""<h2>Controller</h2>
+<p>Responsible for data processing on this website:<br>Andreas Kiss &mdash; Blitzkneisser, Rohracker&nbsp;6, 6092&nbsp;Birgitz, Austria.<br>Email: <a href="mailto:foto@blitzkneisser.com">foto@blitzkneisser.com</a> &middot; Phone: +43&nbsp;664&nbsp;39&nbsp;18&nbsp;228</p>
+
+<h2>Hosting</h2>
+<p>This website is hosted on Cloudflare (Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, USA) using the “Cloudflare Pages” service. When you access the site, Cloudflare processes technically necessary access data (including IP address, date and time of access, page requested, amount of data transferred, browser type) in order to deliver the website securely and reliably and to prevent attacks. The legal basis is our legitimate interest in the secure and efficient operation of the website (Art. 6(1)(f) GDPR). A data processing agreement is in place with Cloudflare; any transfer to the USA takes place on the basis of the EU Standard Contractual Clauses.</p>
+
+<h2>Contact form</h2>
+<p>When you contact us through the form, we process the information you provide — name, email address, approximate desired date, selected services, your chosen language and your message — solely in order to handle and respond to your enquiry.</p>
+<p>The legal basis is the performance of pre-contractual measures or a contract (Art. 6(1)(b) GDPR) and our legitimate interest in responding to enquiries (Art. 6(1)(f) GDPR). The data is deleted once your enquiry has been dealt with, unless statutory retention periods apply.</p>
+<p>The form email is delivered via Resend (Resend, Inc., USA) acting as a processor. The form contents are transmitted to Resend and forwarded to us by email. Any transfer to the USA takes place on the basis of the EU Standard Contractual Clauses.</p>
+
+<h2>Spam protection (Cloudflare Turnstile)</h2>
+<p>To protect the contact form against automated abuse we use Cloudflare Turnstile. Without a classic captcha, Turnstile checks whether the input comes from a human. Technical information (including IP address, browser and device information, time of interaction) is transmitted to and evaluated by Cloudflare. The legal basis is our legitimate interest in preventing spam and abuse (Art. 6(1)(f) GDPR). Further information: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare’s privacy policy</a>.</p>
+
+<h2>Google Tag Manager</h2>
+<p>This website uses Google Tag Manager (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland) to manage website tags. Tag Manager itself does not store personal data but may trigger additional services. Where consent-based services are loaded, this only happens after your consent (Art. 6(1)(a) GDPR), which you may withdraw at any time with effect for the future.</p>
+
+<h2>Your rights</h2>
+<p>You have the right at any time to obtain information about the data stored about you, and to request rectification, erasure, restriction of processing and data portability, as well as the right to object to processing. You may withdraw any consent given at any time with effect for the future. To do so, contact <a href="mailto:foto@blitzkneisser.com">foto@blitzkneisser.com</a>.</p>
+<p>You also have the right to lodge a complaint with a data protection supervisory authority — in Austria, the Austrian Data Protection Authority (<a href="https://www.dsb.gv.at" target="_blank" rel="noopener">dsb.gv.at</a>).</p>"""
+
+PRIVACY={'de':PRIVACY_DE,'en':PRIVACY_EN,'es':PRIVACY_EN,'it':PRIVACY_EN}
+PRIV_LEAD={'en':'How we handle your personal data on this website.','de':'Wie wir mit euren personenbezogenen Daten auf dieser Website umgehen.',
+           'es':'How we handle your personal data on this website.','it':'How we handle your personal data on this website.'}
+
 def build_legal(lang):
     for slug,key in [('imprint','lg_imprint'),('privacy-policy','lg_privacy')]:
         rel=f'{slug}/'; P=prefix(lang,rel)
         title=t(lang,key)
-        body=(nav(lang,rel,'')+
-          f'<div class="page-plain"><div class="wrap"><div class="kicker" data-n="{t(lang,"lg_k")}"><span class="line"></span></div>'
-          f'<h1>{title}</h1><p class="lead">{t(lang,"lg_lead")}</p></div></div>'
-          '<section><div class="wrap"><p style="max-width:720px;color:var(--ink-2)">1:1</p></div></section>'+footer(lang,rel))
+        if slug=='privacy-policy':
+            inner=(f'<div class="page-plain"><div class="wrap"><div class="kicker" data-n="{t(lang,"lg_k")}"><span class="line"></span></div>'
+                   f'<h1>{title}</h1><p class="lead">{PRIV_LEAD.get(lang,PRIV_LEAD["en"])}</p></div></div>'
+                   f'<section><div class="wrap"><div class="legal-body" style="max-width:760px">{PRIVACY.get(lang,PRIVACY["en"])}</div></div></section>')
+        else:
+            inner=(f'<div class="page-plain"><div class="wrap"><div class="kicker" data-n="{t(lang,"lg_k")}"><span class="line"></span></div>'
+                   f'<h1>{title}</h1><p class="lead">{t(lang,"lg_lead")}</p></div></div>'
+                   '<section><div class="wrap"><p style="max-width:720px;color:var(--ink-2)">1:1</p></div></section>')
+        body=nav(lang,rel,'')+inner+footer(lang,rel)
         write(lang,rel,head(lang,rel,f'{title} — Mountain Elopement','')+body+scripts(P))
 
 def guide_card(lang,P,g):
@@ -1650,24 +1701,26 @@ def build_sitemap():
 def build_robots():
     open(os.path.join(ROOT,'robots.txt'),'w').write(f'User-agent: *\nAllow: /\n\nSitemap: {DOMAIN}/sitemap.xml\n')
 
-def build_410():
-    # Root-level 410 body served by Netlify for retired URLs (e.g. old proofing gallery).
-    # noindex, no canonical/hreflang — it is a utility Gone page, not a real content page.
+def build_404():
+    # Root 404 page — Cloudflare Pages serves it automatically with HTTP 404 for unknown URLs.
+    # Prevents the soft-404 (every unknown path returning the homepage with 200).
+    # noindex, NOT in sitemap. English only (Cloudflare uses the root 404.html).
     head=('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">'
         '<meta name="viewport" content="width=device-width, initial-scale=1">'
-        '<title>Page no longer available &mdash; Mountain Elopement</title>'
+        '<title>Page not found &mdash; Mountain Elopement</title>'
         '<meta name="robots" content="noindex">'
         '<link rel="icon" type="image/png" href="favicon.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">'
         f'{GTM_HEAD}{FONTS}<link rel="stylesheet" href="css/style.css"></head><body>{GTM_BODY}')
     body=(nav('en','','')+
         '<div class="page-plain"><div class="wrap">'
-        '<div class="kicker" data-n="410"><span class="line"></span></div>'
-        '<h1>This page no longer exists</h1>'
-        '<p class="lead">The page you were looking for has been removed &mdash; it may have been a private client gallery that is no longer available.</p>'
-        '<p style="margin-top:2em"><a href="/" class="arrow-link">&larr; Back to home</a></p>'
+        '<div class="kicker" data-n="404"><span class="line"></span></div>'
+        '<h1>Page not found</h1>'
+        '<p class="lead">The page you were looking for doesn&rsquo;t exist or has moved. Let&rsquo;s get you back on track.</p>'
+        '<p style="margin-top:2em"><a href="/" class="btn solid">Back to home</a>'
+        '<a href="/stories-elopement-mountain/" class="btn" style="margin-left:12px">Browse stories</a></p>'
         '</div></div>'
         +footer('en','')+scripts(''))
-    open(os.path.join(ROOT,'410.html'),'w').write(head+body)
+    open(os.path.join(ROOT,'404.html'),'w').write(head+body)
 
 # ---- merge Italian into all structures (after every dict is defined) ----
 for k,v in IT_NAV.items(): T['nav'][k]['it']=v
@@ -1692,5 +1745,5 @@ for lang in LANGS:
     build_home(lang); build_howto(lang); build_stories(lang); build_categories(lang)
     build_portfolio(lang); build_packages(lang); build_team(lang); build_contact(lang); build_legal(lang)
     build_thankyou(lang); build_guides(lang)
-build_sitemap(); build_robots(); build_410()
+build_sitemap(); build_robots(); build_404()
 print('ALL DONE', LANGS)

@@ -11,7 +11,11 @@ for dp,_,fs in os.walk(ROOT):
         refs=re.findall(r'(?:href|src)="([^"]+)"',html)
         for r in refs:
             if r.startswith(('http','mailto:','tel:','#','javascript:','data:')): continue
-            target=os.path.normpath(os.path.join(base,r))
+            # root-absolute (/x) → resolve from the build root; else relative to the file
+            if r.startswith('/'):
+                target=os.path.normpath(os.path.join(ROOT, r.lstrip('/')))
+            else:
+                target=os.path.normpath(os.path.join(base,r))
             checked+=1
             if not os.path.exists(target):
                 print('BROKEN',p,'->',r); bad+=1

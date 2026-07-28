@@ -1,12 +1,12 @@
-# WordPress → static relaunch redirects for mountain-elopement.com
-# Format: Netlify / Cloudflare Pages "_redirects". Also valid on Netlify.
-# Use EITHER this file OR netlify.toml, not both, to avoid conflicting rules.
+# Redirects for mountain-elopement.com — Cloudflare Pages "_redirects".
+# Exact paths are evaluated before wildcards; existing files (e.g. /portfolio-item/<slug>/)
+# take precedence and keep returning 200.
 
 # Old WordPress author/team page → new team page
 /blitzkneisser/    /our-team/    301
 
-# Retired private client gallery — return 410 Gone (no redirect) so it drops from the index.
-# Netlify serves /410.html with a 410 status. No proofing-gallery file exists in the build,
-# so the rule always applies (static files would otherwise take precedence).
-/proofing-gallery/proofing-gallery-locked/   /410.html   410
-/proofing-gallery/*                          /410.html   410
+# Old WordPress portfolio overview → new stories overview
+/portfolio-item/    /stories-elopement-mountain/    301
+
+# NOTE: the retired /proofing-gallery/ is handled by functions/proofing-gallery/[[path]].js
+# which returns a real 410 Gone. Cloudflare Pages does NOT support 410 in _redirects.
