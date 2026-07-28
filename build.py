@@ -295,9 +295,9 @@ T = {
  # thank-you (noindex confirmation page)
  'ty_k':{'en':'Enquiry received','de':'Anfrage erhalten','es':'Consulta recibida'},
  'ty_h':{'en':'Thank you','de':'Danke','es':'Gracias'},
- 'ty_p':{'en':'We\u2019ve received your message and will get back to you within 48 hours.',
-         'de':'Wir haben eure Nachricht erhalten und melden uns innerhalb von 48 Stunden.',
-         'es':'Hemos recibido vuestro mensaje y os responderemos en un plazo de 48 horas.'},
+ 'ty_p':{'en':'We\u2019ve received your message and will get back to you within 48 hours. For urgent enquiries or quick decisions, you\u2019re very welcome to reach us by phone, too.',
+         'de':'Wir haben eure Nachricht erhalten und melden uns innerhalb von 48 Stunden. F\u00fcr dringende Anfragen oder schnelle Entscheidungen sind wir nat\u00fcrlich auch gerne telefonisch f\u00fcr euch da.',
+         'es':'Hemos recibido vuestro mensaje y os responderemos en un plazo de 48 horas. Para consultas urgentes o decisiones r\u00e1pidas, tambi\u00e9n pod\u00e9is llamarnos con mucho gusto.'},
  'ty_home':{'en':'Back to homepage','de':'Zur\u00fcck zur Startseite','es':'Volver al inicio'},
  # chips
  'chips':{'en':['Photo','Film','Backdrop','Flowers','Make-up','Helicopter','Hike','Musician'],
@@ -703,7 +703,7 @@ GUIDE_EXTRA={
 IT_NAV={'welcome':'Inizio','howto':'Guida','stories':'Storie','packages':'Prezzi','team':'Team','contact':'Contatti'}
 IT={
  'ty_k':'Richiesta ricevuta','ty_h':'Grazie',
- 'ty_p':'Abbiamo ricevuto il vostro messaggio e vi risponderemo entro 48 ore.',
+ 'ty_p':'Abbiamo ricevuto il vostro messaggio e vi risponderemo entro 48 ore. Per richieste urgenti o decisioni rapide, siamo volentieri raggiungibili anche per telefono.',
  'ty_home':'Torna alla home',
  'booking':'Prenotazioni 2027 &middot; date 2028','booking_link':'su richiesta',
  'f_tag':'Fotografia e pianificazione editoriale di elopement nelle Dolomiti e nelle Alpi.',
@@ -1427,7 +1427,9 @@ def build_contact(lang):
       "var box=document.getElementById('chips'),h=document.getElementById('interests');"
       "if(box&&h)h.value=[].slice.call(box.querySelectorAll('.chip.on')).map(function(x){return x.textContent;}).join(', ');"
       "btn.disabled=true;st.className='ce-status sending';st.textContent=MSG.sending;"
-      "fetch("+json.dumps(CONTACT_ENDPOINT)+",{method:'POST',body:new FormData(f)})"
+      "var fd=new FormData(f);"
+      "try{sessionStorage.setItem('me_enquiry',JSON.stringify({name:fd.get('name')||'',email:fd.get('email')||'',date:fd.get('date')||'',interests:fd.get('interests')||'',message:fd.get('message')||''}));}catch(e){}"
+      "fetch("+json.dumps(CONTACT_ENDPOINT)+",{method:'POST',body:fd})"
       ".then(function(r){return r.json().catch(function(){return {ok:r.ok};});})"
       ".then(function(d){if(d&&d.ok){st.className='ce-status ok';st.textContent=MSG.ok;window.location.href=THANKYOU;}"
       "else{st.className='ce-status err';st.textContent=(d&&d.error)||MSG.err;btn.disabled=false;if(window.turnstile)turnstile.reset();}})"
@@ -1460,14 +1462,40 @@ def build_contact(lang):
     write(lang,rel,head(lang,rel,TITLES['contact'][lang],DESC['contact'][lang])+body+scripts(P,extra))
 
 def build_thankyou(lang):
-    # noindex confirmation page — kept out of sitemap; likely carries GTM conversion tracking
+    # noindex confirmation page — kept out of sitemap; likely carries GTM conversion tracking.
+    # The entered details are shown back from sessionStorage (set on submit) — no data in the URL.
     rel='thank-you-for-your-inquiry/'; P=prefix(lang,rel)
+    sumhead={'en':'Your enquiry at a glance','de':'Eure Anfrage im Überblick','es':'Vuestra consulta de un vistazo','it':'La vostra richiesta in sintesi'}[lang]
+    urgent={'en':'Need a quick answer? For urgent enquiries you can reach us by phone or WhatsApp anytime.',
+            'de':'Dringend? Für eilige Anfragen erreicht ihr uns jederzeit telefonisch oder per WhatsApp.',
+            'es':'¿Una respuesta rápida? Para consultas urgentes podéis llamarnos o escribirnos por WhatsApp en cualquier momento.',
+            'it':'Serve una risposta rapida? Per richieste urgenti siamo raggiungibili in qualsiasi momento per telefono o WhatsApp.'}[lang]
+    LBLS={'name':{'en':'Name','de':'Name','es':'Nombre','it':'Nome'},
+          'email':{'en':'Email','de':'E-Mail','es':'Email','it':'Email'},
+          'date':{'en':'Date','de':'Datum','es':'Fecha','it':'Data'},
+          'interests':{'en':'Interests','de':'Interessen','es':'Intereses','it':'Interessi'},
+          'message':{'en':'Message','de':'Nachricht','es':'Mensaje','it':'Messaggio'}}
+    rows=''.join(f'<div class="ty-row" data-k="{k}" hidden><dt>{LBLS[k][lang]}</dt><dd></dd></div>'
+                 for k in ('name','email','date','interests','message'))
+    ty_js=("<script>(function(){var box=document.getElementById('ty-summary');if(!box)return;"
+           "var d;try{d=JSON.parse(sessionStorage.getItem('me_enquiry')||'null');}catch(e){}"
+           "if(!d)return;var any=false;"
+           "[].forEach.call(box.querySelectorAll('.ty-row'),function(r){var k=r.getAttribute('data-k'),v=(d[k]||'').toString().trim();"
+           "if(v){r.querySelector('dd').textContent=v;r.hidden=false;any=true;}});"
+           "if(any)box.hidden=false;})();</script>")
     body=(nav(lang,rel,'')+
       f'<div class="page-plain"><div class="wrap"><div class="kicker" data-n="{t(lang,"ty_k")}"><span class="line"></span></div>'
       f'<h1>{t(lang,"ty_h")}</h1><p class="lead">{t(lang,"ty_p")}</p>'
-      f'<p style="margin-top:1.6em"><a href="{u(P,lang,"")}" class="btn light">{t(lang,"ty_home")}</a></p></div></div>'
+      f'<div id="ty-summary" class="ty-summary" hidden><div class="cap">{sumhead}</div><dl>{rows}</dl></div>'
+      f'<p class="ty-urgent">{urgent}</p>'
+      '<div class="ty-contact">'
+      '<a href="tel:+393484258317">+39 348 425 8317</a>'
+      '<a href="https://wa.me/393484258317" target="_blank" rel="noopener">WhatsApp</a>'
+      '<a href="mailto:hello@mountain-elopement.com">hello@mountain-elopement.com</a>'
+      '<a href="https://www.instagram.com/mountainelopement/" target="_blank" rel="noopener">Instagram</a></div>'
+      f'<p style="margin-top:2.2em"><a href="{u(P,lang,"")}" class="btn solid">{t(lang,"ty_home")}</a></p></div></div>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,TITLES['thankyou'][lang],DESC['thankyou'][lang],noindex=True)+body+scripts(P))
+    write(lang,rel,head(lang,rel,TITLES['thankyou'][lang],DESC['thankyou'][lang],noindex=True)+body+scripts(P,ty_js))
 
 def build_legal(lang):
     for slug,key in [('imprint','lg_imprint'),('privacy-policy','lg_privacy')]:

@@ -10,7 +10,7 @@ for dp,_,fs in os.walk(ROOT):
         # collect href/src (skip http, mailto, #, javascript)
         refs=re.findall(r'(?:href|src)="([^"]+)"',html)
         for r in refs:
-            if r.startswith(('http','mailto:','#','javascript:','data:')): continue
+            if r.startswith(('http','mailto:','tel:','#','javascript:','data:')): continue
             target=os.path.normpath(os.path.join(base,r))
             checked+=1
             if not os.path.exists(target):
