@@ -1454,7 +1454,7 @@ def build_contact(lang):
       '<p id="ce-status" class="ce-status" role="status" aria-live="polite"></p>'
       '</form>'
       f'<aside class="contact-side reveal"><img src="{P}img/page/contact.webp" alt="Mountain Elopement">'
-      '<div class="info"><div><strong>Email</strong> &mdash; hello@mountain-elopement.com</div>'
+      '<div class="info"><div><strong>Email</strong> &mdash; info@mountain-elopement.com</div>'
       '<div><strong>WhatsApp</strong> &mdash; +39 348 425 8317</div>'
       f'<div><strong>{t(lang,"ct_based")}</strong> &mdash; {t(lang,"ct_based_v")}</div>'
       '<div><strong>Instagram</strong> &mdash; @mountainelopement</div></div></aside></div></section>'
@@ -1491,7 +1491,7 @@ def build_thankyou(lang):
       '<div class="ty-contact">'
       '<a href="tel:+393484258317">+39 348 425 8317</a>'
       '<a href="https://wa.me/393484258317" target="_blank" rel="noopener">WhatsApp</a>'
-      '<a href="mailto:hello@mountain-elopement.com">hello@mountain-elopement.com</a>'
+      '<a href="mailto:info@mountain-elopement.com">info@mountain-elopement.com</a>'
       '<a href="https://www.instagram.com/mountainelopement/" target="_blank" rel="noopener">Instagram</a></div>'
       f'<p style="margin-top:2.2em"><a href="{u(P,lang,"")}" class="btn solid">{t(lang,"ty_home")}</a></p></div></div>'
       +footer(lang,rel))

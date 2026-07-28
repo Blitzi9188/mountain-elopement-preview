@@ -4,7 +4,7 @@
 // Benötigte Umgebungsvariablen (Cloudflare Pages → Settings → Environment variables):
 //   TURNSTILE_SECRET_KEY  — Secret-Key des Turnstile-Widgets
 //   RESEND_API_KEY        — API-Key von https://resend.com
-//   FROM_EMAIL            — verifizierter Absender, z. B. "Mountain Elopement <hello@mountain-elopement.com>"
+//   FROM_EMAIL            — verifizierter Absender, z. B. "Mountain Elopement <info@mountain-elopement.com>"
 //   TO_EMAIL              — Empfängeradresse für Anfragen
 
 export async function onRequestPost({ request, env }) {
