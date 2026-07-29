@@ -387,7 +387,7 @@ STORIES = [
 
 # Guides (elopement-specific, distinct from the wedding-photographer site)
 GUIDES = [
- {'slug':'dolomites-elopement-guide','img':'s08',
+ {'slug':'dolomites-elopement-guide','img':'s24',
   'title':{'en':'How to Elope in the Dolomites','de':'Elopement in den Dolomiten','es':'Cómo fugarse en los Dolomitas'},
   'excerpt':{'en':'Everything you need to marry among Italy\'s most beautiful peaks.','de':'Alles, was ihr braucht, um zwischen Italiens schönsten Gipfeln zu heiraten.','es':'Todo lo que necesitáis para casaros entre las cumbres más bellas de Italia.'},
   'intro':{'en':'The Dolomites are one of Europe\'s most breathtaking places to elope — dramatic peaks, turquoise lakes and light that turns the rock pink at dawn. Here is how to make your day here effortless.',
@@ -1078,7 +1078,7 @@ def build_howto(lang):
       '<section><div class="wrap feature"><div class="body reveal">'
       f'<div class="kicker" data-n="01">{t(lang,"ht_s1k")}<span class="line"></span></div><h2>{t(lang,"ht_s1h")}</h2>'
       f'<p class="dropcap">{t(lang,"ht_s1p1")}</p><p>{t(lang,"ht_s1p2")}</p><p>{t(lang,"ht_s1p3")}</p></div>'
-      f'<div class="media reveal"><img src="{P}img/stories/s08.webp" alt="Dolomites"><div class="caption">{t(lang,"ht_cap")}</div></div></div></section>'
+      f'<div class="media reveal"><img src="{P}img/stories/s24.webp" alt="Dolomites"><div class="caption">{t(lang,"ht_cap")}</div></div></div></section>'
       '<hr class="hr"><section><div class="wrap"><div class="section-head reveal">'
       f'<div class="kicker" data-n="02">{t(lang,"ht_e_k")}<span class="line"></span></div><h2>{t(lang,"ht_e_h")}</h2></div>'
       '<div class="story-grid" style="align-items:start">'
