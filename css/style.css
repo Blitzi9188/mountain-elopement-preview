@@ -414,6 +414,11 @@ footer .fine{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
 .suntimes th{font-family:var(--sans);text-transform:uppercase;letter-spacing:.12em;font-size:11px;color:var(--accent);font-weight:600}
 .suntimes td{color:var(--ink-2);font-variant-numeric:tabular-nums}
 .suntimes td:first-child{color:var(--ink);font-family:var(--serif);font-size:17px}
+.boathours{width:100%;border-collapse:collapse;margin:.4em 0 .8em;font-size:15px}
+.boathours th,.boathours td{text-align:left;padding:.62em .6em;border-bottom:1px solid var(--line);white-space:nowrap}
+.boathours th{font-family:var(--sans);text-transform:uppercase;letter-spacing:.12em;font-size:11px;color:var(--accent);font-weight:600}
+.boathours td{font-family:var(--serif);color:var(--ink-2);font-variant-numeric:tabular-nums}
+.boathours td:first-child{color:var(--ink)}
 .cc{position:fixed;left:0;right:0;bottom:0;z-index:1000;background:var(--paper);border-top:1px solid var(--line);box-shadow:0 -6px 24px rgba(0,0,0,.06)}
 .cc[hidden]{display:none}
 .cc-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;padding:16px clamp(16px,4vw,44px)}

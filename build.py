@@ -1763,7 +1763,11 @@ REGION_FAQ=[
  ("What if the weather is bad?",
   "It will be, at some point &mdash; this is the high Alps. We build flexibility into the schedule, watch the forecast in the days before, and can move the ceremony to a different valley or another morning. Fog and rain also make some of the most atmospheric photographs we have ever taken."),
  ("Can we get married on the Seceda ridge or at Lago di Braies?",
-  "Yes to both, with planning. Seceda means either an early hike or an overnight stay nearby, since the cable car starts after sunrise. Braies means arriving before the access restriction begins, or coming outside the high season. Both are among our favourite places on earth."),
+  "Yes to both, with planning. Seceda means either an early hike or an overnight stay nearby, since the cable car starts after sunrise. Braies means arriving before 09:00 or after 16:00 between 1 July and 15 September, or coming outside the high season. Both are among our favourite places on earth."),
+ ("Can you fly a drone at Lago di Braies?",
+  "No. Since 2026 drones are strictly prohibited at the lake, patrolled by rangers and subject to fines. We plan without aerial footage there &mdash; and honestly, the pictures from the shoreline are the ones you will hang on your wall."),
+ ("Do we need a reservation to drive to Lago di Braies?",
+  "Between 1 July and 15 September, yes &mdash; driving to the lake from 09:00 to 16:00 requires an advance online reservation. For sunrise or late-afternoon sessions outside those hours it is not needed, which is another reason we plan around that light."),
  ("How far do we have to walk?",
   "That is entirely your choice. Some of our locations are a two-minute stroll from the car; others are a two-hour hike. Tell us how you feel about walking in a wedding dress and we will build the day around your answer."),
  ("How far in advance should we book?",
@@ -1799,7 +1803,20 @@ def build_region(lang):
       +p('<strong>The single most useful decision you can make is to start at sunrise.</strong> Not for the light alone, though the light is extraordinary. At sunrise you have the place to yourself, the access restrictions have not started yet, and by the time the first buses arrive you are already having breakfast somewhere warm. Every practical problem in the Dolomites &mdash; parking, permits, crowds &mdash; gets easier the earlier you begin.')
       +h2('Where to exchange your vows')
       +p('<strong>Seceda.</strong> The ridge that everyone has seen and few have stood on. The cable car from Ortisei runs roughly late May to early November; the first departure is well after sunrise, so a true dawn ceremony here means either hiking up in the dark or staying the night nearby. Worth every bit of the effort &mdash; the ridgeline falls away like the prow of a ship.')
-      +p('<strong>Lago di Braies.</strong> The turquoise lake with the wooden boathouse. Access is regulated in high season: between <strong>1 July and 15 September</strong>, driving to the lake is closed from <strong>9:00 to 16:00</strong> unless you have pre-booked a parking space. Outside those hours &mdash; and in the low season &mdash; you can simply drive up. Another reason we love starting at first light: at six in the morning the road is open, the car park is empty, and the lake is glass.')
+      +p('<strong>Lago di Braies.</strong> The turquoise lake with the wooden boathouse &mdash; and the most regulated spot in the Dolomites. From <strong>1 July to 15 September</strong> you may only drive to the lake between <strong>09:00 and 16:00</strong>, and only with an advance online reservation. Outside that window the road is simply open.')
+      +p('That restriction is the best thing that ever happened to our photographs. It points straight at the two hours worth having anyway: <strong>before 09:00</strong> and <strong>after 16:00 into sunset</strong>. That is when the water goes still, the peaks turn pink, and the shoreline empties out. So that is when we plan your ceremony.')
+      +p('<strong>The historic rowing boats</strong> run seasonally, roughly late April to early November, with the longest hours in high summer (see the table below). If the boathouse is part of your picture, we build the timing around the boat hours. <strong>Shooting slots at the boathouse can be booked from 2 February each year</strong> &mdash; for peak dates, that is the day to be ready.')
+      +p('<strong>One hard rule: no drones.</strong> Since 2026 drones are strictly prohibited at the lake. Rangers patrol it and issue fines. If someone offers you aerial footage of Lago di Braies, they are either working somewhere else or breaking the law.')
+      +'<h3 style="font-family:var(--serif);font-weight:400;font-size:20px;margin:1.5em 0 .35em">Boat hours at Lago di Braies, 2026</h3>'
+      +'<div style="overflow-x:auto"><table class="boathours"><thead><tr><th>Period</th><th>First boat</th><th>Last boat</th></tr></thead><tbody>'
+      +'<tr><td>25 Apr &ndash; 22 May 2026</td><td>10:00</td><td>16:00</td></tr>'
+      +'<tr><td>23 May &ndash; 19 Jun 2026</td><td>09:00</td><td>17:30</td></tr>'
+      +'<tr><td>20 Jun &ndash; 06 Sep 2026</td><td>08:00</td><td>18:00</td></tr>'
+      +'<tr><td>07 Sep &ndash; 27 Sep 2026</td><td>09:00</td><td>17:30</td></tr>'
+      +'<tr><td>28 Sep &ndash; 30 Oct 2026</td><td>10:00</td><td>16:30</td></tr>'
+      +'<tr><td>31 Oct &ndash; 01 Nov 2026</td><td>09:00</td><td>16:30</td></tr>'
+      +'</tbody></table></div>'
+      +'<p style="color:var(--ink-2);font-size:13px;font-style:italic;margin:.3em 0 0">Hours are set by the boathouse operator and can change &mdash; we confirm them before every booking.</p>'
       +p('<strong>Tre Cime di Lavaredo.</strong> The three towers. The toll road from Lago d&rsquo;Antorno up to Rifugio Auronzo requires an <strong>advance online booking</strong> with your licence plate, and the road ends five kilometres later at 2,320&thinsp;m &mdash; which means you reach the base without a serious climb. The walk around the towers is gentle enough for a wedding dress and good shoes.')
       +p('<strong>Lagazuoi, Cadini di Misurina, the Prags valley</strong> and a dozen quieter shoulders and saddles that never make the guidebooks. Part of our job is matching a place to your fitness, your dress, and how far you actually want to walk before saying yes.')
       +h2('Making it legal')
