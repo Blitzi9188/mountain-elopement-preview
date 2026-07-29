@@ -44,15 +44,16 @@ def consent_banner(lang,P):
       '<button type="button" id="cc-decline" class="cc-btn">'+CC['decline'][lang]+'</button>'
       '<button type="button" id="cc-accept" class="cc-btn cc-btn-primary">'+CC['accept'][lang]+'</button>'
       '</div></div></div>'
-      "<script>(function(){var cc=document.getElementById('cc');"
-      "function save(a){try{localStorage.setItem('me_consent',JSON.stringify({analytics:a,ts:Date.now()}));}catch(e){}}"
-      "function set(a){save(a);if(cc)cc.hidden=true;if(a){if(window.gtag)gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});if(window.meLoadGTM)meLoadGTM();}}"
-      "window.meCookieOpen=function(){if(cc)cc.hidden=false;};"
-      "var a=document.getElementById('cc-accept');if(a)a.addEventListener('click',function(){set(true);});"
-      "var d=document.getElementById('cc-decline');if(d)d.addEventListener('click',function(){set(false);});"
-      "var o=document.getElementById('cc-open');if(o)o.addEventListener('click',function(e){e.preventDefault();meCookieOpen();});"
-      "var c=null;try{c=JSON.parse(localStorage.getItem('me_consent')||'null');}catch(e){}"
-      "if(!c&&cc)cc.hidden=false;})();</script>")
+      "<script>(function(){var KEY='me_consent';var el=document.getElementById('cc');if(!el)return;"
+      "function save(analytics){try{localStorage.setItem(KEY,JSON.stringify({analytics:analytics,ts:Date.now()}));}catch(e){}"
+      "if(window.gtag){gtag('consent','update',{ad_storage:analytics?'granted':'denied',ad_user_data:analytics?'granted':'denied',ad_personalization:analytics?'granted':'denied',analytics_storage:analytics?'granted':'denied'});}"
+      "if(analytics&&window.meLoadGTM)meLoadGTM();el.hidden=true;}"
+      "var vorhanden=null;try{vorhanden=JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){}"
+      "if(!vorhanden)el.hidden=false;"
+      "document.getElementById('cc-accept').addEventListener('click',function(){save(true);});"
+      "document.getElementById('cc-decline').addEventListener('click',function(){save(false);});"
+      "document.querySelectorAll('[data-cc-reopen]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();el.hidden=false;});});"
+      "})();</script>")
 
 LANGS = ['en','de','es','it']         # en = default at root
 LNAME = {'en':'EN','de':'DE','es':'ES','it':'IT'}
@@ -973,7 +974,7 @@ def footer(lang,rel):
       f'<li><a href="{P_PLAN[1]}" target="_blank" rel="noopener">{t(lang,"f_role_plan")} &middot; Dolomites Wedding Planner</a></li>'
       '<li><a href="https://www.instagram.com/mountainelopement/" target="_blank" rel="noopener">Instagram</a></li></ul></div></div>'
       f'<div class="fine"><span>&copy; 2026 mountain-elopement by blitzkneisser.com</span>'
-      f'<span><a href="{u(P,lang,"imprint/")}">{t(lang,"f_imprint")}</a> &middot; <a href="{u(P,lang,"privacy-policy/")}">{t(lang,"f_privacy")}</a> &middot; <a href="#" id="cc-open">{CC["settings"][lang]}</a></span></div></div></footer>'
+      f'<span><a href="{u(P,lang,"imprint/")}">{t(lang,"f_imprint")}</a> &middot; <a href="{u(P,lang,"privacy-policy/")}">{t(lang,"f_privacy")}</a> &middot; <a href="#" data-cc-reopen>{CC["settings"][lang]}</a></span></div></div></footer>'
       +consent_banner(lang,P))
 
 def scripts(P,extra=''): return f'<script src="{P}js/site.js"></script>{extra}</body></html>'
