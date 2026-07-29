@@ -11,8 +11,43 @@ TURNSTILE_SITEKEY = '0x4AAAAAAEAJ_UFGxkdE5SBY'
 CONTACT_ENDPOINT  = '/api/contact'
 
 GTM_ID='GTM-MT6KGS4F'
-GTM_HEAD="<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','"+GTM_ID+"');</script>"
-GTM_BODY='<noscript><iframe src="https://www.googletagmanager.com/ns.html?id='+GTM_ID+'" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>'
+# Google Consent Mode v2 — everything DENIED by default; GTM is loaded ONLY after
+# opt-in (or when a prior consent is restored from localStorage['me_consent']).
+GTM_HEAD=(
+  "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}"
+  "gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',functionality_storage:'granted',security_storage:'granted',wait_for_update:500});"
+  "window.meLoadGTM=function(){if(window.__gtmLoaded)return;window.__gtmLoaded=true;(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','"+GTM_ID+"');};"
+  "try{var c=JSON.parse(localStorage.getItem('me_consent')||'null');if(c&&c.analytics){gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});window.meLoadGTM();}}catch(e){}"
+  "</script>")
+GTM_BODY=''  # strict Consent Mode: no unconditional GTM (noscript) load before opt-in
+
+# Cookie-consent banner — self-contained i18n; sets localStorage['me_consent'] and,
+# on accept, updates Consent Mode + calls meLoadGTM(). meCookieOpen() reopens it (footer link).
+CC={
+ 'text':{'en':'We use cookies for anonymous statistics (Google Analytics via Google Tag Manager) to improve this site. Analytics runs only with your consent.',
+         'de':'Wir verwenden Cookies für anonyme Statistik (Google Analytics über Google Tag Manager), um die Website zu verbessern. Die Analyse läuft nur mit deiner Einwilligung.',
+         'es':'Usamos cookies para estadísticas anónimas (Google Analytics vía Google Tag Manager) para mejorar el sitio. La analítica solo se activa con tu consentimiento.',
+         'it':'Usiamo cookie per statistiche anonime (Google Analytics tramite Google Tag Manager) per migliorare il sito. L\'analisi parte solo con il tuo consenso.'},
+ 'more':{'en':'Privacy Policy','de':'Datenschutz','es':'Política de privacidad','it':'Privacy'},
+ 'accept':{'en':'Accept','de':'Zustimmen','es':'Aceptar','it':'Accetto'},
+ 'decline':{'en':'Decline','de':'Ablehnen','es':'Rechazar','it':'Rifiuto'},
+ 'settings':{'en':'Cookie settings','de':'Cookie-Einstellungen','es':'Cookies','it':'Cookie'}}
+
+def consent_banner(lang,P):
+    priv=u(P,lang,'privacy-policy/')
+    return (
+      '<div id="cc-banner" class="cc-banner" role="dialog" aria-label="Cookie consent" hidden>'
+      '<p class="cc-text">'+CC['text'][lang]+' <a href="'+priv+'">'+CC['more'][lang]+'</a></p>'
+      '<div class="cc-actions">'
+      '<button type="button" class="cc-btn cc-decline" onclick="meConsent(false)">'+CC['decline'][lang]+'</button>'
+      '<button type="button" class="cc-btn cc-accept" onclick="meConsent(true)">'+CC['accept'][lang]+'</button>'
+      '</div></div>'
+      "<script>(function(){function s(a){try{localStorage.setItem('me_consent',JSON.stringify({analytics:a,ts:Date.now()}));}catch(e){}}"
+      "window.meConsent=function(a){s(a);var b=document.getElementById('cc-banner');if(b)b.hidden=true;"
+      "if(a){if(window.gtag)gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});if(window.meLoadGTM)meLoadGTM();}};"
+      "window.meCookieOpen=function(){var b=document.getElementById('cc-banner');if(b)b.hidden=false;};"
+      "var c=null;try{c=JSON.parse(localStorage.getItem('me_consent')||'null');}catch(e){}"
+      "if(!c){var b=document.getElementById('cc-banner');if(b)b.hidden=false;}})();</script>")
 
 LANGS = ['en','de','es','it']         # en = default at root
 LNAME = {'en':'EN','de':'DE','es':'ES','it':'IT'}
@@ -933,7 +968,8 @@ def footer(lang,rel):
       f'<li><a href="{P_PLAN[1]}" target="_blank" rel="noopener">{t(lang,"f_role_plan")} &middot; Dolomites Wedding Planner</a></li>'
       '<li><a href="https://www.instagram.com/mountainelopement/" target="_blank" rel="noopener">Instagram</a></li></ul></div></div>'
       f'<div class="fine"><span>&copy; 2026 mountain-elopement by blitzkneisser.com</span>'
-      f'<span><a href="{u(P,lang,"imprint/")}">{t(lang,"f_imprint")}</a> &middot; <a href="{u(P,lang,"privacy-policy/")}">{t(lang,"f_privacy")}</a></span></div></div></footer>')
+      f'<span><a href="{u(P,lang,"imprint/")}">{t(lang,"f_imprint")}</a> &middot; <a href="{u(P,lang,"privacy-policy/")}">{t(lang,"f_privacy")}</a> &middot; <a href="#" onclick="meCookieOpen();return false">{CC["settings"][lang]}</a></span></div></div></footer>'
+      +consent_banner(lang,P))
 
 def scripts(P,extra=''): return f'<script src="{P}js/site.js"></script>{extra}</body></html>'
 
