@@ -375,9 +375,10 @@ footer .fine{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
 .team-card p{font-size:16px;color:var(--ink-2);flex:1;margin:0 0 20px}
 .partner-inline{font-family:var(--sans);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;
   color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:2px}
-.booking-strip{background:var(--ink);color:var(--paper);font-family:var(--sans);
-  font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-align:center;padding:9px 16px}
-.booking-strip a{border-bottom:1px solid rgba(255,255,255,.5)}
+.booking-strip{background:var(--accent);color:#fff;font-family:var(--sans);
+  font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-align:center;padding:10px 16px}
+.booking-strip a{color:#fff;border-bottom:1px solid rgba(255,255,255,.6)}
+.booking-strip a:hover{border-bottom-color:#fff}
 
 /* ---- Guide region map ---- */
 .guide-map{position:relative;border:1px solid var(--line);background:var(--paper);overflow:hidden}
