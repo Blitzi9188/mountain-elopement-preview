@@ -1070,9 +1070,9 @@ def build_home(lang):
       f'<div class="pillar"><h3>{t(lang,"diff4_h")}</h3><p>{t(lang,"diff4_p")}</p></div></div>'
       '</div></section>'
       '<hr class="hr"><section><div class="wrap"><div class="section-head reveal">'
-      f'<div class="kicker" data-n="02">{t(lang,"sel_k")}<span class="line"></span></div><h2>{t(lang,"sel_h")}</h2></div><div class="story-grid">'
+      f'<div class="kicker" data-n="02">{t(lang,"sel_k")}<span class="line"></span></div><h2>{t(lang,"sel_h")}</h2></div><div class="story-grid preview6">'
       +story_card(lang,P,STORIES[0],big=True)+story_card(lang,P,STORIES[7],big=True)
-      +story_card(lang,P,STORIES[3])+story_card(lang,P,STORIES[4])+story_card(lang,P,STORIES[5])
+      +story_card(lang,P,STORIES[3])+story_card(lang,P,STORIES[4])+story_card(lang,P,STORIES[5])+story_card(lang,P,STORIES[10])
       +f'</div><div style="margin-top:44px" class="reveal"><a href="{u(P,lang,"stories-elopement-mountain/")}" class="btn">{t(lang,"view_all")}</a></div></div></section>'
       '<section style="padding-top:0"><div class="wrap"><div class="figures reveal">'
       f'<div class="f"><div class="num" data-to="125">0</div><div class="lbl">{t(lang,"fig1")}</div></div>'

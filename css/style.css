@@ -135,6 +135,7 @@ section{padding:clamp(38px,5vw,80px) 0}
 .story-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(20px,3vw,44px) clamp(18px,2.4vw,32px)}
 .st{display:block;grid-column:span 4}
 .st.big{grid-column:span 6}
+@media(min-width:1025px){.story-grid.preview6 .st:not(.big){grid-column:span 3}}  /* home preview: 2 big + 4 smaller = 6 */
 .st .imgwrap{overflow:hidden;background:#ddd;aspect-ratio:4/5}
 .st.big .imgwrap{aspect-ratio:3/2}
 .st img{width:100%;height:100%;object-fit:cover;transition:transform .9s ease}
