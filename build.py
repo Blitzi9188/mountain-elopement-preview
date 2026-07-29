@@ -31,23 +31,28 @@ CC={
  'more':{'en':'Privacy Policy','de':'Datenschutz','es':'Política de privacidad','it':'Privacy'},
  'accept':{'en':'Accept','de':'Zustimmen','es':'Aceptar','it':'Accetto'},
  'decline':{'en':'Decline','de':'Ablehnen','es':'Rechazar','it':'Rifiuto'},
- 'settings':{'en':'Cookie settings','de':'Cookie-Einstellungen','es':'Cookies','it':'Cookie'}}
+ 'settings':{'en':'Cookie settings','de':'Cookie-Einstellungen','es':'Cookies','it':'Cookie'},
+ 'aria':{'en':'Cookie consent','de':'Cookie-Einwilligung','es':'Consentimiento de cookies','it':'Consenso ai cookie'}}
 
 def consent_banner(lang,P):
     priv=u(P,lang,'privacy-policy/')
     return (
-      '<div id="cc-banner" class="cc-banner" role="dialog" aria-label="Cookie consent" hidden>'
+      '<div id="cc" class="cc" role="dialog" aria-live="polite" aria-label="'+CC['aria'][lang]+'" hidden>'
+      '<div class="cc-inner">'
       '<p class="cc-text">'+CC['text'][lang]+' <a href="'+priv+'">'+CC['more'][lang]+'</a></p>'
       '<div class="cc-actions">'
-      '<button type="button" class="cc-btn cc-decline" onclick="meConsent(false)">'+CC['decline'][lang]+'</button>'
-      '<button type="button" class="cc-btn cc-accept" onclick="meConsent(true)">'+CC['accept'][lang]+'</button>'
-      '</div></div>'
-      "<script>(function(){function s(a){try{localStorage.setItem('me_consent',JSON.stringify({analytics:a,ts:Date.now()}));}catch(e){}}"
-      "window.meConsent=function(a){s(a);var b=document.getElementById('cc-banner');if(b)b.hidden=true;"
-      "if(a){if(window.gtag)gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});if(window.meLoadGTM)meLoadGTM();}};"
-      "window.meCookieOpen=function(){var b=document.getElementById('cc-banner');if(b)b.hidden=false;};"
+      '<button type="button" id="cc-decline" class="cc-btn">'+CC['decline'][lang]+'</button>'
+      '<button type="button" id="cc-accept" class="cc-btn cc-btn-primary">'+CC['accept'][lang]+'</button>'
+      '</div></div></div>'
+      "<script>(function(){var cc=document.getElementById('cc');"
+      "function save(a){try{localStorage.setItem('me_consent',JSON.stringify({analytics:a,ts:Date.now()}));}catch(e){}}"
+      "function set(a){save(a);if(cc)cc.hidden=true;if(a){if(window.gtag)gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});if(window.meLoadGTM)meLoadGTM();}}"
+      "window.meCookieOpen=function(){if(cc)cc.hidden=false;};"
+      "var a=document.getElementById('cc-accept');if(a)a.addEventListener('click',function(){set(true);});"
+      "var d=document.getElementById('cc-decline');if(d)d.addEventListener('click',function(){set(false);});"
+      "var o=document.getElementById('cc-open');if(o)o.addEventListener('click',function(e){e.preventDefault();meCookieOpen();});"
       "var c=null;try{c=JSON.parse(localStorage.getItem('me_consent')||'null');}catch(e){}"
-      "if(!c){var b=document.getElementById('cc-banner');if(b)b.hidden=false;}})();</script>")
+      "if(!c&&cc)cc.hidden=false;})();</script>")
 
 LANGS = ['en','de','es','it']         # en = default at root
 LNAME = {'en':'EN','de':'DE','es':'ES','it':'IT'}
@@ -968,7 +973,7 @@ def footer(lang,rel):
       f'<li><a href="{P_PLAN[1]}" target="_blank" rel="noopener">{t(lang,"f_role_plan")} &middot; Dolomites Wedding Planner</a></li>'
       '<li><a href="https://www.instagram.com/mountainelopement/" target="_blank" rel="noopener">Instagram</a></li></ul></div></div>'
       f'<div class="fine"><span>&copy; 2026 mountain-elopement by blitzkneisser.com</span>'
-      f'<span><a href="{u(P,lang,"imprint/")}">{t(lang,"f_imprint")}</a> &middot; <a href="{u(P,lang,"privacy-policy/")}">{t(lang,"f_privacy")}</a> &middot; <a href="#" onclick="meCookieOpen();return false">{CC["settings"][lang]}</a></span></div></div></footer>'
+      f'<span><a href="{u(P,lang,"imprint/")}">{t(lang,"f_imprint")}</a> &middot; <a href="{u(P,lang,"privacy-policy/")}">{t(lang,"f_privacy")}</a> &middot; <a href="#" id="cc-open">{CC["settings"][lang]}</a></span></div></div></footer>'
       +consent_banner(lang,P))
 
 def scripts(P,extra=''): return f'<script src="{P}js/site.js"></script>{extra}</body></html>'

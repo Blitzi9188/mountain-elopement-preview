@@ -414,14 +414,14 @@ footer .fine{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
 .suntimes th{font-family:var(--sans);text-transform:uppercase;letter-spacing:.12em;font-size:11px;color:var(--accent);font-weight:600}
 .suntimes td{color:var(--ink-2);font-variant-numeric:tabular-nums}
 .suntimes td:first-child{color:var(--ink);font-family:var(--serif);font-size:17px}
-.cc-banner{position:fixed;left:0;right:0;bottom:0;z-index:1000;background:var(--paper);border-top:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;padding:16px clamp(16px,4vw,44px);box-shadow:0 -6px 24px rgba(0,0,0,.06)}
-.cc-banner[hidden]{display:none}
+.cc{position:fixed;left:0;right:0;bottom:0;z-index:1000;background:var(--paper);border-top:1px solid var(--line);box-shadow:0 -6px 24px rgba(0,0,0,.06)}
+.cc[hidden]{display:none}
+.cc-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;padding:16px clamp(16px,4vw,44px)}
 .cc-text{margin:0;flex:1 1 320px;font-size:13.5px;line-height:1.55;color:var(--ink-2)}
 .cc-text a{color:var(--ink);text-decoration:underline}
 .cc-actions{display:flex;gap:10px;flex:0 0 auto}
-.cc-btn{font-family:var(--sans);font-size:12px;text-transform:uppercase;letter-spacing:.1em;padding:11px 22px;border:1px solid var(--ink);cursor:pointer;background:transparent;color:var(--ink);transition:opacity .2s}
-.cc-accept{background:var(--ink);color:var(--paper)}
-.cc-decline{border-color:var(--line);color:var(--ink-2)}
+.cc-btn{font-family:var(--sans);font-size:12px;text-transform:uppercase;letter-spacing:.1em;padding:11px 22px;border:1px solid var(--line);cursor:pointer;background:transparent;color:var(--ink-2);transition:opacity .2s}
+.cc-btn-primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .cc-btn:hover{opacity:.8}
 @media(max-width:560px){.cc-actions{flex:1 1 100%}.cc-btn{flex:1}}
 
