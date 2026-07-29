@@ -11,15 +11,16 @@ TURNSTILE_SITEKEY = '0x4AAAAAAEAJ_UFGxkdE5SBY'
 CONTACT_ENDPOINT  = '/api/contact'
 
 GTM_ID='GTM-MT6KGS4F'
-# Google Consent Mode v2 — everything DENIED by default; GTM is loaded ONLY after
-# opt-in (or when a prior consent is restored from localStorage['me_consent']).
+# Google Consent Mode v2 (standard) — consent defaults to DENIED, then GTM loads on every
+# page. Prior consent is restored from localStorage['me_consent']; the banner flips storage
+# to granted/denied. GTM always loads; Consent Mode gates cookies/storage.
 GTM_HEAD=(
   "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}"
   "gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',functionality_storage:'granted',security_storage:'granted',wait_for_update:500});"
-  "window.meLoadGTM=function(){if(window.__gtmLoaded)return;window.__gtmLoaded=true;(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','"+GTM_ID+"');};"
-  "try{var c=JSON.parse(localStorage.getItem('me_consent')||'null');if(c&&c.analytics){gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});window.meLoadGTM();}}catch(e){}"
+  "try{var c=JSON.parse(localStorage.getItem('me_consent')||'null');if(c&&c.analytics){gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});}}catch(e){}"
+  "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','"+GTM_ID+"');"
   "</script>")
-GTM_BODY=''  # strict Consent Mode: no unconditional GTM (noscript) load before opt-in
+GTM_BODY='<noscript><iframe src="https://www.googletagmanager.com/ns.html?id='+GTM_ID+'" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>'
 
 # Cookie-consent banner — self-contained i18n; sets localStorage['me_consent'] and,
 # on accept, updates Consent Mode + calls meLoadGTM(). meCookieOpen() reopens it (footer link).
@@ -47,7 +48,7 @@ def consent_banner(lang,P):
       "<script>(function(){var KEY='me_consent';var el=document.getElementById('cc');if(!el)return;"
       "function save(analytics){try{localStorage.setItem(KEY,JSON.stringify({analytics:analytics,ts:Date.now()}));}catch(e){}"
       "if(window.gtag){gtag('consent','update',{ad_storage:analytics?'granted':'denied',ad_user_data:analytics?'granted':'denied',ad_personalization:analytics?'granted':'denied',analytics_storage:analytics?'granted':'denied'});}"
-      "if(analytics&&window.meLoadGTM)meLoadGTM();el.hidden=true;}"
+      "el.hidden=true;}"
       "var vorhanden=null;try{vorhanden=JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){}"
       "if(!vorhanden)el.hidden=false;"
       "document.getElementById('cc-accept').addEventListener('click',function(){save(true);});"
