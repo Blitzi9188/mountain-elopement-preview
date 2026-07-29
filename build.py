@@ -86,7 +86,7 @@ T = {
          'packages':{'en':'Price List','de':'Preise','es':'Precios'},
          'team':{'en':'Team','de':'Team','es':'Equipo'},
          'contact':{'en':'Contact','de':'Kontakt','es':'Contacto'}},
- 'booking':{'en':'Now booking 2027 &middot; 2028 dates','de':'Buchbar 2027 &middot; Termine 2028','es':'Reservas 2027 &middot; fechas 2028'},
+ 'booking':{'en':'Now booking 2027 &middot; 2028','de':'Buchbar 2027 &middot; Termine 2028','es':'Reservas 2027 &middot; fechas 2028'},
  'booking_link':{'en':'on request','de':'auf Anfrage','es':'a consulta'},
  # footer
  'f_tag':{'en':'Editorial elopement photography &amp; planning in the Dolomites and the Alps.',
@@ -938,10 +938,9 @@ def nav(lang, rel, active, booking=False):
         return s+'</div>'
     langsw=langs_block('langs')                 # bar (desktop)
     langs_menu=langs_block('langs langs-in-menu')  # inside dropdown (mobile)
-    strip=''
-    if booking:
-        strip=(f'<div class="booking-strip">{t(lang,"booking")} '
-               f'<a href="{u(P,lang,"get-in-touch/")}">{t(lang,"booking_link")}</a></div>')
+    # Booking strip on every page (booking param kept for compatibility)
+    strip=(f'<div class="booking-strip">{t(lang,"booking")} '
+           f'<a href="{u(P,lang,"get-in-touch/")}">{t(lang,"booking_link")}</a></div>')
     return (strip+'<header class="masthead"><div class="bar">'
         f'<a class="brand" href="{u(P,lang,"")}"><img class="brand-mark" src="{P}img/logo/mark-dark.png" alt="Mountain Elopement logo"><span class="brand-word">Mountain Elopement</span></a>'
         f'<nav id="nav">{links}{langs_menu}</nav>'
