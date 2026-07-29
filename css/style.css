@@ -475,7 +475,11 @@ footer .fine{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
   .st,.st.big{grid-column:span 1}
   .gallery{columns:1}
   .figures{grid-template-columns:1fr 1fr}
-  .addons{grid-template-columns:1fr}
+  .addons{grid-template-columns:1fr 1fr;gap:10px}
+  .addon{padding:14px 15px}
+  .addon .a{font-size:16px;line-height:1.15}
+  .addon .p{font-size:11px;margin-top:6px}
+  .team-grid{grid-template-columns:1fr}
   .pillars{grid-template-columns:1fr}
   .cta .row{grid-template-columns:1fr}
   footer .cols{grid-template-columns:1fr}
