@@ -1404,16 +1404,6 @@ def build_packages(lang):
     t1=tier('01',t(lang,'pk_l1'),t(lang,'pk_t1'),eur_de(PKG_EUR[0]),[f'{photoword} &mdash; 50&ndash;80 {imgword}',f'2&ndash;3 {hrs}',loc,concept,planningcall,gallery],tag=tag1)
     t2=tier('02',t(lang,'pk_l2'),t(lang,'pk_t2'),eur_de(PKG_EUR[1]),[f'{photoword} &mdash; 80&ndash;100 {imgword}',f'4&ndash;5 {hrs}',gropt,flowers,locplan,planningcall,weather,gallery],feat=True,tag=tag2)
     t3=tier('03',t(lang,'pk_l3'),t(lang,'pk_t3'),eur_de(PKG_EUR[2]),[f'{photoword} &mdash; 100&ndash;200 {imgword}',f'6&ndash;8 {hrs}',gr,flowers,fullplan,permits,weather,album,gallery],tag=tag3)
-    # add-on tiles — generated from ADDONS_DATA (same source as the calculator)
-    def ad_price(eur,kind):
-        if kind=='approx': return f'&asymp; &euro; {eur_de(eur)}'
-        if kind=='from':   return f'{t(lang,"ad_from")} &euro; {eur_de(eur)}'
-        if kind=='request':return t(lang,'ad_onreq')
-        return f'&euro; {eur_de(eur)}'
-    def ad_name(key):
-        nm=t(lang,key)
-        return f'<a href="{P_MUA[1]}" target="_blank" rel="noopener" style="color:inherit">{nm}</a>' if key=='ad_mua' else nm
-    addons=''.join(f'<div class="addon"><div class="a">{ad_name(k)}</div><div class="p">{ad_price(e,ki)}</div></div>' for k,e,ki in ADDONS_DATA)
     eurnote={'en':'All prices in EUR.','de':'Alle Preise in EUR.','es':'Todos los precios en EUR.','it':'Tutti i prezzi in EUR.'}[lang]
     fxnote={'en':'Indicative — the binding price is in EUR. Rates update daily.',
             'de':'Indikativ — verbindlich ist der EUR-Preis. Kurse aktualisieren sich täglich.',
@@ -1487,8 +1477,7 @@ def build_packages(lang):
       f'<section><div class="wrap">{curswitch}<div class="tiers reveal">{t1}{t2}{t3}</div>'
       f'<p class="small reveal cur-note" data-eur-note="{eurnote}" data-fx-note="{fxnote}" style="margin-top:18px;color:var(--ink-2)">{eurnote}</p>'
       f'<p class="lead reveal" style="max-width:760px;margin-top:clamp(32px,4vw,52px)">{t(lang,"pk_note")}</p>'
-      f'<div class="section-head reveal" style="margin-top:clamp(40px,6vw,72px)"><div class="kicker" data-n="Add-ons">{t(lang,"pk_addk")}<span class="line"></span></div></div>'
-      f'<div class="addons reveal">{addons}</div></div></section>'
+      '</div></section>'
       +calc+
       '<section class="band"><div class="wrap quote reveal">'
       f'<div class="kicker" data-n="{t(lang,"pk_band_k")}"><span class="line"></span></div>'
