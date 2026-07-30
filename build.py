@@ -294,7 +294,8 @@ T = {
  'ad_onreq':{'en':'on request','de':'auf Anfrage','es':'a consulta'},
  # price calculator
  'calc_k':{'en':'Calculator','de':'Rechner','es':'Calculadora','it':'Calcolatore'},
- 'calc_h':{'en':'Build your day','de':'Stellt euren Tag zusammen','es':'Componed vuestro día','it':'Componete la vostra giornata'},
+ 'calc_h':{'en':'Design your perfect elopement','de':'Euer perfektes Elopement gestalten','es':'Diseñad vuestro elopement perfecto','it':'Progettate il vostro elopement perfetto'},
+ 'calc_sub':{'en':'Planning your perfect mountain elopement','de':'Planung eures perfekten Elopements in den Bergen','es':'Planificación de vuestro elopement perfecto en la montaña','it':'La pianificazione del vostro elopement perfetto in montagna'},
  'calc_package':{'en':'Choose a package','de':'Paket wählen','es':'Elegid un paquete','it':'Scegliete un pacchetto'},
  'calc_addons':{'en':'Add-ons','de':'Zusatzoptionen','es':'Extras','it':'Extra'},
  'calc_total':{'en':'Your selection','de':'Eure Zusammenstellung','es':'Vuestra selección','it':'La vostra selezione'},
@@ -1448,6 +1449,7 @@ def build_packages(lang):
     add_opts=''.join(calc_opt(k,e,ki) for k,e,ki in ADDONS_DATA)
     calc=(f'<section class="calc-wrap"><div class="wrap">'
       f'<div class="section-head reveal"><div class="kicker" data-n="{t(lang,"calc_k")}"><span class="line"></span></div><h2>{t(lang,"calc_h")}</h2></div>'
+      f'<p class="lead reveal" style="max-width:640px;margin:-6px 0 30px;color:var(--ink-2)">{t(lang,"calc_sub")}</p>'
       f'<div class="calc reveal" data-note-from="{t(lang,"calc_note_from")}" data-note-request="{t(lang,"calc_note_request")}" data-from-word="{t(lang,"ad_from")}">'
       f'<fieldset class="calc-block"><legend>{t(lang,"calc_package")}</legend><div class="calc-opts" id="calc-packages">{pkg_opts}</div></fieldset>'
       f'<fieldset class="calc-block"><legend>{t(lang,"calc_addons")}</legend><div class="calc-opts" id="calc-addons">{add_opts}</div><p class="calc-hint">{t(lang,"calc_addons_note")}</p></fieldset>'
