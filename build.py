@@ -134,7 +134,7 @@ T = {
           'de':'Intime Berghochzeiten in den Dolomiten/Alpen &mdash; nur ihr beide, ein Gipfel und eine Geschichte, die es zu erzählen lohnt.',
           'es':'Bodas íntimas de montaña en los Dolomitas y los Alpes &mdash; solo vosotros dos, una cumbre y una historia que merece contarse.'},
  'h_btn':{'en':'Begin your story','de':'Eure Geschichte beginnen','es':'Empezad vuestra historia'},
- 'h_h1':{'en':'Adventure<br>Above the Clouds','de':'Abenteuer<br>über den Wolken','es':'Aventura<br>sobre las nubes'},
+ 'h_h1':{'en':'Design your perfect elopement','de':'Euer perfektes Elopement gestalten','es':'Diseñad vuestro elopement perfecto'},
  'ms1':{'en':'<b>Est.</b> Tyrol &middot; Dolomites','de':'<b>Sitz</b> Tirol &middot; Dolomiten','es':'<b>Base</b> Tirol &middot; Dolomitas'},
  'ms2':{'en':'<b>Elopement</b> Photography &amp; Film','de':'<b>Elopement</b> Fotografie &amp; Film','es':'<b>Elopement</b> Fotografía y Film'},
  'ms3':{'en':'<b>Planning</b> Fully bespoke','de':'<b>Planung</b> Individuell','es':'<b>Planificación</b> A medida'},
@@ -294,8 +294,7 @@ T = {
  'ad_onreq':{'en':'on request','de':'auf Anfrage','es':'a consulta'},
  # price calculator
  'calc_k':{'en':'Calculator','de':'Rechner','es':'Calculadora','it':'Calcolatore'},
- 'calc_h':{'en':'Design your perfect elopement','de':'Euer perfektes Elopement gestalten','es':'Diseñad vuestro elopement perfecto','it':'Progettate il vostro elopement perfetto'},
- 'calc_sub':{'en':'Planning your perfect mountain elopement','de':'Planung eures perfekten Elopements in den Bergen','es':'Planificación de vuestro elopement perfecto en la montaña','it':'La pianificazione del vostro elopement perfetto in montagna'},
+ 'calc_h':{'en':'Build your day','de':'Stellt euren Tag zusammen','es':'Componed vuestro día','it':'Componete la vostra giornata'},
  'calc_package':{'en':'Choose a package','de':'Paket wählen','es':'Elegid un paquete','it':'Scegliete un pacchetto'},
  'calc_addons':{'en':'Add-ons','de':'Zusatzoptionen','es':'Extras','it':'Extra'},
  'calc_total':{'en':'Your selection','de':'Eure Zusammenstellung','es':'Vuestra selección','it':'La vostra selezione'},
@@ -772,7 +771,7 @@ IT={
  'tm_dp':'Fondatore e fotografo principale &mdash; tirolese, a casa tra Innsbruck e le Dolomiti. Premiato (Way Up North Awards 2024), pubblicato su Rangefinder. Andreas accompagna ogni coppia verso la luce e racconta la giornata come si sente davvero.',
  'bts_k':'Sul posto','bts_over':'Dietro le quinte','bts_h':'Con le nostre coppie,<br>tra le montagne',
  'h_sub':'Matrimoni intimi in montagna nelle Dolomiti e nelle Alpi &mdash; solo voi due, una vetta e una storia da raccontare.',
- 'h_btn':'Iniziate la vostra storia','h_h1':'Avventura<br>sopra le nuvole',
+ 'h_btn':'Iniziate la vostra storia','h_h1':'Progettate il vostro elopement perfetto',
  'ms1':'<b>Sede</b> Tirolo &middot; Dolomiti','ms2':'<b>Elopement</b> Fotografia e Film','ms3':'<b>Pianificazione</b> Su misura','ms4':'<b>Dal</b> 2019',
  'mission_k':'La nostra missione','mission_h':'Creiamo il vostro<br>elopement perfetto',
  'mission_lead':'<em>to elope</em> &mdash; sfuggire all’ordinario e sposarsi dove il mondo diventa <em>silenzio</em>.',
@@ -1449,7 +1448,6 @@ def build_packages(lang):
     add_opts=''.join(calc_opt(k,e,ki) for k,e,ki in ADDONS_DATA)
     calc=(f'<section class="calc-wrap"><div class="wrap">'
       f'<div class="section-head reveal"><div class="kicker" data-n="{t(lang,"calc_k")}"><span class="line"></span></div><h2>{t(lang,"calc_h")}</h2></div>'
-      f'<p class="lead reveal" style="max-width:640px;margin:-6px 0 30px;color:var(--ink-2)">{t(lang,"calc_sub")}</p>'
       f'<div class="calc reveal" data-note-from="{t(lang,"calc_note_from")}" data-note-request="{t(lang,"calc_note_request")}" data-from-word="{t(lang,"ad_from")}">'
       f'<fieldset class="calc-block"><legend>{t(lang,"calc_package")}</legend><div class="calc-opts" id="calc-packages">{pkg_opts}</div></fieldset>'
       f'<fieldset class="calc-block"><legend>{t(lang,"calc_addons")}</legend><div class="calc-opts" id="calc-addons">{add_opts}</div><p class="calc-hint">{t(lang,"calc_addons_note")}</p></fieldset>'
