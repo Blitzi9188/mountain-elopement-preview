@@ -292,6 +292,16 @@ T = {
  'ad_backdrop':{'en':'Backdrop &amp; flowers','de':'Backdrop &amp; Blumen','es':'Backdrop y flores'},
  'ad_from':{'en':'from','de':'ab','es':'desde'},
  'ad_onreq':{'en':'on request','de':'auf Anfrage','es':'a consulta'},
+ # price calculator
+ 'calc_k':{'en':'Calculator','de':'Rechner','es':'Calculadora','it':'Calcolatore'},
+ 'calc_h':{'en':'Build your day','de':'Stellt euren Tag zusammen','es':'Componed vuestro día','it':'Componete la vostra giornata'},
+ 'calc_package':{'en':'Choose a package','de':'Paket wählen','es':'Elegid un paquete','it':'Scegliete un pacchetto'},
+ 'calc_addons':{'en':'Add-ons','de':'Zusatzoptionen','es':'Extras','it':'Extra'},
+ 'calc_total':{'en':'Your selection','de':'Eure Zusammenstellung','es':'Vuestra selección','it':'La vostra selezione'},
+ 'calc_cta':{'en':'Enquire about this','de':'Diese Auswahl anfragen','es':'Consultar esta selección','it':'Richiedi questa selezione'},
+ 'calc_disclaimer':{'en':'A non-binding guide. The final price depends on location, duration and your plans.','de':'Unverbindliche Orientierung. Der endgültige Preis hängt von Ort, Dauer und euren Wünschen ab.','es':'Orientación sin compromiso. El precio final depende del lugar, la duración y vuestros planes.','it':'Indicazione non vincolante. Il prezzo finale dipende dal luogo, dalla durata e dai vostri desideri.'},
+ 'calc_note_from':{'en':'Includes &lsquo;from&rsquo; items &mdash; the final price may be higher.','de':'Enthält &bdquo;ab&ldquo;-Positionen &mdash; Endpreis kann höher liegen.','es':'Incluye posiciones &lsquo;desde&rsquo; &mdash; el precio final puede ser mayor.','it':'Include voci &lsquo;da&rsquo; &mdash; il prezzo finale può essere più alto.'},
+ 'calc_note_request':{'en':'Hair &amp; Make-up is quoted separately.','de':'Hair &amp; Make-up wird separat angeboten.','es':'Peluquería y maquillaje se cotiza aparte.','it':'Trucco e acconciatura sono quotati a parte.'},
  # team page
  'tp_k':{'en':'The People','de':'Die Menschen','es':'Las personas'},
  'tp_h':{'en':'Our Team','de':'Unser Team','es':'Nuestro equipo'},
@@ -1350,6 +1360,16 @@ def build_portfolio(lang):
             "representativeOfPage":True,"creator":{"@id":ORG_ID}}
         write(lang,rel,head(lang,rel,f'{titles[lang]} — Mountain Elopement',DESC['stories'][lang],img_ld)+body+scripts(P,LB_JS))
 
+# Single source of truth for prices — used by the tier cards AND the calculator.
+PKG_EUR=[6000,9000,13500]                       # N°01, N°02, N°03
+ADDONS_DATA=[                                    # (i18n-key, EUR, kind)
+ ('ad_heli',2500,'approx'),('ad_film',3500,'approx'),
+ ('ad_civil',1000,'approx'),('ad_celeb',1500,'approx'),
+ ('ad_cake',400,'from'),('ad_music',600,'approx'),
+ ('ad_mua',0,'request'),('ad_backdrop',600,'fixed'),
+]
+def eur_de(n): return f'{n:,}'.replace(',','.')  # 6000 -> "6.000", 400 -> "400"
+
 def build_packages(lang):
     rel='our-packages/'; P=prefix(lang,rel)
     hrs=t(lang,'pk_hours'); ph=t(lang,'pk_photos')
@@ -1381,16 +1401,19 @@ def build_packages(lang):
     tag1={'en':'Just the two of you and the mountains.','de':'Nur ihr beide und die Berge.','es':'Solo vosotros dos y las montañas.','it':'Solo voi due e le montagne.'}[lang]
     tag2={'en':'A fuller day, beautifully held.','de':'Ein voller Tag, rundum begleitet.','es':'Un día completo, bien acompañado.','it':'Una giornata intera, ben accompagnata.'}[lang]
     tag3={'en':'The whole day, fully planned.','de':'Der ganze Tag, komplett geplant.','es':'Todo el día, totalmente planificado.','it':'L\'intera giornata, tutto pianificato.'}[lang]
-    t1=tier('01',t(lang,'pk_l1'),t(lang,'pk_t1'),'6.000',[f'{photoword} &mdash; 50&ndash;80 {imgword}',f'2&ndash;3 {hrs}',loc,concept,planningcall,gallery],tag=tag1)
-    t2=tier('02',t(lang,'pk_l2'),t(lang,'pk_t2'),'9.000',[f'{photoword} &mdash; 80&ndash;100 {imgword}',f'4&ndash;5 {hrs}',gropt,flowers,locplan,planningcall,weather,gallery],feat=True,tag=tag2)
-    t3=tier('03',t(lang,'pk_l3'),t(lang,'pk_t3'),'13.500',[f'{photoword} &mdash; 100&ndash;200 {imgword}',f'6&ndash;8 {hrs}',gr,flowers,fullplan,permits,weather,album,gallery],tag=tag3)
-    def ad(name,price): return f'<div class="addon"><div class="a">{name}</div><div class="p">{price}</div></div>'
-    addons=(ad(t(lang,'ad_heli'),'&asymp; &euro; 2.500')
-      +ad(t(lang,'ad_film'),'&asymp; &euro; 3.500')
-      +ad(t(lang,'ad_civil'),'&asymp; &euro; 1.000')+ad(t(lang,'ad_celeb'),'&asymp; &euro; 1.500')
-      +ad(t(lang,'ad_cake'),f'{t(lang,"ad_from")} &euro; 400')+ad(t(lang,'ad_music'),'&asymp; &euro; 600')
-      +ad(f'<a href="{P_MUA[1]}" target="_blank" rel="noopener" style="color:inherit">{t(lang,"ad_mua")}</a>',t(lang,'ad_onreq'))
-      +ad(t(lang,'ad_backdrop'),'&euro; 600'))
+    t1=tier('01',t(lang,'pk_l1'),t(lang,'pk_t1'),eur_de(PKG_EUR[0]),[f'{photoword} &mdash; 50&ndash;80 {imgword}',f'2&ndash;3 {hrs}',loc,concept,planningcall,gallery],tag=tag1)
+    t2=tier('02',t(lang,'pk_l2'),t(lang,'pk_t2'),eur_de(PKG_EUR[1]),[f'{photoword} &mdash; 80&ndash;100 {imgword}',f'4&ndash;5 {hrs}',gropt,flowers,locplan,planningcall,weather,gallery],feat=True,tag=tag2)
+    t3=tier('03',t(lang,'pk_l3'),t(lang,'pk_t3'),eur_de(PKG_EUR[2]),[f'{photoword} &mdash; 100&ndash;200 {imgword}',f'6&ndash;8 {hrs}',gr,flowers,fullplan,permits,weather,album,gallery],tag=tag3)
+    # add-on tiles — generated from ADDONS_DATA (same source as the calculator)
+    def ad_price(eur,kind):
+        if kind=='approx': return f'&asymp; &euro; {eur_de(eur)}'
+        if kind=='from':   return f'{t(lang,"ad_from")} &euro; {eur_de(eur)}'
+        if kind=='request':return t(lang,'ad_onreq')
+        return f'&euro; {eur_de(eur)}'
+    def ad_name(key):
+        nm=t(lang,key)
+        return f'<a href="{P_MUA[1]}" target="_blank" rel="noopener" style="color:inherit">{nm}</a>' if key=='ad_mua' else nm
+    addons=''.join(f'<div class="addon"><div class="a">{ad_name(k)}</div><div class="p">{ad_price(e,ki)}</div></div>' for k,e,ki in ADDONS_DATA)
     eurnote={'en':'All prices in EUR.','de':'Alle Preise in EUR.','es':'Todos los precios en EUR.','it':'Tutti i prezzi in EUR.'}[lang]
     fxnote={'en':'Indicative — the binding price is in EUR. Rates update daily.',
             'de':'Indikativ — verbindlich ist der EUR-Preis. Kurse aktualisieren sich täglich.',
@@ -1404,11 +1427,13 @@ def build_packages(lang):
     # from a live ECB rate. Foreign buttons stay disabled until the rate loads (no wrong numbers).
     curjs=('<script>(function(){var sw=document.querySelector(".cur-switch");if(!sw)return;'
       'var prices=document.querySelectorAll(".price[data-eur]"),note=document.querySelector(".cur-note"),btns=sw.querySelectorAll("button");'
-      'var rates={EUR:1},sym={EUR:"\\u20ac",USD:"$",GBP:"\\u00a3"},loc={EUR:"de-DE",USD:"de-DE",GBP:"de-DE"};'
+      'var rates={EUR:1},sym={EUR:"\\u20ac",USD:"$",GBP:"\\u00a3"},loc={EUR:"de-DE",USD:"de-DE",GBP:"de-DE"};window.__meRates=rates;'
       'function fmt(cur){prices.forEach(function(p){var eur=parseFloat(p.getAttribute("data-eur")),c=p.querySelector(".cur"),a=p.querySelector(".amt"),amt;'
       'if(cur==="EUR"){amt=eur;}else{var r=rates[cur];if(!r)return;amt=Math.round(eur*r/100)*100;}'
       'c.textContent=sym[cur];a.textContent=amt.toLocaleString(loc[cur]);});'
-      'if(note)note.textContent=note.getAttribute(cur==="EUR"?"data-eur-note":"data-fx-note");}'
+      'document.querySelectorAll(".calc-opt-price[data-eur]").forEach(function(el){var e=parseFloat(el.getAttribute("data-eur")),amt;if(cur==="EUR"){amt=e;}else{var r=rates[cur];if(!r){return;}amt=Math.round(e*r/100)*100;}el.textContent=sym[cur]+"\\u00a0"+amt.toLocaleString(loc[cur]);});'
+      'if(note)note.textContent=note.getAttribute(cur==="EUR"?"data-eur-note":"data-fx-note");'
+      'if(window.__meRecalc){window.__meRecalc();}}'
       'function setCur(cur){btns.forEach(function(b){b.classList.toggle("on",b.getAttribute("data-cur")===cur);});fmt(cur);try{localStorage.setItem("me_cur",cur);}catch(e){}}'
       'btns.forEach(function(b){b.addEventListener("click",function(){var c=b.getAttribute("data-cur");if(c!=="EUR"&&!rates[c])return;setCur(c);});'
       'if(b.getAttribute("data-cur")!=="EUR")b.disabled=true;});'
@@ -1416,6 +1441,45 @@ def build_packages(lang):
       'fetch("https://api.frankfurter.dev/v1/latest?base=EUR&symbols=USD,GBP").then(function(r){return r.json();}).then(function(d){'
       'if(d&&d.rates){rates.USD=d.rates.USD;rates.GBP=d.rates.GBP;btns.forEach(function(b){b.disabled=false;});'
       'var s;try{s=localStorage.getItem("me_cur");}catch(e){}if(s&&rates[s])setCur(s);}}).catch(function(){});'
+      '})();</script>')
+    # --- Interactive price calculator (built from PKG_EUR + ADDONS_DATA) ---
+    contact_url=u(P,lang,'get-in-touch/')
+    pkg_names=[t(lang,'pk_t1'),t(lang,'pk_t2'),t(lang,'pk_t3')]
+    pkg_opts=''.join(
+      f'<label class="calc-opt"><input type="radio" name="calc-pkg" value="{PKG_EUR[i]}" data-label="{pkg_names[i]}"{" checked" if i==0 else ""}>'
+      f'<span class="calc-opt-name">{pkg_names[i]}</span><span class="calc-opt-price" data-eur="{PKG_EUR[i]}"></span></label>' for i in range(3))
+    def calc_opt(key,eur,kind):
+        nm=t(lang,key)
+        price=(f'<span class="calc-opt-price calc-req">{t(lang,"ad_onreq")}</span>' if kind=='request'
+               else f'<span class="calc-opt-price" data-eur="{eur}"></span>')
+        return (f'<label class="calc-opt"><input type="checkbox" value="{eur}" data-label="{nm}" data-kind="{kind}">'
+                f'<span class="calc-opt-name">{nm}</span>{price}</label>')
+    add_opts=''.join(calc_opt(k,e,ki) for k,e,ki in ADDONS_DATA)
+    calc=(f'<section class="calc-wrap"><div class="wrap">'
+      f'<div class="section-head reveal"><div class="kicker" data-n="{t(lang,"calc_k")}"><span class="line"></span></div><h2>{t(lang,"calc_h")}</h2></div>'
+      f'<div class="calc reveal" data-note-from="{t(lang,"calc_note_from")}" data-note-request="{t(lang,"calc_note_request")}" data-from-word="{t(lang,"ad_from")}">'
+      f'<fieldset class="calc-block"><legend>{t(lang,"calc_package")}</legend><div class="calc-opts" id="calc-packages">{pkg_opts}</div></fieldset>'
+      f'<fieldset class="calc-block"><legend>{t(lang,"calc_addons")}</legend><div class="calc-opts" id="calc-addons">{add_opts}</div></fieldset>'
+      f'<div class="calc-total"><div class="calc-total-label">{t(lang,"calc_total")}</div>'
+      f'<div class="calc-total-sum"><span class="calc-from" id="calc-from"></span><span class="cur">&euro;</span><span id="calc-sum">{eur_de(PKG_EUR[0])}</span></div>'
+      f'<div class="calc-note" id="calc-note"></div>'
+      f'<a href="{contact_url}" class="btn" id="calc-cta" data-base="{contact_url}">{t(lang,"calc_cta")}</a>'
+      f'<p class="calc-disclaimer">{t(lang,"calc_disclaimer")}</p></div>'
+      f'</div></div></section>')
+    calcjs=('<script>(function(){var wrap=document.querySelector(".calc");if(!wrap)return;'
+      'var sumEl=document.getElementById("calc-sum"),noteEl=document.getElementById("calc-note"),ctaEl=document.getElementById("calc-cta"),curEl=wrap.querySelector(".calc-total-sum .cur"),fromEl=document.getElementById("calc-from");'
+      'var fromWord=wrap.getAttribute("data-from-word")||"";'
+      'function curNow(){var on=document.querySelector(".cur-switch button.on");return on?on.getAttribute("data-cur"):"EUR";}'
+      'function calc(){var pkg=wrap.querySelector("input[name=calc-pkg]:checked");'
+      'var eur=pkg?parseFloat(pkg.value):0,parts=pkg?[pkg.getAttribute("data-label")]:[],fromP=false,reqP=false;'
+      'wrap.querySelectorAll("#calc-addons input:checked").forEach(function(cb){eur+=parseFloat(cb.value)||0;parts.push(cb.getAttribute("data-label"));var k=cb.getAttribute("data-kind");if(k==="from")fromP=true;if(k==="request")reqP=true;});'
+      'var cur=curNow(),amt=eur;if(cur!=="EUR"&&window.__meRates&&window.__meRates[cur]){amt=Math.round(eur*window.__meRates[cur]/100)*100;}'
+      'var sym={EUR:"\\u20ac",USD:"$",GBP:"\\u00a3"}[cur]||"\\u20ac";if(curEl)curEl.textContent=sym;'
+      'if(fromEl)fromEl.textContent=fromP?(fromWord+"\\u00a0"):"";'
+      'sumEl.textContent=amt.toLocaleString("de-DE");'
+      'var notes=[];if(fromP)notes.push(wrap.getAttribute("data-note-from"));if(reqP)notes.push(wrap.getAttribute("data-note-request"));noteEl.textContent=notes.join(" \\u00b7 ");'
+      'ctaEl.setAttribute("href",ctaEl.getAttribute("data-base")+"?selection="+encodeURIComponent(parts.join(", ")));}'
+      'window.__meRecalc=calc;wrap.addEventListener("change",calc);calc();'
       '})();</script>')
     body=(nav(lang,rel,'packages')+
       f'<div class="page-plain"><div class="wrap"><div class="kicker" data-n="{t(lang,"pk_k")}"><span class="line"></span></div>'
@@ -1425,6 +1489,7 @@ def build_packages(lang):
       f'<p class="lead reveal" style="max-width:760px;margin-top:clamp(32px,4vw,52px)">{t(lang,"pk_note")}</p>'
       f'<div class="section-head reveal" style="margin-top:clamp(40px,6vw,72px)"><div class="kicker" data-n="Add-ons">{t(lang,"pk_addk")}<span class="line"></span></div></div>'
       f'<div class="addons reveal">{addons}</div></div></section>'
+      +calc+
       '<section class="band"><div class="wrap quote reveal">'
       f'<div class="kicker" data-n="{t(lang,"pk_band_k")}"><span class="line"></span></div>'
       f'<p style="margin-top:26px">{t(lang,"pk_band_q")}</p><div class="who">Tanja &amp; Andreas &mdash; Mountain Elopement</div></div></section>'
@@ -1432,7 +1497,7 @@ def build_packages(lang):
       f'<div class="kicker" data-n="{t(lang,"pk_next")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"pk_cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"pk_req_price")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,TITLES['packages'][lang],DESC['packages'][lang])+body+scripts(P,curjs))
+    write(lang,rel,head(lang,rel,TITLES['packages'][lang],DESC['packages'][lang])+body+scripts(P,curjs+calcjs))
 
 def build_team(lang):
     rel='our-team/'; P=prefix(lang,rel)
@@ -1477,7 +1542,17 @@ def build_contact(lang):
       "else{st.className='ce-status err';st.textContent=(d&&d.error)||MSG.err;btn.disabled=false;if(window.turnstile)turnstile.reset();}})"
       ".catch(function(){st.className='ce-status err';st.textContent=MSG.err;btn.disabled=false;if(window.turnstile)turnstile.reset();});"
       "});})();</script>")
-    extra=chip_js+ts_api+submit_js
+    # Prefill from the price calculator: ?selection=… → activate matching chips, rest into the message.
+    interested={'en':'Interested in','de':'Interesse an','es':'Interés en','it':'Interesse per'}[lang]
+    sel_js=("<script>(function(){var p=new URLSearchParams(location.search).get('selection');if(!p)return;"
+      "var items=p.split(',').map(function(s){return s.trim();}).filter(Boolean);if(!items.length)return;"
+      "var box=document.getElementById('chips'),chips=box?[].slice.call(box.querySelectorAll('.chip')):[],rest=[];"
+      "items.forEach(function(it){var lo=it.toLowerCase(),hit=null;chips.forEach(function(c){var ct=c.textContent.trim().toLowerCase();if(ct&&(lo.indexOf(ct)>-1||ct.indexOf(lo)>-1))hit=c;});"
+      "if(hit){hit.classList.add('on');}else{rest.push(it);}});"
+      "var h=document.getElementById('interests');if(box&&h)h.value=[].slice.call(box.querySelectorAll('.chip.on')).map(function(x){return x.textContent;}).join(', ');"
+      "if(rest.length){var m=document.querySelector('textarea[name=message]');if(m){var pre="+json.dumps(interested)+"+': '+rest.join(', ');m.value=m.value?(m.value+'\\n\\n'+pre):pre;}}"
+      "})();</script>")
+    extra=chip_js+sel_js+ts_api+submit_js
     body=(nav(lang,rel,'contact')+
       f'<div class="page-plain"><div class="wrap"><div class="kicker" data-n="{t(lang,"ct_k")}"><span class="line"></span></div>'
       f'<h1>{t(lang,"ct_h")}</h1><p class="lead">{t(lang,"ct_lead")}</p></div></div>'
