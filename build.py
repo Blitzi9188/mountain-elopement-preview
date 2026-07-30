@@ -302,6 +302,7 @@ T = {
  'calc_disclaimer':{'en':'A non-binding guide. The final price depends on location, duration and your plans.','de':'Unverbindliche Orientierung. Der endgültige Preis hängt von Ort, Dauer und euren Wünschen ab.','es':'Orientación sin compromiso. El precio final depende del lugar, la duración y vuestros planes.','it':'Indicazione non vincolante. Il prezzo finale dipende dal luogo, dalla durata e dai vostri desideri.'},
  'calc_note_from':{'en':'Includes &lsquo;from&rsquo; items &mdash; the final price may be higher.','de':'Enthält &bdquo;ab&ldquo;-Positionen &mdash; Endpreis kann höher liegen.','es':'Incluye posiciones &lsquo;desde&rsquo; &mdash; el precio final puede ser mayor.','it':'Include voci &lsquo;da&rsquo; &mdash; il prezzo finale può essere più alto.'},
  'calc_note_request':{'en':'Hair &amp; Make-up is quoted separately.','de':'Hair &amp; Make-up wird separat angeboten.','es':'Peluquería y maquillaje se cotiza aparte.','it':'Trucco e acconciatura sono quotati a parte.'},
+ 'calc_addons_note':{'en':'These are estimates only &mdash; add-on prices can vary depending on effort and distance.','de':'Dies sind nur Schätzwerte &mdash; die Add-on-Preise können je nach Aufwand und Entfernung variieren.','es':'Son solo orientativos &mdash; los precios de los extras pueden variar según el esfuerzo y la distancia.','it':'Sono solo indicativi &mdash; i prezzi degli extra possono variare in base all&rsquo;impegno e alla distanza.'},
  # team page
  'tp_k':{'en':'The People','de':'Die Menschen','es':'Las personas'},
  'tp_h':{'en':'Our Team','de':'Unser Team','es':'Nuestro equipo'},
@@ -1366,7 +1367,7 @@ ADDONS_DATA=[                                    # (i18n-key, EUR, kind)
  ('ad_heli',2500,'approx'),('ad_film',3500,'approx'),
  ('ad_civil',1000,'approx'),('ad_celeb',1500,'approx'),
  ('ad_cake',400,'from'),('ad_music',600,'approx'),
- ('ad_mua',0,'request'),('ad_backdrop',600,'fixed'),
+ ('ad_mua',600,'approx'),('ad_backdrop',600,'fixed'),
 ]
 def eur_de(n): return f'{n:,}'.replace(',','.')  # 6000 -> "6.000", 400 -> "400"
 
@@ -1449,7 +1450,7 @@ def build_packages(lang):
       f'<div class="section-head reveal"><div class="kicker" data-n="{t(lang,"calc_k")}"><span class="line"></span></div><h2>{t(lang,"calc_h")}</h2></div>'
       f'<div class="calc reveal" data-note-from="{t(lang,"calc_note_from")}" data-note-request="{t(lang,"calc_note_request")}" data-from-word="{t(lang,"ad_from")}">'
       f'<fieldset class="calc-block"><legend>{t(lang,"calc_package")}</legend><div class="calc-opts" id="calc-packages">{pkg_opts}</div></fieldset>'
-      f'<fieldset class="calc-block"><legend>{t(lang,"calc_addons")}</legend><div class="calc-opts" id="calc-addons">{add_opts}</div></fieldset>'
+      f'<fieldset class="calc-block"><legend>{t(lang,"calc_addons")}</legend><div class="calc-opts" id="calc-addons">{add_opts}</div><p class="calc-hint">{t(lang,"calc_addons_note")}</p></fieldset>'
       f'<div class="calc-total"><div class="calc-total-label">{t(lang,"calc_total")}</div>'
       f'<div class="calc-total-sum"><span class="calc-from" id="calc-from"></span><span class="cur">&euro;</span><span id="calc-sum">{eur_de(PKG_EUR[0])}</span></div>'
       f'<div class="calc-note" id="calc-note"></div>'
