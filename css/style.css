@@ -94,7 +94,7 @@ p{margin:0 0 1.15em}
 /* ---- Hero (home) ---- */
 .hero{position:relative;height:82vh;min-height:560px;overflow:hidden;color:#fff;
   display:flex;align-items:flex-end}
-.hero .bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.hero .bg{position:absolute;inset:0;background-size:cover;background-position:center 70%}
 .hero::after{content:"";position:absolute;inset:0;
   background:linear-gradient(0deg,rgba(15,14,12,.72),rgba(15,14,12,.15) 55%,rgba(15,14,12,.35))}
 .hero .content{position:relative;z-index:2;width:100%;padding-bottom:clamp(34px,6vw,72px)}
