@@ -1771,6 +1771,20 @@ REGION_FAQ=[
   "That is entirely your choice. Some of our locations are a two-minute stroll from the car; others are a two-hour hike. Tell us how you feel about walking in a wedding dress and we will build the day around your answer."),
  ("How far in advance should we book?",
   "For July to September, six to twelve months is comfortable &mdash; huts, planners and the good mornings fill up. Off-season we have occasionally made something beautiful happen in a few weeks."),
+ ("Was ist ein Elopement?",
+  "Ein Elopement ist eine kleine, intime Hochzeit &mdash; meist nur das Paar, manchmal mit den wenigen engsten Menschen. Statt gro&szlig;er Feier und langer G&auml;steliste steht der Moment zu zweit im Mittelpunkt, oft an einem besonderen Ort in den Bergen. Urspr&uuml;nglich bedeutete &bdquo;to elope&ldquo; das heimliche Durchbrennen; heute ist es eine bewusste, moderne Art zu heiraten: weniger Organisation, mehr echtes Erlebnis."),
+ ("Was ist ein Elopement-Shooting?",
+  "Ein Elopement-Shooting ist die fotografische Begleitung genau dieses Tages: Wir halten die Trauung zu zweit, euer Ja und die Stunden danach an eurem Wunschort fest &mdash; vom Sonnenaufgang am Gipfel bis zum Paarshooting am Bergsee. Anders als ein reines Verlobungs- oder Paarshooting dokumentiert es die tats&auml;chliche Hochzeit, nicht nur gestellte Bilder."),
+ ("Was bedeutet &bdquo;Elopement&ldquo; auf Deutsch?",
+  "&bdquo;Elopement&ldquo; kommt aus dem Englischen (von &bdquo;to elope&ldquo; &mdash; durchbrennen, entfliehen) und hat kein exaktes deutsches Wort. Am n&auml;chsten kommen &bdquo;Hochzeit zu zweit&ldquo;, &bdquo;Mikrohochzeit&ldquo; oder &bdquo;heimlich heiraten&ldquo;. Gemeint ist immer eine kleine, private Trauung ohne gro&szlig;e Gesellschaft."),
+ ("Was bedeutet der Hochzeitstrend Elopement?",
+  "Als Hochzeitstrend steht Elopement f&uuml;r die bewusste Entscheidung gegen die gro&szlig;e Feier &mdash; und f&uuml;r Erlebnis, Ort und Zweisamkeit. Immer mehr Paare wollen keinen Stress mit vielen G&auml;sten, sondern einen ehrlichen Tag an einem Ort, der ihnen etwas bedeutet: in den Dolomiten, auf einem Gipfel oder an einem Bergsee. Budget und Energie flie&szlig;en in Erlebnis und Bilder statt in Saal und Men&uuml;."),
+ ("Was kostet eine Elopement-Hochzeit?",
+  "Bei uns beginnen Elopement-Pakete bei 6.000&nbsp;&euro; und umfassen Fotografie, Locationscouting, ein Planungsgespr&auml;ch und eure private Online-Galerie. Gr&ouml;&szlig;ere Pakete erg&auml;nzen Haare und Make-up, Blumen und volle Koordination bis hin zum ganzen Tag mit Unterkunft und Transfers. Ein Elopement ist meist deutlich g&uuml;nstiger als eine gro&szlig;e Hochzeit &mdash; das Budget flie&szlig;t in Erlebnis und Bilder statt in Saal und G&auml;stezahl."),
+ ("Wie macht man ein Elopement besonders?",
+  "Das Besondere entsteht aus Ort, Licht und echten Momenten &mdash; nicht aus Deko. Wir starten oft zum Sonnenaufgang, wenn ihr einen Gipfel oder See f&uuml;r euch allein habt, planen pers&ouml;nliche Gel&uuml;bde und erg&auml;nzen, wo es passt, kleine Details: freie Trauung, Blumen, ein Picknick oder Abendessen auf der H&uuml;tte, ein Helikopterflug auf einen einsamen Grat. Weniger Programm, mehr Zeit f&uuml;reinander."),
+ ("Ist ein Elopement in &Ouml;sterreich erlaubt?",
+  "Ja. In &Ouml;sterreich k&ouml;nnt ihr standesamtlich heiraten &mdash; in manchen Regionen sogar an ausgew&auml;hlten Orten im Freien &mdash; und wir koordinieren Termin und Papiere. Alternativ feiert ihr eine freie, symbolische Zeremonie in den Bergen und erledigt das Standesamtliche zu Hause. F&uuml;r eine rechtsg&uuml;ltige Trauung am Berg bringen wir euch mit den passenden Ansprechpartnern zusammen."),
 ]
 
 def build_region(lang):
@@ -1785,7 +1799,7 @@ def build_region(lang):
       f'<h3 style="font-family:var(--serif);font-weight:400;font-size:20px;margin:0 0 .3em">{q}</h3>'
       f'<p style="color:var(--ink-2);margin:0">{a}</p></div>' for q,a in REGION_FAQ)
     faq_ld={"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-        {"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":_plain(a)}} for q,a in REGION_FAQ]}
+        {"@type":"Question","name":_plain(q),"acceptedAnswer":{"@type":"Answer","text":_plain(a)}} for q,a in REGION_FAQ]}
     stories=['sunrise-elopement-in-the-dolomites','climbing-wedding','lago-di-braies-elopement']
     cards=''.join(story_card(lang,P,STORYBY[s]) for s in stories)
     title='Dolomites Elopement — How to Elope in the Dolomites | Mountain Elopement'
