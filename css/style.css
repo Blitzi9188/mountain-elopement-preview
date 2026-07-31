@@ -194,7 +194,7 @@ section{padding:clamp(38px,5vw,80px) 0}
 .gcard-x{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink-2)}
 @media(max-width:860px){.guide-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.guide-grid{grid-template-columns:1fr}}
-.awards-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:clamp(30px,5vw,60px);margin-top:clamp(30px,4vw,48px)}
+.awards-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:clamp(40px,6vw,84px);margin-top:clamp(48px,7vw,84px)}
 .award-item{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:12px;text-decoration:none;color:inherit;text-align:center}
 .award-logo{width:auto;object-fit:contain;transition:opacity .2s}
 .award-item:hover .award-logo{opacity:.55}
