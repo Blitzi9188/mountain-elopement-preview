@@ -1501,7 +1501,8 @@ def build_packages(lang):
       'if(fromEl)fromEl.textContent=fromP?(fromWord+"\\u00a0"):"";'
       'sumEl.textContent=amt.toLocaleString("de-DE");'
       'var notes=[];if(fromP)notes.push(wrap.getAttribute("data-note-from"));if(reqP)notes.push(wrap.getAttribute("data-note-request"));noteEl.textContent=notes.join(" \\u00b7 ");'
-      'ctaEl.setAttribute("href",ctaEl.getAttribute("data-base")+"?selection="+encodeURIComponent(parts.join(", ")));}'
+      'var totalStr=(fromP?(fromWord+" "):"")+sym+" "+amt.toLocaleString("de-DE");'
+      'ctaEl.setAttribute("href",ctaEl.getAttribute("data-base")+"?selection="+encodeURIComponent(parts.join(", "))+"&total="+encodeURIComponent(totalStr));}'
       'window.__meRecalc=calc;wrap.addEventListener("change",calc);calc();'
       '})();</script>')
     body=(nav(lang,rel,'packages')+
@@ -1573,15 +1574,18 @@ def build_contact(lang):
       "else{st.className='ce-status err';st.textContent=(d&&d.error)||MSG.err;btn.disabled=false;if(window.turnstile)turnstile.reset();}})"
       ".catch(function(){st.className='ce-status err';st.textContent=MSG.err;btn.disabled=false;if(window.turnstile)turnstile.reset();});"
       "});})();</script>")
-    # Prefill from the price calculator: ?selection=… → activate matching chips, rest into the message.
+    # Prefill from the price calculator: ?selection=… (chips + message) and ?total=… (price into the message).
     interested={'en':'Interested in','de':'Interesse an','es':'Interés en','it':'Interesse per'}[lang]
-    sel_js=("<script>(function(){var p=new URLSearchParams(location.search).get('selection');if(!p)return;"
-      "var items=p.split(',').map(function(s){return s.trim();}).filter(Boolean);if(!items.length)return;"
+    total_lbl={'en':'Estimated total','de':'Gesamtpreis ca.','es':'Total aprox.','it':'Totale ca.'}[lang]
+    sel_js=("<script>(function(){var q=new URLSearchParams(location.search);var p=q.get('selection'),total=q.get('total');"
+      "var items=p?p.split(',').map(function(s){return s.trim();}).filter(Boolean):[];if(!items.length&&!total)return;"
       "var box=document.getElementById('chips'),chips=box?[].slice.call(box.querySelectorAll('.chip')):[],rest=[];"
       "items.forEach(function(it){var lo=it.toLowerCase(),hit=null;chips.forEach(function(c){var ct=c.textContent.trim().toLowerCase();if(ct&&(lo.indexOf(ct)>-1||ct.indexOf(lo)>-1))hit=c;});"
       "if(hit){hit.classList.add('on');}else{rest.push(it);}});"
       "var h=document.getElementById('interests');if(box&&h)h.value=[].slice.call(box.querySelectorAll('.chip.on')).map(function(x){return x.textContent;}).join(', ');"
-      "if(rest.length){var m=document.querySelector('textarea[name=message]');if(m){var pre="+json.dumps(interested)+"+': '+rest.join(', ');m.value=m.value?(m.value+'\\n\\n'+pre):pre;}}"
+      "var pre=[];if(rest.length)pre.push("+json.dumps(interested)+"+': '+rest.join(', '));"
+      "if(total)pre.push("+json.dumps(total_lbl)+"+': '+total);"
+      "if(pre.length){var m=document.querySelector('textarea[name=message]');if(m){var t=pre.join('\\n');m.value=m.value?(m.value+'\\n\\n'+t):t;}}"
       "})();</script>")
     extra=chip_js+sel_js+ts_api+submit_js
     body=(nav(lang,rel,'contact')+
