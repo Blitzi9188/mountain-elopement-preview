@@ -1065,8 +1065,8 @@ DESC={
  'thankyou':{'en':'Thank you — we\u2019ve received your enquiry.','de':'Danke — wir haben eure Anfrage erhalten.','es':'Gracias — hemos recibido vuestra consulta.'},
 }
 
-# Google reviews link — TODO: replace with the exact "reviews" URL from the Google Business Profile.
-GOOGLE_REVIEWS_URL='https://www.google.com/search?q=Mountain+Elopement+Blitzkneisser+Bewertungen'
+# Google reviews link (Local reviews panel for the Mountain Elopement business profile).
+GOOGLE_REVIEWS_URL='https://www.google.com/search?sa=X&sca_esv=75d6586d45596069&sxsrf=APpeQnvBbKZ1rICeCxsByFQY7O_ztxCuFQ:1785504505793&q=Mountain+Elopement+Rezensionen&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDUzNjIxMzE2MTM2NzQ0sTAzNd3AyPiKUc43vzSvJDEzT8E1J78gNTc1r0QhKLUqNa84Mz8vNW8RKwEFAN4ArdpdAAAA&rldimm=15632464346371148655&tbm=lcl&hl=de-AT&ved=2ahUKEwjV3b_Ogv2VAxXyJxAIHXnGMsgQ9fQKegQIVBAG&biw=1496&bih=851&dpr=2#lkt=LocalPoiReviews'
 # Real 5-star Google reviews, shown in their original language (authentic), lightly excerpted.
 REVIEWS=[
  ('Frankie Temple-Brown','We cannot express how amazing the Mountain Elopement team were from start to finish &mdash; taking care of every little detail to make our day the most magical it could be. The day, location and photos all surpassed our expectations.'),
@@ -1087,7 +1087,7 @@ def reviews_block(lang,P,n=6):
       f'<div class="kicker" data-n="{t(lang,"rev_k")}"><span class="line"></span></div><h2>{t(lang,"rev_h")}</h2></div>'
       f'<p class="lead reveal" style="text-align:center;max-width:620px;margin:0 auto clamp(26px,4vw,42px)">{t(lang,"rev_sub")}</p>'
       f'<div class="rev-grid reveal">{cards}</div>'
-      f'<div class="reveal" style="text-align:center;margin-top:clamp(26px,4vw,42px)"><a class="rev-google" href="{GOOGLE_REVIEWS_URL}" target="_blank" rel="noopener">{t(lang,"rev_all")} &rarr;</a></div>'
+      f'<div class="reveal" style="text-align:center;margin-top:clamp(26px,4vw,42px)"><a class="rev-google" href="{GOOGLE_REVIEWS_URL.replace("&","&amp;")}" target="_blank" rel="noopener">{t(lang,"rev_all")} &rarr;</a></div>'
       '</div></section>')
 
 def build_home(lang):
