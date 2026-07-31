@@ -205,6 +205,20 @@ section{padding:clamp(38px,5vw,80px) 0}
 .awards-section .kicker{justify-content:center}
 .awards-section .kicker .line{display:none}
 .awards-section .lead{margin-left:auto;margin-right:auto;text-align:center}
+/* ---- Reviews / testimonials (subtle) ---- */
+.reviews-section{padding:clamp(48px,7vw,88px) 0}
+.reviews-section .section-head{justify-items:center;text-align:center}
+.reviews-section .kicker{justify-content:center}
+.reviews-section .kicker .line{display:none}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.8vw,24px)}
+.rev-card{border:1px solid var(--line);background:var(--paper);padding:clamp(20px,2.3vw,28px);display:flex;flex-direction:column;gap:12px;margin:0}
+.rev-stars{color:#d8a63c;letter-spacing:3px;font-size:12.5px;line-height:1}
+.rev-text{font-family:var(--serif);font-size:14.5px;line-height:1.55;color:var(--ink-2);margin:0;flex:1}
+.rev-name{font-family:var(--sans);text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--ink);font-weight:600}
+.rev-google{font-family:var(--sans);text-transform:uppercase;letter-spacing:.14em;font-size:12px;color:var(--accent);border-bottom:1px solid var(--line-2);padding-bottom:3px;transition:color .2s,border-color .2s}
+.rev-google:hover{color:var(--ink);border-bottom-color:var(--ink)}
+@media(max-width:900px){.rev-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.rev-grid{grid-template-columns:1fr}}
 .badge:hover .badge-txt strong{color:var(--accent)}
 .badge-txt .badge-sub{font-size:13.5px;color:var(--ink-2)}
 

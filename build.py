@@ -187,6 +187,11 @@ T = {
  'pub_lbl':{'en':'Published in','de':'Veröffentlicht in','es':'Publicado en'},
  'aw_k':{'en':'Recognition','de':'Anerkennung','es':'Reconocimiento'},
  'aw_h':{'en':'Awarded &amp; Featured','de':'Ausgezeichnet &amp; vorgestellt','es':'Premiados y destacados'},
+ # reviews / testimonials
+ 'rev_k':{'en':'Reviews','de':'Bewertungen','es':'Rese&ntilde;as','it':'Recensioni'},
+ 'rev_h':{'en':'Loved by couples','de':'Von Paaren geliebt','es':'Adorados por las parejas','it':'Amati dalle coppie'},
+ 'rev_sub':{'en':'Real five-star reviews from couples we&rsquo;ve married in the mountains.','de':'Echte F&uuml;nf-Sterne-Bewertungen von Paaren, die wir in den Bergen getraut haben.','es':'Rese&ntilde;as reales de cinco estrellas de parejas que casamos en la monta&ntilde;a.','it':'Recensioni a cinque stelle di coppie che abbiamo sposato in montagna.'},
+ 'rev_all':{'en':'Read all reviews on Google','de':'Alle Bewertungen auf Google lesen','es':'Leer todas las rese&ntilde;as en Google','it':'Leggi tutte le recensioni su Google'},
  'aw_lead':{'en':'Booking a wedding in mountains you have never set foot in takes trust. Over the years our work has been awarded and published by people whose judgement couples rely on.',
             'de':'Eine Hochzeit in Bergen zu buchen, die man noch nie betreten hat, verlangt Vertrauen. Unsere Arbeit wurde über die Jahre ausgezeichnet und veröffentlicht &mdash; von Menschen, auf deren Urteil sich Paare verlassen.',
             'es':'Reservar una boda en montañas que nunca habéis pisado exige confianza. Con los años, nuestro trabajo ha sido premiado y publicado por quienes las parejas toman como referencia.'},
@@ -1060,6 +1065,31 @@ DESC={
  'thankyou':{'en':'Thank you — we\u2019ve received your enquiry.','de':'Danke — wir haben eure Anfrage erhalten.','es':'Gracias — hemos recibido vuestra consulta.'},
 }
 
+# Google reviews link — TODO: replace with the exact "reviews" URL from the Google Business Profile.
+GOOGLE_REVIEWS_URL='https://www.google.com/search?q=Mountain+Elopement+Blitzkneisser+Bewertungen'
+# Real 5-star Google reviews, shown in their original language (authentic), lightly excerpted.
+REVIEWS=[
+ ('Frankie Temple-Brown','We cannot express how amazing the Mountain Elopement team were from start to finish &mdash; taking care of every little detail to make our day the most magical it could be. The day, location and photos all surpassed our expectations.'),
+ ('Chrisma Wortley','Wow. I am speechless. We decided to elope on our vacation in Italy and the photos are AMAZING. Andy is such a charismatic and wonderful soul &mdash; we highly recommend the Blitzkneissers!'),
+ ('E E','An amazing team from start to finish. They woke up at 1am, showed up with all smiles, and were an amazing group of humans to spend such a magical day with.'),
+ ('Sabrina Pulka','Absolute Empfehlung! Wir h&auml;tten uns keine bessere fotografische Begleitung f&uuml;r unser Sunrise-Elopement vorstellen k&ouml;nnen. Andreas ist ein herausragender Fotograf.'),
+ ('jack harney','I wish there were more stars we could give. Our day was perfect and so much fun &mdash; everyone made us feel so comfortable. We highly recommend Mountain Elopement, especially in the Dolomites.'),
+ ('VTC','We chose them for the aesthetic of their photographs &mdash; a pleasant surprise that they are so friendly and chill, while guiding us professionally. Couldn&rsquo;t have asked for a more perfect crew!'),
+ ('Selina Paula M&auml;rte','Ein Fotograf mit Leidenschaft und Hingabe. Sch&ouml;ner h&auml;tte unser Elopement nicht sein k&ouml;nnen &mdash; eine der sch&ouml;nsten Erinnerungen in unserem Leben.'),
+ ('Kristy Frehner','From start, via FaceTime a year prior, to finish, the Mountain Elopement team was fabulous. We had the best experience on our special day.'),
+]
+def reviews_block(lang,P,n=6):
+    stars='<span class="rev-stars" aria-label="5/5">&#9733;&#9733;&#9733;&#9733;&#9733;</span>'
+    cards=''.join(
+      f'<figure class="rev-card">{stars}<blockquote class="rev-text">{txt}</blockquote><figcaption class="rev-name">{name}</figcaption></figure>'
+      for name,txt in REVIEWS[:n])
+    return (f'<section class="reviews-section"><div class="wrap"><div class="section-head reveal">'
+      f'<div class="kicker" data-n="{t(lang,"rev_k")}"><span class="line"></span></div><h2>{t(lang,"rev_h")}</h2></div>'
+      f'<p class="lead reveal" style="text-align:center;max-width:620px;margin:0 auto clamp(26px,4vw,42px)">{t(lang,"rev_sub")}</p>'
+      f'<div class="rev-grid reveal">{cards}</div>'
+      f'<div class="reveal" style="text-align:center;margin-top:clamp(26px,4vw,42px)"><a class="rev-google" href="{GOOGLE_REVIEWS_URL}" target="_blank" rel="noopener">{t(lang,"rev_all")} &rarr;</a></div>'
+      '</div></section>')
+
 def build_home(lang):
     rel=''; P=prefix(lang,rel)
     body=(nav(lang,rel,'home',booking=True)+
@@ -1094,6 +1124,7 @@ def build_home(lang):
       '<section class="band"><div class="wrap quote reveal">'
       f'<div class="kicker" data-n="03">{t(lang,"kw_k")}<span class="line"></span></div>'
       f'<p style="margin-top:26px">{t(lang,"kw_q")}</p><div class="who">{t(lang,"kw_who")}</div></div></section>'
+      +reviews_block(lang,P,6)+
       '<section class="awards-section"><div class="wrap"><div class="section-head reveal">'
       f'<div class="kicker" data-n="04">{t(lang,"aw_k")}<span class="line"></span></div><h2>{t(lang,"aw_h")}</h2></div>'
       f'<p class="lead reveal" style="max-width:660px">{t(lang,"aw_lead")}</p>'
@@ -1574,6 +1605,7 @@ def build_contact(lang):
       '<div><strong>WhatsApp</strong> &mdash; +39 348 425 8317</div>'
       f'<div><strong>{t(lang,"ct_based")}</strong> &mdash; {t(lang,"ct_based_v")}</div>'
       '<div><strong>Instagram</strong> &mdash; @mountainelopement</div></div></aside></div></section>'
+      +reviews_block(lang,P,3)
       +footer(lang,rel))
     write(lang,rel,head(lang,rel,TITLES['contact'][lang],DESC['contact'][lang])+body+scripts(P,extra))
 
