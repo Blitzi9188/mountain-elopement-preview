@@ -9,6 +9,7 @@ DOMAIN = 'https://mountain-elopement.com'
 # richtigen Site-Key aus dem Cloudflare-Dashboard tauschen (Secret liegt als Env-Var).
 TURNSTILE_SITEKEY = '0x4AAAAAAEAJ_UFGxkdE5SBY'
 CONTACT_ENDPOINT  = '/api/contact'
+SEO_YEAR = 2027   # shown in a few titles/descriptions for freshness; change in one place
 
 GTM_ID='GTM-MT6KGS4F'
 # Google Consent Mode v2 (standard) — consent defaults to DENIED, then GTM loads on every
@@ -444,34 +445,6 @@ STORIES = [
 
 # Guides (elopement-specific, distinct from the wedding-photographer site)
 GUIDES = [
- {'slug':'dolomites-elopement-guide','img':'s24',
-  'title':{'en':'How to Elope in the Dolomites','de':'Elopement in den Dolomiten','es':'Cómo fugarse en los Dolomitas'},
-  'excerpt':{'en':'Everything you need to marry among Italy\'s most beautiful peaks.','de':'Alles, was ihr braucht, um zwischen Italiens schönsten Gipfeln zu heiraten.','es':'Todo lo que necesitáis para casaros entre las cumbres más bellas de Italia.'},
-  'intro':{'en':'The Dolomites are one of Europe\'s most breathtaking places to elope — dramatic peaks, turquoise lakes and light that turns the rock pink at dawn. Here is how to make your day here effortless.',
-           'de':'Die Dolomiten gehören zu den atemberaubendsten Orten Europas für ein Elopement — schroffe Gipfel, türkise Seen und Licht, das den Fels im Morgengrauen rosa färbt. So gelingt euer Tag hier mühelos.',
-           'es':'Los Dolomitas son uno de los lugares más impresionantes de Europa para un elopement — cumbres dramáticas, lagos turquesa y una luz que tiñe la roca de rosa al amanecer. Así hacéis que vuestro día aquí sea sencillo.'},
-  'sec':[
-   {'h':{'en':'When to go','de':'Beste Reisezeit','es':'Cuándo ir'},
-    'p':{'en':'Late June to September offers reliable weather and open mountain huts. For fewer crowds and golden larches, plan for late September.',
-         'de':'Ende Juni bis September bietet verlässliches Wetter und geöffnete Hütten. Für weniger Trubel und goldene Lärchen plant Ende September.',
-         'es':'De finales de junio a septiembre hay tiempo estable y refugios abiertos. Para menos gente y alerces dorados, planificad a finales de septiembre.'}},
-   {'h':{'en':'Where to say your vows','de':'Wo ihr euer Ja-Wort gebt','es':'Dónde dar el sí'},
-    'p':{'en':'From the ridges of Seceda to the shores of Lago di Braies and the Tre Cime, we help you choose a spot that matches your fitness and your vision.',
-         'de':'Von den Graten der Seceda über den Pragser Wildsee bis zu den Drei Zinnen — wir helfen euch, einen Ort passend zu Kondition und Vision zu wählen.',
-         'es':'Desde las crestas del Seceda hasta la orilla del Lago di Braies y las Tre Cime, os ayudamos a elegir un lugar acorde a vuestra forma física y visión.'}},
-   {'h':{'en':'Making it official','de':'Rechtsgültig heiraten','es':'Hacerlo oficial'},
-    'p':{'en':'You can marry legally in Italy with some paperwork in advance, or hold a symbolic ceremony and complete the legal part at home. We point you to the right path.',
-         'de':'In Italien könnt ihr mit etwas Papierkram vorab rechtsgültig heiraten — oder eine symbolische Zeremonie feiern und das Rechtliche zu Hause erledigen. Wir zeigen euch den richtigen Weg.',
-         'es':'Podéis casaros legalmente en Italia con algo de papeleo previo, o celebrar una ceremonia simbólica y completar la parte legal en casa. Os indicamos el camino correcto.'}},
-   {'h':{'en':'Getting there: passes, toll roads &amp; cable cars','de':'Anreise: Pässe, Mautstraßen &amp; Bergbahnen','es':'Cómo llegar: puertos, peajes y teleféricos'},
-    'p':{'en':'Most couples fly into Venice, Verona or Innsbruck and drive the last stretch. The great passes &mdash; Giau, Falzarego and Pordoi &mdash; are free and scenic, but two spots cost or restrict: the Tre Cime di Lavaredo toll road above Misurina (around &euro;30&ndash;45 per car in season) climbs almost to the peaks, and Lago di Braies caps summer traffic to the lake from roughly 10:00 to 16:00, so we shoot there at first light. Where the road ends a cable car often begins &mdash; Seceda above Ortisei, Lagazuoi from Passo Falzarego, Sass Pordoi from Passo Pordoi. See [[g:most-beautiful-dolomites-spots|our favourite Dolomite locations]] for where each one leads.',
-         'de':'Die meisten Paare fliegen nach Venedig, Verona oder Innsbruck und fahren das letzte Stück. Die großen Pässe &mdash; Giau, Falzarego und Pordoi &mdash; sind kostenlos und traumhaft, doch zwei Orte kosten oder beschränken: die Mautstraße zu den Drei Zinnen oberhalb von Misurina (in der Saison rund 30&ndash;45&nbsp;&euro; pro Auto) führt fast bis unter die Zinnen, und der Pragser Wildsee begrenzt den Sommerverkehr zum See etwa von 10 bis 16 Uhr &mdash; deshalb fotografieren wir dort im ersten Licht. Wo die Straße endet, beginnt oft eine Bergbahn &mdash; Seceda über Ortisei, Lagazuoi ab dem Falzaregopass, Sass Pordoi ab dem Pordoipass. In [[g:most-beautiful-dolomites-spots|unseren liebsten Dolomiten-Orten]] steht, wohin jede führt.',
-         'es':'La mayoría vuela a Venecia, Verona o Innsbruck y conduce el último tramo. Los grandes puertos &mdash; Giau, Falzarego y Pordoi &mdash; son gratis y espectaculares, pero dos lugares cobran o limitan: la carretera de peaje de las Tre Cime di Lavaredo sobre Misurina (unos 30&ndash;45&nbsp;&euro; por coche en temporada) sube casi hasta las cumbres, y el Lago di Braies limita el tráfico estival al lago de 10:00 a 16:00, por eso fotografiamos allí con la primera luz. Donde acaba la carretera suele empezar un teleférico &mdash; Seceda sobre Ortisei, Lagazuoi desde el Passo Falzarego, Sass Pordoi desde el Passo Pordoi. Mirad [[g:most-beautiful-dolomites-spots|nuestros lugares favoritos de los Dolomitas]] para ver adónde lleva cada uno.'}},
-   {'h':{'en':'Where to base yourselves','de':'Wo ihr euch einquartiert','es':'Dónde alojaros'},
-    'p':{'en':'Cortina d\'Ampezzo, Ortisei in Val Gardena and the Alta Badia villages make the easiest bases &mdash; each within an hour of the headline locations, each full of mountain huts for a wedding-night dinner. For a dawn ceremony we often book a rifugio so you sleep on the mountain and wake already there; a real one is [[s:sunrise-dolomites-elopement|this Dolomites daybreak]], and [[g:sunrise-or-sunset-elopement|sunrise or sunset?]] helps you choose your light.',
-         'de':'Cortina d\'Ampezzo, St. Ulrich (Ortisei) im Grödnertal und die Dörfer der Alta Badia sind die einfachsten Standorte &mdash; jeweils eine Stunde von den Top-Orten entfernt und voller Hütten für ein Hochzeitsdinner. Für eine Zeremonie im Morgengrauen buchen wir oft eine Hütte, damit ihr am Berg schlaft und schon dort aufwacht; ein echtes Beispiel ist [[s:sunrise-dolomites-elopement|dieser Dolomiten-Tagesanbruch]], und [[g:sunrise-or-sunset-elopement|Sonnenaufgang oder Sonnenuntergang?]] hilft bei der Wahl des Lichts.',
-         'es':'Cortina d\'Ampezzo, Ortisei en Val Gardena y los pueblos de Alta Badia son las bases más cómodas &mdash; a una hora de los lugares estrella y llenos de refugios para una cena de bodas. Para una ceremonia al alba solemos reservar un rifugio para que durmáis en la montaña y despertéis ya allí; un ejemplo real es [[s:sunrise-dolomites-elopement|este amanecer en los Dolomitas]], y [[g:sunrise-or-sunset-elopement|¿amanecer o atardecer?]] os ayuda a elegir vuestra luz.'}},
-  ]},
  {'slug':'elope-in-austria','img':'s01',
   'title':{'en':'How to Elope in Austria & Tyrol','de':'Elopement in Österreich & Tirol','es':'Cómo fugarse en Austria y el Tirol'},
   'excerpt':{'en':'Alpine lakes, high ridges and an easy legal marriage.','de':'Bergseen, hohe Grate und eine unkomplizierte Trauung.','es':'Lagos alpinos, crestas altas y una boda legal sencilla.'},
@@ -656,18 +629,6 @@ STORYBY={s[1]:s for s in STORIES}
 
 # extra structure per guide: facts [(labelkey,{lang:value})], sec4 {h,p}, tips {lang:[..]}, related story slugs
 GUIDE_EXTRA={
- 'dolomites-elopement-guide':{
-   'facts':[('season',{'en':'Jun&ndash;Sep','de':'Juni&ndash;Sep','es':'Jun&ndash;Sep'}),
-            ('diff',{'en':'Easy&ndash;Challenging','de':'Leicht&ndash;Anspruchsvoll','es':'Fácil&ndash;Exigente'}),
-            ('reach',{'en':'Venice / Innsbruck &middot; 2&ndash;3 h','de':'Venedig / Innsbruck &middot; 2&ndash;3 h','es':'Venecia / Innsbruck &middot; 2&ndash;3 h'})],
-   'sec4':{'h':{'en':'Sunrise or sunset?','de':'Sonnenaufgang oder Sonnenuntergang?','es':'¿Amanecer o atardecer?'},
-           'p':{'en':'Sunrise means solitude and soft light with a pre-dawn start; sunset is easier but busier. We help you choose what fits you.',
-                'de':'Sonnenaufgang bedeutet Ruhe und weiches Licht mit frühem Start; Sonnenuntergang ist bequemer, aber belebter. Wir helfen euch bei der Wahl.',
-                'es':'El amanecer trae soledad y luz suave con un inicio antes del alba; el atardecer es más cómodo pero con más gente. Os ayudamos a elegir.'}},
-   'tips':{'en':['Book mountain huts early for sunrise access.','The larches glow most in late September.','Keep your date weather-flexible.'],
-           'de':['Hütten früh buchen für den Zugang zum Sonnenaufgang.','Die Lärchen leuchten Ende September am schönsten.','Haltet euer Datum wetterflexibel.'],
-           'es':['Reservad los refugios pronto para el amanecer.','Los alerces brillan más a finales de septiembre.','Mantened una fecha flexible según el clima.']},
-   'stories':['climbing-wedding','sunrise-dolomites-elopement','lago-di-braies-elopement']},
  'elope-in-austria':{
    'facts':[('season',{'en':'May&ndash;Oct','de':'Mai&ndash;Okt','es':'May&ndash;Oct'}),
             ('diff',{'en':'Easy&ndash;Moderate','de':'Leicht&ndash;Mittel','es':'Fácil&ndash;Moderada'}),
@@ -843,8 +804,8 @@ IT={
 IT_LBL={'season':'Periodo migliore','diff':'Difficoltà','reach':'Come arrivare','regions':'Regioni','access':'Accesso','light':'Luce migliore','lead':'Preavviso','guests':'Ospiti','includes':'Include'}
 IT_CATS={'couple':'Coppie','dolomites':'Dolomiti','mountain':'Montagna','lake':'Laghi','elopement':'Elopement','engagement':'Fidanzamento'}
 IT_ST={'climbing-wedding':'Un elopement nei prati del Passo Giau, Dolomiti','sunrise-elopement-in-the-dolomites':'Un magico elopement all’alba nelle Dolomiti','mountain-engagement':'Proposta in vetta &mdash; fidanzamento in montagna','crystal-clear-water-elopement':'Elopement di montagna presso acque cristalline','hiking-elopement-lagazuoi-dolomites':'Un matrimonio d’inverno in Val Gardena','pizza-elopement-at-tre-cime-cadini-di-misurina':'Elopement con pizza alle Tre Cime','mountain-elopement-dolomiten':'Elopement nelle Dolomiti in tre location','sunrise-dolomites-elopement':'Alba nelle Dolomiti','official-married-in-the-alps':'Matrimonio ufficiale sulla cima del Tirolo','ultimate-italian-elopement':'Un elopement in tre giorni','adventure-helicopter-elopement-dolomites':'Elopement d’avventura in elicottero nelle Dolomiti','lake-elopement-tyrol-mountains':'Elopement al lago','a-journey-of-love-and-adventure':'Un elopement sugli sci nelle Dolomiti d’inverno','couple-shoot-photo':'Servizio di coppia in autunno','sunset-elopement-tyrol':'Elopement al tramonto in vetta','intimate-lake-eibsee-elopement':'Elopement intimo al lago Eibsee','lago-di-braies-elopement':'Elopement al Lago di Braies','rainy-lago-di-braies-pizza-elopement':'Barche a remi e pizza al Lago di Braies &mdash; un elopement'}
-IT_TITLES={'home':'Mountain Elopement — Dove l’avventura incontra il romanticismo','howto':'Elopement nelle montagne d’Europa — Mountain Elopement','stories':'Storie — Mountain Elopement','packages':'Prezzi — Mountain Elopement','team':'Il nostro team e i partner — Mountain Elopement','contact':'Contatti — Mountain Elopement','thankyou':'Grazie per la vostra richiesta — Mountain Elopement'}
-IT_DESC={'home':'Fotografia e pianificazione editoriale di elopement nelle Dolomiti e nelle Alpi.','howto':'Una guida per il vostro elopement nelle Dolomiti e nelle Alpi.','stories':'Storie di elopement di montagna nelle Dolomiti e nelle Alpi.','packages':'Pacchetti elopement: fotografia, pianificazione, film, fiori e trucco.','team':'Il team dietro il vostro elopement — fotografia, pianificazione, film e trucco.','contact':'Raccontateci la vostra storia. Fotografia e pianificazione di elopement nelle Dolomiti e nelle Alpi.','thankyou':'Grazie — abbiamo ricevuto la vostra richiesta.'}
+IT_TITLES={'home':'Mountain Elopement — Dove l’avventura incontra il romanticismo','howto':f'Elopement in Europa {SEO_YEAR} — guida per monti e laghi','stories':'Storie — Mountain Elopement','packages':f'Pacchetti elopement {SEO_YEAR} — Dolomiti, da 6.000 €','team':'Il nostro team e i partner — Mountain Elopement','contact':'Contatti — Mountain Elopement','thankyou':'Grazie per la vostra richiesta — Mountain Elopement'}
+IT_DESC={'home':'Fotografia e pianificazione editoriale di elopement nelle Dolomiti e nelle Alpi.','howto':f'Aggiornata per il {SEO_YEAR}: la guida al vostro elopement nelle Dolomiti e nelle Alpi — luoghi, costi, pratiche e pianificazione.','stories':'Storie di elopement di montagna nelle Dolomiti e nelle Alpi.','packages':f'Pacchetti elopement {SEO_YEAR} da 6.000 €: fotografia, pianificazione, film, fiori e trucco.','team':'Il team dietro il vostro elopement — fotografia, pianificazione, film e trucco.','contact':'Raccontateci la vostra storia. Fotografia e pianificazione di elopement nelle Dolomiti e nelle Alpi.','thankyou':'Grazie — abbiamo ricevuto la vostra richiesta.'}
 IT_GUIDES={
  'dolomites-elopement-guide':{'title':'Elopement nelle Dolomiti','excerpt':'Tutto ciò che serve per sposarvi tra le cime più belle d’Italia.','intro':'Le Dolomiti sono uno dei luoghi più mozzafiato d’Europa per un elopement &mdash; cime drammatiche, laghi turchesi e una luce che tinge la roccia di rosa all’alba. Ecco come rendere il vostro giorno qui semplice.','sec':[('Periodo migliore','Da fine giugno a settembre il tempo è stabile e i rifugi aperti. Per meno folla e larici dorati, pianificate a fine settembre.'),('Dove scambiarvi le promesse','Dalle creste del Seceda alle rive del Lago di Braies e alle Tre Cime, vi aiutiamo a scegliere un luogo adatto alla vostra forma fisica e alla vostra visione.'),('Renderlo ufficiale','In Italia potete sposarvi legalmente con qualche pratica in anticipo, oppure celebrare una cerimonia simbolica e completare la parte legale a casa. Vi indichiamo la strada giusta.'),('Come arrivare: passi, strade a pedaggio e funivie','La maggior parte delle coppie atterra a Venezia, Verona o Innsbruck e guida l\'ultimo tratto. I grandi passi &mdash; Giau, Falzarego e Pordoi &mdash; sono gratuiti e panoramici, ma due luoghi hanno un costo o limitazioni: la strada a pedaggio delle Tre Cime di Lavaredo sopra Misurina (circa 30&ndash;45&nbsp;&euro; ad auto in stagione) sale quasi sotto le cime, e il Lago di Braies limita il traffico estivo verso il lago dalle 10 alle 16 circa, perciò lì fotografiamo alla prima luce. Dove finisce la strada spesso inizia una funivia &mdash; Seceda sopra Ortisei, Lagazuoi dal Passo Falzarego, Sass Pordoi dal Passo Pordoi. Guardate [[g:most-beautiful-dolomites-spots|i nostri luoghi preferiti delle Dolomiti]] per sapere dove porta ciascuna.'),('Dove alloggiare','Cortina d\'Ampezzo, Ortisei in Val Gardena e i paesi dell\'Alta Badia sono le basi più comode &mdash; a un\'ora dai luoghi principali e pieni di rifugi per una cena di nozze. Per una cerimonia all\'alba prenotiamo spesso un rifugio, così dormite in montagna e vi svegliate già lì; un esempio reale è [[s:sunrise-dolomites-elopement|questo albeggiare nelle Dolomiti]], e [[g:sunrise-or-sunset-elopement|alba o tramonto?]] vi aiuta a scegliere la luce.')]},
  'elope-in-austria':{'title':'Elopement in Austria e Tirolo','excerpt':'Laghi alpini, alte creste e un matrimonio legale semplice.','intro':'Il Tirolo è casa nostra. Dalle cime sopra Innsbruck ai laghi nascosti, l’Austria rende l’elopement semplice &mdash; anche dal punto di vista legale.','sec':[('Matrimonio legale in Austria','L’Austria consente cerimonie ufficiali in municipio e, in alcune regioni, in splendide location all’aperto. Coordiniamo appuntamento e pratiche.'),('Location migliori','La Nordkette sopra Innsbruck, la Zillertal e innumerevoli laghi alpini sono facilmente raggiungibili.'),('Come arrivare','Innsbruck ha un proprio aeroporto e collegamenti rapidi con Monaco e Venezia, il che rende il Tirolo una delle regioni alpine più accessibili.'),('Funivie e strade a pedaggio alpine','Innsbruck è l\'unica città delle Alpi con l\'alta montagna alla porta: la funicolare Hungerburgbahn e le funivie della Nordkette vi portano dal centro storico all\'Hafelekar, a 2.256&thinsp;m, in circa venti minuti. Più all\'interno, due strade a pedaggio aprono acque turchesi &mdash; la Schlegeis Alpenstraße in Zillertal (circa 13&nbsp;&euro; ad auto) termina a un bacino azzurro latte, e le strade d\'alta quota di Kühtai e Timmelsjoch salgono ben oltre il limite del bosco. Grandi scenari alpini quasi senza camminare.'),('Dove amiamo scambiare le promesse in Tirolo','La nostra rosa: il protetto Obernberger See presso il Brennero, lo smeraldo Schlegeisspeicher in Zillertal e i quieti laghetti d\'alta quota sopra Kühtai. Tutti vicini a Innsbruck eppure in un altro mondo &mdash; una vera giornata tirolese è [[s:lake-elopement-tyrol-mountains|questo elopement al lago alpino]], oppure, se lo volete legale in vetta, [[s:official-married-in-the-alps|un ufficiale di stato civile vero in montagna]]. Altri preferiti in [[g:best-alps-elopement-locations|le nostre migliori location alpine]].')]},
@@ -1048,18 +1009,18 @@ def gallery_html(lang,P,slug,alt,quote=''):
 
 TITLES={  # <title> per page
  'home':{'en':'Mountain Elopement | Intimate Weddings & Adventure Elopements','de':'Mountain Elopement — Wo Abenteuer auf Romantik trifft','es':'Mountain Elopement — Donde la aventura se une al romance'},
- 'howto':{'en':'How to Elope in Europe | Mountain & Lake Elopement','de':'Elopement in den europäischen Bergen — Mountain Elopement','es':'Cómo fugarse en las montañas de Europa — Mountain Elopement'},
+ 'howto':{'en':f'How to Elope in Europe {SEO_YEAR} — Mountain &amp; Lake Guide','de':f'Elopement in Europa {SEO_YEAR} — Guide für Berge &amp; Seen','es':f'Elopement en Europa {SEO_YEAR} — guía de montaña y lago'},
  'stories':{'en':'Stories — Mountain Elopement','de':'Stories — Mountain Elopement','es':'Historias — Mountain Elopement'},
- 'packages':{'en':'Price List — Mountain Elopement','de':'Preise — Mountain Elopement','es':'Precios — Mountain Elopement'},
+ 'packages':{'en':f'Elopement Packages {SEO_YEAR} — Dolomites &amp; Alps from €6,000','de':f'Elopement-Pakete {SEO_YEAR} — Dolomiten &amp; Alpen ab 6.000 €','es':f'Paquetes elopement {SEO_YEAR} — Dolomitas desde 6.000 €'},
  'team':{'en':'Our Team & Partners — Mountain Elopement','de':'Unser Team & Partner — Mountain Elopement','es':'Nuestro equipo y socios — Mountain Elopement'},
  'contact':{'en':'Contact — Mountain Elopement','de':'Kontakt — Mountain Elopement','es':'Contacto — Mountain Elopement'},
  'thankyou':{'en':'Thank You for Your Inquiry — Mountain Elopement','de':'Danke für eure Anfrage — Mountain Elopement','es':'Gracias por vuestra consulta — Mountain Elopement'},
 }
 DESC={
  'home':{'en':'Plan your unforgettable Mountain Elopement. We create intimate weddings with breathtaking locations, photography, film & full planning across Europe.','de':'Editorial-Elopement-Fotografie & Planung in den Dolomiten/Alpen.','es':'Fotografía y planificación editorial de elopements en los Dolomitas y los Alpes.'},
- 'howto':{'en':'A practical guide to eloping in the European mountains: where to go, what it costs, legal paperwork, and how to plan a day that feels like yours.','de':'Ein Leitfaden für euer Elopement in den Dolomiten/Alpen.','es':'Una guía para fugarse en los Dolomitas y los Alpes.'},
+ 'howto':{'en':f'Updated for {SEO_YEAR}: a practical guide to eloping in the European mountains — where to go, what it costs, the legal paperwork, and how to plan a day that feels like yours.','de':f'Aktualisiert für {SEO_YEAR}: euer Leitfaden für ein Elopement in den Dolomiten und Alpen — Orte, Kosten, Papiere und Planung.','es':f'Actualizado para {SEO_YEAR}: guía para fugarse en los Dolomitas y los Alpes — lugares, costes, papeleo y planificación.'},
  'stories':{'en':'Mountain elopement stories from the Dolomites and the Alps.','de':'Berg-Elopement-Stories aus den Dolomiten/Alpen.','es':'Historias de elopement de montaña en los Dolomitas y los Alpes.'},
- 'packages':{'en':'Elopement packages: photography, planning, film, flowers and make-up.','de':'Elopement-Pakete: Fotografie, Planung, Film, Blumen und Make-up.','es':'Paquetes de elopement: fotografía, planificación, film, flores y maquillaje.'},
+ 'packages':{'en':f'Elopement packages for {SEO_YEAR} from €6,000: photography, planning, film, flowers and make-up.','de':f'Elopement-Pakete {SEO_YEAR} ab 6.000 €: Fotografie, Planung, Film, Blumen und Make-up.','es':f'Paquetes de elopement {SEO_YEAR} desde 6.000 €: fotografía, planificación, film, flores y maquillaje.'},
  'team':{'en':'The team behind your elopement — photography, planning, film and make-up.','de':'Das Team hinter eurem Elopement — Fotografie, Planung, Film und Make-up.','es':'El equipo detrás de vuestro elopement — fotografía, planificación, film y maquillaje.'},
  'contact':{'en':'Tell us your story. Elopement photography & planning in the Dolomites and the Alps.','de':'Erzählt uns eure Geschichte. Elopement-Fotografie & Planung in den Dolomiten/Alpen.','es':'Contadnos vuestra historia. Fotografía y planificación de elopements en los Dolomitas y los Alpes.'},
  'thankyou':{'en':'Thank you — we\u2019ve received your enquiry.','de':'Danke — wir haben eure Anfrage erhalten.','es':'Gracias — hemos recibido vuestra consulta.'},
@@ -1520,7 +1481,16 @@ def build_packages(lang):
       f'<div class="kicker" data-n="{t(lang,"pk_next")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"pk_cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"pk_req_price")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,TITLES['packages'][lang],DESC['packages'][lang])+body+scripts(P,curjs+calcjs))
+    # Product schema — prices from PKG_EUR (single source); priceCurrency always EUR (switcher is display-only).
+    product_ld={"@context":"https://schema.org","@type":"Product",
+      "name":"Elopement Packages — Dolomites & Alps",
+      "description":_plain(DESC['packages'][lang]),
+      "brand":{"@type":"Organization","name":"Mountain Elopement"},
+      "offers":{"@type":"AggregateOffer","priceCurrency":"EUR",
+        "lowPrice":str(min(PKG_EUR)),"highPrice":str(max(PKG_EUR)),"offerCount":len(PKG_EUR),
+        "availability":"https://schema.org/InStock",
+        "url":f"{DOMAIN}/{lbase(lang)}our-packages/"}}
+    write(lang,rel,head(lang,rel,TITLES['packages'][lang],DESC['packages'][lang],ld_extra=product_ld)+body+scripts(P,curjs+calcjs))
 
 def build_team(lang):
     rel='our-team/'; P=prefix(lang,rel)
@@ -1735,14 +1705,14 @@ def guide_card(lang,P,g):
         f'<div class="tags" style="text-transform:none;letter-spacing:0;font-family:var(--serif);font-style:italic;font-size:15px">{g["excerpt"][lang]}</div></a>')
 
 def guide_map(lang,P):
-    pins=[('map_tyrol','elope-in-austria',300,300),('map_lakes','best-alps-elopement-locations',540,225),('map_dol','dolomites-elopement-guide',760,345)]
+    pins=[('map_tyrol','how-to-elope-in-the-europe-mountains/elope-in-austria/',300,300),('map_lakes','how-to-elope-in-the-europe-mountains/best-alps-elopement-locations/',540,225),('map_dol','elopement-dolomites/',760,345)]
     svg='<div class="guide-map reveal"><svg viewBox="0 0 1000 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Region map">'
     svg+='<g fill="none" stroke="var(--line-2)" stroke-width="1" opacity=".5"><path d="M70,150 C260,90 420,180 560,140 S860,120 970,196"/><path d="M55,214 C245,150 430,244 600,202 S890,182 985,258"/></g>'
     svg+='<path d="M0,520 L0,470 L160,438 L300,486 L460,432 L620,482 L780,430 L920,472 L1000,452 L1000,520 Z" fill="var(--line-2)" opacity=".3"/>'
     svg+='<path d="M0,520 L0,432 L120,470 L230,386 L330,452 L430,362 L540,442 L650,354 L760,430 L870,374 L1000,442 L1000,520 Z" fill="var(--line)" opacity=".5"/>'
     svg+='<path d="M300,300 L540,225 L760,345" fill="none" stroke="var(--line-2)" stroke-width="1.5" stroke-dasharray="3 7"/>'
-    for lk,slug,x,y in pins:
-        href=u(P,lang,'how-to-elope-in-the-europe-mountains/'+slug+'/')
+    for lk,rel,x,y in pins:
+        href=u(P,lang,rel)
         svg+=(f'<a href="{href}"><g class="gm-pin"><circle class="ring" cx="{x}" cy="{y}" r="10"></circle>'
               f'<circle class="dot" cx="{x}" cy="{y}" r="8"></circle>'
               f'<text x="{x}" y="{y-22}" text-anchor="middle">{t(lang,lk)}</text></g></a>')
@@ -1761,7 +1731,6 @@ GCAT={
  'planning':{'en':'Planning','de':'Planung','es':'Planificación','it':'Pianificazione'},
 }
 GUIDE_CATS={
- 'dolomites-elopement-guide':['dolomites','locations','seasons'],
  'elope-in-austria':['locations'],
  'best-alps-elopement-locations':['dolomites','locations'],
  'how-to-plan-your-elopement':['planning'],
@@ -1985,8 +1954,8 @@ def build_region(lang):
         {"@type":"Question","name":_plain(q),"acceptedAnswer":{"@type":"Answer","text":_plain(a)}} for q,a in faqs]}
     stories=['sunrise-elopement-in-the-dolomites','climbing-wedding','lago-di-braies-elopement']
     cards=''.join(story_card(lang,P,STORYBY[s]) for s in stories)
-    title='Dolomites Elopement — How to Elope in the Dolomites | Mountain Elopement'
-    desc='Planning a Dolomites elopement? Permits, access rules, the best light, and how to make it legal &mdash; from photographers who elope couples in the Dolomites year-round.'
+    title=f'Dolomites Elopement {SEO_YEAR} — How to Elope in the Dolomites'
+    desc=f'Planning a Dolomites elopement for {SEO_YEAR}? Permits, access rules, the best light, and how to make it legal &mdash; from photographers who elope couples here year-round.'
     body=(nav(lang,rel,'')+
       f'<section class="page-hero" style="padding:0"><div class="bg" style="background-image:url(\'{P}img/hero/hero2.webp\')"></div>'
       f'<div class="content"><div class="wrap"><div class="kicker" data-n="The Region"><span class="line"></span></div><h1>Dolomites Elopement</h1></div></div></section>'
@@ -2015,6 +1984,13 @@ def build_region(lang):
       +'<p style="color:var(--ink-2);font-size:13px;font-style:italic;margin:.3em 0 0">Hours are set by the boathouse operator and can change &mdash; we confirm them before every booking.</p>'
       +p('<strong>Tre Cime di Lavaredo.</strong> The three towers. The toll road from Lago d&rsquo;Antorno up to Rifugio Auronzo requires an <strong>advance online booking</strong> with your licence plate, and the road ends five kilometres later at 2,320&thinsp;m &mdash; which means you reach the base without a serious climb. The walk around the towers is gentle enough for a wedding dress and good shoes.')
       +p('<strong>Lagazuoi, Cadini di Misurina, the Prags valley</strong> and a dozen quieter shoulders and saddles that never make the guidebooks. Part of our job is matching a place to your fitness, your dress, and how far you actually want to walk before saying yes.')
+      +'<div class="facts" style="margin:2.2em 0 0"><div class="fct"><div class="fl">Season</div><div class="fv">Jun&ndash;Sep</div></div>'
+      +'<div class="fct"><div class="fl">Difficulty</div><div class="fv">Easy&ndash;Challenging</div></div>'
+      +'<div class="fct"><div class="fl">Getting here</div><div class="fv">Venice / Innsbruck &middot; 2&ndash;3&nbsp;h</div></div></div>'
+      +h2('Getting there: passes, toll roads &amp; cable cars')
+      +p('Most couples fly into Venice, Verona or Innsbruck and drive the last stretch. The great passes &mdash; Giau, Falzarego and Pordoi &mdash; are free and scenic, but two spots cost or restrict: the Tre Cime di Lavaredo toll road above Misurina (around &euro;30&ndash;45 per car in season) climbs almost to the peaks, and Lago di Braies limits summer traffic to the lake to 09:00&ndash;16:00 between 1&nbsp;July and 15&nbsp;September, so we shoot there before or after that window. Where the road ends a cable car often begins &mdash; Seceda above Ortisei, Lagazuoi from Passo Falzarego, Sass Pordoi from Passo Pordoi.')
+      +h2('Where to stay')
+      +p('Cortina d&rsquo;Ampezzo, Ortisei in Val Gardena and the Alta Badia villages make the easiest bases &mdash; each within an hour of the headline locations, each full of mountain huts for a wedding-night dinner. For a dawn ceremony we often book a rifugio, so you sleep on the mountain and wake already there. Book the huts and the good mornings months ahead &mdash; in summer they fill up fast.')
       +h2('Making it legal')
       +p('There are two honest paths, and most couples take the second.')
       +p('<strong>A legal civil ceremony in Italy</strong> is possible for foreign nationals, but it is a paperwork exercise: you will need a certificate of no impediment (<em>Nulla Osta</em> / Ehefähigkeitszeugnis), international birth certificates, valid passports, usually an apostille, and sworn translations. Individual municipalities set their own dates, fees and lead times. It is entirely doable &mdash; it simply needs to be started months ahead.')

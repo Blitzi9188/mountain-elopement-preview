@@ -8,5 +8,11 @@
 # Old WordPress portfolio overview → new stories overview
 /portfolio-item/    /stories-elopement-mountain/    301
 
+# Consolidated: the thin Dolomites guide was merged into the region page /elopement-dolomites/
+/how-to-elope-in-the-europe-mountains/dolomites-elopement-guide/     /elopement-dolomites/     301
+/de/how-to-elope-in-the-europe-mountains/dolomites-elopement-guide/  /de/elopement-dolomites/  301
+/es/how-to-elope-in-the-europe-mountains/dolomites-elopement-guide/  /es/elopement-dolomites/  301
+/it/how-to-elope-in-the-europe-mountains/dolomites-elopement-guide/  /it/elopement-dolomites/  301
+
 # NOTE: the retired /proofing-gallery/ is handled by functions/proofing-gallery/[[path]].js
 # which returns a real 410 Gone. Cloudflare Pages does NOT support 410 in _redirects.
