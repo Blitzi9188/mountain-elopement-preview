@@ -437,6 +437,7 @@ footer .fine{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
 .calc-opt-price{font-family:var(--sans);font-size:12.5px;letter-spacing:.05em;color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
 .calc-opt-price.calc-req{color:var(--accent);text-transform:uppercase;letter-spacing:.1em;font-size:10.5px}
 .calc-hint{font-family:var(--sans);font-size:12px;color:var(--ink-2);letter-spacing:.02em;line-height:1.5;margin:12px 0 0}
+.team-square{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
 .calc-opt:has(input:checked){border-color:var(--ink);background:#fff}
 .calc-total{border-top:1px solid var(--line);padding-top:26px;text-align:center}
 .calc-total-label{font-family:var(--sans);text-transform:uppercase;letter-spacing:.16em;font-size:12px;color:var(--ink-2)}

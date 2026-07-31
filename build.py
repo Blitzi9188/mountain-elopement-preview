@@ -69,7 +69,6 @@ P_PLAN = ('Dolomites Wedding Planner', 'https://www.dolomitesweddingplanner.com/
 P_FILM = ('No Matter The Weather', 'https://nomattertheweather.it')
 P_MUA  = ('Blitzkneisser', 'https://blitzkneisser.com')
 NAME_PLAN, NAME_PHOTO, NAME_FILM = 'Jlenia', 'Andreas', 'Stefanie'
-TEAM_HERO = ['img/team/team-bw.webp', 'img/team/team-ski.webp', 'img/team/team-lake.webp']
 
 def lbase(lang): return '' if lang=='en' else lang+'/'
 def u(P,lang,rel): return P + lbase(lang) + rel + 'index.html'   # internal link
@@ -1491,10 +1490,19 @@ def build_packages(lang):
 
 def build_team(lang):
     rel='our-team/'; P=prefix(lang,rel)
+    # Team photos rotate on every load — auto-discovers every .webp in img/team/.
+    # Drop more square (1:1) photos into img/team/ and they join the rotation automatically.
+    timgs=sorted(f for f in os.listdir('img/team') if f.lower().endswith('.webp')) or ['team.webp']
+    team_js=('<script>(function(){var imgs='+json.dumps([P+'img/team/'+f for f in timgs])+';'
+      'var el=document.getElementById("team-photo");if(!el||imgs.length<2)return;'
+      'var last=null;try{last=sessionStorage.getItem("me_team");}catch(e){}'
+      'var pool=imgs.filter(function(s){return s!==last;});if(!pool.length)pool=imgs;'
+      'var pick=pool[Math.floor(Math.random()*pool.length)];el.src=pick;try{sessionStorage.setItem("me_team",pick);}catch(e){}'
+      '})();</script>')
     body=(nav(lang,rel,'team')+
       f'<div class="page-plain"><div class="wrap"><div class="kicker" data-n="{t(lang,"tp_k")}"><span class="line"></span></div>'
       f'<h1>{t(lang,"tp_h")}</h1><p class="lead">{t(lang,"tp_lead")}</p></div></div>'
-      f'<section><div class="wrap feature"><div class="media reveal"><img src="{P}img/team/team.webp" alt="Das Team von Mountain Elopement in den Dolomiten">'
+      f'<section><div class="wrap feature"><div class="media reveal"><img id="team-photo" class="team-square" src="{P}img/team/{timgs[0]}" alt="Das Team von Mountain Elopement in den Dolomiten">'
       '<div class="caption">Jlenia &amp; Andreas.</div></div><div class="body reveal">'
       f'<div class="kicker" data-n="01">{t(lang,"tp_fk")}<span class="line"></span></div><h2>Jlenia &amp; Andreas</h2>'
       f'<p class="lead">{t(lang,"tp_flead")}</p><p class="dropcap">{t(lang,"tp_fp1")}</p><p>{t(lang,"tp_fp2")}</p>'
@@ -1504,7 +1512,7 @@ def build_team(lang):
       f'<div class="kicker" data-n="{t(lang,"tp_cta_k")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"tp_cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"tp_plan")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,TITLES['team'][lang],DESC['team'][lang])+body+scripts(P))
+    write(lang,rel,head(lang,rel,TITLES['team'][lang],DESC['team'][lang])+body+scripts(P,team_js))
 
 def build_contact(lang):
     rel='get-in-touch/'; P=prefix(lang,rel)
