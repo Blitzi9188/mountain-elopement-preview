@@ -15,4 +15,11 @@
     var t=setInterval(function(){n+=step;if(n>=to){n=to;clearInterval(t);}
       el.textContent=n.toLocaleString('en-US');},22);cio.unobserve(el);});},{threshold:.6});
   document.querySelectorAll('.num[data-to]').forEach(function(el){cio.observe(el);});
+  // Back-to-top button (mobile only, appears after scrolling)
+  var tt=document.createElement('button');
+  tt.className='to-top';tt.type='button';tt.setAttribute('aria-label','Back to top');tt.innerHTML='↑';
+  document.body.appendChild(tt);
+  tt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  function ttToggle(){tt.classList.toggle('show',window.pageYOffset>400);}
+  window.addEventListener('scroll',ttToggle,{passive:true});ttToggle();
 })();

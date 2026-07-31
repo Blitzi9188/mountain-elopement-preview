@@ -438,6 +438,9 @@ footer .fine{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
 .calc-opt-price.calc-req{color:var(--accent);text-transform:uppercase;letter-spacing:.1em;font-size:10.5px}
 .calc-hint{font-family:var(--sans);font-size:12px;color:var(--ink-2);letter-spacing:.02em;line-height:1.5;margin:12px 0 0}
 .team-square{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+.to-top{position:fixed;right:16px;bottom:16px;z-index:900;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-size:20px;line-height:1;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(15,14,12,.18);opacity:0;transform:translateY(10px);transition:opacity .25s,transform .25s}
+.to-top:active{background:var(--paper-2)}
+@media(max-width:640px){.to-top{display:flex}.to-top.show{opacity:1;transform:none}}
 .calc-opt:has(input:checked){border-color:var(--ink);background:#fff}
 .calc-total{border-top:1px solid var(--line);padding-top:26px;text-align:center}
 .calc-total-label{font-family:var(--sans);text-transform:uppercase;letter-spacing:.16em;font-size:12px;color:var(--ink-2)}
