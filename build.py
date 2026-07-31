@@ -1656,6 +1656,23 @@ PRIVACY_EN="""<h2>Controller</h2>
 <p>You also have the right to lodge a complaint with a data protection supervisory authority — in Austria, the Austrian Data Protection Authority (<a href="https://www.dsb.gv.at" target="_blank" rel="noopener">dsb.gv.at</a>).</p>"""
 
 PRIVACY={'de':PRIVACY_DE,'en':PRIVACY_EN,'es':PRIVACY_EN,'it':PRIVACY_EN}
+IMPRINT_EN="""<p><strong>Contract partner</strong></p>
+<p>Jlenia Costner<br>Hintersun, 3<br>39040 Naz-Sciaves BZ<br>+39 348 425 8317<br>Italien</p>
+<p>and</p>
+<p>Andreas Kiss<br>Rohracker 6<br>6092 Birgitz<br>Austria<br>foto@blitzkneisser.com<br>www.blitzkneisser.com</p>
+<p>VAT identification number: ATU68683604</p>
+<p><strong>&sect; 2 Contract conclusion</strong> Listed commodity offers are permissible as long as they are not the subject of a contractual agreement. The offers are valid only as long as stocks last. An online purchase by the customer constitutes a binding offer to Blitzkneisser to conclude a contractual agreement. By placing an order, the customer accepts these general terms and conditions. The General Terms and Conditions are available online. They can be downloaded or archived. When purchasing software or other digital data via download, the binding contract is concluded by sending the order from the customer to Blitzkneisser. The membership in the Vicky Baumann Presets-User Group is not binding and can also be terminated by Blitzkneisser in certain cases.</p>
+<p><strong>&sect; 3 Payment and delivery</strong> Ordered goods will be delivered ultimately after the purchase. The obligation to deliver does not apply if Blitzkneisser has not been supplied or has not been supplied in time and is not responsible for the lack of availability. The payment is made via Paypal. After the payment, the customer receives a download-link, where he can download his product for a minimum of 7 days. Offsetting by the customer is only permissible if his claim is undisputed or legally established.</p>
+<p><strong>&sect; 4 Prices and shipping costs</strong> For orders, the prices stated in the offer at the time of the order apply. The offer includes the gross prices, including the German statutory value-added tax (VAT).</p>
+<p><strong>&sect; 5 Revocation</strong> Only digital products are offered for sale. These are by law not suitable due to their nature for a return. Therefor, there is no right of revocation.</p>
+<p><strong>&sect; 6 Use and copyrights</strong> All copyrights are exclusively with Blitzkneisser. The transmission of the Online-products, the rental or the duplication is strictly prohibited.</p>
+<p><strong>&sect; 7 Data Protection</strong> Insofar as personal data are communicated to Blitzkneisser within the scope of contractual relations, she is entitled to store these data for the purposes of contract handling as well as for further advertising measures by Blitzkneisser Photography. The customer expressly agrees to this. Blitzkneisser undertakes not to pass these data on to third parties without consent.</p>
+<p><strong>&sect; 8 Applicable law, partial ineffectiveness, jurisdiction</strong> Austrian law shall apply exclusively to the exclusion of the UN purchase law. In the case of invalidity of individual provisions of the supply contract or these general terms and conditions, the remaining clauses remain effective. The place of performance and performance is, to the extent legally permissible, Innsbruck. As far as legally permissible, the court of jurisdiction for all disputes arising from the contractual relations is also Bonn.</p>
+<p>These terms and conditions apply as from 01.01.2021</p>
+<h2>Alternative Streitbeilegung gem&auml;&szlig; Art. 14 Abs. 1 ODR-VO und &sect; 36 VSBG:</h2>
+<p>Die Europ&auml;ische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit, die du unter <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr</a> findest. Zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle sind wir nicht verpflichtet und nicht bereit.</p>"""
+IMPRINT={"en":IMPRINT_EN,"de":IMPRINT_EN,"es":IMPRINT_EN,"it":IMPRINT_EN}
+IMPRINT_LEAD={"en":"Legal information under &sect;5 ECG and &sect;14 UGB.","de":"Rechtliche Angaben gem&auml;&szlig; &sect;5 ECG und &sect;14 UGB.","es":"Informaci&oacute;n legal seg&uacute;n el &sect;5 ECG y el &sect;14 UGB.","it":"Informazioni legali ai sensi del &sect;5 ECG e del &sect;14 UGB."}
 PRIV_LEAD={'en':'How we handle your personal data on this website.','de':'Wie wir mit euren personenbezogenen Daten auf dieser Website umgehen.',
            'es':'How we handle your personal data on this website.','it':'How we handle your personal data on this website.'}
 
@@ -1669,8 +1686,8 @@ def build_legal(lang):
                    f'<section><div class="wrap"><div class="legal-body" style="max-width:760px">{PRIVACY.get(lang,PRIVACY["en"])}</div></div></section>')
         else:
             inner=(f'<div class="page-plain"><div class="wrap"><div class="kicker" data-n="{t(lang,"lg_k")}"><span class="line"></span></div>'
-                   f'<h1>{title}</h1><p class="lead">{t(lang,"lg_lead")}</p></div></div>'
-                   '<section><div class="wrap"><p style="max-width:720px;color:var(--ink-2)">1:1</p></div></section>')
+                   f'<h1>{title}</h1><p class="lead">{IMPRINT_LEAD.get(lang,IMPRINT_LEAD["en"])}</p></div></div>'
+                   f'<section><div class="wrap"><div class="legal-body" style="max-width:760px">{IMPRINT.get(lang,IMPRINT["en"])}</div></div></section>')
         body=nav(lang,rel,'')+inner+footer(lang,rel)
         write(lang,rel,head(lang,rel,f'{title} — Mountain Elopement','')+body+scripts(P))
 
