@@ -1475,7 +1475,7 @@ def build_packages(lang):
     body=(nav(lang,rel,'packages')+
       f'<div class="page-plain"><div class="wrap"><div class="kicker" data-n="{t(lang,"pk_k")}"><span class="line"></span></div>'
       f'<h1>{t(lang,"pk_h")}</h1><p class="lead">{t(lang,"pk_lead")}</p></div></div>'
-      f'<section><div class="wrap">{curswitch}<div class="tiers reveal">{t1}{t2}{t3}</div>'
+      f'<section><div class="wrap">{curswitch}<div class="tiers">{t1}{t2}{t3}</div>'
       f'<p class="small reveal cur-note" data-eur-note="{eurnote}" data-fx-note="{fxnote}" style="margin-top:18px;color:var(--ink-2)">{eurnote}</p>'
       f'<p class="lead reveal" style="max-width:760px;margin-top:clamp(32px,4vw,52px)">{t(lang,"pk_note")}</p>'
       '</div></section>'
