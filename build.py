@@ -71,7 +71,7 @@ P_MUA  = ('Blitzkneisser', 'https://blitzkneisser.com')
 NAME_PLAN, NAME_PHOTO, NAME_FILM = 'Jlenia', 'Andreas', 'Stefanie'
 
 def lbase(lang): return '' if lang=='en' else lang+'/'
-def u(P,lang,rel): return P + lbase(lang) + rel + 'index.html'   # internal link
+def u(P,lang,rel): return (P + lbase(lang) + rel) or './'   # internal link
 def depth_of(lang,rel):
     seg=[s for s in (lbase(lang)+rel).split('/') if s]
     return len(seg)
@@ -888,7 +888,7 @@ def org_ld():
     return {"@context":"https://schema.org","@type":"Organization","@id":ORG_ID,
         "name":"Mountain Elopement","url":DOMAIN+'/',
         "parentOrganization":{"@type":"Organization","name":"Blitzkneisser"},
-        "email":"foto@blitzkneisser.com","telephone":"+43 664 39 18 228",
+        "email":"info@mountain-elopement.com","telephone":"+43 664 39 18 228",
         "address":{"@type":"PostalAddress","streetAddress":"Rohracker 6","postalCode":"6092",
             "addressLocality":"Birgitz","addressCountry":"AT"},
         "sameAs":["https://www.instagram.com/mountainelopement/"]}
@@ -943,7 +943,8 @@ def nav(lang, rel, active, booking=False):
         s=f'<div class="{cls}">'
         for i,L in enumerate(LANGS):
             a=' class="active"' if L==lang else ''
-            s+=f'<a href="{P}{lbase(L)}{rel}index.html"{a}>{LNAME[L]}</a>'
+            href=(P+lbase(L)+rel) or './'
+            s+=f'<a href="{href}"{a}>{LNAME[L]}</a>'
             if i<len(LANGS)-1: s+='<span class="sep">/</span>'
         return s+'</div>'
     langsw=langs_block('langs')                 # bar (desktop)
@@ -1569,7 +1570,7 @@ def build_contact(lang):
       '<p id="ce-status" class="ce-status" role="status" aria-live="polite"></p>'
       '</form>'
       f'<aside class="contact-side reveal"><img src="{P}img/page/contact.webp" alt="Mountain Elopement">'
-      '<div class="info"><div><strong>Email</strong> &mdash; info@mountain-elopement.com</div>'
+      '<div class="info"><div><strong>Email</strong> &mdash; <a href="mailto:info@mountain-elopement.com">info@mountain-elopement.com</a></div>'
       '<div><strong>WhatsApp</strong> &mdash; +39 348 425 8317</div>'
       f'<div><strong>{t(lang,"ct_based")}</strong> &mdash; {t(lang,"ct_based_v")}</div>'
       '<div><strong>Instagram</strong> &mdash; @mountainelopement</div></div></aside></div></section>'
