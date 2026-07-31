@@ -923,7 +923,7 @@ def nav(lang, rel, active, booking=False):
         f'<nav id="nav">{links}{langs_menu}</nav>'
         f'<a class="nav-cta" href="{u(P,lang,"get-in-touch/")}">{CTA_CONTACT[lang]}</a>'
         f'{langsw}'
-        '<button class="menu-btn" id="mb" aria-label="Menu">&#9776;</button></div></header>')
+        '<button class="menu-btn" id="mb" aria-label="Menu" aria-expanded="false"><span class="bar1"></span><span class="bar2"></span><span class="bar3_h"></span><span class="bar4"></span></button></div></header>')
 
 def team_section(lang,P):
     def card(role,name,linklabel,url,desc):

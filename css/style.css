@@ -89,7 +89,14 @@ p{margin:0 0 1.15em}
 .nav-cta:hover{background:var(--ink);color:#fff}
 /* On desktop the Contact link is covered by the CTA button; show it only in the mobile menu. */
 @media(min-width:1025px){.masthead nav a.nav-contact{display:none}}
-.menu-btn{display:none;background:none;border:0;font-size:24px;cursor:pointer;color:var(--ink)}
+.menu-btn{display:none;position:relative;flex-direction:column;align-items:center;justify-content:center;background:none;border:0;cursor:pointer;padding:8px 4px}
+.menu-btn span{display:block;width:26px;height:3px;border-radius:3px;background:var(--ink);transition:.35s cubic-bezier(.4,.1,.2,1)}
+.menu-btn .bar1{margin-bottom:7px}
+.menu-btn .bar2{position:absolute}
+.menu-btn .bar4{margin-top:7px}
+.menu-btn.open .bar1,.menu-btn.open .bar4{opacity:0;width:14px}
+.menu-btn.open .bar2{transform:rotate(45deg)}
+.menu-btn.open .bar3_h{transform:rotate(-45deg)}
 
 /* ---- Hero (home) ---- */
 .hero{position:relative;height:82vh;min-height:560px;overflow:hidden;color:#fff;
@@ -512,7 +519,7 @@ footer .fine{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
   .langs-in-menu a{border:0;padding:8px 12px;color:var(--ink-2);font-weight:600}
   .langs-in-menu a.active{color:var(--ink)}
   .langs-in-menu .sep{color:var(--line-2)}
-  .menu-btn{display:block;font-size:22px;line-height:1;padding:6px;transition:transform .3s}
+  .menu-btn{display:flex}
   .nav-cta{display:none}
   .hero .content .wide{grid-template-columns:1fr}
   .hero .side{display:none}

@@ -2,8 +2,8 @@
 (function(){
   // Mobile menu
   var mb=document.getElementById('mb'),nav=document.getElementById('nav');
-  if(mb&&nav){mb.addEventListener('click',function(){nav.classList.toggle('show');});
-    nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('show');});});}
+  if(mb&&nav){mb.addEventListener('click',function(){var open=nav.classList.toggle('show');mb.classList.toggle('open',open);mb.setAttribute('aria-expanded',open?'true':'false');});
+    nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('show');mb.classList.remove('open');mb.setAttribute('aria-expanded','false');});});}
   // Reveal on scroll
   var io=new IntersectionObserver(function(es){es.forEach(function(e){
     if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14});
