@@ -207,6 +207,7 @@ section{padding:clamp(38px,5vw,80px) 0}
 .awards-section .lead{margin-left:auto;margin-right:auto;text-align:center}
 /* ---- Reviews / testimonials (subtle) ---- */
 .reviews-section{padding:clamp(48px,7vw,88px) 0}
+.reviews-section.reviews-compact{padding-top:clamp(6px,1.5vw,18px)}
 .reviews-section .section-head{justify-items:center;text-align:center}
 .reviews-section .kicker{justify-content:center}
 .reviews-section .kicker .line{display:none}

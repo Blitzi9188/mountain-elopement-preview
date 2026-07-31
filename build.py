@@ -1078,12 +1078,13 @@ REVIEWS=[
  ('Selina Paula M&auml;rte','Ein Fotograf mit Leidenschaft und Hingabe. Sch&ouml;ner h&auml;tte unser Elopement nicht sein k&ouml;nnen &mdash; eine der sch&ouml;nsten Erinnerungen in unserem Leben.'),
  ('Kristy Frehner','From start, via FaceTime a year prior, to finish, the Mountain Elopement team was fabulous. We had the best experience on our special day.'),
 ]
-def reviews_block(lang,P,n=6):
+def reviews_block(lang,P,n=6,compact=False):
     stars='<span class="rev-stars" aria-label="5/5">&#9733;&#9733;&#9733;&#9733;&#9733;</span>'
+    cls='reviews-section reviews-compact' if compact else 'reviews-section'
     cards=''.join(
       f'<figure class="rev-card">{stars}<blockquote class="rev-text">{txt}</blockquote><figcaption class="rev-name">{name}</figcaption></figure>'
       for name,txt in REVIEWS[:n])
-    return (f'<section class="reviews-section"><div class="wrap"><div class="section-head reveal">'
+    return (f'<section class="{cls}"><div class="wrap"><div class="section-head reveal">'
       f'<div class="kicker" data-n="{t(lang,"rev_k")}"><span class="line"></span></div><h2>{t(lang,"rev_h")}</h2></div>'
       f'<p class="lead reveal" style="text-align:center;max-width:620px;margin:0 auto clamp(26px,4vw,42px)">{t(lang,"rev_sub")}</p>'
       f'<div class="rev-grid reveal">{cards}</div>'
@@ -1605,7 +1606,7 @@ def build_contact(lang):
       '<div><strong>WhatsApp</strong> &mdash; +39 348 425 8317</div>'
       f'<div><strong>{t(lang,"ct_based")}</strong> &mdash; {t(lang,"ct_based_v")}</div>'
       '<div><strong>Instagram</strong> &mdash; @mountainelopement</div></div></aside></div></section>'
-      +reviews_block(lang,P,3)
+      +reviews_block(lang,P,3,compact=True)
       +footer(lang,rel))
     write(lang,rel,head(lang,rel,TITLES['contact'][lang],DESC['contact'][lang])+body+scripts(P,extra))
 
