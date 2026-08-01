@@ -1,0 +1,846 @@
+{
+ "guide-best-alps-locations": [
+  {
+   "datei": "img/guide-best-alps-locations/01-alpenorte-lago-di-braies-panorama.webp",
+   "quelle": "lago-di-braies-elopement/g07.webp",
+   "alt_de": "Der Pragser Wildsee mit Seekofel im Hintergrund",
+   "alt_en": "Lago di Braies with Croda del Becco behind"
+  },
+  {
+   "datei": "img/guide-best-alps-locations/02-alpenorte-braies-paar-am-ufer.webp",
+   "quelle": "lago-di-braies-elopement/g11.webp",
+   "alt_de": "Brautpaar am Ufer des Pragser Wildsees",
+   "alt_en": "Couple at the shoreline of Lago di Braies"
+  },
+  {
+   "datei": "img/guide-best-alps-locations/03-alpenorte-zugspitze-grat-paar.webp",
+   "quelle": "intimate-lake-eibsee-elopement/g04.webp",
+   "alt_de": "Brautpaar auf dem Grat an der Zugspitze",
+   "alt_en": "Couple on the ridge at the Zugspitze"
+  },
+  {
+   "datei": "img/guide-best-alps-locations/04-alpenorte-zugspitze-weitblick.webp",
+   "quelle": "intimate-lake-eibsee-elopement/g05.webp",
+   "alt_de": "Weiter Blick vom Zugspitzgrat ueber die Alpen",
+   "alt_en": "Wide view from the Zugspitze ridge across the Alps"
+  },
+  {
+   "datei": "img/guide-best-alps-locations/05-alpenorte-eibsee-zeremonie.webp",
+   "quelle": "intimate-lake-eibsee-elopement/g14.webp",
+   "alt_de": "Freie Trauung am Ufer des Eibsees",
+   "alt_en": "Ceremony at the shore of Lake Eibsee"
+  },
+  {
+   "datei": "img/guide-best-alps-locations/06-alpenorte-tiroler-bergsee-traubogen.webp",
+   "quelle": "lake-elopement-tyrol-mountains/g07.webp",
+   "alt_de": "Runder Traubogen an einem Tiroler Bergsee",
+   "alt_en": "Round ceremony arch at a Tyrolean mountain lake"
+  },
+  {
+   "datei": "img/guide-best-alps-locations/07-alpenorte-tiroler-bergsee-paar.webp",
+   "quelle": "lake-elopement-tyrol-mountains/g14.webp",
+   "alt_de": "Brautpaar vor dem Traubogen am Tiroler Bergsee",
+   "alt_en": "Couple in front of the arch at the Tyrolean lake"
+  },
+  {
+   "datei": "img/guide-best-alps-locations/08-alpenorte-passo-giau-kapelle.webp",
+   "quelle": "climbing-wedding/g01.webp",
+   "alt_de": "Kapelle am Passo Giau vor der Ra Gusela",
+   "alt_en": "Chapel at Passo Giau below Ra Gusela"
+  },
+  {
+   "datei": "img/guide-best-alps-locations/09-alpenorte-ra-gusela-wiese.webp",
+   "quelle": "climbing-wedding/g13.webp",
+   "alt_de": "Hochzeitsgesellschaft auf der Wiese vor der Ra Gusela",
+   "alt_en": "Wedding party on the meadow below Ra Gusela"
+  },
+  {
+   "datei": "img/guide-best-alps-locations/10-alpenorte-tirol-sonnenuntergang-bogen.webp",
+   "quelle": "sunset-elopement-tyrol/g07.webp",
+   "alt_de": "Traubogen im Gegenlicht ueber den Tiroler Bergen",
+   "alt_en": "Ceremony arch backlit above the Tyrolean mountains"
+  },
+  {
+   "datei": "img/guide-best-alps-locations/11-alpenorte-tre-cime-winter.webp",
+   "quelle": "a-journey-of-love-and-adventure/01.webp",
+   "alt_de": "Brautpaar vor den verschneiten Drei Zinnen",
+   "alt_en": "Couple in front of the snowy Tre Cime"
+  },
+  {
+   "datei": "img/guide-best-alps-locations/12-alpenorte-tre-cime-panorama-winter.webp",
+   "quelle": "a-journey-of-love-and-adventure/06.webp",
+   "alt_de": "Winterpanorama der Drei Zinnen mit Brautpaar",
+   "alt_en": "Winter panorama of Tre Cime with the couple"
+  },
+  {
+   "datei": "img/guide-best-alps-locations/13-alpenorte-tirol-zeremonie-bergkulisse.webp",
+   "quelle": "official-married-in-the-alps/g01.webp",
+   "alt_de": "Trauung vor der Tiroler Bergkulisse",
+   "alt_en": "Ceremony against the Tyrolean mountain backdrop"
+  },
+  {
+   "datei": "img/guide-best-alps-locations/14-alpenorte-tirol-grat-paar.webp",
+   "quelle": "official-married-in-the-alps/g17.webp",
+   "alt_de": "Brautpaar auf einem Felsgrat in Tirol",
+   "alt_en": "Couple on a rocky ridge in Tyrol"
+  },
+  {
+   "datei": "img/guide-best-alps-locations/15-alpenorte-sella-zeremonie.webp",
+   "quelle": "ultimate-italian-elopement/g15.webp",
+   "alt_de": "Freie Trauung vor der Sellagruppe",
+   "alt_en": "Ceremony in front of the Sella group"
+  },
+  {
+   "datei": "img/guide-best-alps-locations/16-alpenorte-groedner-joch-wiese.webp",
+   "quelle": "ultimate-italian-elopement/g21.webp",
+   "alt_de": "Almwiese am Groednerjoch im Abendlicht",
+   "alt_en": "Alpine meadow at Passo Gardena in evening light"
+  }
+ ],
+ "guide-dolomites-spots": [
+  {
+   "datei": "img/guide-dolomites-spots/01-spots-lago-di-braies-see.webp",
+   "quelle": "lago-di-braies-elopement/g07.webp",
+   "alt_de": "Der Pragser Wildsee im Morgenlicht",
+   "alt_en": "Lago di Braies in morning light"
+  },
+  {
+   "datei": "img/guide-dolomites-spots/02-spots-braies-bootshaus-steg.webp",
+   "quelle": "rainy-lago-di-braies-pizza-elopement/03.webp",
+   "alt_de": "Der Steg am Bootshaus des Pragser Wildsees",
+   "alt_en": "The jetty at the Lago di Braies boathouse"
+  },
+  {
+   "datei": "img/guide-dolomites-spots/03-spots-braies-ruderboot-paar.webp",
+   "quelle": "rainy-lago-di-braies-pizza-elopement/11.webp",
+   "alt_de": "Brautpaar im historischen Ruderboot auf dem Pragser Wildsee",
+   "alt_en": "Couple in a historic rowing boat on Lago di Braies"
+  },
+  {
+   "datei": "img/guide-dolomites-spots/04-spots-braies-boot-tuerkis.webp",
+   "quelle": "rainy-lago-di-braies-pizza-elopement/16.webp",
+   "alt_de": "Ruderboot auf dem tuerkisen Wasser des Pragser Wildsees",
+   "alt_en": "Rowing boat on the turquoise water of Lago di Braies"
+  },
+  {
+   "datei": "img/guide-dolomites-spots/05-spots-braies-steg-braut.webp",
+   "quelle": "crystal-clear-water-elopement/g15.webp",
+   "alt_de": "Braut auf dem Steg am Pragser Wildsee",
+   "alt_en": "Bride on the jetty at Lago di Braies"
+  },
+  {
+   "datei": "img/guide-dolomites-spots/06-spots-braies-boote-spiegelung.webp",
+   "quelle": "crystal-clear-water-elopement/g18.webp",
+   "alt_de": "Spiegelung der Boote im Pragser Wildsee",
+   "alt_en": "Reflection of the boats in Lago di Braies"
+  },
+  {
+   "datei": "img/guide-dolomites-spots/07-spots-braies-hotel-morgens.webp",
+   "quelle": "crystal-clear-water-elopement/g10.webp",
+   "alt_de": "Das Hotel am Pragser Wildsee in der Morgendaemmerung",
+   "alt_en": "The hotel at Lago di Braies at dawn"
+  },
+  {
+   "datei": "img/guide-dolomites-spots/08-spots-drei-zinnen-winter.webp",
+   "quelle": "a-journey-of-love-and-adventure/01.webp",
+   "alt_de": "Die Drei Zinnen im Winter mit Brautpaar",
+   "alt_en": "Tre Cime di Lavaredo in winter with the couple"
+  },
+  {
+   "datei": "img/guide-dolomites-spots/09-spots-drei-zinnen-schneegrat.webp",
+   "quelle": "a-journey-of-love-and-adventure/04.webp",
+   "alt_de": "Verschneiter Grat mit Blick auf die Drei Zinnen",
+   "alt_en": "Snowy ridge with a view of Tre Cime"
+  },
+  {
+   "datei": "img/guide-dolomites-spots/10-spots-groedental-panorama.webp",
+   "quelle": "pizza-elopement-at-tre-cime-cadini-di-misurina/g03.webp",
+   "alt_de": "Panorama ueber das Groednertal",
+   "alt_en": "Panorama over Val Gardena"
+  },
+  {
+   "datei": "img/guide-dolomites-spots/11-spots-passo-giau-kapelle.webp",
+   "quelle": "climbing-wedding/g01.webp",
+   "alt_de": "Die kleine Kapelle am Passo Giau",
+   "alt_en": "The small chapel at Passo Giau"
+  },
+  {
+   "datei": "img/guide-dolomites-spots/12-spots-ra-gusela-abendlicht.webp",
+   "quelle": "climbing-wedding/g19.webp",
+   "alt_de": "Ra Gusela im Abendlicht",
+   "alt_en": "Ra Gusela in evening light"
+  },
+  {
+   "datei": "img/guide-dolomites-spots/13-spots-sellagruppe.webp",
+   "quelle": "ultimate-italian-elopement/g15.webp",
+   "alt_de": "Die Sellagruppe als Kulisse der Zeremonie",
+   "alt_en": "The Sella group as backdrop to the ceremony"
+  },
+  {
+   "datei": "img/guide-dolomites-spots/14-spots-groednerjoch-paar.webp",
+   "quelle": "ultimate-italian-elopement/g29.webp",
+   "alt_de": "Brautpaar auf der Wiese am Groednerjoch",
+   "alt_en": "Couple on the meadow at Passo Gardena"
+  },
+  {
+   "datei": "img/guide-dolomites-spots/15-spots-sella-grat-morgens.webp",
+   "quelle": "sunrise-dolomites-elopement/g09.webp",
+   "alt_de": "Felsgrat der Sella im ersten Morgenlicht",
+   "alt_en": "Sella ridge in the first morning light"
+  },
+  {
+   "datei": "img/guide-dolomites-spots/16-spots-gipfelkreuz-morgens.webp",
+   "quelle": "sunrise-elopement-in-the-dolomites/g17.webp",
+   "alt_de": "Gipfelkreuz im Morgengrauen",
+   "alt_en": "Summit cross at dawn"
+  }
+ ],
+ "guide-plan-your-elopement": [
+  {
+   "datei": "img/guide-plan-your-elopement/01-planung-eheversprechen-und-ringe.webp",
+   "quelle": "mountain-elopement-dolomiten/g01.webp",
+   "alt_de": "Eheversprechen-Buch, Ringe und Flachmaenner am Morgen",
+   "alt_en": "Vow books, rings and hip flasks in the morning"
+  },
+  {
+   "datei": "img/guide-plan-your-elopement/02-planung-brautkleid-mit-bergblick.webp",
+   "quelle": "mountain-elopement-dolomiten/g05.webp",
+   "alt_de": "Brautkleid vor der Fensterfront mit Bergblick",
+   "alt_en": "Wedding dress in front of the window with mountain view"
+  },
+  {
+   "datei": "img/guide-plan-your-elopement/03-planung-braut-styling.webp",
+   "quelle": "mountain-elopement-dolomiten/g08.webp",
+   "alt_de": "Braut beim Make-up am Morgen",
+   "alt_en": "Bride during morning make-up"
+  },
+  {
+   "datei": "img/guide-plan-your-elopement/04-planung-handgeschriebene-geluebde.webp",
+   "quelle": "pizza-elopement-at-tre-cime-cadini-di-misurina/g05.webp",
+   "alt_de": "Handgeschriebene Eheversprechen mit Ringen",
+   "alt_en": "Handwritten vows with the rings"
+  },
+  {
+   "datei": "img/guide-plan-your-elopement/05-planung-haare-und-make-up.webp",
+   "quelle": "pizza-elopement-at-tre-cime-cadini-di-misurina/g16.webp",
+   "alt_de": "Hair und Make-up in der Unterkunft",
+   "alt_en": "Hair and make-up at the accommodation"
+  },
+  {
+   "datei": "img/guide-plan-your-elopement/06-planung-schuhe-ringe-geluebde.webp",
+   "quelle": "crystal-clear-water-elopement/g01.webp",
+   "alt_de": "Schuhe, Ringe und Geluebde vor dem Anziehen",
+   "alt_en": "Shoes, rings and vows before getting dressed"
+  },
+  {
+   "datei": "img/guide-plan-your-elopement/07-planung-standesbeamter-italien.webp",
+   "quelle": "lago-di-braies-elopement/g12.webp",
+   "alt_de": "Standesbeamter mit Schaerpe bei der Trauung in Italien",
+   "alt_en": "Italian registrar with sash during the ceremony"
+  },
+  {
+   "datei": "img/guide-plan-your-elopement/08-planung-unterschrift-trauung.webp",
+   "quelle": "lago-di-braies-elopement/g14.webp",
+   "alt_de": "Unterschrift der Eheurkunde",
+   "alt_en": "Signing the marriage certificate"
+  },
+  {
+   "datei": "img/guide-plan-your-elopement/09-planung-standesamt-selva.webp",
+   "quelle": "hiking-elopement-lagazuoi-dolomites/01.webp",
+   "alt_de": "Standesamtliche Trauung in Selva in Groeden",
+   "alt_en": "Civil ceremony at the Selva registry office"
+  },
+  {
+   "datei": "img/guide-plan-your-elopement/10-planung-eheurkunde-unterschreiben.webp",
+   "quelle": "hiking-elopement-lagazuoi-dolomites/02.webp",
+   "alt_de": "Unterzeichnung der Eheurkunde im Standesamt",
+   "alt_en": "Signing the marriage documents at the registry office"
+  },
+  {
+   "datei": "img/guide-plan-your-elopement/11-planung-aufbau-zeremonie.webp",
+   "quelle": "lake-elopement-tyrol-mountains/g01.webp",
+   "alt_de": "Aufbau der Zeremonie am Bergsee",
+   "alt_en": "Setting up the ceremony at the mountain lake"
+  },
+  {
+   "datei": "img/guide-plan-your-elopement/12-planung-letzte-korrektur.webp",
+   "quelle": "lake-elopement-tyrol-mountains/g03.webp",
+   "alt_de": "Letzte Korrektur vor der Trauung",
+   "alt_en": "Final touch-up before the ceremony"
+  },
+  {
+   "datei": "img/guide-plan-your-elopement/13-planung-aufbruch-vor-sonnenaufgang.webp",
+   "quelle": "sunrise-dolomites-elopement/g01.webp",
+   "alt_de": "Aufbruch am Parkplatz lange vor Sonnenaufgang",
+   "alt_en": "Setting off from the car park long before sunrise"
+  },
+  {
+   "datei": "img/guide-plan-your-elopement/14-planung-freie-trauung-redner.webp",
+   "quelle": "official-married-in-the-alps/g07.webp",
+   "alt_de": "Freier Trauredner bei der Zeremonie am Berg",
+   "alt_en": "Celebrant during the mountain ceremony"
+  },
+  {
+   "datei": "img/guide-plan-your-elopement/15-planung-anstossen-kleine-gruppe.webp",
+   "quelle": "official-married-in-the-alps/g19.webp",
+   "alt_de": "Anstossen mit der kleinen Gruppe nach der Trauung",
+   "alt_en": "Toasting with the small group after the ceremony"
+  }
+ ],
+ "guide-sunrise-sunset": [
+  {
+   "datei": "img/guide-sunrise-sunset/01-sonne-aufbruch-nachts-parkplatz.webp",
+   "quelle": "sunrise-dolomites-elopement/g01.webp",
+   "alt_de": "Aufbruch am Parkplatz bei Nacht",
+   "alt_en": "Setting off from the car park at night"
+  },
+  {
+   "datei": "img/guide-sunrise-sunset/02-sonne-stirnlampen-vorbereitung.webp",
+   "quelle": "sunrise-dolomites-elopement/g02.webp",
+   "alt_de": "Vorbereitung mit Stirnlampen vor dem Aufstieg",
+   "alt_en": "Getting ready with head torches before the climb"
+  },
+  {
+   "datei": "img/guide-sunrise-sunset/03-sonne-nachtaufstieg-stirnlampen.webp",
+   "quelle": "sunrise-dolomites-elopement/g03.webp",
+   "alt_de": "Aufstieg im Dunkeln mit Stirnlampen",
+   "alt_en": "Hiking up in the dark with head torches"
+  },
+  {
+   "datei": "img/guide-sunrise-sunset/04-sonne-gipfelkreuz-blaue-stunde.webp",
+   "quelle": "sunrise-dolomites-elopement/g05.webp",
+   "alt_de": "Gipfelkreuz in der blauen Stunde",
+   "alt_en": "Summit cross in the blue hour"
+  },
+  {
+   "datei": "img/guide-sunrise-sunset/05-sonne-umziehen-am-gipfel.webp",
+   "quelle": "sunrise-dolomites-elopement/g07.webp",
+   "alt_de": "Umziehen am Gipfel kurz vor Sonnenaufgang",
+   "alt_en": "Changing at the summit just before sunrise"
+  },
+  {
+   "datei": "img/guide-sunrise-sunset/06-sonne-erstes-licht-dolomiten.webp",
+   "quelle": "sunrise-dolomites-elopement/g09.webp",
+   "alt_de": "Erstes Licht ueber den Dolomiten",
+   "alt_en": "First light over the Dolomites"
+  },
+  {
+   "datei": "img/guide-sunrise-sunset/07-sonne-geluebde-bei-sonnenaufgang.webp",
+   "quelle": "sunrise-dolomites-elopement/g13.webp",
+   "alt_de": "Eheversprechen bei Sonnenaufgang",
+   "alt_en": "Exchanging vows at sunrise"
+  },
+  {
+   "datei": "img/guide-sunrise-sunset/08-sonne-gegenlicht-portrait-morgens.webp",
+   "quelle": "sunrise-dolomites-elopement/g17.webp",
+   "alt_de": "Gegenlichtportrait im Sonnenaufgang",
+   "alt_en": "Backlit portrait in the sunrise"
+  },
+  {
+   "datei": "img/guide-sunrise-sunset/09-sonne-gruppe-im-dunkeln.webp",
+   "quelle": "sunrise-elopement-in-the-dolomites/g04.webp",
+   "alt_de": "Die kleine Gruppe im Scheinwerferlicht vor dem Aufstieg",
+   "alt_en": "The small group lit up before the ascent"
+  },
+  {
+   "datei": "img/guide-sunrise-sunset/10-sonne-warten-auf-das-licht.webp",
+   "quelle": "sunrise-elopement-in-the-dolomites/g09.webp",
+   "alt_de": "Warten auf das erste Licht am Gipfel",
+   "alt_en": "Waiting for the first light at the summit"
+  },
+  {
+   "datei": "img/guide-sunrise-sunset/11-sonne-kuss-im-morgenlicht.webp",
+   "quelle": "sunrise-elopement-in-the-dolomites/g16.webp",
+   "alt_de": "Kuss im ersten Morgenlicht",
+   "alt_en": "A kiss in the first morning light"
+  },
+  {
+   "datei": "img/guide-sunrise-sunset/12-sonne-untergang-traubogen-tirol.webp",
+   "quelle": "sunset-elopement-tyrol/g07.webp",
+   "alt_de": "Traubogen im Sonnenuntergang ueber Tirol",
+   "alt_en": "Ceremony arch in the Tyrolean sunset"
+  },
+  {
+   "datei": "img/guide-sunrise-sunset/13-sonne-untergang-zeremonie.webp",
+   "quelle": "sunset-elopement-tyrol/g11.webp",
+   "alt_de": "Zeremonie im letzten Abendlicht",
+   "alt_en": "Ceremony in the last evening light"
+  },
+  {
+   "datei": "img/guide-sunrise-sunset/14-sonne-untergang-gegenlicht-paar.webp",
+   "quelle": "sunset-elopement-tyrol/g14.webp",
+   "alt_de": "Brautpaar im Gegenlicht des Sonnenuntergangs",
+   "alt_en": "Couple backlit by the setting sun"
+  },
+  {
+   "datei": "img/guide-sunrise-sunset/15-sonne-untergang-fels-silhouette.webp",
+   "quelle": "sunset-elopement-tyrol/g15.webp",
+   "alt_de": "Silhouette des Paares auf dem Felsen im Abendrot",
+   "alt_en": "Silhouette of the couple on the rock at sunset"
+  },
+  {
+   "datei": "img/guide-sunrise-sunset/16-sonne-untergang-silhouette-grat.webp",
+   "quelle": "couple-shoot-photo/g04.webp",
+   "alt_de": "Silhouette auf dem Grat im Sonnenuntergang",
+   "alt_en": "Silhouette on the ridge at sunset"
+  },
+  {
+   "datei": "img/guide-sunrise-sunset/17-sonne-untergang-paar-am-horizont.webp",
+   "quelle": "couple-shoot-photo/g12.webp",
+   "alt_de": "Paar am Horizont im Abendlicht",
+   "alt_en": "Couple on the horizon in evening light"
+  }
+ ],
+ "guide-mountain-proposal": [
+  {
+   "datei": "img/guide-mountain-proposal/01-antrag-nordkette-seilbahn-blick.webp",
+   "quelle": "mountain-engagement/g02.webp",
+   "alt_de": "Blick aus der Seilbahn auf die verschneite Nordkette",
+   "alt_en": "View from the cable car onto the snowy Nordkette"
+  },
+  {
+   "datei": "img/guide-mountain-proposal/02-antrag-seilbahn-schatten-im-schnee.webp",
+   "quelle": "mountain-engagement/g03.webp",
+   "alt_de": "Schatten der Seilbahn im Schnee",
+   "alt_en": "Shadow of the cable car on the snow"
+  },
+  {
+   "datei": "img/guide-mountain-proposal/03-antrag-wegweiser-hafelekar.webp",
+   "quelle": "mountain-engagement/g04.webp",
+   "alt_de": "Wegweiser am Hafelekar oberhalb von Innsbruck",
+   "alt_en": "Signpost at Hafelekar above Innsbruck"
+  },
+  {
+   "datei": "img/guide-mountain-proposal/04-antrag-ankunft-bergstation.webp",
+   "quelle": "mountain-engagement/g05.webp",
+   "alt_de": "Ankunft an der Bergstation im Winter",
+   "alt_en": "Arriving at the mountain station in winter"
+  },
+  {
+   "datei": "img/guide-mountain-proposal/05-antrag-kniefall-im-schnee.webp",
+   "quelle": "mountain-engagement/g10.webp",
+   "alt_de": "Der Moment des Kniefalls im Schnee",
+   "alt_en": "The moment of going down on one knee in the snow"
+  },
+  {
+   "datei": "img/guide-mountain-proposal/06-antrag-ueberraschung-gegenlicht.webp",
+   "quelle": "mountain-engagement/g11.webp",
+   "alt_de": "Ueberraschung im Gegenlicht nach dem Antrag",
+   "alt_en": "Surprise backlit right after the proposal"
+  },
+  {
+   "datei": "img/guide-mountain-proposal/07-antrag-ring-ansteckten.webp",
+   "quelle": "mountain-engagement/g12.webp",
+   "alt_de": "Der Ring wird angesteckt",
+   "alt_en": "Putting on the ring"
+  },
+  {
+   "datei": "img/guide-mountain-proposal/08-antrag-ring-detail-freude.webp",
+   "quelle": "mountain-engagement/g01.webp",
+   "alt_de": "Freude ueber den Ring, Detailaufnahme",
+   "alt_en": "Joy over the ring, close up"
+  },
+  {
+   "datei": "img/guide-mountain-proposal/09-antrag-schwarzweiss-ring.webp",
+   "quelle": "mountain-engagement/g14.webp",
+   "alt_de": "Schwarzweissportrait mit dem Verlobungsring",
+   "alt_en": "Black and white portrait with the engagement ring"
+  },
+  {
+   "datei": "img/guide-mountain-proposal/10-antrag-sprung-vor-freude.webp",
+   "quelle": "mountain-engagement/g15.webp",
+   "alt_de": "Sprung vor Freude im Schnee",
+   "alt_en": "Jumping for joy in the snow"
+  },
+  {
+   "datei": "img/guide-mountain-proposal/11-antrag-paar-auf-dem-grat.webp",
+   "quelle": "couple-shoot-photo/g02.webp",
+   "alt_de": "Paar auf dem Grat mit Blick ins Tal",
+   "alt_en": "Couple on the ridge looking into the valley"
+  },
+  {
+   "datei": "img/guide-mountain-proposal/12-antrag-sitzen-am-felsen.webp",
+   "quelle": "couple-shoot-photo/g07.webp",
+   "alt_de": "Paar sitzt auf dem Felsen ueber dem Tal",
+   "alt_en": "Couple sitting on a rock above the valley"
+  },
+  {
+   "datei": "img/guide-mountain-proposal/13-antrag-laufen-im-abendlicht.webp",
+   "quelle": "couple-shoot-photo/g11.webp",
+   "alt_de": "Laufen ueber den Grat im Abendlicht",
+   "alt_en": "Running along the ridge in evening light"
+  },
+  {
+   "datei": "img/guide-mountain-proposal/14-antrag-silhouette-gipfel.webp",
+   "quelle": "couple-shoot-photo/g13.webp",
+   "alt_de": "Silhouette des Paares am Gipfel",
+   "alt_en": "Silhouette of the couple at the summit"
+  }
+ ],
+ "guide-elope-in-austria": [
+  {
+   "datei": "img/guide-elope-in-austria/01-oesterreich-wegweiser-birgitzkoepfl.webp",
+   "quelle": "official-married-in-the-alps/g03.webp",
+   "alt_de": "Wegweiser Richtung Birgitzkoepflhaus und Hochtennspitze",
+   "alt_en": "Signpost towards Birgitzkoepflhaus and Hochtennspitze"
+  },
+  {
+   "datei": "img/guide-elope-in-austria/02-oesterreich-aufstieg-gruppe.webp",
+   "quelle": "official-married-in-the-alps/g05.webp",
+   "alt_de": "Aufstieg der kleinen Gruppe zum Zeremonienplatz",
+   "alt_en": "The small group hiking up to the ceremony spot"
+  },
+  {
+   "datei": "img/guide-elope-in-austria/03-oesterreich-freie-trauung-tirol.webp",
+   "quelle": "official-married-in-the-alps/g07.webp",
+   "alt_de": "Freie Trauung mit Trauredner in Tirol",
+   "alt_en": "Celebrant-led ceremony in Tyrol"
+  },
+  {
+   "datei": "img/guide-elope-in-austria/04-oesterreich-ringtausch.webp",
+   "quelle": "official-married-in-the-alps/g09.webp",
+   "alt_de": "Ringtausch am Berg",
+   "alt_en": "Exchanging rings on the mountain"
+  },
+  {
+   "datei": "img/guide-elope-in-austria/05-oesterreich-geluebde-vorlesen.webp",
+   "quelle": "official-married-in-the-alps/g11.webp",
+   "alt_de": "Vorlesen der Eheversprechen",
+   "alt_en": "Reading the vows aloud"
+  },
+  {
+   "datei": "img/guide-elope-in-austria/06-oesterreich-kuss-vor-bergkulisse.webp",
+   "quelle": "official-married-in-the-alps/g13.webp",
+   "alt_de": "Kuss vor der Tiroler Bergkulisse",
+   "alt_en": "A kiss against the Tyrolean mountains"
+  },
+  {
+   "datei": "img/guide-elope-in-austria/07-oesterreich-anstossen-am-berg.webp",
+   "quelle": "official-married-in-the-alps/g19.webp",
+   "alt_de": "Anstossen mit den Gaesten am Berg",
+   "alt_en": "Toasting with the guests on the mountain"
+  },
+  {
+   "datei": "img/guide-elope-in-austria/08-oesterreich-abstieg-abendlicht.webp",
+   "quelle": "official-married-in-the-alps/g21.webp",
+   "alt_de": "Abstieg im Abendlicht",
+   "alt_en": "Hiking back down in evening light"
+  },
+  {
+   "datei": "img/guide-elope-in-austria/09-oesterreich-traubogen-tirol.webp",
+   "quelle": "official-married-in-the-alps/g23.webp",
+   "alt_de": "Runder Traubogen auf der Tiroler Alm",
+   "alt_en": "Round ceremony arch on the Tyrolean alp"
+  },
+  {
+   "datei": "img/guide-elope-in-austria/10-oesterreich-picknick-am-berg.webp",
+   "quelle": "official-married-in-the-alps/g25.webp",
+   "alt_de": "Picknick am Berg nach der Trauung",
+   "alt_en": "Picnic on the mountain after the ceremony"
+  },
+  {
+   "datei": "img/guide-elope-in-austria/11-oesterreich-sonnenuntergang-tirol.webp",
+   "quelle": "sunset-elopement-tyrol/g07.webp",
+   "alt_de": "Traubogen im Tiroler Sonnenuntergang",
+   "alt_en": "Ceremony arch in the Tyrolean sunset"
+  },
+  {
+   "datei": "img/guide-elope-in-austria/12-oesterreich-paar-abendlicht.webp",
+   "quelle": "sunset-elopement-tyrol/g16.webp",
+   "alt_de": "Brautpaar im letzten Abendlicht",
+   "alt_en": "Couple in the last evening light"
+  },
+  {
+   "datei": "img/guide-elope-in-austria/13-oesterreich-bergsee-zeremonie.webp",
+   "quelle": "lake-elopement-tyrol-mountains/g10.webp",
+   "alt_de": "Zeremonie am Tiroler Bergsee",
+   "alt_en": "Ceremony at a Tyrolean mountain lake"
+  },
+  {
+   "datei": "img/guide-elope-in-austria/14-oesterreich-bergsee-paar.webp",
+   "quelle": "lake-elopement-tyrol-mountains/g16.webp",
+   "alt_de": "Brautpaar am Ufer des Tiroler Bergsees",
+   "alt_en": "Couple at the shore of the Tyrolean lake"
+  },
+  {
+   "datei": "img/guide-elope-in-austria/15-oesterreich-hafelekar-innsbruck.webp",
+   "quelle": "mountain-engagement/g04.webp",
+   "alt_de": "Hafelekar oberhalb von Innsbruck",
+   "alt_en": "Hafelekar above Innsbruck"
+  },
+  {
+   "datei": "img/guide-elope-in-austria/16-oesterreich-grat-ueber-innsbruck.webp",
+   "quelle": "couple-shoot-photo/g02.webp",
+   "alt_de": "Grat mit Blick ueber das Inntal",
+   "alt_en": "Ridge overlooking the Inn valley"
+  }
+ ],
+ "guide-things-nobody-tells-you": [
+  {
+   "datei": "img/guide-things-nobody-tells-you/01-ehrlich-regenschirm-am-steg.webp",
+   "quelle": "rainy-lago-di-braies-pizza-elopement/02.webp",
+   "alt_de": "Brautpaar mit Regenschirm auf dem Steg",
+   "alt_en": "Couple with an umbrella on the jetty"
+  },
+  {
+   "datei": "img/guide-things-nobody-tells-you/02-ehrlich-kuss-unter-dem-schirm.webp",
+   "quelle": "rainy-lago-di-braies-pizza-elopement/14.webp",
+   "alt_de": "Kuss unter dem Regenschirm",
+   "alt_en": "A kiss under the umbrella"
+  },
+  {
+   "datei": "img/guide-things-nobody-tells-you/03-ehrlich-pizzaofen-aufbau.webp",
+   "quelle": "rainy-lago-di-braies-pizza-elopement/20.webp",
+   "alt_de": "Aufbau des Pizzaofens am See",
+   "alt_en": "Setting up the pizza oven at the lake"
+  },
+  {
+   "datei": "img/guide-things-nobody-tells-you/04-ehrlich-pizza-frisch-aus-dem-ofen.webp",
+   "quelle": "rainy-lago-di-braies-pizza-elopement/23.webp",
+   "alt_de": "Pizza frisch aus dem Ofen am Bootshaus",
+   "alt_en": "Pizza fresh from the oven at the boathouse"
+  },
+  {
+   "datei": "img/guide-things-nobody-tells-you/05-ehrlich-champagner-dusche.webp",
+   "quelle": "rainy-lago-di-braies-pizza-elopement/28.webp",
+   "alt_de": "Champagnerdusche auf der Wiese",
+   "alt_en": "Champagne spray on the meadow"
+  },
+  {
+   "datei": "img/guide-things-nobody-tells-you/06-ehrlich-start-um-drei-uhr.webp",
+   "quelle": "sunrise-dolomites-elopement/g01.webp",
+   "alt_de": "Start am Parkplatz um drei Uhr morgens",
+   "alt_en": "Setting off from the car park at three in the morning"
+  },
+  {
+   "datei": "img/guide-things-nobody-tells-you/07-ehrlich-aufstieg-im-dunkeln.webp",
+   "quelle": "sunrise-dolomites-elopement/g03.webp",
+   "alt_de": "Aufstieg im Dunkeln mit Stirnlampen",
+   "alt_en": "Climbing in the dark with head torches"
+  },
+  {
+   "datei": "img/guide-things-nobody-tells-you/08-ehrlich-umziehen-auf-dem-fels.webp",
+   "quelle": "sunrise-dolomites-elopement/g07.webp",
+   "alt_de": "Umziehen auf dem Felsen bei Wind",
+   "alt_en": "Changing on the rock in the wind"
+  },
+  {
+   "datei": "img/guide-things-nobody-tells-you/09-ehrlich-ausruestung-am-gipfel.webp",
+   "quelle": "sunrise-dolomites-elopement/g08.webp",
+   "alt_de": "Ausruestung und Kleidung am Gipfel",
+   "alt_en": "Gear and clothing at the summit"
+  },
+  {
+   "datei": "img/guide-things-nobody-tells-you/10-ehrlich-regen-im-dirndl.webp",
+   "quelle": "ultimate-italian-elopement/g19.webp",
+   "alt_de": "Regen waehrend der Zeremonie in Tracht",
+   "alt_en": "Rain during the ceremony in traditional dress"
+  },
+  {
+   "datei": "img/guide-things-nobody-tells-you/11-ehrlich-ski-im-brautkleid.webp",
+   "quelle": "a-journey-of-love-and-adventure/11.webp",
+   "alt_de": "Skifahren im Brautkleid",
+   "alt_en": "Skiing in the wedding dress"
+  },
+  {
+   "datei": "img/guide-things-nobody-tells-you/12-ehrlich-rodeln-im-anzug.webp",
+   "quelle": "a-journey-of-love-and-adventure/16.webp",
+   "alt_de": "Rodeln im Hochzeitsanzug",
+   "alt_en": "Sledging in the wedding suit"
+  },
+  {
+   "datei": "img/guide-things-nobody-tells-you/13-ehrlich-wind-auf-der-wiese.webp",
+   "quelle": "climbing-wedding/g13.webp",
+   "alt_de": "Wind auf der Almwiese waehrend der Zeremonie",
+   "alt_en": "Wind on the alpine meadow during the ceremony"
+  },
+  {
+   "datei": "img/guide-things-nobody-tells-you/14-ehrlich-skifahrer-im-hintergrund.webp",
+   "quelle": "hiking-elopement-lagazuoi-dolomites/15.webp",
+   "alt_de": "Skifahrer im Hintergrund des Zeremonienplatzes",
+   "alt_en": "Skiers in the background of the ceremony spot"
+  },
+  {
+   "datei": "img/guide-things-nobody-tells-you/15-ehrlich-huettenjause.webp",
+   "quelle": "hiking-elopement-lagazuoi-dolomites/17.webp",
+   "alt_de": "Jause auf der Huette nach der Trauung",
+   "alt_en": "Hut lunch after the ceremony"
+  }
+ ],
+ "guide-helicopter": [
+  {
+   "datei": "img/guide-helicopter/h01-flight-headset.webp",
+   "quelle": "bereits im Projekt vorhanden",
+   "alt_de": "",
+   "alt_en": ""
+  },
+  {
+   "datei": "img/guide-helicopter/h02-cockpit.webp",
+   "quelle": "bereits im Projekt vorhanden",
+   "alt_de": "",
+   "alt_en": ""
+  },
+  {
+   "datei": "img/guide-helicopter/h03-window-peaks.webp",
+   "quelle": "bereits im Projekt vorhanden",
+   "alt_de": "",
+   "alt_en": ""
+  },
+  {
+   "datei": "img/guide-helicopter/h04-aerial-peak.webp",
+   "quelle": "bereits im Projekt vorhanden",
+   "alt_de": "",
+   "alt_en": ""
+  },
+  {
+   "datei": "img/guide-helicopter/h05-aerial-ridge.webp",
+   "quelle": "bereits im Projekt vorhanden",
+   "alt_de": "",
+   "alt_en": ""
+  },
+  {
+   "datei": "img/guide-helicopter/h06-landed-couple.webp",
+   "quelle": "bereits im Projekt vorhanden",
+   "alt_de": "",
+   "alt_en": ""
+  },
+  {
+   "datei": "img/guide-helicopter/h07-helipad.webp",
+   "quelle": "bereits im Projekt vorhanden",
+   "alt_de": "",
+   "alt_en": ""
+  },
+  {
+   "datei": "img/guide-helicopter/h08-vows.webp",
+   "quelle": "bereits im Projekt vorhanden",
+   "alt_de": "",
+   "alt_en": ""
+  },
+  {
+   "datei": "img/guide-helicopter/h09-rings.webp",
+   "quelle": "bereits im Projekt vorhanden",
+   "alt_de": "",
+   "alt_en": ""
+  },
+  {
+   "datei": "img/guide-helicopter/h10-summit-portrait.webp",
+   "quelle": "bereits im Projekt vorhanden",
+   "alt_de": "",
+   "alt_en": ""
+  },
+  {
+   "datei": "img/guide-helicopter/h11-ridge-couple.webp",
+   "quelle": "bereits im Projekt vorhanden",
+   "alt_de": "",
+   "alt_en": ""
+  },
+  {
+   "datei": "img/guide-helicopter/h12-ridge-walk.webp",
+   "quelle": "bereits im Projekt vorhanden",
+   "alt_de": "",
+   "alt_en": ""
+  },
+  {
+   "datei": "img/guide-helicopter/h13-ridge-wide.webp",
+   "quelle": "bereits im Projekt vorhanden",
+   "alt_de": "",
+   "alt_en": ""
+  },
+  {
+   "datei": "img/guide-helicopter/h14-enrosadira.webp",
+   "quelle": "bereits im Projekt vorhanden",
+   "alt_de": "",
+   "alt_en": ""
+  },
+  {
+   "datei": "img/guide-helicopter/h15-sunset-peaks.webp",
+   "quelle": "bereits im Projekt vorhanden",
+   "alt_de": "",
+   "alt_en": ""
+  },
+  {
+   "datei": "img/guide-helicopter/h16-panorama-couple.webp",
+   "quelle": "bereits im Projekt vorhanden",
+   "alt_de": "",
+   "alt_en": ""
+  },
+  {
+   "datei": "img/guide-helicopter/h17-aerial-cloud.webp",
+   "quelle": "bereits im Projekt vorhanden",
+   "alt_de": "",
+   "alt_en": ""
+  },
+  {
+   "datei": "img/guide-helicopter/h18-winter-peak.webp",
+   "quelle": "bereits im Projekt vorhanden",
+   "alt_de": "",
+   "alt_en": ""
+  },
+  {
+   "datei": "img/guide-helicopter/h19-lago-heli.webp",
+   "quelle": "bereits im Projekt vorhanden",
+   "alt_de": "",
+   "alt_en": ""
+  },
+  {
+   "datei": "img/guide-helicopter/h20-heli-flying.webp",
+   "quelle": "bereits im Projekt vorhanden",
+   "alt_de": "",
+   "alt_en": ""
+  },
+  {
+   "datei": "img/guide-helicopter/h21-paar-vor-hubschrauber-dolomiten.webp",
+   "quelle": "adventure-helicopter-elopement-dolomites/g14.webp",
+   "alt_de": "Brautpaar vor dem Hubschrauber auf der Bergwiese in den Dolomiten",
+   "alt_en": "Couple in front of the helicopter on a Dolomites meadow"
+  },
+  {
+   "datei": "img/guide-helicopter/h22-einstieg-braut-dolomiten.webp",
+   "quelle": "adventure-helicopter-elopement-dolomites/g15.webp",
+   "alt_de": "Braut geht zum wartenden Hubschrauber",
+   "alt_en": "Bride walking to the waiting helicopter"
+  },
+  {
+   "datei": "img/guide-helicopter/h23-paar-in-der-kabine.webp",
+   "quelle": "adventure-helicopter-elopement-dolomites/g16.webp",
+   "alt_de": "Brautpaar in der Hubschrauberkabine beim Start",
+   "alt_en": "Couple inside the helicopter cabin at take-off"
+  },
+  {
+   "datei": "img/guide-helicopter/h24-winter-braut-ausstieg.webp",
+   "quelle": "hiking-elopement-lagazuoi-dolomites/05.webp",
+   "alt_de": "Braut steigt im Winter aus dem Hubschrauber aus",
+   "alt_en": "Bride stepping out of the helicopter in winter"
+  },
+  {
+   "datei": "img/guide-helicopter/h25-winter-blick-aus-kabine.webp",
+   "quelle": "hiking-elopement-lagazuoi-dolomites/06.webp",
+   "alt_de": "Blick aus der Hubschrauberkabine auf verschneite Gipfel",
+   "alt_en": "View from the helicopter cabin onto snowy peaks"
+  },
+  {
+   "datei": "img/guide-helicopter/h26-cockpit-dolomiten.webp",
+   "quelle": "hiking-elopement-lagazuoi-dolomites/07.webp",
+   "alt_de": "Cockpit des Hubschraubers ueber den winterlichen Dolomiten",
+   "alt_en": "Helicopter cockpit above the winter Dolomites"
+  },
+  {
+   "datei": "img/guide-helicopter/h27-landung-schneegipfel-paar.webp",
+   "quelle": "hiking-elopement-lagazuoi-dolomites/08.webp",
+   "alt_de": "Brautpaar neben dem gelandeten Hubschrauber auf dem Schneegipfel",
+   "alt_en": "Couple beside the landed helicopter on a snowy summit"
+  },
+  {
+   "datei": "img/guide-helicopter/h28-pizza-am-berg.webp",
+   "quelle": "pizza-elopement-at-tre-cime-cadini-di-misurina/g02.webp",
+   "alt_de": "Pizza direkt am Berg, angeliefert per Hubschrauber",
+   "alt_en": "Pizza served on the mountain, flown in by helicopter"
+  },
+  {
+   "datei": "img/guide-helicopter/h29-tre-cime-winter-paar.webp",
+   "quelle": "a-journey-of-love-and-adventure/02.webp",
+   "alt_de": "Brautpaar und Hubschrauber vor den Drei Zinnen im Winter",
+   "alt_en": "Couple and helicopter in front of Tre Cime in winter"
+  }
+ ]
+}
