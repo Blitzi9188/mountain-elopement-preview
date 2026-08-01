@@ -433,6 +433,15 @@ footer .fine{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
 .tips h4{font-family:var(--sans);text-transform:uppercase;letter-spacing:.16em;font-size:12px;margin:0 0 12px}
 .tips ul{margin:0;padding-left:18px}
 .tips li{margin:8px 0;color:var(--ink-2)}
+.guide-toc{margin:2.4em 0;padding:20px 24px;background:var(--paper-2);border:1px solid var(--line)}
+.guide-toc .cap{margin-bottom:10px}
+.guide-toc ol{margin:0;padding-left:20px;columns:2;column-gap:30px;font-family:var(--sans);font-size:13.5px;letter-spacing:.02em}
+.guide-toc li{margin:5px 0;break-inside:avoid}
+.guide-toc a{color:var(--ink-2)}
+.guide-toc a:hover{color:var(--accent)}
+.guide-fig{margin:2em 0}
+.guide-fig img{width:100%;height:auto;display:block}
+@media(max-width:560px){.guide-toc ol{columns:1}}
 .suntimes{width:100%;border-collapse:collapse;margin:.4em 0 1em;font-size:15px}
 .suntimes th,.suntimes td{text-align:left;padding:.62em .5em;border-bottom:1px solid var(--line)}
 .suntimes th{font-family:var(--sans);text-transform:uppercase;letter-spacing:.12em;font-size:11px;color:var(--accent);font-weight:600}
