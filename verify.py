@@ -7,10 +7,16 @@ for dp,_,fs in os.walk(ROOT):
         p=os.path.join(dp,fn)
         html=open(p).read()
         base=os.path.dirname(p)
-        # collect href/src (skip http, mailto, #, javascript)
-        refs=re.findall(r'(?:href|src)="([^"]+)"',html)
+        # collect href/src plus responsive srcset / imagesrcset URLs
+        refs=list(re.findall(r'(?:href|src)="([^"]+)"',html))
+        for ss in re.findall(r'(?:srcset|imagesrcset)="([^"]+)"',html):
+            for cand in ss.split(','):
+                url=cand.strip().split(' ')[0]
+                if url: refs.append(url)
         for r in refs:
             if r.startswith(('http','mailto:','tel:','#','javascript:','data:')): continue
+            r=r.split('?',1)[0].split('#',1)[0]   # drop cache-buster query / fragment
+            if not r: continue
             # root-absolute (/x) → resolve from the build root; else relative to the file
             if r.startswith('/'):
                 target=os.path.normpath(os.path.join(ROOT, r.lstrip('/')))

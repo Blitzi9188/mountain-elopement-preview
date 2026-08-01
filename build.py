@@ -1,8 +1,51 @@
 #!/usr/bin/env python3
 # Multilingual generator (EN root, /de/, /es/) mirroring the live URL structure.
-import os, json, re, html as _html
+import os, json, re, hashlib, html as _html
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DOMAIN = 'https://mountain-elopement.com'
+
+# --- responsive images + asset versioning (Aufgabe 1 & 3) ---
+try:
+    IMG_MANIFEST = json.load(open(os.path.join(ROOT, 'img', '_manifest.json')))
+except Exception:
+    IMG_MANIFEST = {}
+def _asset_v(relpath):
+    try: return hashlib.md5(open(os.path.join(ROOT, relpath), 'rb').read()).hexdigest()[:8]
+    except Exception: return '1'
+CSS_V = _asset_v('css/style.css'); JS_V = _asset_v('js/site.js')
+DEF_SIZES = '(max-width:700px) 100vw, 700px'
+TEAM_ID = 'id="team-photo"'
+def bild(P, pfad, alt, klasse='', lazy=True, sizes=DEF_SIZES, eager=False, extra=''):
+    """Ein <img> mit srcset (480/960/1600 w), Massen, decoding=async und Lazy/Eager."""
+    cls = (' class="' + klasse + '"') if klasse else ''
+    xt = (' ' + extra) if extra else ''
+    if eager: load = ' loading="eager" fetchpriority="high"'
+    elif lazy: load = ' loading="lazy"'
+    else: load = ' loading="eager"'
+    meta = IMG_MANIFEST.get(pfad)
+    if not meta:
+        return f'<img{cls}{xt} src="{P}{pfad}" alt="{alt}"{load} decoding="async">'
+    w, h, v = meta['w'], meta['h'], meta['v']; stem = pfad.rsplit('.', 1)[0]
+    if v:
+        srcset = ', '.join(f'{P}{stem}-{x}.webp {x}w' for x in v)
+        src = f'{P}{stem}-{v[-1]}.webp'; ss = f' srcset="{srcset}" sizes="{sizes}"'
+    else:
+        src = f'{P}{pfad}'; ss = ''
+    return f'<img{cls}{xt} src="{src}"{ss} width="{w}" height="{h}"{load} decoding="async" alt="{alt}">'
+def herobg(P, pfad, alt, sizes='100vw'):
+    """Hero als responsive <img class="bg"> (eager + fetchpriority, LCP)."""
+    return bild(P, pfad, alt, klasse='bg', eager=True, sizes=sizes)
+def herolink(P, pfad):
+    """rel=preload fuers Hero-LCP-Bild (imagesrcset)."""
+    meta = IMG_MANIFEST.get(pfad)
+    if not meta or not meta['v']:
+        return f'<link rel="preload" as="image" href="{P}{pfad}" fetchpriority="high">'
+    stem = pfad.rsplit('.', 1)[0]
+    ss = ', '.join(f'{P}{stem}-{x}.webp {x}w' for x in meta['v'])
+    return f'<link rel="preload" as="image" imagesrcset="{ss}" imagesizes="100vw" fetchpriority="high">'
+def _fontpre(P):
+    return (f'<link rel="preload" as="font" type="font/woff2" crossorigin href="{P}fonts/archivo-600-normal-latin.woff2">'
+            f'<link rel="preload" as="font" type="font/woff2" crossorigin href="{P}fonts/newsreader-400-normal-latin.woff2">')
 
 # Cloudflare Turnstile — öffentlicher Site-Key (darf im HTML stehen).
 # Default = Cloudflares ALWAYS-PASSES-Testkey. Vor dem echten Livegang gegen den
@@ -61,10 +104,7 @@ LANGS = ['en','de','es','it']         # en = default at root
 LNAME = {'en':'EN','de':'DE','es':'ES','it':'IT'}
 HREFLANG = {'en':'en','de':'de','es':'es','it':'it'}
 
-FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
- '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
- '<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&'
- 'family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">')
+# Fonts werden lokal ausgeliefert (siehe css/style.css @font-face + _fontpre()).
 
 P_PLAN = ('Dolomites Wedding Planner', 'https://www.dolomitesweddingplanner.com/de')
 P_FILM = ('No Matter The Weather', 'https://nomattertheweather.it')
@@ -875,7 +915,7 @@ def breadcrumb_ld(lang,rel,title):
 def _ld_script(obj):
     return f'<script type="application/ld+json">{json.dumps(obj,ensure_ascii=False,separators=(",",":"))}</script>'
 
-def head(lang, rel, title, desc, ld_extra=None, noindex=False):
+def head(lang, rel, title, desc, ld_extra=None, noindex=False, pre=''):
     P=prefix(lang,rel)
     alts=''
     for L in LANGS:
@@ -896,7 +936,7 @@ def head(lang, rel, title, desc, ld_extra=None, noindex=False):
     return ('<!DOCTYPE html><html lang="'+lang+'"><head><meta charset="UTF-8">'
         '<meta name="viewport" content="width=device-width, initial-scale=1">'
         f'<title>{title}</title><meta name="description" content="{desc}">'
-        f'{can}{alts}{fav}{GTM_HEAD}{FONTS}<link rel="stylesheet" href="{P}css/style.css">{ld}</head><body>{GTM_BODY}')
+        f'{can}{alts}{fav}{GTM_HEAD}{_fontpre(P)}{pre}<link rel="stylesheet" href="{P}css/style.css?v={CSS_V}">{ld}</head><body>{GTM_BODY}')
 
 def nav(lang, rel, active, booking=False):
     P=prefix(lang,rel)
@@ -919,7 +959,7 @@ def nav(lang, rel, active, booking=False):
     strip=(f'<div class="booking-strip">{t(lang,"booking")} '
            f'<a href="{u(P,lang,"get-in-touch/")}">{t(lang,"booking_link")}</a></div>')
     return (strip+'<header class="masthead"><div class="bar">'
-        f'<a class="brand" href="{u(P,lang,"")}"><img class="brand-mark" src="{P}img/logo/mark-dark.png" alt="Mountain Elopement logo"><span class="brand-word">Mountain Elopement</span></a>'
+        f'<a class="brand" href="{u(P,lang,"")}">{bild(P,"img/logo/mark-dark.png","Mountain Elopement logo",klasse="brand-mark",eager=True)}<span class="brand-word">Mountain Elopement</span></a>'
         f'<nav id="nav">{links}{langs_menu}</nav>'
         f'<a class="nav-cta" href="{u(P,lang,"get-in-touch/")}">{CTA_CONTACT[lang]}</a>'
         f'{langsw}'
@@ -939,7 +979,7 @@ def team_section(lang,P):
 def footer(lang,rel):
     P=prefix(lang,rel)
     return ('<footer><div class="wrap"><div class="cols">'
-      f'<div><div class="fbrand"><img src="{P}img/logo/mark-light.png" alt="Mountain Elopement logo"><span class="fword">Mountain Elopement</span></div>'
+      f'<div><div class="fbrand">{bild(P,"img/logo/mark-light.png","Mountain Elopement logo")}<span class="fword">Mountain Elopement</span></div>'
       f'<p>{t(lang,"f_tag")}</p></div>'
       f'<div><h5>{t(lang,"f_explore")}</h5><ul>'
       f'<li><a href="{u(P,lang,"how-to-elope-in-the-europe-mountains/")}">{T["nav"]["howto"][lang]}</a></li>'
@@ -954,7 +994,7 @@ def footer(lang,rel):
       f'<span><a href="{u(P,lang,"imprint/")}">{t(lang,"f_imprint")}</a> &middot; <a href="{u(P,lang,"privacy-policy/")}">{t(lang,"f_privacy")}</a> &middot; <a href="#" data-cc-reopen>{CC["settings"][lang]}</a></span></div></div></footer>'
       +consent_banner(lang,P))
 
-def scripts(P,extra=''): return f'<script src="{P}js/site.js"></script>{extra}</body></html>'
+def scripts(P,extra=''): return f'<script src="{P}js/site.js?v={JS_V}"></script>{extra}</body></html>'
 
 def write(lang,rel,html):
     path=lbase(lang)+rel+'index.html'
@@ -966,7 +1006,7 @@ def story_card(lang,P,s,big=False):
     tags=' &mdash; '.join(catname(c,lang) for c in cats[:2])
     cls='st big' if big else 'st'
     return (f'<a class="{cls} reveal" href="{u(P,lang,"portfolio-item/"+slug+"/")}">'
-        f'<div class="imgwrap"><img src="{P}img/stories/{img}.webp" alt="{titles[lang]}"></div>'
+        f'<div class="imgwrap">{bild(P,f"img/stories/{img}.webp",titles[lang],sizes="(max-width:520px) 100vw, (max-width:860px) 50vw, 380px")}</div>'
         f'<div class="no">N&deg;{num:02d}</div><h3>{titles[lang]}</h3><div class="tags">{tags}</div></a>')
 
 LB_JS=("<script>var imgs=[].slice.call(document.querySelectorAll('.gallery img'));"
@@ -986,26 +1026,27 @@ def _gallery_files(slug):
     d=os.path.join(ROOT,'img','gallery',slug)
     return [f for f in sorted(os.listdir(d)) if f.lower().endswith('.webp')] if os.path.isdir(d) else []
 
-def _render_gallery(srcs,alt,quote='',full=False):
+def _render_gallery(srcs,alt,quote='',full=False,P=''):
     n=len(srcs)
     wide=({0} | {i for i in range(5,n,5)}) if full else set()   # full-width breakouts only in feature mode
     qpos=max(2,round(n*0.4)) if (quote and n>=6) else -1  # pull-quote ~40% in
+    gsizes=('(max-width:900px) 50vw, 780px' if full else '(max-width:900px) 48vw, 430px')
     out=['<div class="gallery">']
     for i,src in enumerate(srcs):
         if i==qpos:
             out.append(f'<figure class="eq"><blockquote>{quote}</blockquote></figure>')
-        cls=' class="gfull"' if i in wide else ''
-        out.append(f'<img{cls} src="{src}" loading="lazy" alt="{alt}">')
+        gf='gfull' if i in wide else ''
+        out.append(bild(P,src,alt,klasse=gf,sizes=gsizes))
     out.append('</div>')
     return ''.join(out)
 
 def gallery_html(lang,P,slug,alt,quote=''):
     files=_gallery_files(slug)
     if files:
-        srcs=[f'{P}img/gallery/{slug}/{fn}' for fn in files[:MAX_GALLERY]]
+        srcs=[f'img/gallery/{slug}/{fn}' for fn in files[:MAX_GALLERY]]
     else:  # fallback to shared placeholder set
-        srcs=[f'{P}img/gallery/g{i:02d}.webp' for i in range(1,13)]
-    return _render_gallery(srcs,alt,quote)
+        srcs=[f'img/gallery/g{i:02d}.webp' for i in range(1,13)]
+    return _render_gallery(srcs,alt,quote,P=P)
 
 TITLES={  # <title> per page
  'home':{'en':'Mountain Elopement | Intimate Weddings & Adventure Elopements','de':'Mountain Elopement — Wo Abenteuer auf Romantik trifft','es':'Mountain Elopement — Donde la aventura se une al romance'},
@@ -1055,7 +1096,7 @@ def reviews_block(lang,P,n=6,compact=False):
 def build_home(lang):
     rel=''; P=prefix(lang,rel)
     body=(nav(lang,rel,'home',booking=True)+
-      f'<section class="hero" style="padding:0"><div class="bg" style="background-image:url(\'{P}img/hero/hero1.webp\')"></div>'
+      f'<section class="hero" style="padding:0">{herobg(P,"img/hero/hero1.webp","A couple at their Dolomites mountain elopement at first light")}'
       '<div class="content"><div class="wide"><div><div class="kicker" data-n="Issue N&deg;1"><span class="line"></span></div>'
       f'<h1 class="hero-brand">Mountain Elopement</h1><h2 class="hero-sub">{t(lang,"h_h1").replace("<br>"," ")}</h2></div><div class="side"><p>{t(lang,"h_sub")}</p>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"h_btn")}</a></div></div></div></section>'
@@ -1063,7 +1104,7 @@ def build_home(lang):
       f'<div class="kicker" data-n="01">{t(lang,"mission_k")}<span class="line"></span></div><h2>{t(lang,"mission_h")}</h2>'
       f'<p class="lead">{t(lang,"mission_lead")}</p><p class="dropcap">{t(lang,"mission_p1")}</p><p>{t(lang,"mission_p2")}</p>'
       f'<a href="{u(P,lang,"how-to-elope-in-the-europe-mountains/")}" class="arrow-link">{t(lang,"mission_link")}</a></div>'
-      f'<div class="media reveal"><img src="{P}img/hero/hero2.webp" alt="Wedding ceremony on the Seceda ridge in the Dolomites"><div class="caption">{t(lang,"cap_seceda")}</div></div></div></section>'
+      f'<div class="media reveal">{bild(P,"img/hero/hero2.webp","Wedding ceremony on the Seceda ridge in the Dolomites",sizes="(max-width:760px) 100vw, 640px")}<div class="caption">{t(lang,"cap_seceda")}</div></div></div></section>'
       '<hr class="hr"><section><div class="wrap"><div class="section-head reveal">'
       f'<div class="kicker" data-n="{t(lang,"diff_k")}"><span class="line"></span></div><h2>{t(lang,"diff_h")}</h2></div>'
       '<div class="pillars reveal">'
@@ -1108,7 +1149,7 @@ def build_home(lang):
       f'<div class="kicker" data-n="05">{t(lang,"cta_k")}<span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,TITLES['home'][lang],DESC['home'][lang])+body+scripts(P))
+    write(lang,rel,head(lang,rel,TITLES['home'][lang],DESC['home'][lang],pre=herolink(P,'img/hero/hero1.webp'))+body+scripts(P))
 
 def build_howto(lang):
     rel='how-to-elope-in-the-europe-mountains/'; P=prefix(lang,rel)
@@ -1117,14 +1158,14 @@ def build_howto(lang):
           f'<h3 style="font-family:var(--serif);font-weight:400;font-size:26px;margin:8px 0 10px">{t(lang,tk)}</h3>'
           f'<p style="font-size:17px;color:var(--ink-2)">{t(lang,pk)}</p></div>')
     body=(nav(lang,rel,'howto')+
-      f'<section class="page-hero" style="padding:0"><div class="bg" style="background-image:url(\'{P}img/page/howto.webp\')"></div>'
+      f'<section class="page-hero" style="padding:0">{herobg(P,"img/page/howto.webp","Eloping in the European mountains")}'
       f'<div class="content"><div class="wrap"><div class="kicker" data-n="{t(lang,"ht_k")}"><span class="line"></span></div><h1>{t(lang,"ht_h1")}</h1>'
       f'<div class="hero-btns"><a class="btn light" href="{u(P,lang,"get-in-touch/")}">{t(lang,"hero_inq")}</a>'
       f'<a class="btn ghost" href="{u(P,lang,"our-packages/")}">{t(lang,"hero_price")}</a></div></div></div></section>'
       '<section><div class="wrap feature"><div class="body reveal">'
       f'<div class="kicker" data-n="01">{t(lang,"ht_s1k")}<span class="line"></span></div><h2>{t(lang,"ht_s1h")}</h2>'
       f'<p class="dropcap">{t(lang,"ht_s1p1")}</p><p>{t(lang,"ht_s1p2")}</p><p>{t(lang,"ht_s1p3")}</p></div>'
-      f'<div class="media reveal"><img src="{P}img/stories/s24.webp" alt="Dolomites"><div class="caption">{t(lang,"ht_cap")}</div></div></div></section>'
+      f'<div class="media reveal">{bild(P,"img/stories/s24.webp","Dolomites",sizes="(max-width:1000px) 100vw, 960px")}<div class="caption">{t(lang,"ht_cap")}</div></div></div></section>'
       '<hr class="hr"><section><div class="wrap"><div class="section-head reveal">'
       f'<div class="kicker" data-n="02">{t(lang,"ht_e_k")}<span class="line"></span></div><h2>{t(lang,"ht_e_h")}</h2></div>'
       '<div class="story-grid" style="align-items:start">'
@@ -1137,7 +1178,7 @@ def build_howto(lang):
       f'<div class="kicker" data-n="{t(lang,"ht_ready")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"ht_cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"get_in_touch")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,TITLES['howto'][lang],DESC['howto'][lang])+body+scripts(P,GUIDE_JS))
+    write(lang,rel,head(lang,rel,TITLES['howto'][lang],DESC['howto'][lang],pre=herolink(P,'img/page/howto.webp'))+body+scripts(P,GUIDE_JS))
 
 def build_stories(lang):
     rel='stories-elopement-mountain/'; P=prefix(lang,rel)
@@ -1302,20 +1343,20 @@ FEATURE_HELI={
 
 def feature_heli(lang,P,slug,img,alt):
     F=FEATURE_HELI[lang]
-    srcs=[f'{P}img/gallery/{slug}/{fn}' for fn in _gallery_files(slug)[:MAX_GALLERY]]
+    srcs=[f'img/gallery/{slug}/{fn}' for fn in _gallery_files(slug)[:MAX_GALLERY]]
     g1=[srcs[i] for i in (0,2,3,4) if i<len(srcs)]   # Galerie 1: Bilder 1, 3, 4, 5
     g2=srcs[5:]                                       # Galerie 2: Bilder 6 ff.
     intro=''.join((f'<p class="dropcap">{p}</p>' if k==0 else f'<p>{p}</p>') for k,p in enumerate(F['intro']))
     s2=''.join(f'<p>{p}</p>' for p in F['s2'])
     return (
-      f'<section class="page-hero" style="padding:0"><div class="bg" style="background-image:url(\'{P}img/stories/{img}.webp\')"></div>'
+      f'<section class="page-hero" style="padding:0">{herobg(P,f"img/stories/{img}.webp","")}'
       f'<div class="content"><div class="wrap"><div class="kicker" data-n="{F["kick"]}"><span class="line"></span></div><h1>{F["title"]}</h1></div></div></section>'
       f'<div class="page-plain" style="border-top:0"><div class="wrap"><div class="pi-intro reveal">'
       f'<div class="byline">{F["by"]}</div>{intro}</div></div></div>'
-      '<section><div class="wide">'+_render_gallery(g1,alt,full=True)+'</div></section>'
+      '<section><div class="wide">'+_render_gallery(g1,alt,full=True,P=P)+'</div></section>'
       f'<section style="padding-top:clamp(30px,5vw,64px)"><div class="wrap"><div class="pi-intro reveal">'
       f'<h2 class="feat-h2">{F["s2h"]}</h2>{s2}</div></div></section>'
-      +('<section><div class="wide">'+_render_gallery(g2,alt,full=True)+'</div></section>' if g2 else ''))
+      +('<section><div class="wide">'+_render_gallery(g2,alt,full=True,P=P)+'</div></section>' if g2 else ''))
 
 def build_portfolio(lang):
     for s in STORIES:
@@ -1334,7 +1375,7 @@ def build_portfolio(lang):
             main=feature_heli(lang,P,slug,img,titles[lang])
         else:
             main=(
-              f'<section class="page-hero" style="padding:0"><div class="bg" style="background-image:url(\'{P}img/stories/{img}.webp\')"></div>'
+              f'<section class="page-hero" style="padding:0">{herobg(P,f"img/stories/{img}.webp","")}'
               f'<div class="content"><div class="wrap"><div class="kicker" data-n="Story N&deg;{num:02d}"><span class="line"></span></div><h1>{titles[lang]}</h1></div></div></section>'
               f'<div class="page-plain" style="border-top:0"><div class="wrap"><div class="pi-intro reveal">'
               f'<div class="cap" style="margin-bottom:16px">{catlinks}</div>'
@@ -1506,7 +1547,7 @@ def build_team(lang):
     body=(nav(lang,rel,'team')+
       f'<div class="page-plain"><div class="wrap"><div class="kicker" data-n="{t(lang,"tp_k")}"><span class="line"></span></div>'
       f'<h1>{t(lang,"tp_h")}</h1><p class="lead">{t(lang,"tp_lead")}</p></div></div>'
-      f'<section><div class="wrap feature"><div class="media reveal"><img id="team-photo" class="team-square" src="{P}img/team/{timgs[0]}" alt="Das Team von Mountain Elopement in den Dolomiten">'
+      f'<section><div class="wrap feature"><div class="media reveal">{bild(P,f"img/team/{timgs[0]}","Das Team von Mountain Elopement in den Dolomiten",klasse="team-square",extra=TEAM_ID,sizes="(max-width:700px) 100vw, 520px")}'
       '<div class="caption">Jlenia &amp; Andreas.</div></div><div class="body reveal">'
       f'<div class="kicker" data-n="01">{t(lang,"tp_fk")}<span class="line"></span></div><h2>Jlenia &amp; Andreas</h2>'
       f'<p class="lead">{t(lang,"tp_flead")}</p><p class="dropcap">{t(lang,"tp_fp1")}</p><p>{t(lang,"tp_fp2")}</p>'
@@ -1575,7 +1616,7 @@ def build_contact(lang):
       f'<button class="btn" type="submit">{t(lang,"ct_send")}</button>'
       '<p id="ce-status" class="ce-status" role="status" aria-live="polite"></p>'
       '</form>'
-      f'<aside class="contact-side reveal"><img src="{P}img/page/contact.webp" alt="Mountain Elopement">'
+      f'<aside class="contact-side reveal">{bild(P,"img/page/contact.webp","Mountain Elopement",sizes="(max-width:700px) 100vw, 600px")}'
       '<div class="info"><div><strong>Email</strong> &mdash; <a href="mailto:info@mountain-elopement.com">info@mountain-elopement.com</a></div>'
       '<div><strong>WhatsApp</strong> &mdash; +39 348 425 8317</div>'
       f'<div><strong>{t(lang,"ct_based")}</strong> &mdash; {t(lang,"ct_based_v")}</div>'
@@ -1638,6 +1679,8 @@ PRIVACY_DE="""<h2>Verantwortlicher</h2>
 <p>Diese Website nutzt den Google Tag Manager (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) zur Verwaltung von Website-Tags. Der Tag Manager selbst speichert keine personenbezogenen Daten, kann aber weitere Dienste auslösen. Sofern dabei einwilligungspflichtige Dienste geladen werden, geschieht dies erst nach eurer Einwilligung (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO), die ihr jederzeit mit Wirkung für die Zukunft widerrufen könnt.</p>
 
 <h2>Eure Rechte</h2>
+<h2>Schriftarten</h2>
+<p>Die auf dieser Website verwendeten Schriftarten (Archivo, Newsreader) werden <strong>lokal von unserem Server ausgeliefert</strong>. Es besteht dabei keine Verbindung zu Google Fonts oder anderen Google-Servern; insbesondere wird eure IP-Adresse nicht an Google &uuml;bertragen.</p>
 <p>Ihr habt jederzeit das Recht auf Auskunft über die zu eurer Person gespeicherten Daten, auf Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie das Recht, der Verarbeitung zu widersprechen. Eine erteilte Einwilligung könnt ihr jederzeit mit Wirkung für die Zukunft widerrufen. Wendet euch dazu an <a href="mailto:foto@blitzkneisser.com">foto@blitzkneisser.com</a>.</p>
 <p>Zudem habt ihr das Recht, euch bei einer Datenschutz-Aufsichtsbehörde zu beschweren &mdash; in Österreich bei der Österreichischen Datenschutzbehörde (<a href="https://www.dsb.gv.at" target="_blank" rel="noopener">dsb.gv.at</a>).</p>"""
 
@@ -1659,6 +1702,8 @@ PRIVACY_EN="""<h2>Controller</h2>
 <p>This website uses Google Tag Manager (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland) to manage website tags. Tag Manager itself does not store personal data but may trigger additional services. Where consent-based services are loaded, this only happens after your consent (Art. 6(1)(a) GDPR), which you may withdraw at any time with effect for the future.</p>
 
 <h2>Your rights</h2>
+<h2>Fonts</h2>
+<p>The fonts used on this website (Archivo, Newsreader) are <strong>served locally from our own server</strong>. No connection to Google Fonts or any other Google server is established; in particular, your IP address is not transmitted to Google.</p>
 <p>You have the right at any time to obtain information about the data stored about you, and to request rectification, erasure, restriction of processing and data portability, as well as the right to object to processing. You may withdraw any consent given at any time with effect for the future. To do so, contact <a href="mailto:foto@blitzkneisser.com">foto@blitzkneisser.com</a>.</p>
 <p>You also have the right to lodge a complaint with a data protection supervisory authority — in Austria, the Austrian Data Protection Authority (<a href="https://www.dsb.gv.at" target="_blank" rel="noopener">dsb.gv.at</a>).</p>"""
 
@@ -1699,8 +1744,9 @@ def build_legal(lang):
         write(lang,rel,head(lang,rel,f'{title} — Mountain Elopement','')+body+scripts(P))
 
 def guide_card(lang,P,g):
+    _im=bild(P,f"img/stories/{g['img']}.webp",g["title"][lang],sizes="(max-width:520px) 100vw, (max-width:860px) 50vw, 380px")
     return (f'<a class="st reveal" href="{u(P,lang,"how-to-elope-in-the-europe-mountains/"+g["slug"]+"/")}">'
-        f'<div class="imgwrap"><img src="{P}img/stories/{g["img"]}.webp" alt="{g["title"][lang]}"></div>'
+        f'<div class="imgwrap">{_im}</div>'
         f'<div class="no">{t(lang,"guide_kick")}</div><h3>{g["title"][lang]}</h3>'
         f'<div class="tags" style="text-transform:none;letter-spacing:0;font-family:var(--serif);font-style:italic;font-size:15px">{g["excerpt"][lang]}</div></a>')
 
@@ -1753,8 +1799,9 @@ def guide_hub(lang,P):
     for g in GUIDES:
         cats=' '.join(GUIDE_CATS.get(g['slug'],[]))
         href=u(P,lang,'how-to-elope-in-the-europe-mountains/'+g['slug']+'/')
+        _im=bild(P,f"img/stories/{g['img']}.webp",g["title"][lang],sizes="(max-width:520px) 100vw, (max-width:860px) 50vw, 380px")
         cards+=(f'<a class="gcard reveal" data-cat="{cats}" href="{href}">'
-                f'<div class="imgwrap"><img src="{P}img/stories/{g["img"]}.webp" alt="{g["title"][lang]}" loading="lazy"></div>'
+                f'<div class="imgwrap">{_im}</div>'
                 f'<div class="no">{t(lang,"guide_kick")}</div><h3>{g["title"][lang]}</h3>'
                 f'<div class="gcard-x">{g["excerpt"][lang]}</div></a>')
     return ('<div class="page-plain" style="border-bottom:0"><div class="wrap">'
@@ -1769,7 +1816,8 @@ def guide_mosaic(lang,P):
     for i,g in enumerate(GUIDES):
         c=cls[i] if i<len(cls) else 'm-tile'
         href=u(P,lang,'how-to-elope-in-the-europe-mountains/'+g['slug']+'/')
-        tiles+=(f'<a class="{c} reveal" href="{href}"><img src="{P}img/stories/{g["img"]}.webp" alt="{g["title"][lang]}">'
+        _im=bild(P,f"img/stories/{g['img']}.webp",g["title"][lang],sizes="(max-width:520px) 100vw, (max-width:860px) 50vw, 380px")
+        tiles+=(f'<a class="{c} reveal" href="{href}">{_im}'
                 f'<div class="m-cap"><div class="m-cat">{t(lang,"guide_kick")}</div><h3>{g["title"][lang]}</h3></div></a>')
     return '<div class="mosaic">'+tiles+'</div>'
 
@@ -1833,8 +1881,10 @@ def build_guides(lang):
         suntimes=sun_times_block(lang) if g['slug']=='sunrise-or-sunset-elopement' else ''
         related=''.join(story_card(lang,P,STORYBY[sl]) for sl in ex['stories'])
         more=''.join(guide_card(lang,P,x) for x in GUIDES if x['slug']!=g['slug'])
+        _gimg=f"img/stories/{g['img']}.webp"
+        _hero=herobg(P,_gimg,g["title"][lang])
         body=(nav(lang,rel,'howto')+
-          f'<section class="page-hero" style="padding:0"><div class="bg" style="background-image:url(\'{P}img/stories/{g["img"]}.webp\')"></div>'
+          f'<section class="page-hero" style="padding:0">{_hero}'
           f'<div class="content"><div class="wrap"><div class="kicker" data-n="{t(lang,"guide_kick")}"><span class="line"></span></div><h1>{g["title"][lang]}</h1></div></div></section>'
           '<section><div class="wrap" style="max-width:820px">'
           f'<p class="lead">{linkify(g["intro"][lang],lang,P)}</p>'
@@ -1851,7 +1901,7 @@ def build_guides(lang):
           f'<div class="kicker" data-n="{t(lang,"cta_k")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"cta_h")}</h2></div>'
           f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
           +footer(lang,rel))
-        write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang])+body+scripts(P))
+        write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang],pre=herolink(P,_gimg))+body+scripts(P))
 
 # ---- Rich guide: helicopter elopement (EN + DE full; ES/IT fall back to EN) ----
 HELI_FAQ=[
@@ -2092,11 +2142,11 @@ def build_helicopter_guide(lang):
         if lang=='es': return HELI_FAQ_ES.get(qen,(qen,aen))
         if lang=='it': return HELI_FAQ_IT.get(qen,(qen,aen))
         return (qen,aen)
-    GI=f'{P}img/guide-helicopter/'
+    GI=f'{P}img/guide-helicopter/'; GIREL='img/guide-helicopter/'; HERO_IMG='img/guide-helicopter/h06-landed-couple.webp'
     H2S='font-family:var(--serif);font-weight:400;font-size:clamp(25px,3vw,36px);letter-spacing:-.01em;margin:1.7em 0 .4em;scroll-margin-top:96px'
     def h2(i,en,de): return f'<h2 id="{i}" style="{H2S}">{L(en,de)}</h2>'
     def p(en,de): return f'<p style="color:var(--ink-2)">{L(en,de)}</p>'
-    def fig(name,en,de): return f'<figure class="guide-fig"><img src="{GI}{name}" alt="{L(en,de)}" loading="lazy"></figure>'
+    def fig(name,en,de): return '<figure class="guide-fig">'+bild(P,GIREL+name,L(en,de),sizes='(max-width:820px) 100vw, 820px')+'</figure>'
     toc=[('what',L('What it is','Was es ist')),('how',L('How the day unfolds','So läuft der Tag')),
          ('timelines',L('Two example timelines','Zwei Beispiel-Abläufe')),('cost',L('What it costs','Was es kostet')),
          ('where',L('Where you can land','Wo ihr landen könnt')),('getting-there',L('Getting there','Anreise')),
@@ -2176,7 +2226,7 @@ def build_helicopter_guide(lang):
     related=''.join(story_card(lang,P,STORYBY[sl]) for sl in ex['stories'])
     more=''.join(guide_card(lang,P,x) for x in GUIDES if x['slug']!=slug)
     body=(nav(lang,rel,'howto')+
-      f'<section class="page-hero" style="padding:0"><div class="bg" style="background-image:url(\'{P}img/guide-helicopter/h06-landed-couple.webp\')"></div>'
+      f'<section class="page-hero" style="padding:0">{herobg(P,HERO_IMG,g["title"][lang])}'
       f'<div class="content"><div class="wrap"><div class="kicker" data-n="{t(lang,"guide_kick")}"><span class="line"></span></div><h1>{g["title"][lang]}</h1></div></div></section>'
       '<section><div class="wrap" style="max-width:820px">'+''.join(C)+faq_html+
       f'<p style="margin-top:2.4em"><a href="{u(P,lang,"how-to-elope-in-the-europe-mountains/")}" class="arrow-link">&larr; {T["nav"]["howto"][lang]}</a></p></div></section>'
@@ -2190,7 +2240,7 @@ def build_helicopter_guide(lang):
       f'<div class="kicker" data-n="{t(lang,"cta_k")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang],ld_extra=faq_ld)+body+scripts(P))
+    write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang],ld_extra=faq_ld,pre=herolink(P,HERO_IMG))+body+scripts(P))
 
 REGION_FAQ=[
  ("Do we need a permit to get married in the Dolomites?",
@@ -2475,11 +2525,11 @@ def build_proposal_guide(lang):
         if lang=='es': return PROP_FAQ_ES.get(qen,(qen,aen))
         if lang=='it': return PROP_FAQ_IT.get(qen,(qen,aen))
         return (qen,aen)
-    GI=f'{P}img/guide-mountain-proposal/'
+    GI=f'{P}img/guide-mountain-proposal/'; GIREL='img/guide-mountain-proposal/'; HERO_IMG='img/guide-mountain-proposal/p-cadini-kneel.webp'
     H2S='font-family:var(--serif);font-weight:400;font-size:clamp(25px,3vw,36px);letter-spacing:-.01em;margin:1.7em 0 .4em;scroll-margin-top:96px'
     def h2(i,en,de): return f'<h2 id="{i}" style="{H2S}">{L(en,de)}</h2>'
     def p(en,de): return f'<p style="color:var(--ink-2)">{L(en,de)}</p>'
-    def fig(name,en,de): return f'<figure class="guide-fig"><img src="{GI}{name}" alt="{L(en,de)}" loading="lazy"></figure>'
+    def fig(name,en,de): return '<figure class="guide-fig">'+bild(P,GIREL+name,L(en,de),sizes='(max-width:820px) 100vw, 820px')+'</figure>'
     toc=[('what',L('What it is','Worum es geht')),('how',L('How we pull it off','So gelingt es')),
          ('moment',L('Choosing the moment','Den Moment wählen')),('secret',L('Keeping the secret','Das Geheimnis wahren')),
          ('spots',L('Where to do it','Wo ihr es macht')),('ring',L('The ring','Der Ring')),
@@ -2570,7 +2620,7 @@ def build_proposal_guide(lang):
     related=''.join(story_card(lang,P,STORYBY[sl]) for sl in ex['stories'])
     more=''.join(guide_card(lang,P,x) for x in GUIDES if x['slug']!=slug)
     body=(nav(lang,rel,'howto')+
-      f'<section class="page-hero" style="padding:0"><div class="bg" style="background-image:url(\'{P}img/guide-mountain-proposal/p-cadini-kneel.webp\')"></div>'
+      f'<section class="page-hero" style="padding:0">{herobg(P,HERO_IMG,g["title"][lang])}'
       f'<div class="content"><div class="wrap"><div class="kicker" data-n="{t(lang,"guide_kick")}"><span class="line"></span></div><h1>{g["title"][lang]}</h1></div></div></section>'
       '<section><div class="wrap" style="max-width:820px">'+''.join(C)+faq_html+
       f'<p style="margin-top:2.4em"><a href="{u(P,lang,"how-to-elope-in-the-europe-mountains/")}" class="arrow-link">&larr; {T["nav"]["howto"][lang]}</a></p></div></section>'
@@ -2584,7 +2634,7 @@ def build_proposal_guide(lang):
       f'<div class="kicker" data-n="{t(lang,"cta_k")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang],ld_extra=faq_ld)+body+scripts(P))
+    write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang],ld_extra=faq_ld,pre=herolink(P,HERO_IMG))+body+scripts(P))
 
 SUN_FAQ=[
  ("Sunrise or sunset — which is better for an elopement?",
@@ -2760,11 +2810,11 @@ def build_sunset_guide(lang):
         if lang=='es': return SUN_FAQ_ES.get(qen,(qen,aen))
         if lang=='it': return SUN_FAQ_IT.get(qen,(qen,aen))
         return (qen,aen)
-    GI=f'{P}img/guide-sunrise-sunset/'
+    GI=f'{P}img/guide-sunrise-sunset/'; GIREL='img/guide-sunrise-sunset/'; HERO_IMG='img/guide-sunrise-sunset/07-sonne-geluebde-bei-sonnenaufgang.webp'
     H2S='font-family:var(--serif);font-weight:400;font-size:clamp(25px,3vw,36px);letter-spacing:-.01em;margin:1.7em 0 .4em;scroll-margin-top:96px'
     def h2(i,en,de): return f'<h2 id="{i}" style="{H2S}">{L(en,de)}</h2>'
     def p(en,de): return f'<p style="color:var(--ink-2)">{L(en,de)}</p>'
-    def fig(name,en,de): return f'<figure class="guide-fig"><img src="{GI}{name}" alt="{L(en,de)}" loading="lazy"></figure>'
+    def fig(name,en,de): return '<figure class="guide-fig">'+bild(P,GIREL+name,L(en,de),sizes='(max-width:820px) 100vw, 820px')+'</figure>'
     toc=[('what',L('The two-day question','Die Zwei-Tage-Frage')),('sunrise',L('Sunrise','Sonnenaufgang')),
          ('sunset',L('Sunset','Sonnenuntergang')),('decide',L('Which is yours','Was zu euch passt')),
          ('times',L('Sunrise & sunset times','Auf- & Untergangszeiten')),
@@ -2845,7 +2895,7 @@ def build_sunset_guide(lang):
     related=''.join(story_card(lang,P,STORYBY[sl]) for sl in ex['stories'])
     more=''.join(guide_card(lang,P,x) for x in GUIDES if x['slug']!=slug)
     body=(nav(lang,rel,'howto')+
-      f'<section class="page-hero" style="padding:0"><div class="bg" style="background-image:url(\'{P}img/guide-sunrise-sunset/07-sonne-geluebde-bei-sonnenaufgang.webp\')"></div>'
+      f'<section class="page-hero" style="padding:0">{herobg(P,HERO_IMG,g["title"][lang])}'
       f'<div class="content"><div class="wrap"><div class="kicker" data-n="{t(lang,"guide_kick")}"><span class="line"></span></div><h1>{g["title"][lang]}</h1></div></div></section>'
       '<section><div class="wrap" style="max-width:820px">'+''.join(C)+faq_html+
       f'<p style="margin-top:2.4em"><a href="{u(P,lang,"how-to-elope-in-the-europe-mountains/")}" class="arrow-link">&larr; {T["nav"]["howto"][lang]}</a></p></div></section>'
@@ -2859,7 +2909,7 @@ def build_sunset_guide(lang):
       f'<div class="kicker" data-n="{t(lang,"cta_k")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang],ld_extra=faq_ld)+body+scripts(P))
+    write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang],ld_extra=faq_ld,pre=herolink(P,HERO_IMG))+body+scripts(P))
 
 SPOTS_FAQ=[
  ("What is the most beautiful place in the Dolomites?",
@@ -3043,11 +3093,11 @@ def build_spots_guide(lang):
         if lang=='es': return SPOTS_FAQ_ES.get(qen,(qen,aen))
         if lang=='it': return SPOTS_FAQ_IT.get(qen,(qen,aen))
         return (qen,aen)
-    GI=f'{P}img/guide-dolomites-spots/'
+    GI=f'{P}img/guide-dolomites-spots/'; GIREL='img/guide-dolomites-spots/'; HERO_IMG='img/guide-dolomites-spots/03-spots-braies-ruderboot-paar.webp'
     H2S='font-family:var(--serif);font-weight:400;font-size:clamp(25px,3vw,36px);letter-spacing:-.01em;margin:1.7em 0 .4em;scroll-margin-top:96px'
     def h2(i,en,de): return f'<h2 id="{i}" style="{H2S}">{L(en,de)}</h2>'
     def p(en,de): return f'<p style="color:var(--ink-2)">{L(en,de)}</p>'
-    def fig(name,en,de): return f'<figure class="guide-fig"><img src="{GI}{name}" alt="{L(en,de)}" loading="lazy"></figure>'
+    def fig(name,en,de): return '<figure class="guide-fig">'+bild(P,GIREL+name,L(en,de),sizes='(max-width:820px) 100vw, 820px')+'</figure>'
     toc=[('what',L('Choosing your spot','Den Ort wählen')),('braies',L('Lago di Braies','Pragser Wildsee')),
          ('braies-when',L('Visiting Braies right','Braies richtig besuchen')),('tre-cime',L('Tre Cime di Lavaredo','Drei Zinnen')),
          ('gardena',L('Seceda & Val Gardena','Seceda & Gröden')),('sella',L('The Sella group','Die Sellagruppe')),
@@ -3135,7 +3185,7 @@ def build_spots_guide(lang):
     related=''.join(story_card(lang,P,STORYBY[sl]) for sl in ex['stories'])
     more=''.join(guide_card(lang,P,x) for x in GUIDES if x['slug']!=slug)
     body=(nav(lang,rel,'howto')+
-      f'<section class="page-hero" style="padding:0"><div class="bg" style="background-image:url(\'{P}img/guide-dolomites-spots/03-spots-braies-ruderboot-paar.webp\')"></div>'
+      f'<section class="page-hero" style="padding:0">{herobg(P,HERO_IMG,g["title"][lang])}'
       f'<div class="content"><div class="wrap"><div class="kicker" data-n="{t(lang,"guide_kick")}"><span class="line"></span></div><h1>{g["title"][lang]}</h1></div></div></section>'
       '<section><div class="wrap" style="max-width:820px">'+''.join(C)+faq_html+
       f'<p style="margin-top:2.4em"><a href="{u(P,lang,"how-to-elope-in-the-europe-mountains/")}" class="arrow-link">&larr; {T["nav"]["howto"][lang]}</a></p></div></section>'
@@ -3149,7 +3199,7 @@ def build_spots_guide(lang):
       f'<div class="kicker" data-n="{t(lang,"cta_k")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang],ld_extra=faq_ld)+body+scripts(P))
+    write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang],ld_extra=faq_ld,pre=herolink(P,HERO_IMG))+body+scripts(P))
 
 PLAN_FAQ=[
  ("How far ahead should we plan a mountain elopement?",
@@ -3185,7 +3235,7 @@ def build_plan_guide(lang):
     DE=(lang=='de')
     def L(en,de): return de if DE else en
     def FQ(qen,aen,qde,ade): return (qde,ade) if DE else (qen,aen)
-    GI=f'{P}img/guide-plan-your-elopement/'
+    GI=f'{P}img/guide-plan-your-elopement/'; GIREL='img/guide-plan-your-elopement/'; HERO_IMG='img/guide-plan-your-elopement/15-planung-anstossen-kleine-gruppe.webp'
     GB='how-to-elope-in-the-europe-mountains/'
     def gu(s): return u(P,lang,GB+s+'/')
     hh=gu('helicopter-elopement-dolomites-guide'); hp=gu('mountain-proposal-guide')
@@ -3194,7 +3244,7 @@ def build_plan_guide(lang):
     H2S='font-family:var(--serif);font-weight:400;font-size:clamp(25px,3vw,36px);letter-spacing:-.01em;margin:1.7em 0 .4em;scroll-margin-top:96px'
     def h2(i,en,de): return f'<h2 id="{i}" style="{H2S}">{L(en,de)}</h2>'
     def p(en,de): return f'<p style="color:var(--ink-2)">{L(en,de)}</p>'
-    def fig(name,en,de): return f'<figure class="guide-fig"><img src="{GI}{name}" alt="{L(en,de)}" loading="lazy"></figure>'
+    def fig(name,en,de): return '<figure class="guide-fig">'+bild(P,GIREL+name,L(en,de),sizes='(max-width:820px) 100vw, 820px')+'</figure>'
     def A(h,t): return '<a href="'+h+'">'+t+'</a>'
     toc=[('what',L('What it is','Worum es geht')),('feeling',L('1 · Feeling, then place','1 · Gefühl, dann Ort')),
          ('season',L('2 · Season & date','2 · Saison & Termin')),('legal',L('3 · The legal decision','3 · Das Rechtliche')),
@@ -3275,7 +3325,7 @@ def build_plan_guide(lang):
     related=''.join(story_card(lang,P,STORYBY[sl]) for sl in ex['stories'])
     more=''.join(guide_card(lang,P,x) for x in GUIDES if x['slug']!=slug)
     body=(nav(lang,rel,'howto')+
-      f'<section class="page-hero" style="padding:0"><div class="bg" style="background-image:url(\'{P}img/guide-plan-your-elopement/15-planung-anstossen-kleine-gruppe.webp\')"></div>'
+      f'<section class="page-hero" style="padding:0">{herobg(P,HERO_IMG,g["title"][lang])}'
       f'<div class="content"><div class="wrap"><div class="kicker" data-n="{t(lang,"guide_kick")}"><span class="line"></span></div><h1>{g["title"][lang]}</h1></div></div></section>'
       '<section><div class="wrap" style="max-width:820px">'+''.join(C)+faq_html+
       f'<p style="margin-top:2.4em"><a href="{u(P,lang,"how-to-elope-in-the-europe-mountains/")}" class="arrow-link">&larr; {T["nav"]["howto"][lang]}</a></p></div></section>'
@@ -3289,7 +3339,7 @@ def build_plan_guide(lang):
       f'<div class="kicker" data-n="{t(lang,"cta_k")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang],ld_extra=faq_ld)+body+scripts(P))
+    write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang],ld_extra=faq_ld,pre=herolink(P,HERO_IMG))+body+scripts(P))
 
 def build_region(lang):
     # Region page: guide + offer combined for one region (EN text for all langs for now).
@@ -3310,7 +3360,7 @@ def build_region(lang):
     title=f'Dolomites Elopement {SEO_YEAR} — How to Elope in the Dolomites'
     desc=f'Planning a Dolomites elopement for {SEO_YEAR}? Permits, access rules, the best light, and how to make it legal &mdash; from photographers who elope couples here year-round.'
     body=(nav(lang,rel,'')+
-      f'<section class="page-hero" style="padding:0"><div class="bg" style="background-image:url(\'{P}img/hero/hero2.webp\')"></div>'
+      f'<section class="page-hero" style="padding:0">{herobg(P,"img/hero/hero2.webp","Dolomites elopement region")}'
       f'<div class="content"><div class="wrap"><div class="kicker" data-n="The Region"><span class="line"></span></div><h1>Dolomites Elopement</h1></div></div></section>'
       '<section><div class="wrap" style="max-width:820px">'
       '<p class="lead">The Dolomites are not one landscape but a hundred. Pale limestone towers that turn rose at first light, turquoise lakes held in bowls of pine, meadows that smell of hay and altitude. It is the most photographed mountain range in Europe &mdash; and still, at half past five in the morning, you can stand at the edge of a lake and hear nothing but water.</p>'
@@ -3363,7 +3413,7 @@ def build_region(lang):
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">Start planning</a></div></section>'
       f'<section style="padding:clamp(28px,4vw,48px) 0"><div class="wrap"><a href="{u(P,lang,"how-to-elope-in-the-europe-mountains/")}" class="arrow-link">&larr; All planning guides</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,title,desc,ld_extra=faq_ld)+body+scripts(P))
+    write(lang,rel,head(lang,rel,title,desc,ld_extra=faq_ld,pre=herolink(P,'img/hero/hero2.webp'))+body+scripts(P))
 
 def all_rels():
     rels=['','how-to-elope-in-the-europe-mountains/','stories-elopement-mountain/','our-packages/','our-team/','get-in-touch/','imprint/','privacy-policy/','elopement-dolomites/']
@@ -3398,7 +3448,7 @@ def build_404():
         '<title>Page not found &mdash; Mountain Elopement</title>'
         '<meta name="robots" content="noindex">'
         '<link rel="icon" type="image/png" href="favicon.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">'
-        f'{GTM_HEAD}{FONTS}<link rel="stylesheet" href="css/style.css"></head><body>{GTM_BODY}')
+        f'{GTM_HEAD}{_fontpre("")}<link rel="stylesheet" href="css/style.css?v={CSS_V}"></head><body>{GTM_BODY}')
     body=(nav('en','','')+
         '<div class="page-plain"><div class="wrap">'
         '<div class="kicker" data-n="404"><span class="line"></span></div>'
