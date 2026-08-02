@@ -44,8 +44,8 @@ def herolink(P, pfad):
     ss = ', '.join(f'{P}{stem}-{x}.webp {x}w' for x in meta['v'])
     return f'<link rel="preload" as="image" imagesrcset="{ss}" imagesizes="100vw" fetchpriority="high">'
 def _fontpre(P):
-    return (f'<link rel="preload" as="font" type="font/woff2" crossorigin href="{P}fonts/archivo-600-normal-latin.woff2">'
-            f'<link rel="preload" as="font" type="font/woff2" crossorigin href="{P}fonts/newsreader-400-normal-latin.woff2">')
+    return (f'<link rel="preload" as="font" type="font/woff2" crossorigin href="{P}fonts/archivo-latin.woff2">'
+            f'<link rel="preload" as="font" type="font/woff2" crossorigin href="{P}fonts/newsreader-roman-latin.woff2">')
 
 # Cloudflare Turnstile — öffentlicher Site-Key (darf im HTML stehen).
 # Default = Cloudflares ALWAYS-PASSES-Testkey. Vor dem echten Livegang gegen den
@@ -1061,7 +1061,10 @@ MAX_GALLERY=40   # never show more than this many photos per story
 
 def _gallery_files(slug):
     d=os.path.join(ROOT,'img','gallery',slug)
-    return [f for f in sorted(os.listdir(d)) if f.lower().endswith('.webp')] if os.path.isdir(d) else []
+    if not os.path.isdir(d): return []
+    # nur Basisbilder (die -480/-960/-1600-Varianten aus tools/resize.py ausschliessen)
+    return [f for f in sorted(os.listdir(d))
+            if f.lower().endswith('.webp') and not re.search(r'-(480|960|1600)\.webp$', f)]
 
 def _render_gallery(srcs,alt,quote='',full=False,P=''):
     n=len(srcs)
