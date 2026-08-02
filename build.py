@@ -336,7 +336,7 @@ T = {
  'ad_heli':{'en':'Helicopter','de':'Hubschrauber','es':'Helicóptero'},
  'ad_film':{'en':'Film &middot; 1&ndash;2 min','de':'Film &middot; 1&ndash;2 Min','es':'Film &middot; 1&ndash;2 min'},
  'ad_civil':{'en':'Civil ceremony','de':'Standesamt','es':'Ceremonia civil'},
- 'ad_celeb':{'en':'Celebrant','de':'Freie Trauung','es':'Oficiante'},
+ 'ad_celeb':{'en':'Celebrant','de':'Trauredner','es':'Oficiante'},
  'ad_cake':{'en':'Cake','de':'Torte','es':'Tarta'},
  'ad_music':{'en':'Musicians','de':'Musiker','es':'Músicos'},
  'ad_mua':{'en':'Hair &amp; Make-up','de':'Hair &amp; Make-up','es':'Peluquería y maquillaje'},
