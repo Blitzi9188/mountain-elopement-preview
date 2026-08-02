@@ -899,6 +899,36 @@ def org_ld():
             "addressLocality":"Birgitz","addressCountry":"AT"},
         "sameAs":["https://www.instagram.com/mountainelopement/"]}
 
+# --- structured data (Aufgabe 4) ---
+BUSINESS_ID = DOMAIN + '/#business'
+ANDREAS_ID  = DOMAIN + '/#andreas'
+JLENIA_ID   = DOMAIN + '/#jlenia'
+WEBSITE_ID  = DOMAIN + '/#website'
+AREA_SERVED = ["Dolomites", "South Tyrol", "Tyrol", "Austrian Alps", "Alps"]
+SAMEAS_BRAND = ["https://www.instagram.com/mountainelopement/", "https://blitzkneisser.com"]
+def prof_service_ld():
+    return {"@context":"https://schema.org","@type":"ProfessionalService","@id":BUSINESS_ID,
+        "name":"Mountain Elopement","url":DOMAIN+'/',"image":DOMAIN+'/img/hero/hero1.webp',
+        "email":"info@mountain-elopement.com","telephone":"+43 664 39 18 228","priceRange":"\u20ac\u20ac\u20ac",
+        "address":{"@type":"PostalAddress","streetAddress":"Rohracker 6","postalCode":"6092",
+            "addressLocality":"Birgitz","addressRegion":"Tyrol","addressCountry":"AT"},
+        "geo":{"@type":"GeoCoordinates","latitude":47.2439,"longitude":11.3253},
+        "areaServed":[{"@type":"Place","name":n} for n in AREA_SERVED],
+        "openingHoursSpecification":[{"@type":"OpeningHoursSpecification",
+            "dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+            "opens":"09:00","closes":"18:00"}],
+        "parentOrganization":{"@id":ORG_ID},"sameAs":SAMEAS_BRAND}
+def website_ld():
+    return {"@context":"https://schema.org","@type":"WebSite","@id":WEBSITE_ID,
+        "url":DOMAIN+'/',"name":"Mountain Elopement","inLanguage":"en","publisher":{"@id":ORG_ID}}
+def team_persons_ld():
+    andreas={"@context":"https://schema.org","@type":"Person","@id":ANDREAS_ID,
+        "name":"Andreas Kiss","jobTitle":"Elopement Photographer","worksFor":{"@id":ORG_ID},
+        "award":"Way Up North Awards 2024 \u2014 Best Epic Portrait","sameAs":SAMEAS_BRAND}
+    jlenia={"@context":"https://schema.org","@type":"Person","@id":JLENIA_ID,
+        "name":"Jlenia Costner","jobTitle":"Wedding Planner","worksFor":{"@id":ORG_ID}}
+    return [andreas, jlenia]
+
 def _seg_name(seg,lang):
     if seg in BREADCRUMB_SEG: return _plain(T['nav'][BREADCRUMB_SEG[seg]][lang])
     return seg.replace('-',' ').title()
@@ -931,7 +961,7 @@ def head(lang, rel, title, desc, ld_extra=None, noindex=False, pre=''):
         can=f'<link rel="canonical" href="{canonical}">'
         blocks=[org_ld()]
         if [s for s in rel.split('/') if s]: blocks.append(breadcrumb_ld(lang,rel,title))
-        if ld_extra: blocks.append(ld_extra)
+        if ld_extra: blocks += (ld_extra if isinstance(ld_extra,list) else [ld_extra])
         ld=''.join(_ld_script(b) for b in blocks)
     return ('<!DOCTYPE html><html lang="'+lang+'"><head><meta charset="UTF-8">'
         '<meta name="viewport" content="width=device-width, initial-scale=1">'
@@ -1149,7 +1179,7 @@ def build_home(lang):
       f'<div class="kicker" data-n="05">{t(lang,"cta_k")}<span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,TITLES['home'][lang],DESC['home'][lang],pre=herolink(P,'img/hero/hero1.webp'))+body+scripts(P))
+    write(lang,rel,head(lang,rel,TITLES['home'][lang],DESC['home'][lang],ld_extra=[prof_service_ld(),website_ld()],pre=herolink(P,'img/hero/hero1.webp'))+body+scripts(P))
 
 def build_howto(lang):
     rel='how-to-elope-in-the-europe-mountains/'; P=prefix(lang,rel)
@@ -1392,7 +1422,9 @@ def build_portfolio(lang):
           '<div class="lb" id="lb"><span class="x" id="lbx">&times;</span><span class="arw prev" id="lbp">&lsaquo;</span><img id="lbimg" src="" alt=""><span class="arw next" id="lbn">&rsaquo;</span></div>')
         img_ld={"@context":"https://schema.org","@type":"ImageObject",
             "contentUrl":f'{DOMAIN}/img/stories/{img}.webp',"name":_plain(titles[lang]),
-            "representativeOfPage":True,"creator":{"@id":ORG_ID}}
+            "caption":_plain(titles[lang]),"representativeOfPage":True,
+            "creator":{"@id":ANDREAS_ID,"@type":"Person","name":"Andreas Kiss"},
+            "contentLocation":{"@type":"Place","name":"Dolomites"}}
         write(lang,rel,head(lang,rel,f'{titles[lang]} — Mountain Elopement',DESC['stories'][lang],img_ld)+body+scripts(P,LB_JS))
 
 # Single source of truth for prices — used by the tier cards AND the calculator.
@@ -1557,7 +1589,7 @@ def build_team(lang):
       f'<div class="kicker" data-n="{t(lang,"tp_cta_k")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"tp_cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"tp_plan")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,TITLES['team'][lang],DESC['team'][lang])+body+scripts(P,team_js))
+    write(lang,rel,head(lang,rel,TITLES['team'][lang],DESC['team'][lang],ld_extra=team_persons_ld())+body+scripts(P,team_js))
 
 def build_contact(lang):
     rel='get-in-touch/'; P=prefix(lang,rel)
@@ -1623,7 +1655,7 @@ def build_contact(lang):
       '<div><strong>Instagram</strong> &mdash; @mountainelopement</div></div></aside></div></section>'
       +reviews_block(lang,P,3,compact=True)
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,TITLES['contact'][lang],DESC['contact'][lang])+body+scripts(P,extra))
+    write(lang,rel,head(lang,rel,TITLES['contact'][lang],DESC['contact'][lang],ld_extra=prof_service_ld())+body+scripts(P,extra))
 
 def build_thankyou(lang):
     # noindex confirmation page — kept out of sitemap; likely carries GTM conversion tracking.
@@ -1806,7 +1838,7 @@ def guide_hub(lang,P):
                 f'<div class="gcard-x">{g["excerpt"][lang]}</div></a>')
     return ('<div class="page-plain" style="border-bottom:0"><div class="wrap">'
             f'<div class="kicker" data-n="{t(lang,"gd_k")}"><span class="line"></span></div>'
-            f'<h1>{t(lang,"gd_h")}</h1><p class="lead">{t(lang,"ht_start_copy")}</p>'
+            f'<h2 class="gd-h2" style="font-size:clamp(30px,4.4vw,52px)">{t(lang,"gd_h")}</h2><p class="lead">{t(lang,"ht_start_copy")}</p>'
             f'<div class="guide-filters" id="guideFilters" aria-label="Guide filters">{chips}</div></div></div>'
             f'<section style="padding-top:clamp(24px,3vw,40px)"><div class="wrap"><div class="guide-grid" id="guideGrid">{cards}</div></div></section>')
 
@@ -3413,7 +3445,7 @@ def build_region(lang):
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">Start planning</a></div></section>'
       f'<section style="padding:clamp(28px,4vw,48px) 0"><div class="wrap"><a href="{u(P,lang,"how-to-elope-in-the-europe-mountains/")}" class="arrow-link">&larr; All planning guides</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,title,desc,ld_extra=faq_ld,pre=herolink(P,'img/hero/hero2.webp'))+body+scripts(P))
+    write(lang,rel,head(lang,rel,title,desc,ld_extra=[faq_ld,prof_service_ld()],pre=herolink(P,'img/hero/hero2.webp'))+body+scripts(P))
 
 def all_rels():
     rels=['','how-to-elope-in-the-europe-mountains/','stories-elopement-mountain/','our-packages/','our-team/','get-in-touch/','imprint/','privacy-policy/','elopement-dolomites/']
@@ -3483,5 +3515,27 @@ for lang in LANGS:
     build_home(lang); build_howto(lang); build_stories(lang); build_categories(lang)
     build_portfolio(lang); build_packages(lang); build_team(lang); build_contact(lang); build_legal(lang)
     build_thankyou(lang); build_guides(lang); build_helicopter_guide(lang); build_proposal_guide(lang); build_sunset_guide(lang); build_spots_guide(lang); build_plan_guide(lang); build_region(lang)
-build_sitemap(); build_robots(); build_404()
+def build_llms():
+    D=DOMAIN
+    guides=''.join(
+        f'- [{_plain(g["title"]["en"])}]({D}/how-to-elope-in-the-europe-mountains/{g["slug"]}/): {_plain(g["excerpt"]["en"])}\n'
+        for g in GUIDES)
+    txt=(
+"# Mountain Elopement\n\n"
+"> Elopement-Fotografie und -Planung in den Dolomiten und den Alpen.\n"
+"> Ein Team aus Fotograf (Andreas Kiss, Tirol) und Hochzeitsplanerin\n"
+"> (Jlenia Costner, Dolomiten).\n\n"
+"## Kernseiten\n"
+f"- [Dolomiten-Elopement]({D}/elopement-dolomites/): Genehmigungen, Zufahrtsregeln, Licht, rechtliche Trauung\n"
+f"- [Preise]({D}/our-packages/): drei Pakete ab 6.000 EUR, Rechner fuer Zusatzoptionen\n"
+f"- [Guides]({D}/how-to-elope-in-the-europe-mountains/): Planung, Orte, Helikopter, Sonnenauf- und -untergang\n"
+f"- [Team]({D}/our-team/)\n"
+f"- [Kontakt]({D}/get-in-touch/)\n\n"
+"## Guides\n"
++guides+"\n"
+"## Sprachen\n"
+"Englisch (Standard), Deutsch /de/, Spanisch /es/, Italienisch /it/\n")
+    open(os.path.join(ROOT,'llms.txt'),'w').write(txt)
+
+build_sitemap(); build_robots(); build_404(); build_llms()
 print('ALL DONE', LANGS)
