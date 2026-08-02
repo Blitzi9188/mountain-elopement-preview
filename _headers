@@ -1,5 +1,8 @@
-# Cache-Control — versionierte Assets (Cache-Buster ?v=<hash> bei CSS/JS,
-# eindeutige Dateinamen bei Bildern/Fonts) duerfen unveraenderlich lange cachen.
+# Cache-Control fuer versionierte Assets (Cache-Buster ?v=<hash> bei CSS/JS,
+# eindeutige Dateinamen bei Bildern/Fonts) -> unveraenderlich, 1 Jahr.
+# HTML bekommt KEINE Regel: Cloudflare Pages liefert HTML standardmaessig als
+# "public, max-age=0, must-revalidate". Ein /*-Katchall wuerde von Cloudflare
+# kumulativ auf die Asset-Pfade angewandt und den Cache-Control-Header verketten.
 /img/*
   Cache-Control: public, max-age=31536000, immutable
 
@@ -11,6 +14,3 @@
 
 /js/*
   Cache-Control: public, max-age=31536000, immutable
-
-/*
-  Cache-Control: public, max-age=0, must-revalidate
