@@ -1806,7 +1806,7 @@ def guide_card(lang,P,g):
         f'<div class="tags" style="text-transform:none;letter-spacing:0;font-family:var(--serif);font-style:italic;font-size:15px">{g["excerpt"][lang]}</div></a>')
 
 def guide_map(lang,P):
-    pins=[('map_tyrol','how-to-elope-in-the-europe-mountains/elope-in-austria/',300,300),('map_lakes','how-to-elope-in-the-europe-mountains/best-alps-elopement-locations/',540,225),('map_dol','elopement-dolomites/',760,345)]
+    pins=[('map_tyrol','elopement-tyrol/',300,300),('map_lakes','how-to-elope-in-the-europe-mountains/best-alps-elopement-locations/',540,225),('map_dol','elopement-dolomites/',760,345)]
     svg='<div class="guide-map reveal"><svg viewBox="0 0 1000 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Region map">'
     svg+='<g fill="none" stroke="var(--line-2)" stroke-width="1" opacity=".5"><path d="M70,150 C260,90 420,180 560,140 S860,120 970,196"/><path d="M55,214 C245,150 430,244 600,202 S890,182 985,258"/></g>'
     svg+='<path d="M0,520 L0,470 L160,438 L300,486 L460,432 L620,482 L780,430 L920,472 L1000,452 L1000,520 Z" fill="var(--line-2)" opacity=".3"/>'
@@ -4316,6 +4316,109 @@ def build_things_guide(lang):
       +footer(lang,rel))
     write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang],ld_extra=faq_ld,pre=herolink(P,HERO_IMG))+body+scripts(P))
 
+TYROL_REGION_FAQ=[
+ ("Can we legally get married in Tyrol?",
+  "Yes &mdash; and it is the single best reason to choose Tyrol. Austria allows a legally binding civil ceremony, and several Tyrolean registry offices will marry you at an approved outdoor location, not just inside the office &mdash; a lakeshore, a viewpoint, a mountain terrace. That means the ceremony that counts on paper can happen with the peaks right behind you. In Italy, by contrast, a binding wedding can only take place inside a town hall. We coordinate the office, the date and the paperwork for you.",
+  "Können wir in Tirol rechtsgültig heiraten?",
+  "Ja &mdash; und es ist der beste einzelne Grund, Tirol zu wählen. Österreich erlaubt eine rechtsgültige standesamtliche Trauung, und mehrere Tiroler Standesämter trauen euch an einem genehmigten Ort im Freien, nicht nur im Amt &mdash; einem Seeufer, einem Aussichtspunkt, einer Bergterrasse. Die Zeremonie, die auf dem Papier zählt, kann also mit den Gipfeln direkt im Rücken stattfinden. In Italien dagegen kann eine bindende Hochzeit nur im Rathaus stattfinden. Wir koordinieren Amt, Termin und Papiere für euch."),
+ ("Where can we elope in Tyrol?",
+  "From the Nordkette ridges right above Innsbruck to hidden turquoise lakes and high toll roads that open bare-rock views without a hike. Our shortlist: the Hafelekar and the ridges over Innsbruck, the protected Obernberger See near the Brenner, the emerald Schlegeisspeicher in the Zillertal, and the quiet high tarns above K&uuml;htai. All sit close to Innsbruck yet feel a world away, and each is calmest at first light.",
+  "Wo können wir in Tirol heiraten?",
+  "Von den Nordketten-Graten direkt über Innsbruck bis zu versteckten türkisen Seen und Höhen-Mautstraßen, die Felsblicke ohne Wanderung öffnen. Unsere Auswahl: das Hafelekar und die Grate über Innsbruck, der geschützte Obernberger See nahe dem Brenner, der smaragdgrüne Schlegeisspeicher im Zillertal und die stillen Hochseen über K&uuml;htai. Alle liegen nah an Innsbruck und fühlen sich doch wie eine andere Welt an, und jeder ist im ersten Licht am ruhigsten."),
+ ("Do we have to hike?",
+  "Only as far as you want to. Innsbruck is the only city in the Alps with a high mountain on its doorstep &mdash; the Nordkette lifts carry you from the old town to 2,256&thinsp;m in about twenty minutes, no walking required. Several of our favourite Tyrolean lakes sit right at the end of a road. And if you want the day to feel earned, a short ridge walk puts you somewhere that looks impossible. We match the effort to you and never oversell what a spot costs to reach.",
+  "Müssen wir wandern?",
+  "Nur so weit ihr wollt. Innsbruck ist die einzige Stadt der Alpen mit einem Hochgebirge direkt vor der Tür &mdash; die Nordkettenbahnen bringen euch in rund zwanzig Minuten von der Altstadt auf 2.256&thinsp;m, ganz ohne Fußweg. Mehrere unserer liebsten Tiroler Seen liegen direkt am Ende einer Straße. Und wenn sich der Tag verdient anfühlen soll, bringt euch ein kurzer Gratweg irgendwohin, das unmöglich aussieht. Wir passen die Anstrengung an euch an und beschönigen nie, was ein Ort an Aufstieg kostet."),
+ ("When is the best time to elope in Tyrol?",
+  "May to October is the reliable window: the lifts run, the high roads are open and the meadows are green. July and August give the warmest, most settled weather; late September brings golden larches and thinner crowds and is our quiet favourite. The shoulder weeks can hand you fresh snow on the peaks and empty trails in the same morning. Winter is spectacular and silent but needs a close eye on which roads and lifts are open.",
+  "Wann ist die beste Zeit für ein Elopement in Tirol?",
+  "Mai bis Oktober ist das verlässliche Fenster: Die Bahnen fahren, die Höhenstraßen sind offen und die Wiesen grün. Juli und August bringen das wärmste, beständigste Wetter; der späte September schenkt goldene Lärchen und weniger Andrang und ist unser stiller Favorit. Die Randwochen können euch frischen Schnee auf den Gipfeln und leere Wege am selben Morgen bescheren. Der Winter ist spektakulär und still, verlangt aber einen wachen Blick darauf, welche Straßen und Bahnen offen sind."),
+ ("How do we get to Tyrol?",
+  "Easily &mdash; it is one of the most accessible Alpine regions. Innsbruck has its own airport minutes from the old town, and Munich and Venice are each a straightforward drive or train away, so most couples are under a mountain within an hour or two of landing. From an Innsbruck base you can reach the Nordkette, the Zillertal lakes and the high roads without a long transfer, and the crossing south into the Dolomites is a simple, scenic drive.",
+  "Wie kommen wir nach Tirol?",
+  "Leicht &mdash; es ist eine der am besten erreichbaren Alpenregionen. Innsbruck hat einen eigenen Flughafen wenige Minuten von der Altstadt, und München und Venedig sind jeweils eine unkomplizierte Fahrt oder Zugverbindung entfernt, die meisten Paare stehen also ein bis zwei Stunden nach der Landung unter einem Berg. Von einer Basis in Innsbruck erreicht ihr die Nordkette, die Zillertaler Seen und die Höhenstraßen ohne langen Transfer, und der Übertritt nach Süden in die Dolomiten ist eine einfache, landschaftlich schöne Fahrt."),
+ ("What does an elopement in Tyrol cost?",
+  "Our elopement packages start at &euro;6,000 and cover photography, location scouting, a planning call and your private online gallery. The middle package adds hair and make-up, flowers and full coordination; the largest covers the whole day including accommodation, reception and transfers. We handle the registry appointment, the timings, the huts and the backup plan, so the only thing you think about on the day is each other.",
+  "Was kostet ein Elopement in Tirol?",
+  "Unsere Elopement-Pakete beginnen bei 6.000&nbsp;&euro; und umfassen Fotografie, Location-Scouting, ein Planungsgespräch und eure private Online-Galerie. Das mittlere Paket ergänzt Hair &amp; Make-up, Blumen und volle Koordination; das größte deckt den ganzen Tag inklusive Unterkunft, Feier und Transfers. Wir übernehmen den Standesamt-Termin, das Timing, die Hütten und den Plan B, damit ihr am Tag nur an eines denkt: aneinander."),
+ ("How far in advance should we book?",
+  "For a summer date, six to twelve months is comfortable. If you want the legal ceremony in Austria, book the registrar and the mountain hut months ahead &mdash; both are limited in summer and both fill early. Off-season we have occasionally made something beautiful happen in a few weeks. Tell us your dates and we will tell you honestly what is still possible.",
+  "Wie früh sollten wir buchen?",
+  "Für einen Sommertermin sind sechs bis zwölf Monate komfortabel. Wollt ihr die rechtsgültige Zeremonie in Österreich, bucht Standesbeamtin und Berghütte Monate im Voraus &mdash; beides ist im Sommer begrenzt und beides ist früh vergeben. In der Nebensaison haben wir gelegentlich in wenigen Wochen etwas Schönes möglich gemacht. Sagt uns eure Daten, und wir sagen euch ehrlich, was noch geht."),
+]
+
+# ES/IT-Uebersetzungen folgen (Platzhalter -> EN-Fallback bis befuellt)
+TYROL_ES={}; TYROL_IT={}; TYROL_FAQ_ES={}; TYROL_FAQ_IT={}
+
+def build_tyrol_region(lang):
+    # Commercial region landing page for Tyrol / the Austrian Alps.
+    # EN+DE fully translated; ES/IT fall back to EN until TYROL_ES/TYROL_IT land (mirrors build_region behaviour).
+    rel='elopement-tyrol/'; P=prefix(lang,rel)
+    DE=(lang=='de')
+    def L(en,de):
+        if lang=='de': return de
+        if lang=='es': return TYROL_ES.get(en,en)
+        if lang=='it': return TYROL_IT.get(en,en)
+        return en
+    def FQ(qen,aen,qde,ade):
+        if lang=='de': return (qde,ade)
+        if lang=='es': return TYROL_FAQ_ES.get(qen,(qen,aen))
+        if lang=='it': return TYROL_FAQ_IT.get(qen,(qen,aen))
+        return (qen,aen)
+    H2S='font-family:var(--serif);font-weight:400;font-size:clamp(25px,3vw,36px);letter-spacing:-.01em;margin:1.6em 0 .4em'
+    def h2(en,de): return f'<h2 style="{H2S}">{L(en,de)}</h2>'
+    def p(en,de): return f'<p style="color:var(--ink-2)">{L(en,de)}</p>'
+    HERO_IMG='img/guide-elope-in-austria/11-oesterreich-sonnenuntergang-tirol.webp'
+    faqs=[FQ(*x) for x in TYROL_REGION_FAQ]
+    faq_html=''.join(
+      f'<div style="margin:1.3em 0 0;border-top:1px solid var(--line);padding-top:1.1em">'
+      f'<h3 style="font-family:var(--serif);font-weight:400;font-size:20px;margin:0 0 .3em">{q}</h3>'
+      f'<p style="color:var(--ink-2);margin:0">{a}</p></div>' for q,a in faqs)
+    faq_ld={"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+        {"@type":"Question","name":_plain(q),"acceptedAnswer":{"@type":"Answer","text":_plain(a)}} for q,a in faqs]}
+    stories=['official-married-in-the-alps','lake-elopement-tyrol-mountains','sunset-elopement-tyrol']
+    cards=''.join(story_card(lang,P,STORYBY[s]) for s in stories)
+    guidelink=u(P,lang,'how-to-elope-in-the-europe-mountains/elope-in-austria/')
+    title=L(f'Tyrol Elopement {SEO_YEAR} — Elope in the Austrian Alps',f'Elopement in Tirol {SEO_YEAR} — in den österreichischen Alpen heiraten')
+    desc=L(f'Planning a Tyrol elopement for {SEO_YEAR}? Get legally married on an Austrian mountain, near Innsbruck &mdash; locations, the legal route, costs and the best light, from Tyrolean photographers.',f'Elopement in Tirol {SEO_YEAR}? Heiratet rechtsgültig auf einem österreichischen Berg, nahe Innsbruck &mdash; Orte, der Rechtsweg, Kosten und das beste Licht, von Tiroler Fotografen.')
+    body=(nav(lang,rel,'')+
+      f'<section class="page-hero" style="padding:0">{herobg(P,HERO_IMG,L("Tyrol elopement region","Elopement-Region Tirol"))}'
+      f'<div class="content"><div class="wrap"><div class="kicker" data-n="{L("The Region","Die Region")}"><span class="line"></span></div><h1>{L("Tyrol Elopement","Elopement in Tirol")}</h1></div></div></section>'
+      '<section><div class="wrap" style="max-width:820px">'
+      f'<p class="lead">{L("Tyrol is our home &mdash; and one of the few places in the Alps where your wedding can be both breathtaking and legally binding on the same mountain. From the ridges above Innsbruck to hidden turquoise lakes, the Austrian Alps make eloping simple: real peaks, a real certificate, and a photographer who grew up under these mountains.","Tirol ist unsere Heimat &mdash; und einer der wenigen Orte der Alpen, an dem eure Hochzeit am selben Berg zugleich atemberaubend und rechtsgültig sein kann. Von den Graten über Innsbruck bis zu versteckten türkisen Seen macht Österreich ein Elopement einfach: echte Gipfel, ein echtes Zertifikat und ein Fotograf, der unter diesen Bergen aufgewachsen ist.")}</p>'
+      +h2('Why marry in Tyrol','Warum in Tirol heiraten')
+      +p("Most couples dreaming of an Alpine elopement look first at the Italian Dolomites &mdash; and they are extraordinary. But there is one thing Tyrol does that Italy cannot: it lets you be legally married on the mountain. In Italy a binding wedding happens only inside a town hall, so a Dolomite ceremony is always symbolic. In Austria the legal act itself can move to a lakeshore or a summit terrace. If you want the day that counts to be the day on the mountain, Tyrol is the answer &mdash; and it is every bit as beautiful, with a fraction of the crowds.","Die meisten Paare, die von einem alpinen Elopement träumen, schauen zuerst auf die italienischen Dolomiten &mdash; und die sind außergewöhnlich. Doch eines kann Tirol, was Italien nicht kann: euch rechtsgültig am Berg trauen lassen. In Italien findet eine bindende Hochzeit nur im Rathaus statt, eine Dolomiten-Zeremonie ist also immer symbolisch. In Österreich kann der Rechtsakt selbst an ein Seeufer oder eine Gipfelterrasse wandern. Wollt ihr, dass der Tag, der zählt, der Tag am Berg ist, ist Tirol die Antwort &mdash; und mindestens ebenso schön, mit einem Bruchteil des Andrangs.")
+      +p("It is also home ground for us. We grew up under these ridges; we know which lake is still glass at six in the morning and which registry office will marry you outdoors. That local knowledge is the difference between a good day and a flawless one &mdash; the sheltered alternative when the weather turns, the quiet twin when a lake is mobbed, the exact minute a viewpoint empties out.","Es ist für uns auch Heimspiel. Wir sind unter diesen Graten aufgewachsen; wir wissen, welcher See um sechs Uhr früh noch spiegelglatt ist und welches Standesamt euch im Freien traut. Dieses lokale Wissen ist der Unterschied zwischen einem guten und einem makellosen Tag &mdash; die geschützte Alternative, wenn das Wetter kippt, der stille Zwilling, wenn ein See überlaufen ist, die genaue Minute, in der sich ein Aussichtspunkt leert.")
+      +'<div class="facts" style="margin:2.2em 0 0"><div class="fct"><div class="fl">'+L('Season','Beste Zeit')+'</div><div class="fv">'+L('May&ndash;Oct','Mai&ndash;Okt')+'</div></div>'
+      +'<div class="fct"><div class="fl">'+L('Legal wedding','Trauung')+'</div><div class="fv">'+L('Yes &middot; on the mountain','Ja &middot; am Berg')+'</div></div>'
+      +'<div class="fct"><div class="fl">'+L('Getting here','Anreise')+'</div><div class="fv">'+L('Innsbruck airport','Flughafen Innsbruck')+'</div></div></div>'
+      +h2('Where to say your vows in Tyrol','Wo ihr in Tirol das Ja sagt')
+      +p("<strong>Innsbruck &amp; the Nordkette.</strong> The only city in the Alps with a high mountain on its doorstep. The Hungerburg funicular and Nordkette cable cars lift you from the old town to Hafelekar at 2,256&thinsp;m in about twenty minutes &mdash; genuine high-alpine exposure with no climb, and a dramatic finish to a day that started at a lake.","<strong>Innsbruck &amp; die Nordkette.</strong> Die einzige Stadt der Alpen mit einem Hochgebirge direkt vor der Tür. Die Hungerburgbahn und die Nordkettenbahnen bringen euch in rund zwanzig Minuten von der Altstadt aufs Hafelekar auf 2.256&thinsp;m &mdash; echte hochalpine Ausgesetztheit ohne Aufstieg und ein dramatischer Abschluss für einen Tag, der am See begann.")
+      +p("<strong>The Tyrolean lakes.</strong> Quieter than the famous Dolomite icons: the protected Obernberger See near the Brenner, the emerald Schlegeisspeicher deep in the Zillertal, and the small high tarns above K&uuml;htai. Mirror-still water, larch and grey rock, and almost nobody around at first light.","<strong>Die Tiroler Seen.</strong> Stiller als die berühmten Dolomiten-Ikonen: der geschützte Obernberger See nahe dem Brenner, der smaragdgrüne Schlegeisspeicher tief im Zillertal und die kleinen Hochseen über K&uuml;htai. Spiegelglattes Wasser, Lärchen und grauer Fels &mdash; und im ersten Licht fast niemand.")
+      +p("<strong>The high roads.</strong> Two alpine toll roads open big scenery with almost no walking: the Schlegeis Alpine Road in the Zillertal (roughly &euro;13 per car) climbs to a milk-blue reservoir, and the K&uuml;htai and Timmelsjoch high roads lift you well past the treeline. You step out of the car already at altitude, in a dress or a suit, with the peaks right there.","<strong>Die Höhenstraßen.</strong> Zwei alpine Mautstraßen öffnen große Kulisse mit fast keinem Fußweg: Die Schlegeis Alpenstraße im Zillertal (rund 13&nbsp;&euro; pro Auto) steigt zu einem milchblauen Stausee, und die Höhenstraßen von K&uuml;htai und Timmelsjoch heben euch weit über die Baumgrenze. Ihr steigt bereits in der Höhe aus dem Auto, in Kleid oder Anzug, die Gipfel direkt daneben.")
+      +f'<p style="margin:.2em 0 0"><a href="{guidelink}" class="arrow-link">{L("Read the full Tyrol &amp; Austria location guide","Zum ausführlichen Tirol- &amp; Österreich-Ortsguide")} &rarr;</a></p>'
+      +h2('Making it legal in Austria','Rechtsgültig heiraten in Österreich')
+      +p("This is the heart of why couples choose Tyrol. A civil marriage in Austria is straightforward for foreign couples, and several Tyrolean registry offices conduct the legal ceremony at an approved outdoor location &mdash; not only inside the office. The act that actually changes your legal status can happen with a lake or a summit right there.","Das ist der Kern, warum Paare Tirol wählen. Eine standesamtliche Trauung in Österreich ist für ausländische Paare unkompliziert, und mehrere Tiroler Standesämter vollziehen den Rechtsakt an einem genehmigten Ort im Freien &mdash; nicht nur im Amt. Der Akt, der euren rechtlichen Status wirklich ändert, kann mit einem See oder einem Gipfel direkt daneben geschehen.")
+      +p("For a civil marriage you will generally need valid passports, birth certificates and a certificate of no impediment, usually with certified translations and, depending on your home country, an apostille. Each office sets its own lead times and the summer slots fill early, so start a few months ahead. Prefer to keep it simple? Sign the short legal act at home and hold a symbolic ceremony on the mountain &mdash; both carry all of the feeling, and we will tell you honestly which fits your timeline.","Für eine standesamtliche Trauung braucht ihr in der Regel gültige Reisepässe, Geburtsurkunden und ein Ehefähigkeitszeugnis, meist mit beglaubigten Übersetzungen und &mdash; je nach Heimatland &mdash; einer Apostille. Jedes Amt setzt eigene Vorlaufzeiten, und die Sommertermine sind früh vergeben, beginnt also ein paar Monate vorher. Lieber einfach? Unterschreibt den kurzen Rechtsakt zu Hause und feiert eine symbolische Zeremonie am Berg &mdash; beide tragen das ganze Gefühl, und wir sagen euch ehrlich, welcher zu eurem Zeitplan passt.")
+      +h2('When to come','Die beste Zeit')
+      +p("May through October is the dependable season: the lifts run, the high roads are open and the meadows are green. July and August bring the warmest, most settled weather; late September brings golden larches and thinner crowds and is our quiet favourite. The shoulder weeks can hand you fresh snow on the peaks and empty trails in a single morning &mdash; often the best pictures of the year. Winter turns Tyrol spectacular and silent, with a close eye needed on which roads and lifts stay open.","Mai bis Oktober ist die verlässliche Saison: Die Bahnen fahren, die Höhenstraßen sind offen und die Wiesen grün. Juli und August bringen das wärmste, beständigste Wetter; der späte September schenkt goldene Lärchen und weniger Andrang und ist unser stiller Favorit. Die Randwochen können euch frischen Schnee auf den Gipfeln und leere Wege an einem Morgen bescheren &mdash; oft die besten Bilder des Jahres. Der Winter macht Tirol spektakulär und still, mit wachem Blick darauf, welche Straßen und Bahnen offen bleiben.")
+      +h2('Getting here &amp; where to stay','Anreise &amp; wo ihr wohnt')
+      +p("Innsbruck has its own airport minutes from the old town, and Munich and Venice are each a simple drive or train away, so most couples are under a mountain within an hour or two of landing. Innsbruck makes the ideal base &mdash; the Nordkette above you, the Zillertal and its lakes a short drive east, the high roads west, and the Dolomites two to three hours south for couples who want to fold both countries into one trip. For a dawn ceremony we often book a mountain hut, so you sleep up high and wake already there.","Innsbruck hat einen eigenen Flughafen wenige Minuten von der Altstadt, und München und Venedig sind jeweils eine einfache Fahrt oder Zugverbindung entfernt, die meisten Paare stehen also ein bis zwei Stunden nach der Landung unter einem Berg. Innsbruck ist die ideale Basis &mdash; die Nordkette über euch, das Zillertal und seine Seen eine kurze Fahrt östlich, die Höhenstraßen westlich, und die Dolomiten zwei bis drei Stunden südlich für Paare, die beide Länder in eine Reise fassen wollen. Für eine Zeremonie zur Morgendämmerung buchen wir oft eine Berghütte, damit ihr oben schlaft und schon dort aufwacht.")
+      +h2('What it costs, and what&rsquo;s included','Was es kostet und was dabei ist')
+      +p("Our elopement packages start at <strong>&euro;6,000</strong> and cover photography, location scouting, a planning call and your private online gallery. The middle package adds hair and make-up, flowers and full coordination; the largest covers the whole day including accommodation, reception and transfers. What we handle for you in Tyrol: the registry appointment and paperwork, the hut booking, the timing so your mornings stay calm, and a backup plan for the day the weather turns.","Unsere Elopement-Pakete beginnen bei <strong>6.000&nbsp;&euro;</strong> und umfassen Fotografie, Location-Scouting, ein Planungsgespräch und eure private Online-Galerie. Das mittlere Paket ergänzt Hair &amp; Make-up, Blumen und volle Koordination; das größte deckt den ganzen Tag inklusive Unterkunft, Feier und Transfers. Was wir in Tirol für euch übernehmen: den Standesamt-Termin und die Papiere, die Hüttenbuchung, das Timing, damit eure Morgen ruhig bleiben, und einen Plan B für den Tag, an dem das Wetter kippt.")
+      +f'<p style="margin-top:1.7em"><a href="{u(P,lang,"our-packages/")}" class="btn">{L("See the full price list","Zur vollständigen Preisliste")}</a></p>'
+      +h2('Questions couples ask us','Fragen, die Paare uns stellen')+faq_html+
+      '</div></section>'
+      '<section style="padding-top:clamp(30px,5vw,64px)"><div class="wrap"><div class="section-head reveal">'
+      f'<div class="kicker" data-n="{L("Real elopements","Echte Elopements")}"><span class="line"></span></div><h2>{L("Real Tyrol elopements","Echte Tiroler Elopements")}</h2></div>'
+      f'<div class="story-grid">{cards}</div></div></section>'
+      '<section class="cta"><div class="wrap row reveal"><div>'
+      f'<div class="kicker" data-n="{L("Your day","Euer Tag")}"><span class="line"></span></div><h2 style="margin-top:20px">{L("Tell us what you&rsquo;re imagining","Erzählt uns, was ihr euch vorstellt")}</h2></div>'
+      f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
+      f'<section style="padding:clamp(28px,4vw,48px) 0"><div class="wrap"><a href="{u(P,lang,"how-to-elope-in-the-europe-mountains/")}" class="arrow-link">&larr; {L("All planning guides","Alle Planungs-Guides")}</a></div></section>'
+      +footer(lang,rel))
+    write(lang,rel,head(lang,rel,title,desc,ld_extra=[faq_ld,prof_service_ld()],pre=herolink(P,HERO_IMG))+body+scripts(P))
+
 def build_region(lang):
     # Region page: guide + offer combined for one region (EN text for all langs for now).
     # HERO: reuses img/hero/hero2.webp (Seceda) — Andreas may swap for a preferred Dolomites frame.
@@ -4391,7 +4494,7 @@ def build_region(lang):
     write(lang,rel,head(lang,rel,title,desc,ld_extra=[faq_ld,prof_service_ld()],pre=herolink(P,'img/hero/hero2.webp'))+body+scripts(P))
 
 def all_rels():
-    rels=['','how-to-elope-in-the-europe-mountains/','stories-elopement-mountain/','our-packages/','our-team/','get-in-touch/','imprint/','privacy-policy/','elopement-dolomites/']
+    rels=['','how-to-elope-in-the-europe-mountains/','stories-elopement-mountain/','our-packages/','our-team/','get-in-touch/','imprint/','privacy-policy/','elopement-dolomites/','elopement-tyrol/']
     rels+=['portfolio-item/'+s[1]+'/' for s in STORIES]
     rels+=['portfolio-category/'+c+'/' for c in CATS]
     rels+=['how-to-elope-in-the-europe-mountains/'+g['slug']+'/' for g in GUIDES]
@@ -4457,7 +4560,7 @@ for slug,ex in GUIDE_EXTRA.items():
 for lang in LANGS:
     build_home(lang); build_howto(lang); build_stories(lang); build_categories(lang)
     build_portfolio(lang); build_packages(lang); build_team(lang); build_contact(lang); build_legal(lang)
-    build_thankyou(lang); build_guides(lang); build_helicopter_guide(lang); build_proposal_guide(lang); build_sunset_guide(lang); build_spots_guide(lang); build_plan_guide(lang); build_alps_guide(lang); build_austria_guide(lang); build_things_guide(lang); build_region(lang)
+    build_thankyou(lang); build_guides(lang); build_helicopter_guide(lang); build_proposal_guide(lang); build_sunset_guide(lang); build_spots_guide(lang); build_plan_guide(lang); build_alps_guide(lang); build_austria_guide(lang); build_things_guide(lang); build_region(lang); build_tyrol_region(lang)
 def build_llms():
     D=DOMAIN
     guides=''.join(
@@ -4470,6 +4573,7 @@ def build_llms():
 "> (Jlenia Costner, Dolomiten).\n\n"
 "## Kernseiten\n"
 f"- [Dolomiten-Elopement]({D}/elopement-dolomites/): Genehmigungen, Zufahrtsregeln, Licht, rechtliche Trauung\n"
+f"- [Tirol-Elopement]({D}/elopement-tyrol/): rechtsgueltig am Berg heiraten, Innsbruck & Nordkette, Kosten\n"
 f"- [Preise]({D}/our-packages/): drei Pakete ab 6.000 EUR, Rechner fuer Zusatzoptionen\n"
 f"- [Guides]({D}/how-to-elope-in-the-europe-mountains/): Planung, Orte, Helikopter, Sonnenauf- und -untergang\n"
 f"- [Team]({D}/our-team/)\n"
