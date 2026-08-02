@@ -906,8 +906,8 @@ JLENIA_ID   = DOMAIN + '/#jlenia'
 WEBSITE_ID  = DOMAIN + '/#website'
 AREA_SERVED = ["Dolomites", "South Tyrol", "Tyrol", "Austrian Alps", "Alps"]
 SAMEAS_BRAND = ["https://www.instagram.com/mountainelopement/", "https://blitzkneisser.com"]
-def prof_service_ld():
-    return {"@context":"https://schema.org","@type":"ProfessionalService","@id":BUSINESS_ID,
+def prof_service_ld(reviews=False):
+    d={"@context":"https://schema.org","@type":"ProfessionalService","@id":BUSINESS_ID,
         "name":"Mountain Elopement","url":DOMAIN+'/',"image":DOMAIN+'/img/hero/hero1.webp',
         "email":"info@mountain-elopement.com","telephone":"+43 664 39 18 228","priceRange":"\u20ac\u20ac\u20ac",
         "address":{"@type":"PostalAddress","streetAddress":"Rohracker 6","postalCode":"6092",
@@ -918,6 +918,13 @@ def prof_service_ld():
             "dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
             "opens":"09:00","closes":"18:00"}],
         "parentOrganization":{"@id":ORG_ID},"sameAs":SAMEAS_BRAND}
+    if reviews:
+        d["aggregateRating"]={"@type":"AggregateRating","ratingValue":REVIEW_AVG,
+            "reviewCount":REVIEW_COUNT,"bestRating":"5","worstRating":"1"}
+        d["review"]=[{"@type":"Review","author":{"@type":"Person","name":_plain(nm)},
+            "reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},
+            "reviewBody":_plain(tx)} for nm,tx in REVIEWS[:6]]
+    return d
 def website_ld():
     return {"@context":"https://schema.org","@type":"WebSite","@id":WEBSITE_ID,
         "url":DOMAIN+'/',"name":"Mountain Elopement","inLanguage":"en","publisher":{"@id":ORG_ID}}
@@ -1100,6 +1107,7 @@ DESC={
 # Google reviews link (Local reviews panel for the Mountain Elopement business profile).
 GOOGLE_REVIEWS_URL='https://www.google.com/search?sa=X&sca_esv=75d6586d45596069&sxsrf=APpeQnvBbKZ1rICeCxsByFQY7O_ztxCuFQ:1785504505793&q=Mountain+Elopement+Rezensionen&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDUzNjIxMzE2MTM2NzQ0sTAzNd3AyPiKUc43vzSvJDEzT8E1J78gNTc1r0QhKLUqNa84Mz8vNW8RKwEFAN4ArdpdAAAA&rldimm=15632464346371148655&tbm=lcl&hl=de-AT&ved=2ahUKEwjV3b_Ogv2VAxXyJxAIHXnGMsgQ9fQKegQIVBAG&biw=1496&bih=851&dpr=2#lkt=LocalPoiReviews'
 # Real 5-star Google reviews, shown in their original language (authentic), lightly excerpted.
+REVIEW_AVG='5.0'; REVIEW_COUNT='47'   # echte Google-Gesamtwertung (Andreas 2026-08)
 REVIEWS=[
  ('Frankie Temple-Brown','We cannot express how amazing the Mountain Elopement team were from start to finish &mdash; taking care of every little detail to make our day the most magical it could be. The day, location and photos all surpassed our expectations.'),
  ('Chrisma Wortley','Wow. I am speechless. We decided to elope on our vacation in Italy and the photos are AMAZING. Andy is such a charismatic and wonderful soul &mdash; we highly recommend the Blitzkneissers!'),
@@ -1118,6 +1126,7 @@ def reviews_block(lang,P,n=6,compact=False):
       for name,txt in REVIEWS[:n])
     return (f'<section class="{cls}"><div class="wrap"><div class="section-head reveal">'
       f'<div class="kicker" data-n="{t(lang,"rev_k")}"><span class="line"></span></div><h2>{t(lang,"rev_h")}</h2></div>'
+      f'<div class="rev-agg" style="text-align:center;margin:2px 0 clamp(18px,2.6vw,26px);font-family:var(--sans)"><span class="rev-stars" aria-label="5/5">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <strong>{ {"en":"5.0","de":"5,0","es":"5,0","it":"5,0"}[lang] }</strong> &middot; {REVIEW_COUNT} {t(lang,"rev_k")} &middot; Google</div>'
       f'<p class="lead reveal" style="text-align:center;max-width:620px;margin:0 auto clamp(26px,4vw,42px)">{t(lang,"rev_sub")}</p>'
       f'<div class="rev-grid reveal">{cards}</div>'
       f'<div class="reveal" style="text-align:center;margin-top:clamp(26px,4vw,42px)"><a class="rev-google" href="{GOOGLE_REVIEWS_URL.replace("&","&amp;")}" target="_blank" rel="noopener">{t(lang,"rev_all")} &rarr;</a></div>'
@@ -1179,7 +1188,7 @@ def build_home(lang):
       f'<div class="kicker" data-n="05">{t(lang,"cta_k")}<span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,TITLES['home'][lang],DESC['home'][lang],ld_extra=[prof_service_ld(),website_ld()],pre=herolink(P,'img/hero/hero1.webp'))+body+scripts(P))
+    write(lang,rel,head(lang,rel,TITLES['home'][lang],DESC['home'][lang],ld_extra=[prof_service_ld(reviews=True),website_ld()],pre=herolink(P,'img/hero/hero1.webp'))+body+scripts(P))
 
 def build_howto(lang):
     rel='how-to-elope-in-the-europe-mountains/'; P=prefix(lang,rel)
