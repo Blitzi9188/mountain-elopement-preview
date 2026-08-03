@@ -1573,6 +1573,7 @@ def build_packages(lang):
       '<section class="band"><div class="wrap quote reveal">'
       f'<div class="kicker" data-n="{t(lang,"pk_band_k")}"><span class="line"></span></div>'
       f'<p style="margin-top:26px">{t(lang,"pk_band_q")}</p><div class="who">Tanja &amp; Andreas &mdash; Mountain Elopement</div></div></section>'
+      +reviews_block(lang,P,6,compact=True)+
       '<section class="cta"><div class="wrap row reveal"><div>'
       f'<div class="kicker" data-n="{t(lang,"pk_next")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"pk_cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"pk_req_price")}</a></div></section>'
