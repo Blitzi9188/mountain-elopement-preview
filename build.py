@@ -2597,6 +2597,7 @@ def build_proposal_guide(lang):
     facts='<div class="facts">'+''.join(f'<div class="fct"><div class="fl">{LBL[k][lang]}</div><div class="fv">{val[lang]}</div></div>' for k,val in ex['facts'])+'</div>'
     C=[]
     C.append(f'<p class="lead">{L("A proposal in the mountains is equal parts logistics and nerve. Get it right and you have the best surprise of your life in the best light on earth &mdash; the question asked with a whole range of peaks as your witness, and every second of it quietly photographed. This is everything we have learned helping people propose in the Dolomites and the wider Alps: how to keep the secret, where to kneel, how to read the weather, and what happens after the yes.","Ein Antrag in den Bergen ist Logistik und Nerven zugleich. Macht ihr es richtig, habt ihr die beste Überraschung eures Lebens im schönsten Licht der Welt &mdash; die Frage gestellt mit einem ganzen Gipfelkranz als Zeuge, und jede Sekunde davon leise fotografiert. Hier steht alles, was wir beim Begleiten von Anträgen in den Dolomiten und den weiteren Alpen gelernt haben: wie ihr das Geheimnis wahrt, wo ihr niederkniet, wie ihr das Wetter lest, und was nach dem Ja passiert.")}</p>')
+    C.append(f'<p style="margin:.1em 0 1.3em"><a href="{u(P,lang,"dolomites-proposal/")}" class="arrow-link">{L("Ready to book a surprise proposal shoot","Bereit, ein Überraschungs-Antragsshooting zu buchen")} &rarr;</a></p>')
     C.append(f'<div class="cap" style="margin:0 0 -14px">{t(lang,"quick_facts")}</div>{facts}')
     C.append(toc_html)
 
@@ -4513,6 +4514,102 @@ def build_tyrol_region(lang):
       +footer(lang,rel))
     write(lang,rel,head(lang,rel,title,desc,ld_extra=[faq_ld,prof_service_ld()],pre=herolink(P,HERO_IMG))+body+scripts(P))
 
+PROPOSAL_LP_FAQ=[
+ ("How do you photograph a proposal without my partner noticing?",
+  "It is what we do best. We plan every detail with you by message beforehand &mdash; the spot, the timing, a small signal for the moment you are about to kneel. On the day we arrive early, blend in with the other hikers and shoot from a distance with a long lens, so your partner has no idea until the ring is out. Only after the yes do we step in, introduce ourselves and turn it into a relaxed couples session. The surprise stays a surprise.",
+  "Wie fotografiert ihr einen Antrag, ohne dass mein Gegenüber es merkt?",
+  "Das ist unsere Spezialität. Wir planen jedes Detail vorab mit euch per Nachricht &mdash; den Ort, das Timing, ein kleines Zeichen für den Moment, in dem ihr euch hinkniet. Am Tag kommen wir früh, mischen uns unter die anderen Wanderer und fotografieren aus der Ferne mit dem Teleobjektiv, sodass euer Gegenüber nichts ahnt, bis der Ring draußen ist. Erst nach dem Ja treten wir hinzu, stellen uns vor und machen ein entspanntes Paar-Shooting daraus. Die Überraschung bleibt eine Überraschung."),
+ ("Where is the best place to propose in the Dolomites?",
+  "The best proposal spots give you a natural reason to pause and little effort &mdash; a long, sweaty hike tends to give the game away. Roadside lakes are perfect: the Lago di Braies boardwalk or little Lago d&rsquo;Antorno, where at first light you have the railing to yourselves. Cable-car viewpoints like the Sass Pordoi terrace or the Nordkette minutes above Innsbruck are just as easy. We match the spot to your fitness and the surprise you have in mind.",
+  "Wo ist der beste Ort für einen Antrag in den Dolomiten?",
+  "Die besten Antragsorte bieten einen natürlichen Grund zum Innehalten und wenig Aufwand &mdash; eine lange, verschwitzte Wanderung verrät den Plan meist. Seen an der Straße sind perfekt: der Steg am Pragser Wildsee oder der kleine Lago d&rsquo;Antorno, wo ihr im ersten Licht das Geländer für euch habt. Bergbahn-Aussichtspunkte wie die Sass-Pordoi-Terrasse oder die Nordkette Minuten über Innsbruck sind ebenso leicht. Wir stimmen den Ort auf eure Fitness und die geplante Überraschung ab."),
+ ("What if it rains, or the weather turns?",
+  "We plan around it. First light gives you empty trails and soft colour, but mountain weather changes fast, so we always hold a backup spot and, where we can, a spare morning. Grey skies and mist are not a problem &mdash; some of the most emotional proposal pictures we have ever taken came out of soft rain and low cloud. We watch the forecast closely in the days before and pick the window that works.",
+  "Was, wenn es regnet oder das Wetter umschlägt?",
+  "Wir planen darum herum. Das erste Licht schenkt leere Wege und weiche Farben, aber das Bergwetter wechselt schnell, deshalb halten wir immer einen Ausweichort und, wo möglich, einen Reservemorgen bereit. Grauer Himmel und Nebel sind kein Problem &mdash; einige der bewegendsten Antragsbilder, die wir je gemacht haben, entstanden bei sanftem Regen und tiefen Wolken. Wir verfolgen die Vorhersage in den Tagen davor genau und wählen das Fenster, das passt."),
+ ("Do we get a proper couples session after the proposal?",
+  "Yes &mdash; and it is one of the best parts. Once the yes is out and the nerves have melted, we keep shooting for a relaxed engagement session while you are still glowing. You get the surprise itself and a proper set of portraits from the same morning, and we can usually turn a few images around the same day so you have something to share with family straight away.",
+  "Bekommen wir nach dem Antrag ein richtiges Paar-Shooting?",
+  "Ja &mdash; und es ist einer der schönsten Teile. Sobald das Ja heraus ist und die Nervosität geschmolzen, fotografieren wir weiter für ein entspanntes Verlobungs-Shooting, solange ihr noch strahlt. Ihr bekommt die Überraschung selbst und dazu eine richtige Porträtserie vom selben Morgen, und meist können wir noch am selben Tag ein paar Bilder liefern, damit ihr sofort etwas mit der Familie teilen könnt."),
+ ("When is the best time for a proposal shoot?",
+  "All year round, and always at first light. Sunrise gives you the quietest trails, the softest colour and the fewest strangers in the background &mdash; the perfect cover for a surprise. Summer and early autumn are the easiest for access; winter turns the peaks monochrome and magical and hands you near-total solitude. Tell us your travel dates and we will find the best morning within them.",
+  "Wann ist die beste Zeit für ein Antrags-Shooting?",
+  "Das ganze Jahr über &mdash; und immer im ersten Licht. Der Sonnenaufgang schenkt die ruhigsten Wege, die weichsten Farben und die wenigsten Fremden im Hintergrund &mdash; die perfekte Tarnung für eine Überraschung. Sommer und Frühherbst sind am leichtesten für den Zugang; der Winter macht die Gipfel monochrom und magisch und schenkt fast völlige Einsamkeit. Sagt uns eure Reisedaten, und wir finden den besten Morgen darin."),
+ ("What does a proposal shoot cost?",
+  "A proposal shoot is a shorter, simpler booking than a full elopement, so it sits below our elopement packages. Because every proposal is different &mdash; the location, the travel, the length of the couples session after &mdash; we send tailored pricing rather than a fixed number. Tell us your date and what you are imagining and we will come straight back with a clear quote.",
+  "Was kostet ein Antrags-Shooting?",
+  "Ein Antrags-Shooting ist eine kürzere, einfachere Buchung als ein ganzes Elopement und liegt daher unter unseren Elopement-Paketen. Weil jeder Antrag anders ist &mdash; der Ort, die Anreise, die Länge des Paar-Shootings danach &mdash;, schicken wir ein maßgeschneidertes Angebot statt einer festen Zahl. Sagt uns euren Termin und was ihr euch vorstellt, und wir kommen umgehend mit einem klaren Angebot zurück."),
+]
+
+# ES/IT-Uebersetzungen folgen (Platzhalter -> EN-Fallback bis befuellt)
+PPAGE_ES={}; PPAGE_IT={}; PPAGE_FAQ_ES={}; PPAGE_FAQ_IT={}
+
+def build_proposal_page(lang):
+    # Commercial proposal landing page (hire intent). EN+DE full; ES/IT fall back to EN until PPAGE_* land.
+    rel='dolomites-proposal/'; P=prefix(lang,rel)
+    DE=(lang=='de')
+    def L(en,de):
+        if lang=='de': return de
+        if lang=='es': return PPAGE_ES.get(en,en)
+        if lang=='it': return PPAGE_IT.get(en,en)
+        return en
+    def FQ(qen,aen,qde,ade):
+        if lang=='de': return (qde,ade)
+        if lang=='es': return PPAGE_FAQ_ES.get(qen,(qen,aen))
+        if lang=='it': return PPAGE_FAQ_IT.get(qen,(qen,aen))
+        return (qen,aen)
+    H2S='font-family:var(--serif);font-weight:400;font-size:clamp(25px,3vw,36px);letter-spacing:-.01em;margin:1.6em 0 .4em'
+    def h2(en,de): return f'<h2 style="{H2S}">{L(en,de)}</h2>'
+    def p(en,de): return f'<p style="color:var(--ink-2)">{L(en,de)}</p>'
+    GI=f'{P}img/guide-mountain-proposal/'
+    def fig(name,en,de): return f'<figure class="guide-fig"><img src="{GI}{name}" alt="{L(en,de)}" loading="lazy"></figure>'
+    HERO_IMG='img/guide-mountain-proposal/p-lago-braies.webp'
+    faqs=[FQ(*x) for x in PROPOSAL_LP_FAQ]
+    faq_html=''.join(
+      f'<div style="margin:1.3em 0 0;border-top:1px solid var(--line);padding-top:1.1em">'
+      f'<h3 style="font-family:var(--serif);font-weight:400;font-size:20px;margin:0 0 .3em">{q}</h3>'
+      f'<p style="color:var(--ink-2);margin:0">{a}</p></div>' for q,a in faqs)
+    faq_ld={"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+        {"@type":"Question","name":_plain(q),"acceptedAnswer":{"@type":"Answer","text":_plain(a)}} for q,a in faqs]}
+    stories=['mountain-engagement','a-journey-of-love-and-adventure']
+    cards=''.join(story_card(lang,P,STORYBY[s]) for s in stories)
+    guidelink=u(P,lang,'how-to-elope-in-the-europe-mountains/mountain-proposal-guide/')
+    title=L(f'Dolomites Proposal {SEO_YEAR} — Surprise Proposal Photographer',f'Antrag in den Dolomiten {SEO_YEAR} — Fotograf für den Heiratsantrag')
+    desc=L(f'Planning a surprise proposal in the Dolomites or the Alps for {SEO_YEAR}? We capture the moment from a distance, keep the secret, and photograph the yes at first light &mdash; then a relaxed couples session.',f'Ein Überraschungs-Antrag in den Dolomiten oder Alpen {SEO_YEAR}? Wir halten den Moment aus der Ferne fest, wahren das Geheimnis und fotografieren das Ja im ersten Licht &mdash; danach ein entspanntes Paar-Shooting.')
+    body=(nav(lang,rel,'')+
+      f'<section class="page-hero" style="padding:0">{herobg(P,HERO_IMG,L("A proposal at Lago di Braies in the Dolomites","Ein Antrag am Pragser Wildsee in den Dolomiten"))}'
+      f'<div class="content"><div class="wrap"><div class="kicker" data-n="{L("The Proposal","Der Antrag")}"><span class="line"></span></div><h1>{L("Dolomites Proposal","Antrag in den Dolomiten")}</h1></div></div></section>'
+      '<section><div class="wrap" style="max-width:820px">'
+      f'<p class="lead">{L("You want to propose somewhere that takes their breath away &mdash; and you want the moment kept forever, exactly as it happens. That is what we do: a secret, beautifully planned surprise proposal in the Dolomites and the Austrian Alps, photographed from a distance so your partner never sees us until the ring is out. Then a relaxed couples session while you are both still glowing.","Ihr wollt an einem Ort um die Hand anhalten, der den Atem raubt &mdash; und ihr wollt den Moment für immer festgehalten, genau so, wie er geschieht. Genau das machen wir: ein geheimer, schön geplanter Überraschungs-Antrag in den Dolomiten und den österreichischen Alpen, aus der Ferne fotografiert, sodass euer Gegenüber uns nicht sieht, bis der Ring draußen ist. Danach ein entspanntes Paar-Shooting, solange ihr beide noch strahlt.")}</p>'
+      +h2('Why the mountains make the perfect proposal','Warum die Berge den perfekten Antrag machen')
+      +p("There is a reason people cross a continent to kneel in the Dolomites. Pale limestone towers that turn rose at first light, turquoise lakes still as glass, a horizon that goes on forever &mdash; it is the most romantic backdrop in Europe, and at sunrise it is almost empty. We have photographed proposals here in every season, and the pattern is always the same: the bigger the view, the smaller and more honest the moment feels. All you have to do is ask the question.","Es hat einen Grund, warum Menschen einen Kontinent überqueren, um in den Dolomiten niederzuknien. Bleiche Kalktürme, die im ersten Licht rosa anlaufen, türkise Seen, spiegelglatt, ein Horizont ohne Ende &mdash; es ist die romantischste Kulisse Europas, und im Sonnenaufgang ist sie fast leer. Wir haben hier Anträge zu jeder Jahreszeit fotografiert, und das Muster ist immer gleich: je größer die Aussicht, desto kleiner und ehrlicher fühlt sich der Moment an. Ihr müsst nur die Frage stellen.")
+      +fig('p-kneel-spires.webp',"A partner kneeling to propose before the Dolomite spires","Ein Kniefall zum Antrag vor den Dolomiten-Türmen")
+      +fig('p-reaction.webp',"The reaction in the moment of the yes","Die Reaktion im Moment des Ja")
+      +'<div class="facts" style="margin:2.2em 0 0"><div class="fct"><div class="fl">'+L('Season','Beste Zeit')+'</div><div class="fv">'+L('All year','Ganzjährig')+'</div></div>'
+      +'<div class="fct"><div class="fl">'+L('Best light','Bestes Licht')+'</div><div class="fv">'+L('Sunrise','Sonnenaufgang')+'</div></div>'
+      +'<div class="fct"><div class="fl">'+L('After the yes','Nach dem Ja')+'</div><div class="fv">'+L('Couples session','Paar-Shooting')+'</div></div></div>'
+      +h2('How a secret proposal works','Wie ein geheimer Antrag abläuft')
+      +p("The whole plan comes together by message, so nothing lands in a shared inbox. You tell us the date and the surprise you are dreaming of; we suggest the spot, work the timing backwards from sunrise, and agree on a small, invisible signal &mdash; a hand to the pocket, a step toward the railing &mdash; for the moment you are about to kneel. On the morning we are already there, dressed like everyone else on the trail, shooting from a distance with a long lens. Your partner sees hikers, not photographers.","Der ganze Plan entsteht per Nachricht, damit nichts in einem geteilten Postfach landet. Ihr nennt uns den Termin und die Überraschung, von der ihr träumt; wir schlagen den Ort vor, rechnen das Timing rückwärts vom Sonnenaufgang und vereinbaren ein kleines, unsichtbares Zeichen &mdash; eine Hand zur Tasche, ein Schritt zum Geländer &mdash; für den Moment, in dem ihr niederkniet. Am Morgen sind wir längst da, gekleidet wie alle anderen am Weg, und fotografieren aus der Ferne mit dem Teleobjektiv. Euer Gegenüber sieht Wanderer, keine Fotografen.")
+      +fig('p-kiss-ring.webp',"The kiss right after the ring goes on","Der Kuss direkt nachdem der Ring sitzt")
+      +p("The instant the yes is out, we step in, introduce ourselves, and the whole mood changes &mdash; relief, laughter, disbelief. That is when we move into a proper couples session while the feeling is still fresh, so you leave with both the surprise itself and a set of portraits from the same golden morning. We can usually send a few edited images the same day, so the first people to see them are the ones you call from the trail.","In dem Augenblick, in dem das Ja heraus ist, treten wir hinzu, stellen uns vor, und die ganze Stimmung kippt &mdash; Erleichterung, Lachen, Ungläubigkeit. Dann gehen wir in ein richtiges Paar-Shooting über, solange das Gefühl noch frisch ist, sodass ihr mit der Überraschung selbst und einer Porträtserie vom selben goldenen Morgen geht. Meist können wir noch am selben Tag ein paar bearbeitete Bilder schicken, sodass die Ersten, die sie sehen, jene sind, die ihr vom Weg aus anruft.")
+      +h2('Where to propose &mdash; and the easy logistics','Wo ihr den Antrag macht &mdash; und die leichte Logistik')
+      +p("The best proposal spots share two things: a natural reason to stop, and almost no walking, because a long sweaty hike gives the game away. Roadside lakes are ideal &mdash; the Lago di Braies boardwalk, or the little Lago d&rsquo;Antorno, where at first light you have the railing to yourselves. Cable-car viewpoints like the Sass Pordoi terrace or the Nordkette above Innsbruck are just as easy, though the lifts open after sunrise, so we plan the morning around the timetable. Keep the ring in a zipped, secure pocket on the walk &mdash; never a coat you might hand over.","Die besten Antragsorte teilen zwei Dinge: einen natürlichen Grund zum Anhalten und fast keinen Fußweg, denn eine lange, verschwitzte Wanderung verrät den Plan. Seen an der Straße sind ideal &mdash; der Steg am Pragser Wildsee oder der kleine Lago d&rsquo;Antorno, wo ihr im ersten Licht das Geländer für euch habt. Bergbahn-Aussichtspunkte wie die Sass-Pordoi-Terrasse oder die Nordkette über Innsbruck sind ebenso leicht, doch die Bahnen öffnen erst nach Sonnenaufgang, wir planen den Morgen also nach dem Fahrplan. Tragt den Ring beim Gehen in einer geschlossenen, sicheren Tasche &mdash; nie in einem Mantel, den ihr weiterreichen könntet.")
+      +fig('p-seiseralm-glow.webp',"An engagement session glowing in the light on the Seiser Alm","Ein Verlobungs-Shooting im glühenden Licht auf der Seiser Alm")
+      +f'<p style="margin:.2em 0 0"><a href="{guidelink}" class="arrow-link">{L("Read the full mountain-proposal planning guide","Zum ausführlichen Antrags-Planungsguide")} &rarr;</a></p>'
+      +h2('When to come, and what it costs','Wann ihr kommt und was es kostet')
+      +p("A proposal works all year round, and always best at first light &mdash; empty trails, soft colour, and the fewest strangers in the background. Summer and early autumn are the easiest for access; winter turns the peaks monochrome and magical. On cost: a proposal shoot is a shorter, simpler booking than a full elopement, so it sits below our elopement packages. Because every proposal is different, we send tailored pricing rather than a fixed number &mdash; tell us your date and what you are imagining and we will come straight back with a clear quote.","Ein Antrag funktioniert das ganze Jahr &mdash; und immer am besten im ersten Licht: leere Wege, weiche Farben und die wenigsten Fremden im Hintergrund. Sommer und Frühherbst sind am leichtesten für den Zugang; der Winter macht die Gipfel monochrom und magisch. Zu den Kosten: Ein Antrags-Shooting ist eine kürzere, einfachere Buchung als ein ganzes Elopement und liegt daher unter unseren Elopement-Paketen. Weil jeder Antrag anders ist, schicken wir ein maßgeschneidertes Angebot statt einer festen Zahl &mdash; sagt uns euren Termin und was ihr euch vorstellt, und wir kommen umgehend mit einem klaren Angebot zurück.")
+      +h2('Questions couples ask us','Fragen, die Paare uns stellen')+faq_html+
+      '</div></section>'
+      '<section style="padding-top:clamp(30px,5vw,64px)"><div class="wrap"><div class="section-head reveal">'
+      f'<div class="kicker" data-n="{L("Real proposals","Echte Anträge")}"><span class="line"></span></div><h2>{L("A real mountain proposal","Ein echter Antrag in den Bergen")}</h2></div>'
+      f'<div class="story-grid">{cards}</div></div></section>'
+      '<section class="cta"><div class="wrap row reveal"><div>'
+      f'<div class="kicker" data-n="{L("Your moment","Euer Moment")}"><span class="line"></span></div><h2 style="margin-top:20px">{L("Let&rsquo;s plan the surprise","Planen wir die Überraschung")}</h2></div>'
+      f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
+      f'<section style="padding:clamp(28px,4vw,48px) 0"><div class="wrap"><a href="{u(P,lang,"how-to-elope-in-the-europe-mountains/")}" class="arrow-link">&larr; {L("All planning guides","Alle Planungs-Guides")}</a></div></section>'
+      +footer(lang,rel))
+    write(lang,rel,head(lang,rel,title,desc,ld_extra=[faq_ld,prof_service_ld()],pre=herolink(P,HERO_IMG))+body+scripts(P))
+
 def build_region(lang):
     # Region page: guide + offer combined for one region (EN text for all langs for now).
     # HERO: reuses img/hero/hero2.webp (Seceda) — Andreas may swap for a preferred Dolomites frame.
@@ -4588,7 +4685,7 @@ def build_region(lang):
     write(lang,rel,head(lang,rel,title,desc,ld_extra=[faq_ld,prof_service_ld()],pre=herolink(P,'img/hero/hero2.webp'))+body+scripts(P))
 
 def all_rels():
-    rels=['','how-to-elope-in-the-europe-mountains/','stories-elopement-mountain/','our-packages/','our-team/','get-in-touch/','imprint/','privacy-policy/','elopement-dolomites/','elopement-tyrol/']
+    rels=['','how-to-elope-in-the-europe-mountains/','stories-elopement-mountain/','our-packages/','our-team/','get-in-touch/','imprint/','privacy-policy/','elopement-dolomites/','elopement-tyrol/','dolomites-proposal/']
     rels+=['portfolio-item/'+s[1]+'/' for s in STORIES]
     rels+=['portfolio-category/'+c+'/' for c in CATS]
     rels+=['how-to-elope-in-the-europe-mountains/'+g['slug']+'/' for g in GUIDES]
@@ -4654,7 +4751,7 @@ for slug,ex in GUIDE_EXTRA.items():
 for lang in LANGS:
     build_home(lang); build_howto(lang); build_stories(lang); build_categories(lang)
     build_portfolio(lang); build_packages(lang); build_team(lang); build_contact(lang); build_legal(lang)
-    build_thankyou(lang); build_guides(lang); build_helicopter_guide(lang); build_proposal_guide(lang); build_sunset_guide(lang); build_spots_guide(lang); build_plan_guide(lang); build_alps_guide(lang); build_austria_guide(lang); build_things_guide(lang); build_region(lang); build_tyrol_region(lang)
+    build_thankyou(lang); build_guides(lang); build_helicopter_guide(lang); build_proposal_guide(lang); build_sunset_guide(lang); build_spots_guide(lang); build_plan_guide(lang); build_alps_guide(lang); build_austria_guide(lang); build_things_guide(lang); build_region(lang); build_tyrol_region(lang); build_proposal_page(lang)
 def build_llms():
     D=DOMAIN
     guides=''.join(
@@ -4668,6 +4765,7 @@ def build_llms():
 "## Kernseiten\n"
 f"- [Dolomiten-Elopement]({D}/elopement-dolomites/): Genehmigungen, Zufahrtsregeln, Licht, rechtliche Trauung\n"
 f"- [Tirol-Elopement]({D}/elopement-tyrol/): rechtsgueltig am Berg heiraten, Innsbruck & Nordkette, Kosten\n"
+f"- [Antrag/Proposal]({D}/dolomites-proposal/): Ueberraschungs-Heiratsantrag in den Dolomiten & Alpen, heimlich fotografiert\n"
 f"- [Preise]({D}/our-packages/): drei Pakete ab 6.000 EUR, Rechner fuer Zusatzoptionen\n"
 f"- [Guides]({D}/how-to-elope-in-the-europe-mountains/): Planung, Orte, Helikopter, Sonnenauf- und -untergang\n"
 f"- [Team]({D}/our-team/)\n"
