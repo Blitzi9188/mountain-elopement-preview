@@ -395,7 +395,7 @@ T = {
             'de':'Prototyp-Formular &mdash; in der Live-Version verbunden mit E-Mail (z. B. Formspree).',
             'es':'Formulario prototipo &mdash; en la versión final se conecta al correo (p. ej. Formspree).'},
  'ct_based':{'en':'Based in','de':'Sitz','es':'Base'},
- 'ct_based_v':{'en':'Tyrol &amp; the Dolomites','de':'Tirol &amp; Dolomiten','es':'Tirol y los Dolomitas'},
+ 'ct_based_v':{'en':'the heart of the Dolomites','de':'im Herzen der Dolomiten','es':'en el corazón de los Dolomitas'},
  # thank-you (noindex confirmation page)
  'ty_k':{'en':'Enquiry received','de':'Anfrage erhalten','es':'Consulta recibida'},
  'ty_h':{'en':'Thank you','de':'Danke','es':'Gracias'},
@@ -835,7 +835,7 @@ IT={
  'ct_k':'Salutateci','ct_h':'Contatti','ct_lead':'Non vediamo l’ora di ascoltare la vostra storia! Raccontateci le vostre idee &mdash; e vi aiuteremo a rendere realtà il vostro elopement da sogno.',
  'ct_details':'I vostri dati','ct_name':'Nome','ct_name_ph':'Il vostro nome','ct_email':'Email','ct_date':'Data elopement (circa)','ct_date_ph':'es. giugno 2027',
  'ct_dream':'Cosa sognate?','ct_story':'Raccontateci la vostra storia','ct_story_ph':'Dove, quando e cosa immaginate...','ct_send':'Invia richiesta',
- 'ct_note':'Modulo prototipo &mdash; nella versione finale si collega all’email (es. Formspree).','ct_based':'Sede','ct_based_v':'Tirolo e Dolomiti',
+ 'ct_note':'Modulo prototipo &mdash; nella versione finale si collega all’email (es. Formspree).','ct_based':'Sede','ct_based_v':'nel cuore delle Dolomiti',
  'ct_sending':'Invio in corso…','ct_ok':'Inviato — grazie!','ct_err':'Qualcosa è andato storto. Riprova o scrivici direttamente.',
  'chips':['Foto','Film','Backdrop','Fiori','Trucco','Elicottero','Escursione','Musica'],
  'lg_k':'Note legali','lg_imprint':'Note legali','lg_privacy':'Informativa privacy','lg_lead':'Segnaposto &mdash; il testo esistente verrà trasferito invariato dal sito attuale.',
