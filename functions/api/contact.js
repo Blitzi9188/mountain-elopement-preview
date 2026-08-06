@@ -47,6 +47,12 @@ export async function onRequestPost({ request, env }) {
     }
 
     // 4) E-Mail via Resend senden
+    // TO_EMAIL darf mehrere Adressen kommagetrennt enthalten (Backup-Postfach),
+    // damit ein einzelnes volles/gesperrtes Postfach nie alle Anfragen verschluckt.
+    const recipients = (env.TO_EMAIL || '').split(',').map((s) => s.trim()).filter(Boolean);
+    if (!recipients.length) {
+      return json({ ok: false, error: 'No recipient configured. Please email us directly.' }, 500);
+    }
     const html = `
       <h2>New elopement enquiry</h2>
       <p><strong>Name:</strong> ${esc(name)}</p>
@@ -64,7 +70,7 @@ export async function onRequestPost({ request, env }) {
       },
       body: JSON.stringify({
         from: env.FROM_EMAIL,
-        to: [env.TO_EMAIL],
+        to: recipients,
         reply_to: email,
         subject: `New enquiry — ${name}`,
         html,
