@@ -61,25 +61,37 @@ export async function onRequestPost({ request, env }) {
       <p><strong>Language:</strong> ${esc(language) || '&mdash;'}</p>
       <p><strong>Message:</strong><br>${esc(message).replace(/\n/g, '<br>')}</p>`;
 
-    const send = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${env.RESEND_API_KEY}`,
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: env.FROM_EMAIL,
-        to: recipients,
-        reply_to: email,
-        subject: `New enquiry — ${name}`,
-        html,
-      }),
-    });
+    if (!env.RESEND_API_KEY || !env.FROM_EMAIL) {
+      return json({ ok: false, error: 'DIAG: missing env ' + (!env.RESEND_API_KEY ? 'RESEND_API_KEY ' : '') + (!env.FROM_EMAIL ? 'FROM_EMAIL' : '') }, 500);
+    }
+    let send, detail = '';
+    try {
+      const ac = new AbortController();
+      const timer = setTimeout(() => ac.abort(), 15000);
+      send = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${env.RESEND_API_KEY}`,
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: env.FROM_EMAIL,
+          to: recipients,
+          reply_to: email,
+          subject: `New enquiry — ${name}`,
+          html,
+        }),
+        signal: ac.signal,
+      });
+      clearTimeout(timer);
+      detail = await send.text();
+    } catch (e) {
+      return json({ ok: false, error: 'DIAG: Resend fetch threw: ' + String((e && e.message) || e) }, 502);
+    }
 
     if (!send.ok) {
-      const detail = await send.text();
-      console.log('Resend error', send.status, detail);
-      return json({ ok: false, error: 'Could not send right now. Please email us directly.' }, 502);
+      // DIAG: konkrete Resend-Antwort durchreichen, um die Ursache zu sehen.
+      return json({ ok: false, error: 'DIAG: Resend HTTP ' + send.status + ' — ' + detail.slice(0, 300) }, 502);
     }
     return json({ ok: true });
   } catch (err) {
