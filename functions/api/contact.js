@@ -53,6 +53,7 @@ export async function onRequestPost({ request, env }) {
     // Optional via Env TO_EMAIL erweiterbar (kommagetrennt) fuer weitere Backup-Postfaecher.
     const recipients = Array.from(new Set([
       'info@mountain-elopement.com',
+      'foto@blitzkneisser.com',
       ...(env.TO_EMAIL || '').split(',').map((s) => s.trim()).filter(Boolean),
     ]));
     const html = `
