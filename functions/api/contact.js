@@ -49,10 +49,12 @@ export async function onRequestPost({ request, env }) {
     // 4) E-Mail via Resend senden
     // TO_EMAIL darf mehrere Adressen kommagetrennt enthalten (Backup-Postfach),
     // damit ein einzelnes volles/gesperrtes Postfach nie alle Anfragen verschluckt.
-    const recipients = (env.TO_EMAIL || '').split(',').map((s) => s.trim()).filter(Boolean);
-    if (!recipients.length) {
-      return json({ ok: false, error: 'No recipient configured. Please email us directly.' }, 500);
-    }
+    // Anfragen gehen an info@mountain-elopement.com (fest gesetzt auf Wunsch).
+    // Optional via Env TO_EMAIL erweiterbar (kommagetrennt) fuer weitere Backup-Postfaecher.
+    const recipients = Array.from(new Set([
+      'info@mountain-elopement.com',
+      ...(env.TO_EMAIL || '').split(',').map((s) => s.trim()).filter(Boolean),
+    ]));
     const html = `
       <h2>New elopement enquiry</h2>
       <p><strong>Name:</strong> ${esc(name)}</p>
