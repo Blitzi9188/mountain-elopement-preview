@@ -49,13 +49,9 @@ export async function onRequestPost({ request, env }) {
     // 4) E-Mail via Resend senden
     // TO_EMAIL darf mehrere Adressen kommagetrennt enthalten (Backup-Postfach),
     // damit ein einzelnes volles/gesperrtes Postfach nie alle Anfragen verschluckt.
-    // Anfragen gehen an info@mountain-elopement.com (fest gesetzt auf Wunsch).
-    // Optional via Env TO_EMAIL erweiterbar (kommagetrennt) fuer weitere Backup-Postfaecher.
-    const recipients = Array.from(new Set([
-      'info@mountain-elopement.com',
-      'foto@blitzkneisser.com',
-      ...(env.TO_EMAIL || '').split(',').map((s) => s.trim()).filter(Boolean),
-    ]));
+    // Anfragen gehen an foto@blitzkneisser.com (zuverlaessiges Postfach, andere
+    // Infrastruktur als c2h.at). Einzelner Empfaenger = urspruenglich funktionierende Form.
+    const recipients = ['foto@blitzkneisser.com'];
     const html = `
       <h2>New elopement enquiry</h2>
       <p><strong>Name:</strong> ${esc(name)}</p>
