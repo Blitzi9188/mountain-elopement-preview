@@ -1041,7 +1041,9 @@ def footer(lang,rel):
       f'<li><a href="{u(P,lang,"get-in-touch/")}">{T["nav"]["contact"][lang]}</a></li></ul></div>'
       f'<div><h5>{t(lang,"f_team")}</h5><ul>'
       f'<li><a href="https://blitzkneisser.com" target="_blank" rel="noopener">{t(lang,"f_role_photo")} &middot; Blitzkneisser</a></li>'
-      f'<li><a href="{P_PLAN[1]}" target="_blank" rel="noopener">{t(lang,"f_role_plan")} &middot; Dolomites Wedding Planner</a></li></ul></div></div>'
+      f'<li><a href="{P_PLAN[1]}" target="_blank" rel="noopener">{t(lang,"f_role_plan")} &middot; Dolomites Wedding Planner</a></li>'
+      f'<li><a href="https://nomattertheweather.it/" target="_blank" rel="noopener">{t(lang,"f_role_film")} &middot; No Matter The Weather</a></li>'
+      f'<li><a href="https://www.vikiaichner.com/de/" target="_blank" rel="noopener">{t(lang,"f_role_mua")} &middot; Viki Aichner</a></li></ul></div></div>'
       f'<div class="fine"><span>&copy; 2026 mountain-elopement by blitzkneisser.com</span>'
       f'<span><a href="{u(P,lang,"imprint/")}">{t(lang,"f_imprint")}</a> &middot; <a href="{u(P,lang,"privacy-policy/")}">{t(lang,"f_privacy")}</a> &middot; <a href="#" data-cc-reopen>{CC["settings"][lang]}</a></span></div></div></footer>'
       +consent_banner(lang,P))
