@@ -1681,7 +1681,7 @@ def build_contact(lang):
       '<div class="info"><div><strong>Email</strong> &mdash; <a href="mailto:info@mountain-elopement.com">info@mountain-elopement.com</a></div>'
       '<div><strong>WhatsApp</strong> &mdash; +39 348 425 8317</div>'
       f'<div><strong>{t(lang,"ct_based")}</strong> &mdash; {t(lang,"ct_based_v")}</div>'
-      '<div><strong>Instagram</strong> &mdash; @mountainelopement</div></div></aside></div></section>'
+      '<div><strong>Instagram</strong> &mdash; <a href="https://www.instagram.com/mountainelopement/" target="_blank" rel="noopener">@mountainelopement</a></div></div></aside></div></section>'
       +reviews_block(lang,P,3,compact=True)
       +footer(lang,rel))
     write(lang,rel,head(lang,rel,TITLES['contact'][lang],DESC['contact'][lang],ld_extra=prof_service_ld())+body+scripts(P,extra))
