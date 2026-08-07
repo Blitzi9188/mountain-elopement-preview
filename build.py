@@ -1632,27 +1632,23 @@ def build_contact(lang):
            "if(e.target.classList.contains('chip')){e.target.classList.toggle('on');"
            "var h=document.getElementById('interests');if(h)h.value=[].slice.call(box.querySelectorAll('.chip.on'))"
            ".map(function(x){return x.textContent;}).join(', ');}});</script>")
-    # Versand ueber FormSubmit -> info@mountain-elopement.com (echtes c2h.at-Postfach, in Apple Mail).
-    # Cross-domain (formsubmit.co -> info@), daher kein Same-Domain-Spoofing wie bei Resend.
-    FS_ENDPOINT='https://formsubmit.co/ajax/info@mountain-elopement.com'
-    robot={'en':'I am not a robot','de':'Ich bin kein Roboter','es':'No soy un robot','it':'Non sono un robot'}[lang]
+    ts_api='<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>'
     submit_js=(
       "<script>(function(){var f=document.getElementById('ce-form');if(!f)return;"
       "var st=document.getElementById('ce-status'),btn=f.querySelector('button[type=submit]');"
       "var THANKYOU="+json.dumps(thankyou)+";"
       "var MSG={sending:"+json.dumps(t(lang,'ct_sending'))+",ok:"+json.dumps(t(lang,'ct_ok'))+",err:"+json.dumps(t(lang,'ct_err'))+"};"
-      "var ENDPOINT="+json.dumps(FS_ENDPOINT)+";"
       "f.addEventListener('submit',function(e){e.preventDefault();"
       "var box=document.getElementById('chips'),h=document.getElementById('interests');"
       "if(box&&h)h.value=[].slice.call(box.querySelectorAll('.chip.on')).map(function(x){return x.textContent;}).join(', ');"
       "btn.disabled=true;st.className='ce-status sending';st.textContent=MSG.sending;"
       "var fd=new FormData(f);"
       "try{sessionStorage.setItem('me_enquiry',JSON.stringify({name:fd.get('name')||'',email:fd.get('email')||'',date:fd.get('date')||'',interests:fd.get('interests')||'',message:fd.get('message')||''}));}catch(e){}"
-      "fetch(ENDPOINT,{method:'POST',body:fd,headers:{'Accept':'application/json'}})"
-      ".then(function(r){return r.json().catch(function(){return {success:String(r.ok)};});})"
-      ".then(function(d){if(d&&(d.success===true||d.success==='true')){st.className='ce-status ok';st.textContent=MSG.ok;window.location.href=THANKYOU;}"
-      "else{st.className='ce-status err';st.textContent=(d&&d.message)||MSG.err;btn.disabled=false;}})"
-      ".catch(function(){st.className='ce-status err';st.textContent=MSG.err;btn.disabled=false;});"
+      "fetch("+json.dumps(CONTACT_ENDPOINT)+",{method:'POST',body:fd})"
+      ".then(function(r){return r.json().catch(function(){return {ok:r.ok};});})"
+      ".then(function(d){if(d&&d.ok){st.className='ce-status ok';st.textContent=MSG.ok;window.location.href=THANKYOU;}"
+      "else{st.className='ce-status err';st.textContent=(d&&d.error)||MSG.err;btn.disabled=false;if(window.turnstile)turnstile.reset();}})"
+      ".catch(function(){st.className='ce-status err';st.textContent=MSG.err;btn.disabled=false;if(window.turnstile)turnstile.reset();});"
       "});})();</script>")
     # Prefill from the price calculator: ?selection=… (chips + message) and ?total=… (price into the message).
     interested={'en':'Interested in','de':'Interesse an','es':'Interés en','it':'Interesse per'}[lang]
@@ -1667,23 +1663,21 @@ def build_contact(lang):
       "if(total)pre.push("+json.dumps(total_lbl)+"+': '+total);"
       "if(pre.length){var m=document.querySelector('textarea[name=message]');if(m){var t=pre.join('\\n');m.value=m.value?(m.value+'\\n\\n'+t):t;}}"
       "})();</script>")
-    extra=chip_js+sel_js+submit_js
+    extra=chip_js+sel_js+ts_api+submit_js
     body=(nav(lang,rel,'contact')+
       f'<div class="page-plain"><div class="wrap"><div class="kicker" data-n="{t(lang,"ct_k")}"><span class="line"></span></div>'
       f'<h1>{t(lang,"ct_h")}</h1><p class="lead">{t(lang,"ct_lead")}</p></div></div>'
-      f'<section><div class="wrap contact-grid"><form id="ce-form" class="form reveal" name="contact" method="POST" action="{FS_ENDPOINT}">'
-      '<input type="hidden" name="_subject" value="Neue Anfrage &mdash; mountain-elopement.com">'
-      '<input type="hidden" name="_template" value="table">'
-      '<input type="hidden" name="_captcha" value="false">'
-      '<input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">'
+      f'<section><div class="wrap contact-grid"><form id="ce-form" class="form reveal" name="contact" method="POST" action="{CONTACT_ENDPOINT}">'
+      '<input type="hidden" name="form-name" value="contact">'
       f'<input type="hidden" name="language" value="{lang}">'
+      '<p hidden aria-hidden="true"><label>Don&rsquo;t fill this out if you&rsquo;re human: <input name="bot-field"></label></p>'
       f'<div class="kicker" data-n="01" style="margin-bottom:22px">{t(lang,"ct_details")}<span class="line"></span></div>'
       f'<label>{t(lang,"ct_name")}</label><input type="text" name="name" placeholder="{t(lang,"ct_name_ph")}" required>'
       f'<label>{t(lang,"ct_email")}</label><input type="email" name="email" placeholder="you@email.com" required>'
       f'<label>{t(lang,"ct_date")}</label><input type="text" name="date" placeholder="{t(lang,"ct_date_ph")}">'
       f'<label>{t(lang,"ct_dream")}</label><div class="chips" id="chips">{chips}</div><input type="hidden" name="interests" id="interests">'
       f'<label>{t(lang,"ct_story")}</label><textarea name="message" rows="5" placeholder="{t(lang,"ct_story_ph")}" required></textarea>'
-      f'<label class="robot-check" style="display:flex;align-items:center;gap:11px;margin:10px 0 20px;padding:12px 16px;border:1px solid var(--line);border-radius:6px;font-family:var(--sans);font-size:15px;cursor:pointer;max-width:280px"><input type="checkbox" required style="width:20px;height:20px;flex:none;cursor:pointer"> {robot}</label>'
+      f'<div class="cf-turnstile" data-sitekey="{TURNSTILE_SITEKEY}" data-theme="light" style="margin:8px 0 18px"></div>'
       f'<button class="btn" type="submit">{t(lang,"ct_send")}</button>'
       '<p id="ce-status" class="ce-status" role="status" aria-live="polite"></p>'
       '</form>'
