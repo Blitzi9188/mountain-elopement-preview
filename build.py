@@ -1019,11 +1019,21 @@ def team_section(lang,P):
         +card(t(lang,'tm_rp'),NAME_PHOTO,'Blitzkneisser','https://blitzkneisser.com',t(lang,'tm_dp'))
         +'</div></div></section>')
 
+_IG_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 1.8.25 2.2.42.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.17.4.36 1 .42 2.2.06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.25 1.8-.42 2.2a3.8 3.8 0 0 1-.9 1.4 3.8 3.8 0 0 1-1.4.9c-.4.17-1 .36-2.2.42-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-1.8-.25-2.2-.42a3.8 3.8 0 0 1-1.4-.9 3.8 3.8 0 0 1-.9-1.4c-.17-.4-.36-1-.42-2.2-.06-1.3-.07-1.7-.07-4.9s0-3.6.07-4.9c.06-1.2.25-1.8.42-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.17 1-.36 2.2-.42C8.4 2.2 8.8 2.2 12 2.2zm0 3.5A6.3 6.3 0 1 0 12 18.3 6.3 6.3 0 0 0 12 5.7zm0 10.4A4.1 4.1 0 1 1 12 7.9a4.1 4.1 0 0 1 0 8.2zm6.5-10.6a1.47 1.47 0 1 1-2.94 0 1.47 1.47 0 0 1 2.94 0z"/></svg>'
+_FB_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg>'
+_PIN_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.64 7.86 6.36 9.32-.09-.79-.17-2 .03-2.86.18-.78 1.17-4.97 1.17-4.97s-.3-.6-.3-1.48c0-1.39.8-2.42 1.8-2.42.85 0 1.26.64 1.26 1.4 0 .85-.54 2.13-.82 3.31-.24.99.5 1.8 1.47 1.8 1.77 0 3.13-1.87 3.13-4.56 0-2.38-1.71-4.05-4.15-4.05-2.83 0-4.49 2.12-4.49 4.31 0 .85.33 1.77.74 2.27.08.1.09.19.07.29-.08.32-.24.99-.28 1.13-.04.18-.15.22-.34.13-1.25-.58-2.03-2.4-2.03-3.87 0-3.15 2.29-6.04 6.6-6.04 3.46 0 6.16 2.47 6.16 5.77 0 3.44-2.17 6.21-5.18 6.21-1.01 0-1.97-.53-2.29-1.15l-.62 2.37c-.23.86-.83 1.94-1.24 2.6.94.29 1.92.44 2.95.44 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>'
+# Social: Instagram = eigene Seite (mountainelopement); Facebook = Blitzkneisser. Pinterest vorlaeufig mountainelopement (Blitzkneisser-URL offen).
+SOCIAL_ICONS=('<div class="social-icons">'
+  '<a class="si-ig" href="https://www.instagram.com/mountainelopement/" target="_blank" rel="noopener" aria-label="Instagram">'+_IG_SVG+'</a>'
+  '<a class="si-fb" href="https://www.facebook.com/blitzkneisser.foto/" target="_blank" rel="noopener" aria-label="Facebook">'+_FB_SVG+'</a>'
+  '<a class="si-pin" href="https://pinterest.com/mountainelopement" target="_blank" rel="noopener" aria-label="Pinterest">'+_PIN_SVG+'</a>'
+  '</div>')
+
 def footer(lang,rel):
     P=prefix(lang,rel)
     return ('<footer><div class="wrap"><div class="cols">'
       f'<div><div class="fbrand">{bild(P,"img/logo/mark-light.png","Mountain Elopement logo")}<span class="fword">Mountain Elopement</span></div>'
-      f'<p>{t(lang,"f_tag")}</p></div>'
+      f'<p>{t(lang,"f_tag")}</p>{SOCIAL_ICONS}</div>'
       f'<div><h5>{t(lang,"f_explore")}</h5><ul>'
       f'<li><a href="{u(P,lang,"how-to-elope-in-the-europe-mountains/")}">{T["nav"]["howto"][lang]}</a></li>'
       f'<li><a href="{u(P,lang,"stories-elopement-mountain/")}">{T["nav"]["stories"][lang]}</a></li>'
@@ -1031,8 +1041,7 @@ def footer(lang,rel):
       f'<li><a href="{u(P,lang,"get-in-touch/")}">{T["nav"]["contact"][lang]}</a></li></ul></div>'
       f'<div><h5>{t(lang,"f_team")}</h5><ul>'
       f'<li><a href="https://blitzkneisser.com" target="_blank" rel="noopener">{t(lang,"f_role_photo")} &middot; Blitzkneisser</a></li>'
-      f'<li><a href="{P_PLAN[1]}" target="_blank" rel="noopener">{t(lang,"f_role_plan")} &middot; Dolomites Wedding Planner</a></li>'
-      '<li><a href="https://www.instagram.com/mountainelopement/" target="_blank" rel="noopener">Instagram</a></li></ul></div></div>'
+      f'<li><a href="{P_PLAN[1]}" target="_blank" rel="noopener">{t(lang,"f_role_plan")} &middot; Dolomites Wedding Planner</a></li></ul></div></div>'
       f'<div class="fine"><span>&copy; 2026 mountain-elopement by blitzkneisser.com</span>'
       f'<span><a href="{u(P,lang,"imprint/")}">{t(lang,"f_imprint")}</a> &middot; <a href="{u(P,lang,"privacy-policy/")}">{t(lang,"f_privacy")}</a> &middot; <a href="#" data-cc-reopen>{CC["settings"][lang]}</a></span></div></div></footer>'
       +consent_banner(lang,P))
