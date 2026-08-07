@@ -1632,9 +1632,9 @@ def build_contact(lang):
            "if(e.target.classList.contains('chip')){e.target.classList.toggle('on');"
            "var h=document.getElementById('interests');if(h)h.value=[].slice.call(box.querySelectorAll('.chip.on'))"
            ".map(function(x){return x.textContent;}).join(', ');}});</script>")
-    # Versand ueber FormSubmit -> foto@blitzkneisser.com (einzig funktionierender Weg; Resend/Cloudflare gibt 502,
-    # c2h.at nimmt @mountain-elopement.com nicht an). Umstellen sobald Cloudflare Email Routing fuer hello@ steht.
-    FS_ENDPOINT='https://formsubmit.co/ajax/foto@blitzkneisser.com'
+    # Versand ueber FormSubmit -> hello@mountain-elopement.com (Cloudflare Email Routing leitet hello@ an
+    # foto@blitzkneisser.com weiter). Resend/Cloudflare-Function gibt 502, daher FormSubmit.
+    FS_ENDPOINT='https://formsubmit.co/ajax/hello@mountain-elopement.com'
     robot={'en':'I am not a robot','de':'Ich bin kein Roboter','es':'No soy un robot','it':'Non sono un robot'}[lang]
     submit_js=(
       "<script>(function(){var f=document.getElementById('ce-form');if(!f)return;"
