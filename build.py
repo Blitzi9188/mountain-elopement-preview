@@ -1632,8 +1632,9 @@ def build_contact(lang):
            "if(e.target.classList.contains('chip')){e.target.classList.toggle('on');"
            "var h=document.getElementById('interests');if(h)h.value=[].slice.call(box.querySelectorAll('.chip.on'))"
            ".map(function(x){return x.textContent;}).join(', ');}});</script>")
-    # Versand ueber eigene Cloudflare-Function -> Resend (saubere, normale Mail an hello@mountain-elopement.com).
-    FS_ENDPOINT='/api/contact'
+    # Versand ueber FormSubmit -> foto@blitzkneisser.com (einzig funktionierender Weg; Resend/Cloudflare gibt 502,
+    # c2h.at nimmt @mountain-elopement.com nicht an). Umstellen sobald Cloudflare Email Routing fuer hello@ steht.
+    FS_ENDPOINT='https://formsubmit.co/ajax/foto@blitzkneisser.com'
     robot={'en':'I am not a robot','de':'Ich bin kein Roboter','es':'No soy un robot','it':'Non sono un robot'}[lang]
     submit_js=(
       "<script>(function(){var f=document.getElementById('ce-form');if(!f)return;"
@@ -1648,9 +1649,9 @@ def build_contact(lang):
       "var fd=new FormData(f);"
       "try{sessionStorage.setItem('me_enquiry',JSON.stringify({name:fd.get('name')||'',email:fd.get('email')||'',date:fd.get('date')||'',interests:fd.get('interests')||'',message:fd.get('message')||''}));}catch(e){}"
       "fetch(ENDPOINT,{method:'POST',body:fd,headers:{'Accept':'application/json'}})"
-      ".then(function(r){return r.json().catch(function(){return {ok:r.ok};});})"
-      ".then(function(d){if(d&&d.ok){st.className='ce-status ok';st.textContent=MSG.ok;window.location.href=THANKYOU;}"
-      "else{st.className='ce-status err';st.textContent=(d&&d.error)||MSG.err;btn.disabled=false;}})"
+      ".then(function(r){return r.json().catch(function(){return {success:String(r.ok)};});})"
+      ".then(function(d){if(d&&(d.success===true||d.success==='true')){st.className='ce-status ok';st.textContent=MSG.ok;window.location.href=THANKYOU;}"
+      "else{st.className='ce-status err';st.textContent=(d&&d.message)||MSG.err;btn.disabled=false;}})"
       ".catch(function(){st.className='ce-status err';st.textContent=MSG.err;btn.disabled=false;});"
       "});})();</script>")
     # Prefill from the price calculator: ?selection=… (chips + message) and ?total=… (price into the message).
@@ -1671,6 +1672,9 @@ def build_contact(lang):
       f'<div class="page-plain"><div class="wrap"><div class="kicker" data-n="{t(lang,"ct_k")}"><span class="line"></span></div>'
       f'<h1>{t(lang,"ct_h")}</h1><p class="lead">{t(lang,"ct_lead")}</p></div></div>'
       f'<section><div class="wrap contact-grid"><form id="ce-form" class="form reveal" name="contact" method="POST" action="{FS_ENDPOINT}">'
+      '<input type="hidden" name="_subject" value="Neue Anfrage &mdash; mountain-elopement.com">'
+      '<input type="hidden" name="_template" value="table">'
+      '<input type="hidden" name="_captcha" value="false">'
       '<input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">'
       f'<input type="hidden" name="language" value="{lang}">'
       f'<div class="kicker" data-n="01" style="margin-bottom:22px">{t(lang,"ct_details")}<span class="line"></span></div>'
