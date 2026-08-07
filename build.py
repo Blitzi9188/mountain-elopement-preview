@@ -1624,7 +1624,7 @@ def build_contact(lang):
            "var h=document.getElementById('interests');if(h)h.value=[].slice.call(box.querySelectorAll('.chip.on'))"
            ".map(function(x){return x.textContent;}).join(', ');}});</script>")
     # Versand ueber FormSubmit (kein Cloudflare/Resend). AJAX-Endpoint liefert JSON.
-    FS_ENDPOINT='https://formsubmit.co/ajax/hello@mountain-elopement.com'
+    FS_ENDPOINT='https://formsubmit.co/ajax/foto@blitzkneisser.com'
     robot={'en':'I am not a robot','de':'Ich bin kein Roboter','es':'No soy un robot','it':'Non sono un robot'}[lang]
     submit_js=(
       "<script>(function(){var f=document.getElementById('ce-form');if(!f)return;"
