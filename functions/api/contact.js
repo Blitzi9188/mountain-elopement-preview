@@ -48,13 +48,13 @@ export async function onRequestPost({ request, env }) {
 
     // 4) E-Mail via Resend senden
     const html = `
-      <h2>New elopement enquiry</h2>
+      <h2>Neue Anfrage &uuml;ber mountain-elopement.com</h2>
       <p><strong>Name:</strong> ${esc(name)}</p>
-      <p><strong>Email:</strong> ${esc(email)}</p>
-      <p><strong>Date:</strong> ${esc(date) || '&mdash;'}</p>
-      <p><strong>Interests:</strong> ${esc(interests) || '&mdash;'}</p>
-      <p><strong>Language:</strong> ${esc(language) || '&mdash;'}</p>
-      <p><strong>Message:</strong><br>${esc(message).replace(/\n/g, '<br>')}</p>`;
+      <p><strong>E-Mail:</strong> ${esc(email)}</p>
+      <p><strong>Datum:</strong> ${esc(date) || '&mdash;'}</p>
+      <p><strong>Interesse:</strong> ${esc(interests) || '&mdash;'}</p>
+      <p><strong>Sprache:</strong> ${esc(language) || '&mdash;'}</p>
+      <p><strong>Nachricht:</strong><br>${esc(message).replace(/\n/g, '<br>')}</p>`;
 
     const send = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -66,7 +66,7 @@ export async function onRequestPost({ request, env }) {
         from: env.FROM_EMAIL,
         to: [env.TO_EMAIL],
         reply_to: email,
-        subject: `New enquiry — ${name}`,
+        subject: `Neue Anfrage — ${name}`,
         html,
       }),
     });
