@@ -1423,13 +1423,12 @@ def build_packages(lang):
     planningcall={'en':'Planning call & personal timeline','de':'Planungscall & persönliche Timeline','es':'Llamada de planificación y cronograma','it':'Call di pianificazione e timeline'}[lang]
     weather={'en':'Weather backup day','de':'Wetter-Ausweichtag','es':'Día alternativo por el clima','it':'Giorno di riserva meteo'}[lang]
     permits={'en':'Permits & logistics handled','de':'Genehmigungen & Logistik übernommen','es':'Permisos y logística incluidos','it':'Permessi e logistica inclusi'}[lang]
-    album={'en':'Heirloom album','de':'Erinnerungsalbum','es':'Álbum de recuerdo','it':'Album ricordo'}[lang]
     tag1={'en':'Just the two of you and the mountains.','de':'Nur ihr beide und die Berge.','es':'Solo vosotros dos y las montañas.','it':'Solo voi due e le montagne.'}[lang]
     tag2={'en':'A fuller day, beautifully held.','de':'Ein voller Tag, rundum begleitet.','es':'Un día completo, bien acompañado.','it':'Una giornata intera, ben accompagnata.'}[lang]
     tag3={'en':'The whole day, fully planned.','de':'Der ganze Tag, komplett geplant.','es':'Todo el día, totalmente planificado.','it':'L\'intera giornata, tutto pianificato.'}[lang]
     t1=tier('01',t(lang,'pk_l1'),t(lang,'pk_t1'),eur_de(PKG_EUR[0]),[f'{photoword} &mdash; 50&ndash;80 {imgword}',f'2&ndash;3 {hrs}',loc,concept,planningcall,gallery],tag=tag1)
     t2=tier('02',t(lang,'pk_l2'),t(lang,'pk_t2'),eur_de(PKG_EUR[1]),[f'{photoword} &mdash; 80&ndash;100 {imgword}',f'4&ndash;5 {hrs}',gropt,flowers,hairmua,locplan,planningcall,weather,gallery],feat=True,tag=tag2)
-    t3=tier('03',t(lang,'pk_l3'),t(lang,'pk_t3'),eur_de(PKG_EUR[2]),[f'{photoword} &mdash; 100&ndash;200 {imgword}',f'6&ndash;8 {hrs}',gr,flowers,hairmua,fullplan,permits,weather,album,gallery],tag=tag3)
+    t3=tier('03',t(lang,'pk_l3'),t(lang,'pk_t3'),eur_de(PKG_EUR[2]),[f'{photoword} &mdash; 100&ndash;200 {imgword}',f'6&ndash;8 {hrs}',gr,flowers,hairmua,fullplan,permits,weather,gallery],tag=tag3)
     eurnote={'en':'All prices in EUR.','de':'Alle Preise in EUR.','es':'Todos los precios en EUR.','it':'Tutti i prezzi in EUR.'}[lang]
     fxnote={'en':'Indicative — the binding price is in EUR. Rates update daily.',
             'de':'Indikativ — verbindlich ist der EUR-Preis. Kurse aktualisieren sich täglich.',
