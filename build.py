@@ -1413,7 +1413,8 @@ def build_packages(lang):
     gropt={'en':'Getting ready (optional)','de':'Getting Ready (optional)','es':'Preparativos (opcional)','it':'Preparativi (opzionale)'}[lang]
     loc={'en':'Location scouting','de':'Location-Scouting','es':'Búsqueda de localización','it':'Sopralluogo location'}[lang]
     concept={'en':'Concept & idea','de':'Konzept & Idee','es':'Concepto e idea','it':'Concept e idea'}[lang]
-    flowers={'en':'Flowers · Hair & Make-up','de':'Blumen · Hair & Make-up','es':'Flores · Peluquería y maquillaje','it':'Fiori · Trucco e acconciatura'}[lang]
+    flowers={'en':'Flowers','de':'Blumen','es':'Flores','it':'Fiori'}[lang]
+    hairmua={'en':'Hair & Make-up','de':'Hair & Make-up','es':'Peluquería y maquillaje','it':'Trucco e acconciatura'}[lang]
     locplan={'en':'Location · Organisation & planning','de':'Location · Organisation & Planung','es':'Localización · Organización y planificación','it':'Location · Organizzazione e pianificazione'}[lang]
     fullplan={'en':'Full planning: accommodation, reception, transfers','de':'Komplette Planung: Unterkunft, Empfang, Transfers','es':'Planificación completa: alojamiento, recepción, traslados','it':'Pianificazione completa: alloggio, ricevimento, trasferimenti'}[lang]
     # deliverables articulated the way competitors list them (adds perceived value, no extra cost)
@@ -1427,8 +1428,8 @@ def build_packages(lang):
     tag2={'en':'A fuller day, beautifully held.','de':'Ein voller Tag, rundum begleitet.','es':'Un día completo, bien acompañado.','it':'Una giornata intera, ben accompagnata.'}[lang]
     tag3={'en':'The whole day, fully planned.','de':'Der ganze Tag, komplett geplant.','es':'Todo el día, totalmente planificado.','it':'L\'intera giornata, tutto pianificato.'}[lang]
     t1=tier('01',t(lang,'pk_l1'),t(lang,'pk_t1'),eur_de(PKG_EUR[0]),[f'{photoword} &mdash; 50&ndash;80 {imgword}',f'2&ndash;3 {hrs}',loc,concept,planningcall,gallery],tag=tag1)
-    t2=tier('02',t(lang,'pk_l2'),t(lang,'pk_t2'),eur_de(PKG_EUR[1]),[f'{photoword} &mdash; 80&ndash;100 {imgword}',f'4&ndash;5 {hrs}',gropt,flowers,locplan,planningcall,weather,gallery],feat=True,tag=tag2)
-    t3=tier('03',t(lang,'pk_l3'),t(lang,'pk_t3'),eur_de(PKG_EUR[2]),[f'{photoword} &mdash; 100&ndash;200 {imgword}',f'6&ndash;8 {hrs}',gr,flowers,fullplan,permits,weather,album,gallery],tag=tag3)
+    t2=tier('02',t(lang,'pk_l2'),t(lang,'pk_t2'),eur_de(PKG_EUR[1]),[f'{photoword} &mdash; 80&ndash;100 {imgword}',f'4&ndash;5 {hrs}',gropt,flowers,hairmua,locplan,planningcall,weather,gallery],feat=True,tag=tag2)
+    t3=tier('03',t(lang,'pk_l3'),t(lang,'pk_t3'),eur_de(PKG_EUR[2]),[f'{photoword} &mdash; 100&ndash;200 {imgword}',f'6&ndash;8 {hrs}',gr,flowers,hairmua,fullplan,permits,weather,album,gallery],tag=tag3)
     eurnote={'en':'All prices in EUR.','de':'Alle Preise in EUR.','es':'Todos los precios en EUR.','it':'Tutti i prezzi in EUR.'}[lang]
     fxnote={'en':'Indicative — the binding price is in EUR. Rates update daily.',
             'de':'Indikativ — verbindlich ist der EUR-Preis. Kurse aktualisieren sich täglich.',
