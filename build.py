@@ -1081,7 +1081,7 @@ def _gallery_files(slug):
     if not os.path.isdir(d): return []
     # nur Basisbilder (die -480/-960/-1600-Varianten aus tools/resize.py ausschliessen)
     return [f for f in sorted(os.listdir(d))
-            if f.lower().endswith('.webp') and not re.search(r'-(480|960|1600)\.webp$', f)]
+            if f.lower().endswith('.webp') and not re.search(r'-(480|960|1600|2000)\.webp$', f)]
 
 def _render_gallery(srcs,alt,quote='',full=False,P=''):
     n=len(srcs)

@@ -13,7 +13,7 @@ from PIL import Image, ImageOps
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IMGDIR = os.path.join(ROOT, 'img')
-WIDTHS = [480, 960, 1600]
+WIDTHS = [480, 960, 1600, 2000]
 EXTS = ('.jpg', '.jpeg', '.png', '.webp')
 SUFFIX = tuple(f'-{w}' for w in WIDTHS)
 
@@ -48,7 +48,7 @@ def main():
                 if os.path.exists(out):
                     continue
                 th = round(h * tw / w)
-                im.resize((tw, th), Image.LANCZOS).save(out, 'WEBP', quality=82, method=6)
+                im.resize((tw, th), Image.LANCZOS).save(out, 'WEBP', quality=88, method=6)
                 made += 1
             manifest[rel] = {'w': w, 'h': h, 'v': have}
     with open(os.path.join(IMGDIR, '_manifest.json'), 'w') as f:
