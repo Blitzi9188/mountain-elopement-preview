@@ -3,6 +3,19 @@
 # HTML bekommt KEINE Regel: Cloudflare Pages liefert HTML standardmaessig als
 # "public, max-age=0, must-revalidate". Ein /*-Katchall wuerde von Cloudflare
 # kumulativ auf die Asset-Pfade angewandt und den Cache-Control-Header verketten.
+# --- Security-Header fuer ALLE Seiten ---
+# Bewusst NUR Security-Header (kein Cache-Control), damit die oben beschriebene
+# Cache-Control-Verkettung durch einen /*-Katchall NICHT ausgeloest wird.
+# CSP ohne script-src: haertet Framing/Plugins/base-uri + erzwingt HTTPS,
+# ohne GTM oder Inline-Skripte zu brechen.
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), camera=(), microphone=(), payment=()
+  Content-Security-Policy: frame-ancestors 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests
+  Strict-Transport-Security: max-age=31536000
+
 /img/*
   Cache-Control: public, max-age=31536000, immutable
 
