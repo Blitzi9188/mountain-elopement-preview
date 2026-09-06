@@ -1094,6 +1094,8 @@ def _render_gallery(srcs,alt,quote='',full=False,P=''):
         if i==qpos:
             out.append(f'<figure class="eq"><blockquote>{quote}</blockquote></figure>')
         gf='gfull' if i in wide else ''
+        _m=IMG_MANIFEST.get(src)
+        if _m and _m.get('h',0)>_m.get('w',0): gf=(gf+' pt').strip()
         out.append(bild(P,src,alt,klasse=gf,sizes=gsizes))
     out.append('</div>')
     return ''.join(out)
@@ -1175,7 +1177,7 @@ def build_home(lang):
       '</div></section>'
       '<hr class="hr"><section><div class="wrap"><div class="section-head reveal">'
       f'<div class="kicker" data-n="02">{t(lang,"sel_k")}<span class="line"></span></div><h2>{t(lang,"sel_h")}</h2></div><div class="story-grid preview6">'
-      +story_card(lang,P,STORIES[0],big=True)+story_card(lang,P,STORIES[7],big=True)
+      +story_card(lang,P,STORIES[18],big=True)+story_card(lang,P,STORIES[7],big=True)
       +story_card(lang,P,STORIES[3])+story_card(lang,P,STORIES[4])+story_card(lang,P,STORIES[5])+story_card(lang,P,STORIES[10])
       +f'</div><div style="margin-top:44px" class="reveal"><a href="{u(P,lang,"stories-elopement-mountain/")}" class="btn">{t(lang,"view_all")}</a></div></div></section>'
       '<section style="padding-top:0"><div class="wrap"><div class="figures reveal">'
@@ -1242,9 +1244,9 @@ def build_howto(lang):
 
 def build_stories(lang):
     rel='stories-elopement-mountain/'; P=prefix(lang,rel)
-    cards=story_card(lang,P,STORIES[0],big=True)+story_card(lang,P,STORIES[7],big=True)
+    cards=story_card(lang,P,STORIES[18],big=True)+story_card(lang,P,STORIES[0],big=True)
     for i,s in enumerate(STORIES):
-        if i in (0,7): continue
+        if i in (18,0): continue
         cards+=story_card(lang,P,s)
     body=(nav(lang,rel,'stories')+
       f'<div class="page-plain"><div class="wrap"><div class="kicker" data-n="{t(lang,"st_k")}"><span class="line"></span></div>'

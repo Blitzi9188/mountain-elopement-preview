@@ -574,3 +574,6 @@ footer .fine{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
 .pi-schedule ul{list-style:none;margin:0;padding:0}
 .pi-schedule li{font-family:var(--serif);font-size:18px;color:var(--ink);padding:10px 0;border-bottom:1px solid var(--line)}
 .pi-schedule li:last-child{border-bottom:0}
+
+/* Story-Galerien: Hochformate als 1:1 zeigen (Vollbild bleibt per Lightbox) */
+.gallery img.pt{aspect-ratio:1/1;object-fit:cover}
