@@ -34,7 +34,11 @@ Valid from 1 October 2026
 
 (1) If the client cancels, the booking fee already paid is retained by the Photographer as a cancellation fee.
 
-(2) If the client cancels less than 60 days before the agreed date, an additional 50 per cent of the remaining fee is payable, as the date can generally no longer be rebooked within that period. The client may prove that no loss or a substantially lower loss was incurred.
+(2) In addition to the booking fee, the following cancellation scale applies to the remaining fee, as the date may no longer be available for rebooking depending on the timing of the cancellation:
+– Cancellation more than 12 months before the agreed date: 50 per cent of the remaining fee already paid is refunded.
+– Cancellation 6 to 12 months before the agreed date: 30 per cent of the remaining fee already paid is refunded.
+– Cancellation less than 6 months before the agreed date: no refund.
+The client may prove that no loss or a substantially lower loss was incurred.
 
 (3) Postponement is only possible to a replacement date agreed with the Photographer and is treated as a new booking at the rates then applicable; payments already made are credited.
 
