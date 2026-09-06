@@ -579,4 +579,9 @@ footer .fine{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
 .gallery img.pt{aspect-ratio:1/1;object-fit:cover}
 
 /* Zwischenblock (Planung + Ablauf) zwischen den Galerie-Teilen */
-.pi-interlude{margin:clamp(26px,4vw,54px) 0}
+.pi-interlude{margin:0;padding:clamp(8px,1.4vw,18px) 0}
+
+/* Split-Story: kompakte Abstaende um den Zwischenblock */
+.gal-sec{padding:clamp(12px,1.8vw,24px) 0}
+.pi-interlude .pi-sub{margin-top:0}
+.pi-interlude .pi-schedule{margin-bottom:clamp(6px,1.2vw,14px)}

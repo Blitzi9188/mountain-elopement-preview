@@ -1384,9 +1384,9 @@ def build_portfolio(lang):
               f'<div class="cap" style="margin-bottom:16px">{catlinks}</div>'
               f'<p class="lead pi-lead">{lead}</p>{body_narr}'
               f'<div class="gal-head reveal"><span>{t(lang,"pi_gallery")}</span></div></div></div></div>'
-              f'<section><div class="gallery-wrap">{g1}</div></section>'
+              f'<section class="gal-sec"><div class="gallery-wrap">{g1}</div></section>'
               f'<section class="pi-interlude"><div class="gallery-wrap"><div class="pi-intro reveal">{body_plan}{sched2}</div></div></section>'
-              f'<section><div class="gallery-wrap">{g2}</div></section>'
+              f'<section class="gal-sec"><div class="gallery-wrap">{g2}</div></section>'
               f'<section class="pi-outro"><div class="wrap reveal"><p>{ex["closing"][lang]}</p></div></section>')
         else:
             main=(
