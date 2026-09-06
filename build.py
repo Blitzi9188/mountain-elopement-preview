@@ -1369,13 +1369,25 @@ def build_portfolio(lang):
           f'{t(lang,"f_role_photo")} <a class="partner-inline" href="https://hochzeitsfotograf.tirol" target="_blank" rel="noopener">Blitzkneisser</a>')
         ex=PI_EXTRA.get(slug)
         sched_html=''; credits_html='<p class="small pi-credits">'+credits+'</p>'; outro_txt=t(lang,'pi_outro')
-        if ex:
-            bodyhtml=ex['body'][lang]
-            _lis=''.join('<li>'+_x+'</li>' for _x in ex['schedule'][lang])
-            sched_html='<div class="pi-schedule reveal"><h3>'+ex['sched_h'][lang]+'</h3><ul>'+_lis+'</ul></div>'
-            credits_html=''; outro_txt=ex['closing'][lang]
         if slug==FEAT_HELI_SLUG:
             main=feature_heli(lang,P,slug,img,titles[lang])
+        elif ex:
+            _full=ex['body'][lang]; _i=_full.find("<h2 class='pi-sub'>")
+            body_narr=_full[:_i] if _i>=0 else _full; body_plan=_full[_i:] if _i>=0 else ''
+            _lis=''.join('<li>'+_x+'</li>' for _x in ex['schedule'][lang])
+            sched2='<div class="pi-schedule reveal"><h3>'+ex['sched_h'][lang]+'</h3><ul>'+_lis+'</ul></div>'
+            _srcs=[f'img/gallery/{slug}/{fn}' for fn in _gallery_files(slug)[:MAX_GALLERY]]
+            g1=_render_gallery(_srcs[:6],titles[lang],P=P); g2=_render_gallery(_srcs[6:],titles[lang],quote,P=P)
+            main=(f'<section class="page-hero" style="padding:0">{herobg(P,f"img/stories/{img}.webp","")}'
+              f'<div class="content"><div class="wrap"><div class="kicker" data-n="Story N&deg;{num:02d}"><span class="line"></span></div><h1>{titles[lang]}</h1></div></div></section>'
+              f'<div class="page-plain" style="border-top:0"><div class="wrap"><div class="pi-intro reveal">'
+              f'<div class="cap" style="margin-bottom:16px">{catlinks}</div>'
+              f'<p class="lead pi-lead">{lead}</p>{body_narr}'
+              f'<div class="gal-head reveal"><span>{t(lang,"pi_gallery")}</span></div></div></div></div>'
+              f'<section><div class="gallery-wrap">{g1}</div></section>'
+              f'<section class="pi-interlude"><div class="gallery-wrap"><div class="pi-intro reveal">{body_plan}{sched2}</div></div></section>'
+              f'<section><div class="gallery-wrap">{g2}</div></section>'
+              f'<section class="pi-outro"><div class="wrap reveal"><p>{ex["closing"][lang]}</p></div></section>')
         else:
             main=(
               f'<section class="page-hero" style="padding:0">{herobg(P,f"img/stories/{img}.webp","")}'

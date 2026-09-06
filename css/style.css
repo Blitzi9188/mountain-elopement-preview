@@ -577,3 +577,6 @@ footer .fine{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
 
 /* Story-Galerien: Hochformate als 1:1 zeigen (Vollbild bleibt per Lightbox) */
 .gallery img.pt{aspect-ratio:1/1;object-fit:cover}
+
+/* Zwischenblock (Planung + Ablauf) zwischen den Galerie-Teilen */
+.pi-interlude{margin:clamp(26px,4vw,54px) 0}
