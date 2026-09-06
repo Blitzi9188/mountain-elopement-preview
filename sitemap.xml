@@ -257,6 +257,38 @@
 <xhtml:link rel="alternate" hreflang="x-default" href="https://mountain-elopement.com/privacy-policy/"/>
 </url>
 <url>
+<loc>https://mountain-elopement.com/terms/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://mountain-elopement.com/terms/"/>
+<xhtml:link rel="alternate" hreflang="de" href="https://mountain-elopement.com/de/terms/"/>
+<xhtml:link rel="alternate" hreflang="es" href="https://mountain-elopement.com/es/terms/"/>
+<xhtml:link rel="alternate" hreflang="it" href="https://mountain-elopement.com/it/terms/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://mountain-elopement.com/terms/"/>
+</url>
+<url>
+<loc>https://mountain-elopement.com/de/terms/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://mountain-elopement.com/terms/"/>
+<xhtml:link rel="alternate" hreflang="de" href="https://mountain-elopement.com/de/terms/"/>
+<xhtml:link rel="alternate" hreflang="es" href="https://mountain-elopement.com/es/terms/"/>
+<xhtml:link rel="alternate" hreflang="it" href="https://mountain-elopement.com/it/terms/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://mountain-elopement.com/terms/"/>
+</url>
+<url>
+<loc>https://mountain-elopement.com/es/terms/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://mountain-elopement.com/terms/"/>
+<xhtml:link rel="alternate" hreflang="de" href="https://mountain-elopement.com/de/terms/"/>
+<xhtml:link rel="alternate" hreflang="es" href="https://mountain-elopement.com/es/terms/"/>
+<xhtml:link rel="alternate" hreflang="it" href="https://mountain-elopement.com/it/terms/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://mountain-elopement.com/terms/"/>
+</url>
+<url>
+<loc>https://mountain-elopement.com/it/terms/</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://mountain-elopement.com/terms/"/>
+<xhtml:link rel="alternate" hreflang="de" href="https://mountain-elopement.com/de/terms/"/>
+<xhtml:link rel="alternate" hreflang="es" href="https://mountain-elopement.com/es/terms/"/>
+<xhtml:link rel="alternate" hreflang="it" href="https://mountain-elopement.com/it/terms/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://mountain-elopement.com/terms/"/>
+</url>
+<url>
 <loc>https://mountain-elopement.com/elopement-dolomites/</loc>
 <xhtml:link rel="alternate" hreflang="en" href="https://mountain-elopement.com/elopement-dolomites/"/>
 <xhtml:link rel="alternate" hreflang="de" href="https://mountain-elopement.com/de/elopement-dolomites/"/>
