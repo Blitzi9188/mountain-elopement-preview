@@ -381,7 +381,7 @@ footer .fbrand{display:flex;align-items:center;gap:14px;font-family:var(--sans);
 footer .fbrand img{height:40px;width:auto}
 footer .fbrand .fword span{color:var(--accent)}
 footer p{font-family:var(--serif);font-size:15px;color:#a7a199;max-width:340px;margin:16px 0 0}
-footer h5{text-transform:uppercase;letter-spacing:.16em;font-size:11.5px;color:#cfc9bf;margin:0 0 14px}
+footer .f-h{text-transform:uppercase;letter-spacing:.16em;font-size:11.5px;color:#cfc9bf;margin:0 0 14px}
 footer ul{list-style:none;margin:0;padding:0}
 footer li{padding:6px 0}
 footer li a:hover{color:#fff}

@@ -449,6 +449,23 @@ T = {
 }
 def t(lang,key): return T[key][lang]
 
+def _clip(s,n=160):
+    s=' '.join(str(s).split())
+    return s if len(s)<=n else s[:n-1].rsplit(' ',1)[0].rstrip(' ,.;:—-')+'…'
+def _pi_desc(slug,lang):
+    try: s=_plain(PI_TEXT[slug]['lead'][lang])
+    except Exception: s=''
+    if len(' '.join(s.split()))<70: s=_plain(DESC['stories'][lang])
+    return _clip(s)
+def _guide_desc(g,lang):
+    s=_plain(g.get('intro',{}).get(lang,'')) or _plain(g.get('excerpt',{}).get(lang,''))
+    return _clip(s)
+_CATDESC={'en':'Real {x} stories from the Dolomites and the Alps — elopements and proposals on summits, by lakes and on ridges, photographed as they truly felt.','de':'Echte {x}-Stories aus den Dolomiten und Alpen — Elopements und Anträge auf Gipfeln, an Seen und Graten, fotografiert, wie es sich anfühlte.','es':'Historias reales de {x} en los Dolomitas y los Alpes — elopements y pedidas en cumbres, lagos y crestas, tal como se sintieron.','it':'Storie vere di {x} nelle Dolomiti e nelle Alpi — elopement e proposte in vetta, ai laghi e sulle creste, come si sono vissute.'}
+def _cat_desc(slug,lang):
+    return _clip(_CATDESC.get(lang,_CATDESC['en']).replace('{x}',catname(slug,lang).lower()))
+LEGAL_DESC={'imprint':{'en':'Legal information and contact details for Mountain Elopement — Andreas Kiss, Blitzkneisser Photography, Austria.','de':'Impressum und Kontaktdaten von Mountain Elopement — Andreas Kiss, Blitzkneisser Photography, Österreich.','es':'Información legal y datos de contacto de Mountain Elopement — Andreas Kiss, Blitzkneisser Photography, Austria.','it':'Note legali e contatti di Mountain Elopement — Andreas Kiss, Blitzkneisser Photography, Austria.'},'privacy-policy':{'en':'How Mountain Elopement handles your personal data on this website — what we collect, why, and your rights under the GDPR.','de':'Wie Mountain Elopement eure personenbezogenen Daten auf dieser Website verarbeitet — was, warum und eure Rechte nach der DSGVO.','es':'Cómo trata Mountain Elopement vuestros datos personales en este sitio — qué recopilamos, por qué y vuestros derechos (RGPD).','it':'Come Mountain Elopement tratta i vostri dati personali su questo sito — cosa raccogliamo, perché e i vostri diritti (GDPR).'},'terms':{'en':'Terms and conditions for Mountain Elopement bookings, deliveries and services — valid from 1 October 2026.','de':'Allgemeine Geschäftsbedingungen für Buchungen, Lieferungen und Leistungen von Mountain Elopement — gültig ab 1. Oktober 2026.','es':'Términos y condiciones para reservas, entregas y servicios de Mountain Elopement — en vigor desde el 1 de octubre de 2026.','it':'Termini e condizioni per prenotazioni, consegne e servizi di Mountain Elopement — in vigore dal 1° ottobre 2026.'}}
+
+
 # reusable fact labels
 LBL={'season':{'en':'Best season','de':'Beste Zeit','es':'Mejor época'},
  'diff':{'en':'Difficulty','de':'Anspruch','es':'Dificultad'},
@@ -853,8 +870,8 @@ IT={
 IT_LBL={'season':'Periodo migliore','diff':'Difficoltà','reach':'Come arrivare','regions':'Regioni','access':'Accesso','light':'Luce migliore','lead':'Preavviso','guests':'Ospiti','includes':'Include'}
 IT_CATS={'couple':'Coppie','dolomites':'Dolomiti','mountain':'Montagna','lake':'Laghi','elopement':'Elopement','engagement':'Fidanzamento'}
 IT_ST={'climbing-wedding':'Un elopement nei prati del Passo Giau, Dolomiti','sunrise-elopement-in-the-dolomites':'Un magico elopement all’alba nelle Dolomiti','mountain-engagement':'Proposta in vetta &mdash; fidanzamento in montagna','crystal-clear-water-elopement':'Elopement di montagna presso acque cristalline','hiking-elopement-lagazuoi-dolomites':'Un matrimonio d’inverno in Val Gardena','pizza-elopement-at-tre-cime-cadini-di-misurina':'Elopement con pizza alle Tre Cime','mountain-elopement-dolomiten':'Elopement nelle Dolomiti in tre location','sunrise-dolomites-elopement':'Alba nelle Dolomiti','official-married-in-the-alps':'Matrimonio ufficiale sulla cima del Tirolo','ultimate-italian-elopement':'Un elopement in tre giorni','adventure-helicopter-elopement-dolomites':'Elopement d’avventura in elicottero nelle Dolomiti','lake-elopement-tyrol-mountains':'Elopement al lago','a-journey-of-love-and-adventure':'Un elopement sugli sci nelle Dolomiti d’inverno','couple-shoot-photo':'Servizio di coppia in autunno','sunset-elopement-tyrol':'Elopement al tramonto in vetta','intimate-lake-eibsee-elopement':'Elopement intimo al lago Eibsee','lago-di-braies-elopement':'Elopement al Lago di Braies','rainy-lago-di-braies-pizza-elopement':'Barche a remi e pizza al Lago di Braies &mdash; un elopement','three-stop-helicopter-elopement-dolomites':'Un elopement in elicottero con tre tappe nelle Dolomiti'}
-IT_TITLES={'home':'Mountain Elopement — Dove l’avventura incontra il romanticismo','howto':f'Elopement in Europa {SEO_YEAR} — guida per monti e laghi','stories':'Storie — Mountain Elopement','packages':f'Pacchetti elopement {SEO_YEAR} — Dolomiti, da 6.000 €','team':'Il nostro team e i partner — Mountain Elopement','contact':'Contatti — Mountain Elopement','thankyou':'Grazie per la vostra richiesta — Mountain Elopement'}
-IT_DESC={'home':'Fotografia e pianificazione editoriale di elopement nelle Dolomiti e nelle Alpi.','howto':f'Aggiornata per il {SEO_YEAR}: la guida al vostro elopement nelle Dolomiti e nelle Alpi — luoghi, costi, pratiche e pianificazione.','stories':'Storie di elopement di montagna nelle Dolomiti e nelle Alpi.','packages':f'Pacchetti elopement {SEO_YEAR} da 6.000 €: fotografia, pianificazione, film, fiori e trucco.','team':'Il team dietro il vostro elopement — fotografia, pianificazione, film e trucco.','contact':'Raccontateci la vostra storia. Fotografia e pianificazione di elopement nelle Dolomiti e nelle Alpi.','thankyou':'Grazie — abbiamo ricevuto la vostra richiesta.'}
+IT_TITLES={'home':'Mountain Elopement — Avventura e romanticismo','howto':f'Elopement in Europa {SEO_YEAR} — guida per monti e laghi','stories':'Storie di elopement reali — Dolomiti e Alpi','packages':f'Pacchetti elopement {SEO_YEAR} — Dolomiti, da 6.000 €','team':'Il nostro team e i partner — Mountain Elopement','contact':'Contatti — Mountain Elopement','thankyou':'Grazie per la vostra richiesta — Mountain Elopement'}
+IT_DESC={'home':'Fotografia e pianificazione editoriale di elopement nelle Dolomiti e nelle Alpi.','howto':f'Aggiornata per il {SEO_YEAR}: la guida al vostro elopement nelle Dolomiti e nelle Alpi — luoghi, costi, pratiche e pianificazione.','stories':'Storie vere di elopement di montagna nelle Dolomiti e nelle Alpi — promesse in vetta, la prima luce sulle creste e la quiete sopra le nuvole.','packages':f'Pacchetti elopement {SEO_YEAR} da 6.000 €: fotografia, pianificazione, film, fiori e trucco.','team':'Il team dietro il vostro elopement — fotografia, pianificazione, film e trucco.','contact':'Raccontateci la vostra storia. Fotografia e pianificazione di elopement nelle Dolomiti e nelle Alpi.','thankyou':'Grazie — abbiamo ricevuto la vostra richiesta.'}
 IT_GUIDES={
  'dolomites-elopement-guide':{'title':'Elopement nelle Dolomiti','excerpt':'Tutto ciò che serve per sposarvi tra le cime più belle d’Italia.','intro':'Le Dolomiti sono uno dei luoghi più mozzafiato d’Europa per un elopement &mdash; cime drammatiche, laghi turchesi e una luce che tinge la roccia di rosa all’alba. Ecco come rendere il vostro giorno qui semplice.','sec':[('Periodo migliore','Da fine giugno a settembre il tempo è stabile e i rifugi aperti. Per meno folla e larici dorati, pianificate a fine settembre.'),('Dove scambiarvi le promesse','Dalle creste del Seceda alle rive del Lago di Braies e alle Tre Cime, vi aiutiamo a scegliere un luogo adatto alla vostra forma fisica e alla vostra visione.'),('Renderlo ufficiale','In Italia potete sposarvi legalmente con qualche pratica in anticipo, oppure celebrare una cerimonia simbolica e completare la parte legale a casa. Vi indichiamo la strada giusta.'),('Come arrivare: passi, strade a pedaggio e funivie','La maggior parte delle coppie atterra a Venezia, Verona o Innsbruck e guida l\'ultimo tratto. I grandi passi &mdash; Giau, Falzarego e Pordoi &mdash; sono gratuiti e panoramici, ma due luoghi hanno un costo o limitazioni: la strada a pedaggio delle Tre Cime di Lavaredo sopra Misurina (circa 30&ndash;45&nbsp;&euro; ad auto in stagione) sale quasi sotto le cime, e il Lago di Braies limita il traffico estivo verso il lago dalle 10 alle 16 circa, perciò lì fotografiamo alla prima luce. Dove finisce la strada spesso inizia una funivia &mdash; Seceda sopra Ortisei, Lagazuoi dal Passo Falzarego, Sass Pordoi dal Passo Pordoi. Guardate [[g:most-beautiful-dolomites-spots|i nostri luoghi preferiti delle Dolomiti]] per sapere dove porta ciascuna.'),('Dove alloggiare','Cortina d\'Ampezzo, Ortisei in Val Gardena e i paesi dell\'Alta Badia sono le basi più comode &mdash; a un\'ora dai luoghi principali e pieni di rifugi per una cena di nozze. Per una cerimonia all\'alba prenotiamo spesso un rifugio, così dormite in montagna e vi svegliate già lì; un esempio reale è [[s:sunrise-dolomites-elopement|questo albeggiare nelle Dolomiti]], e [[g:sunrise-or-sunset-elopement|alba o tramonto?]] vi aiuta a scegliere la luce.')]},
  'elope-in-austria':{'title':'Elopement in Austria e Tirolo','excerpt':'Laghi alpini, alte creste e un matrimonio legale semplice.','intro':'Il Tirolo è casa nostra. Dalle cime sopra Innsbruck ai laghi nascosti, l’Austria rende l’elopement semplice &mdash; anche dal punto di vista legale.','sec':[('Matrimonio legale in Austria','L’Austria consente cerimonie ufficiali in municipio e, in alcune regioni, in splendide location all’aperto. Coordiniamo appuntamento e pratiche.'),('Location migliori','La Nordkette sopra Innsbruck, la Zillertal e innumerevoli laghi alpini sono facilmente raggiungibili.'),('Come arrivare','Innsbruck ha un proprio aeroporto e collegamenti rapidi con Monaco e Venezia, il che rende il Tirolo una delle regioni alpine più accessibili.'),('Funivie e strade a pedaggio alpine','Innsbruck è l\'unica città delle Alpi con l\'alta montagna alla porta: la funicolare Hungerburgbahn e le funivie della Nordkette vi portano dal centro storico all\'Hafelekar, a 2.256&thinsp;m, in circa venti minuti. Più all\'interno, due strade a pedaggio aprono acque turchesi &mdash; la Schlegeis Alpenstraße in Zillertal (circa 13&nbsp;&euro; ad auto) termina a un bacino azzurro latte, e le strade d\'alta quota di Kühtai e Timmelsjoch salgono ben oltre il limite del bosco. Grandi scenari alpini quasi senza camminare.'),('Dove amiamo scambiare le promesse in Tirolo','La nostra rosa: il protetto Obernberger See presso il Brennero, lo smeraldo Schlegeisspeicher in Zillertal e i quieti laghetti d\'alta quota sopra Kühtai. Tutti vicini a Innsbruck eppure in un altro mondo &mdash; una vera giornata tirolese è [[s:lake-elopement-tyrol-mountains|questo elopement al lago alpino]], oppure, se lo volete legale in vetta, [[s:official-married-in-the-alps|un ufficiale di stato civile vero in montagna]]. Altri preferiti in [[g:best-alps-elopement-locations|le nostre migliori location alpine]].')]},
@@ -1037,12 +1054,12 @@ def footer(lang,rel):
     return ('<footer><div class="wrap"><div class="cols">'
       f'<div><div class="fbrand">{bild(P,"img/logo/mark-light.png","Mountain Elopement logo")}<span class="fword">Mountain Elopement</span></div>'
       f'<p>{t(lang,"f_tag")}</p>{SOCIAL_ICONS}</div>'
-      f'<div><h5>{t(lang,"f_explore")}</h5><ul>'
+      f'<div><p class="f-h">{t(lang,"f_explore")}</p><ul>'
       f'<li><a href="{u(P,lang,"how-to-elope-in-the-europe-mountains/")}">{T["nav"]["howto"][lang]}</a></li>'
       f'<li><a href="{u(P,lang,"stories-elopement-mountain/")}">{T["nav"]["stories"][lang]}</a></li>'
       f'<li><a href="{u(P,lang,"our-packages/")}">{T["nav"]["packages"][lang]}</a></li>'
       f'<li><a href="{u(P,lang,"get-in-touch/")}">{T["nav"]["contact"][lang]}</a></li></ul></div>'
-      f'<div><h5>{t(lang,"f_team")}</h5><ul>'
+      f'<div><p class="f-h">{t(lang,"f_team")}</p><ul>'
       f'<li><a href="https://blitzkneisser.com" target="_blank" rel="noopener">{t(lang,"f_role_photo")} &middot; Blitzkneisser</a></li>'
       f'<li><a href="{P_PLAN[1]}" target="_blank" rel="noopener">{t(lang,"f_role_plan")} &middot; Dolomites Wedding Planner</a></li>'
       f'<li><a href="https://nomattertheweather.it/" target="_blank" rel="noopener">{t(lang,"f_role_film")} &middot; No Matter The Weather</a></li>'
@@ -1058,13 +1075,13 @@ def write(lang,rel,html):
     full=os.path.join(ROOT,path); os.makedirs(os.path.dirname(full),exist_ok=True)
     open(full,'w').write(html)
 
-def story_card(lang,P,s,big=False):
+def story_card(lang,P,s,big=False,hl='h3'):
     num,slug,img,cats,titles=s
     tags=' &mdash; '.join(catname(c,lang) for c in cats[:2])
     cls='st big' if big else 'st'
     return (f'<a class="{cls} reveal" href="{u(P,lang,"portfolio-item/"+slug+"/")}">'
         f'<div class="imgwrap">{bild(P,f"img/stories/{img}.webp",titles[lang],sizes="(max-width:520px) 100vw, (max-width:860px) 50vw, 380px")}</div>'
-        f'<div class="no">N&deg;{num:02d}</div><h3>{titles[lang]}</h3><div class="tags">{tags}</div></a>')
+        f'<div class="no">N&deg;{num:02d}</div><{hl}>{titles[lang]}</{hl}><div class="tags">{tags}</div></a>')
 
 LB_JS=("<script>var imgs=[].slice.call(document.querySelectorAll('.gallery img'));"
  "var srcs=imgs.map(function(x){return x.getAttribute('src');});var N=srcs.length;"
@@ -1111,18 +1128,18 @@ def gallery_html(lang,P,slug,alt,quote=''):
     return _render_gallery(srcs,alt,quote,P=P)
 
 TITLES={  # <title> per page
- 'home':{'en':'Mountain Elopement | Intimate Weddings & Adventure Elopements','de':'Mountain Elopement — Wo Abenteuer auf Romantik trifft','es':'Mountain Elopement — Donde la aventura se une al romance'},
+ 'home':{'en':'Mountain Elopement | Intimate & Adventure Elopements','de':'Mountain Elopement — Wo Abenteuer auf Romantik trifft','es':'Mountain Elopement — Donde la aventura se une al romance'},
  'howto':{'en':f'How to Elope in Europe {SEO_YEAR} — Mountain &amp; Lake Guide','de':f'Elopement in Europa {SEO_YEAR} — Guide für Berge &amp; Seen','es':f'Elopement en Europa {SEO_YEAR} — guía de montaña y lago'},
- 'stories':{'en':'Stories — Mountain Elopement','de':'Stories — Mountain Elopement','es':'Historias — Mountain Elopement'},
+ 'stories':{'en':'Real Elopement Stories — Dolomites & Alps','de':'Echte Elopement-Stories — Dolomiten & Alpen','es':'Historias reales de elopement — Dolomitas y Alpes'},
  'packages':{'en':f'Elopement Packages {SEO_YEAR} — Dolomites &amp; Alps from €6,000','de':f'Elopement-Pakete {SEO_YEAR} — Dolomiten &amp; Alpen ab 6.000 €','es':f'Paquetes elopement {SEO_YEAR} — Dolomitas desde 6.000 €'},
  'team':{'en':'Our Team & Partners — Mountain Elopement','de':'Unser Team & Partner — Mountain Elopement','es':'Nuestro equipo y socios — Mountain Elopement'},
  'contact':{'en':'Contact — Mountain Elopement','de':'Kontakt — Mountain Elopement','es':'Contacto — Mountain Elopement'},
  'thankyou':{'en':'Thank You for Your Inquiry — Mountain Elopement','de':'Danke für eure Anfrage — Mountain Elopement','es':'Gracias por vuestra consulta — Mountain Elopement'},
 }
 DESC={
- 'home':{'en':'Plan your unforgettable Mountain Elopement. We create intimate weddings with breathtaking locations, photography, film & full planning across Europe.','de':'Editorial-Elopement-Fotografie & Planung in den Dolomiten/Alpen.','es':'Fotografía y planificación editorial de elopements en los Dolomitas y los Alpes.'},
- 'howto':{'en':f'Updated for {SEO_YEAR}: a practical guide to eloping in the European mountains — where to go, what it costs, the legal paperwork, and how to plan a day that feels like yours.','de':f'Aktualisiert für {SEO_YEAR}: euer Leitfaden für ein Elopement in den Dolomiten und Alpen — Orte, Kosten, Papiere und Planung.','es':f'Actualizado para {SEO_YEAR}: guía para fugarse en los Dolomitas y los Alpes — lugares, costes, papeleo y planificación.'},
- 'stories':{'en':'Mountain elopement stories from the Dolomites and the Alps.','de':'Berg-Elopement-Stories aus den Dolomiten/Alpen.','es':'Historias de elopement de montaña en los Dolomitas y los Alpes.'},
+ 'home':{'en':'Plan your unforgettable Mountain Elopement. We create intimate weddings with breathtaking locations, photography, film & full planning across Europe.','de':'Editorial-Elopement-Fotografie und Planung in den Dolomiten und Alpen — intime Berghochzeiten, nur ihr beide und ein Gipfel.','es':'Fotografía y planificación editorial de elopements en los Dolomitas y los Alpes.'},
+ 'howto':{'en':f'Updated for {SEO_YEAR}: a practical guide to eloping in the Dolomites & Alps — where to go, what it costs, the paperwork, and how to plan your day.','de':f'Aktualisiert für {SEO_YEAR}: euer Leitfaden für ein Elopement in den Dolomiten und Alpen — Orte, Kosten, Papiere und Planung.','es':f'Actualizado para {SEO_YEAR}: guía para fugarse en los Dolomitas y los Alpes — lugares, costes, papeleo y planificación.'},
+ 'stories':{'en':'Real mountain elopement stories from the Dolomites and the Alps — vows on summits, first light on the ridges and quiet moments above the clouds.','de':'Echte Berg-Elopement-Stories aus den Dolomiten und Alpen — Gelübde auf Gipfeln, erstes Licht auf den Graten und stille Momente über den Wolken.','es':'Historias reales de elopement de montaña en los Dolomitas y los Alpes — votos en las cumbres, la primera luz y momentos de calma sobre las nubes.'},
  'packages':{'en':f'Elopement packages for {SEO_YEAR} from €6,000: photography, planning, film, flowers and make-up.','de':f'Elopement-Pakete {SEO_YEAR} ab 6.000 €: Fotografie, Planung, Film, Blumen und Make-up.','es':f'Paquetes de elopement {SEO_YEAR} desde 6.000 €: fotografía, planificación, film, flores y maquillaje.'},
  'team':{'en':'The team behind your elopement — photography, planning, film and make-up.','de':'Das Team hinter eurem Elopement — Fotografie, Planung, Film und Make-up.','es':'El equipo detrás de vuestro elopement — fotografía, planificación, film y maquillaje.'},
  'contact':{'en':'Tell us your story. Elopement photography & planning in the Dolomites and the Alps.','de':'Erzählt uns eure Geschichte. Elopement-Fotografie & Planung in den Dolomiten/Alpen.','es':'Contadnos vuestra historia. Fotografía y planificación de elopements en los Dolomitas y los Alpes.'},
@@ -1246,10 +1263,10 @@ def build_howto(lang):
 
 def build_stories(lang):
     rel='stories-elopement-mountain/'; P=prefix(lang,rel)
-    cards=story_card(lang,P,STORIES[18],big=True)+story_card(lang,P,STORIES[0],big=True)
+    cards=story_card(lang,P,STORIES[18],big=True,hl='h2')+story_card(lang,P,STORIES[0],big=True,hl='h2')
     for i,s in enumerate(STORIES):
         if i in (18,0): continue
-        cards+=story_card(lang,P,s)
+        cards+=story_card(lang,P,s,hl='h2')
     body=(nav(lang,rel,'stories')+
       f'<div class="page-plain"><div class="wrap"><div class="kicker" data-n="{t(lang,"st_k")}"><span class="line"></span></div>'
       f'<h1>{t(lang,"st_h")}</h1><p class="lead">{t(lang,"st_lead")}</p></div></div>'
@@ -1264,14 +1281,14 @@ def build_categories(lang):
     for slug in CATS:
         rel=f'portfolio-category/{slug}/'; P=prefix(lang,rel)
         subset=[s for s in STORIES if slug in s[3]]
-        cards=''.join(story_card(lang,P,s) for s in subset)
+        cards=''.join(story_card(lang,P,s,hl='h2') for s in subset)
         label=catname(slug,lang)
         lead=t(lang,'cat_lead').replace('{x}',label.lower())
         body=(nav(lang,rel,'stories')+
           f'<div class="page-plain"><div class="wrap"><div class="kicker" data-n="{t(lang,"cat_k")}"><span class="line"></span></div>'
           f'<h1>{label}</h1><p class="lead">{lead}</p></div></div>'
           f'<section><div class="wrap"><div class="story-grid">{cards}</div></div></section>'+footer(lang,rel))
-        write(lang,rel,head(lang,rel,f'{label} — Mountain Elopement',DESC['stories'][lang])+body+scripts(P))
+        write(lang,rel,head(lang,rel,f'{label} — Mountain Elopement',_cat_desc(slug,lang))+body+scripts(P))
 
 # Per-story editorial copy (lead + two paragraphs + a pull-quote), truthful to the location
 # and the kind of elopement — never invented details about the real couples.
@@ -1412,7 +1429,7 @@ def build_portfolio(lang):
             "caption":_plain(titles[lang]),"representativeOfPage":True,
             "creator":{"@id":ANDREAS_ID,"@type":"Person","name":"Andreas Kiss"},
             "contentLocation":{"@type":"Place","name":"Dolomites"}}
-        write(lang,rel,head(lang,rel,f'{titles[lang]} — Mountain Elopement',DESC['stories'][lang],img_ld)+body+scripts(P,LB_JS))
+        write(lang,rel,head(lang,rel,titles[lang],_pi_desc(slug,lang),img_ld)+body+scripts(P,LB_JS))
 
 # Single source of truth for prices — used by the tier cards AND the calculator.
 PKG_EUR=[6000,9000,13500]                       # N°01, N°02, N°03
@@ -1763,7 +1780,7 @@ def build_legal(lang):
                    f'<h1>{title}</h1><p class="lead">{IMPRINT_LEAD.get(lang,IMPRINT_LEAD["en"])}</p></div></div>'
                    f'<section><div class="wrap"><div class="legal-body" style="max-width:760px">{IMPRINT.get(lang,IMPRINT["en"])}</div></div></section>')
         body=nav(lang,rel,'')+inner+footer(lang,rel)
-        write(lang,rel,head(lang,rel,f'{title} — Mountain Elopement','')+body+scripts(P))
+        write(lang,rel,head(lang,rel,f'{title} — Mountain Elopement',LEGAL_DESC[slug][lang])+body+scripts(P))
 
 def guide_card(lang,P,g):
     _im=bild(P,f"img/stories/{g['img']}.webp",g["title"][lang],sizes="(max-width:520px) 100vw, (max-width:860px) 50vw, 380px")
@@ -1923,7 +1940,7 @@ def build_guides(lang):
           f'<div class="kicker" data-n="{t(lang,"cta_k")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"cta_h")}</h2></div>'
           f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
           +footer(lang,rel))
-        write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang],pre=herolink(P,_gimg))+body+scripts(P))
+        write(lang,rel,head(lang,rel,g['title'][lang],_guide_desc(g,lang),pre=herolink(P,_gimg))+body+scripts(P))
 
 # ---- Rich guide: helicopter elopement (EN + DE full; ES/IT fall back to EN) ----
 HELI_FAQ=[
@@ -2262,7 +2279,7 @@ def build_helicopter_guide(lang):
       f'<div class="kicker" data-n="{t(lang,"cta_k")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang],ld_extra=faq_ld,pre=herolink(P,HERO_IMG))+body+scripts(P))
+    write(lang,rel,head(lang,rel,g['title'][lang],_guide_desc(g,lang),ld_extra=faq_ld,pre=herolink(P,HERO_IMG))+body+scripts(P))
 
 REGION_FAQ=[
  ("Do we need a permit to get married in the Dolomites?",
@@ -2659,7 +2676,7 @@ def build_proposal_guide(lang):
       f'<div class="kicker" data-n="{t(lang,"cta_k")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang],ld_extra=faq_ld,pre=herolink(P,HERO_IMG))+body+scripts(P))
+    write(lang,rel,head(lang,rel,g['title'][lang],_guide_desc(g,lang),ld_extra=faq_ld,pre=herolink(P,HERO_IMG))+body+scripts(P))
 
 SUN_FAQ=[
  ("Sunrise or sunset — which is better for an elopement?",
@@ -2934,7 +2951,7 @@ def build_sunset_guide(lang):
       f'<div class="kicker" data-n="{t(lang,"cta_k")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang],ld_extra=faq_ld,pre=herolink(P,HERO_IMG))+body+scripts(P))
+    write(lang,rel,head(lang,rel,g['title'][lang],_guide_desc(g,lang),ld_extra=faq_ld,pre=herolink(P,HERO_IMG))+body+scripts(P))
 
 SPOTS_FAQ=[
  ("What is the most beautiful place in the Dolomites?",
@@ -3224,7 +3241,7 @@ def build_spots_guide(lang):
       f'<div class="kicker" data-n="{t(lang,"cta_k")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang],ld_extra=faq_ld,pre=herolink(P,HERO_IMG))+body+scripts(P))
+    write(lang,rel,head(lang,rel,g['title'][lang],_guide_desc(g,lang),ld_extra=faq_ld,pre=herolink(P,HERO_IMG))+body+scripts(P))
 
 PLAN_FAQ=[
  ("How far ahead should we plan a mountain elopement?",
@@ -3500,7 +3517,7 @@ def build_plan_guide(lang):
       f'<div class="kicker" data-n="{t(lang,"cta_k")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang],ld_extra=faq_ld,pre=herolink(P,HERO_IMG))+body+scripts(P))
+    write(lang,rel,head(lang,rel,g['title'][lang],_guide_desc(g,lang),ld_extra=faq_ld,pre=herolink(P,HERO_IMG))+body+scripts(P))
 
 ALPS_FAQ=[
  ("Dolomites or Tyrol &mdash; which is better for an elopement?",
@@ -3792,7 +3809,7 @@ def build_alps_guide(lang):
       f'<div class="kicker" data-n="{t(lang,"cta_k")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang],ld_extra=faq_ld,pre=herolink(P,HERO_IMG))+body+scripts(P))
+    write(lang,rel,head(lang,rel,g['title'][lang],_guide_desc(g,lang),ld_extra=faq_ld,pre=herolink(P,HERO_IMG))+body+scripts(P))
 
 # ---- elope-in-austria: rich guide (EN+DE; ES/IT still served by generic build_guides until translated) ----
 # --- elope-in-austria guide ES/IT (auto-generated, keyed by exact EN string) ---
@@ -4038,7 +4055,7 @@ def build_austria_guide(lang):
       f'<div class="kicker" data-n="{t(lang,"cta_k")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang],ld_extra=faq_ld,pre=herolink(P,HERO_IMG))+body+scripts(P))
+    write(lang,rel,head(lang,rel,g['title'][lang],_guide_desc(g,lang),ld_extra=faq_ld,pre=herolink(P,HERO_IMG))+body+scripts(P))
 
 # ---- elopement-things-nobody-tells-you: rich guide (EN+DE; ES/IT via generic build_guides until translated) ----
 # --- elopement-things-nobody-tells-you ES/IT (auto-generated, keyed by exact EN string) ---
@@ -4284,7 +4301,7 @@ def build_things_guide(lang):
       f'<div class="kicker" data-n="{t(lang,"cta_k")}"><span class="line"></span></div><h2 style="margin-top:20px">{t(lang,"cta_h")}</h2></div>'
       f'<a href="{u(P,lang,"get-in-touch/")}" class="btn light">{t(lang,"start_planning")}</a></div></section>'
       +footer(lang,rel))
-    write(lang,rel,head(lang,rel,g['title'][lang]+' — Mountain Elopement',g['excerpt'][lang],ld_extra=faq_ld,pre=herolink(P,HERO_IMG))+body+scripts(P))
+    write(lang,rel,head(lang,rel,g['title'][lang],_guide_desc(g,lang),ld_extra=faq_ld,pre=herolink(P,HERO_IMG))+body+scripts(P))
 
 TYROL_REGION_FAQ=[
  ("Can we legally get married in Tyrol?",
@@ -4442,8 +4459,8 @@ def build_tyrol_region(lang):
     stories=['official-married-in-the-alps','lake-elopement-tyrol-mountains','sunset-elopement-tyrol']
     cards=''.join(story_card(lang,P,STORYBY[s]) for s in stories)
     guidelink=u(P,lang,'how-to-elope-in-the-europe-mountains/elope-in-austria/')
-    title=L(f'Tyrol Elopement {SEO_YEAR} — Elope in the Austrian Alps',f'Elopement in Tirol {SEO_YEAR} — in den österreichischen Alpen heiraten')
-    desc=L(f'Planning a Tyrol elopement for {SEO_YEAR}? Get legally married on an Austrian mountain, near Innsbruck &mdash; locations, the legal route, costs and the best light, from Tyrolean photographers.',f'Elopement in Tirol {SEO_YEAR}? Heiratet rechtsgültig auf einem österreichischen Berg, nahe Innsbruck &mdash; Orte, der Rechtsweg, Kosten und das beste Licht, von Tiroler Fotografen.')
+    title={'en':f'Tyrol Elopement {SEO_YEAR} — Elope in the Austrian Alps','de':f'Elopement in Tirol {SEO_YEAR} — in den Alpen heiraten','es':f'Elopement en el Tirol {SEO_YEAR} — Alpes austriacos','it':f'Elopement in Tirolo {SEO_YEAR} — Alpi austriache'}[lang]
+    desc={'en':f'Planning a Tyrol elopement for {SEO_YEAR}? Get legally married on an Austrian mountain near Innsbruck &mdash; locations, the legal route, costs and best light.','de':f'Elopement in Tirol {SEO_YEAR}? Rechtsgültig heiraten auf einem Berg nahe Innsbruck &mdash; Orte, Rechtsweg, Kosten und das beste Licht.','es':f'¿Un elopement en el Tirol en {SEO_YEAR}? Casaos legalmente en una montaña cerca de Innsbruck &mdash; lugares, el trámite legal, costes y la mejor luz.','it':f'Un elopement in Tirolo nel {SEO_YEAR}? Sposatevi legalmente su una montagna vicino a Innsbruck &mdash; luoghi, l&rsquo;iter legale, costi e la luce migliore.'}[lang]
     body=(nav(lang,rel,'')+
       f'<section class="page-hero" style="padding:0">{herobg(P,HERO_IMG,L("Tyrol elopement region","Elopement-Region Tirol"))}'
       f'<div class="content"><div class="wrap"><div class="kicker" data-n="{L("The Region","Die Region")}"><span class="line"></span></div><h1>{L("Tyrol Elopement","Elopement in Tirol")}</h1></div></div></section>'
@@ -4625,8 +4642,8 @@ def build_proposal_page(lang):
     stories=['mountain-engagement','a-journey-of-love-and-adventure']
     cards=''.join(story_card(lang,P,STORYBY[s]) for s in stories)
     guidelink=u(P,lang,'how-to-elope-in-the-europe-mountains/mountain-proposal-guide/')
-    title=L(f'Dolomites Proposal {SEO_YEAR} — Surprise Proposal Photographer',f'Antrag in den Dolomiten {SEO_YEAR} — Fotograf für den Heiratsantrag')
-    desc=L(f'Planning a surprise proposal in the Dolomites or the Alps for {SEO_YEAR}? We capture the moment from a distance, keep the secret, and photograph the yes at first light &mdash; then a relaxed couples session.',f'Ein Überraschungs-Antrag in den Dolomiten oder Alpen {SEO_YEAR}? Wir halten den Moment aus der Ferne fest, wahren das Geheimnis und fotografieren das Ja im ersten Licht &mdash; danach ein entspanntes Paar-Shooting.')
+    title={'en':f'Dolomites Proposal {SEO_YEAR} — Surprise Proposal Photographer','de':f'Antrag in den Dolomiten {SEO_YEAR} — Antrags-Fotograf','es':f'Pedida en los Dolomitas {SEO_YEAR} — fotógrafo de pedidas','it':f'Proposta nelle Dolomiti {SEO_YEAR} — fotografo di proposte'}[lang]
+    desc={'en':f'Planning a surprise proposal in the Dolomites or the Alps for {SEO_YEAR}? We keep the secret and capture the yes at first light &mdash; then a couples session.','de':f'Überraschungs-Antrag in den Dolomiten oder Alpen {SEO_YEAR}? Wir wahren das Geheimnis und fotografieren das Ja im ersten Licht &mdash; danach ein Paar-Shooting.','es':f'¿Una pedida sorpresa en los Dolomitas o los Alpes en {SEO_YEAR}? Guardamos el secreto y capturamos el sí a primera luz &mdash; luego una sesión de pareja.','it':f'Una proposta a sorpresa nelle Dolomiti o nelle Alpi nel {SEO_YEAR}? Custodiamo il segreto e fotografiamo il sì alla prima luce &mdash; poi un servizio di coppia.'}[lang]
     body=(nav(lang,rel,'')+
       f'<section class="page-hero" style="padding:0">{herobg(P,HERO_IMG,L("A proposal at Lago di Braies in the Dolomites","Ein Antrag am Pragser Wildsee in den Dolomiten"))}'
       f'<div class="content"><div class="wrap"><div class="kicker" data-n="{L("The Proposal","Der Antrag")}"><span class="line"></span></div><h1>{L("Dolomites Proposal","Antrag in den Dolomiten")}</h1></div></div></section>'
@@ -4677,8 +4694,8 @@ def build_region(lang):
         {"@type":"Question","name":_plain(q),"acceptedAnswer":{"@type":"Answer","text":_plain(a)}} for q,a in faqs]}
     stories=['sunrise-elopement-in-the-dolomites','climbing-wedding','lago-di-braies-elopement']
     cards=''.join(story_card(lang,P,STORYBY[s]) for s in stories)
-    title=f'Dolomites Elopement {SEO_YEAR} — How to Elope in the Dolomites'
-    desc=f'Planning a Dolomites elopement for {SEO_YEAR}? Permits, access rules, the best light, and how to make it legal &mdash; from photographers who elope couples here year-round.'
+    title={'en':f'Dolomites Elopement {SEO_YEAR} — How to Elope in the Dolomites','de':f'Dolomiten-Elopement {SEO_YEAR} — in den Dolomiten heiraten','es':f'Elopement en los Dolomitas {SEO_YEAR} — cómo fugarse allí','it':f'Elopement nelle Dolomiti {SEO_YEAR} — come sposarsi lì'}[lang]
+    desc={'en':f'Planning a Dolomites elopement for {SEO_YEAR}? Permits, access rules and the best light &mdash; and how to make it legal, from photographers who shoot here year-round.','de':f'Elopement in den Dolomiten {SEO_YEAR}? Genehmigungen, Zufahrtsregeln, bestes Licht und wie ihr euren Tag plant &mdash; ganzjährig vor Ort.','es':f'¿Un elopement en los Dolomitas en {SEO_YEAR}? Permisos, accesos, la mejor luz y cómo planear vuestro día &mdash; fotógrafos locales todo el año.','it':f'Un elopement nelle Dolomiti nel {SEO_YEAR}? Permessi, accessi, la luce migliore e come organizzare la giornata &mdash; fotografi sul posto tutto l&rsquo;anno.'}[lang]
     body=(nav(lang,rel,'')+
       f'<section class="page-hero" style="padding:0">{herobg(P,"img/hero/hero2.webp","Dolomites elopement region")}'
       f'<div class="content"><div class="wrap"><div class="kicker" data-n="The Region"><span class="line"></span></div><h1>Dolomites Elopement</h1></div></div></section>'
