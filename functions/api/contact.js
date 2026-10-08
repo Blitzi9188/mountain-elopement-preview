@@ -16,6 +16,13 @@ export async function onRequestPost({ request, env }) {
       return json({ ok: true }); // Bots stillschweigend verwerfen
     }
 
+    // 1b) Turnstile-Token MUSS vorhanden sein — blockiert Direkt-POST-Bots auch dann,
+    //     wenn TURNSTILE_SECRET_KEY (noch) nicht gesetzt ist (echte Nutzer bekommen das
+    //     Token automatisch vom Managed-Widget).
+    if (!(form.get('cf-turnstile-response') || '').toString().trim()) {
+      return json({ ok: true }); // kein Widget-Token => Bot, stillschweigend verwerfen
+    }
+
     // 2) Turnstile prüfen (nur wenn ein Secret hinterlegt ist)
     if (env.TURNSTILE_SECRET_KEY) {
       const token = (form.get('cf-turnstile-response') || '').toString();
@@ -44,6 +51,16 @@ export async function onRequestPost({ request, env }) {
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return json({ ok: false, error: 'Please enter a valid email address.' }, 400);
+    }
+
+    // 3b) Inhaltsfilter — offensichtlichen SEO-/Marketing-Spam stillschweigend verwerfen.
+    //     Blockt bei 2+ Links oder typischen Spam-Begriffen (Wortgrenzen -> keine Fehltreffer
+    //     bei Namen wie "Frank"/"Sloane"). Echte Paare mit einem einzelnen Link kommen durch.
+    const blob = `${name} ${message} ${interests}`;
+    const urlCount = (blob.match(/https?:\/\/|www\.[a-z0-9-]+\.[a-z]{2,}/gi) || []).length;
+    const spamRe = /\b(seo|backlink|guest post|link building|rank your|crypto|bitcoin|casino|viagra|cialis|payday|web design|digital marketing|b2b leads|marketing services|escort|gambling|search engine optimi|increase (your )?traffic)/i;
+    if (urlCount >= 2 || spamRe.test(blob)) {
+      return json({ ok: true }); // sieht für den Absender wie Erfolg aus, landet aber im Nichts
     }
 
     // 4) E-Mail via Resend senden
