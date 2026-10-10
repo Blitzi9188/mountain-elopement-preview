@@ -58,7 +58,7 @@ export async function onRequestPost({ request, env }) {
     //     bei Namen wie "Frank"/"Sloane"). Echte Paare mit einem einzelnen Link kommen durch.
     const blob = `${name} ${message} ${interests}`;
     const urlCount = (blob.match(/https?:\/\/|www\.[a-z0-9-]+\.[a-z]{2,}/gi) || []).length;
-    const spamRe = /\b(seo|backlink|guest post|link building|rank your|crypto|bitcoin|casino|viagra|cialis|payday|web design|digital marketing|b2b leads|marketing services|escort|gambling|search engine optimi|increase (your )?traffic)/i;
+    const spamRe = /\b(seo|backlink|guest post|link building|rank your|crypto|bitcoin|casino|viagra|cialis|payday|web design|digital marketing|b2b leads|marketing services|escort|gambling|search engine optimi|increase (your )?traffic|web hosting|cpanel|vps|rdp|openvz|softaculous|reseller hosting|dedicated server|windows vps|use code|promo code|free ssl)/i;
     if (urlCount >= 2 || spamRe.test(blob)) {
       return json({ ok: true }); // sieht für den Absender wie Erfolg aus, landet aber im Nichts
     }
